@@ -60,5 +60,7 @@ player_right={
 
 [rendering]
 
-quality/filters/msaa=2
+quality/filters/anisotropic_filter_level=2
+quality/shadows/filter_mode=2
+quality/subsurface_scattering/quality=0
 environment/default_environment="res://default_env.tres"

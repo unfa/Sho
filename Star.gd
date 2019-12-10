@@ -8,7 +8,7 @@ var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CollisionShape/AnimationPlayer.play("Idle")
+	#$CollisionShape/AnimationPlayer.play("Idle")
 	$Meshes.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

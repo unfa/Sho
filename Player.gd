@@ -4,7 +4,9 @@ signal star_collected
 
 const FALL_ACCEL = 50
 const FALL_VELOCITY = 980
-const JUMP_VELOCITY = 1050
+const JUMP_VELOCITY = 500
+const JUMP_MAX_TIME = 0.25  
+const JUMP_AFTERBURN = 0.25
 const WALK_VELOCITY = 1000
 const WALK_LERP_ACCEL = 0.1
 const WALK_LERP_DECEL = 0.25
@@ -12,11 +14,12 @@ const WALK_AIR_CONTROL = 0.25
 
 export var freeze = true
 
+var jump_active = false
+var jump_velocity = 0
+var jump_time = 0
 var velocity = Vector3(0, 0, 0)
 var walk_velocity = Vector2(0, 0)
 var walk_target_velocity = Vector2(0, 0)
-
-var on_ground = false
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -37,19 +40,10 @@ func collect_star():
 #	pass
 
 func _physics_process(delta):
-	
-	
 	# initialize local vars
 	
 	var walk_direction = Vector2(0, 0)
 	var walk_lerp = 1
-	
-	# check if the player feet are touching ground:
-
-	if $Feet.get_overlapping_bodies() == []:
-		on_ground = false
-	else:
-		on_ground = true
 	
 	# Walk direction
 	
@@ -76,15 +70,13 @@ func _physics_process(delta):
 		walk_lerp = WALK_LERP_ACCEL
 	else:
 		walk_lerp = WALK_LERP_DECEL
-		
-
+	
 	# air control affects the walk lerp factor
 	
-	if not on_ground:
+	if not is_on_floor():
 		walk_lerp *= WALK_AIR_CONTROL
 	
-		# interpolate the walk velocity
-	
+	# interpolate the walk velocity
 	
 	walk_velocity = lerp(walk_velocity, walk_target_velocity, walk_lerp)
 	
@@ -94,20 +86,27 @@ func _physics_process(delta):
 	velocity[2] = walk_velocity[1]
 	
 	# apply fall velocity accelaration terminal velocity is reached
-	if velocity[1] > -FALL_VELOCITY and not on_ground:
+	if velocity[1] > -FALL_VELOCITY and not is_on_floor():
 		velocity[1] = velocity[1] - FALL_ACCEL
 	
-	# reset the vertical velocity if we're on th ground already
-	#if on_ground:
-#		velocity[1] = 0
-
+	#jump logic
 	
 	if not freeze:
-		if Input.is_action_just_pressed("player_jump") and on_ground:
-			velocity[1] = JUMP_VELOCITY
 			
-	# forward movement
-	#velocity[2] = 0
+		if jump_active:
+			jump_time += delta
+			jump_velocity = ( max(0, JUMP_MAX_TIME - jump_time) / JUMP_MAX_TIME ) * (JUMP_AFTERBURN * JUMP_VELOCITY)
+	
+		if Input.is_action_just_pressed("player_jump") and is_on_floor():
+			jump_active = true
+			jump_time = 0
+			velocity[1] = JUMP_VELOCITY
+		
+		if Input.is_action_just_released("player_jump"):
+			jump_active = false
+			jump_velocity = 0
+
+	velocity[1] += jump_velocity
 	
 	# perform movement
-	var collision = self.move_and_slide(velocity * delta)
+	self.move_and_slide(velocity * delta, Vector3(0, 1, 0))

@@ -38,7 +38,7 @@ tracks/1/keys = {
 "values": [ Vector3( 90, 0, 0 ), Vector3( 90, -720, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../OmniLight:light_energy")
+tracks/2/path = NodePath("../EffectStarPickup/OmniLight:light_energy")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -52,7 +52,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "Pickup"
-length = 8.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Meshes:visible")
 tracks/0/interp = 1
@@ -66,13 +66,13 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../StarParticles:emitting")
+tracks/1/path = NodePath("../EffectStarPickup/StarParticles:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 8 ),
+"times": PoolRealArray( 0, 0.4, 12 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -84,7 +84,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 8 ),
+"times": PoolRealArray( 12 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -92,13 +92,13 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../SmokeParticles:emitting")
+tracks/3/path = NodePath("../EffectStarPickup/SmokeParticles:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 8 ),
+"times": PoolRealArray( 0, 0.4, 12 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -176,7 +176,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0, 0.4, 0.6, 0.8, 1.25 )
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("../OmniLight:light_energy")
+tracks/11/path = NodePath("../EffectStarPickup/OmniLight:light_energy")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -202,7 +202,7 @@ flag_rotate_y = true
 spread = 180.0
 initial_velocity = 12.0
 initial_velocity_random = 1.0
-angular_velocity = 5.0
+angular_velocity = 1.0
 angular_velocity_random = 1.0
 damping = 8.0
 damping_random = 1.0
@@ -225,43 +225,44 @@ surfaces/0 = {
 "vertex_count": 60
 }
 
-[sub_resource type="Curve" id=13]
+[sub_resource type="Curve" id=8]
 min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, 66.528 ), 0.0, -460.455, 0, 0, Vector2( 1, -66.528 ), -9.60779, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=14]
+[sub_resource type="CurveTexture" id=9]
 width = 128
-curve = SubResource( 13 )
+curve = SubResource( 8 )
 
-[sub_resource type="Gradient" id=8]
+[sub_resource type="Gradient" id=10]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 8 )
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
 width = 128
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=12]
 flag_rotate_y = true
 spread = 180.0
 gravity = Vector3( 0, 2, 0 )
 initial_velocity = 6.0
 initial_velocity_random = 0.25
+angular_velocity = 1.05
 damping = 5.0
 damping_random = 0.1
 angle = 360.0
 angle_random = 1.0
-angle_curve = SubResource( 14 )
+angle_curve = SubResource( 9 )
 scale = 2.0
 scale_random = 0.2
 scale_curve = SubResource( 5 )
-color_ramp = SubResource( 9 )
+color_ramp = SubResource( 11 )
 hue_variation = -0.17
 hue_variation_random = 1.0
 anim_offset = 1.0
 anim_offset_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=13]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -273,9 +274,13 @@ albedo_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 6 )
+transmission_enabled = true
+transmission = Color( 1, 1, 1, 1 )
+proximity_fade_enable = true
+proximity_fade_distance = 15.0
 
-[sub_resource type="QuadMesh" id=12]
-material = SubResource( 11 )
+[sub_resource type="QuadMesh" id=14]
+material = SubResource( 13 )
 size = Vector2( 8, 8 )
 
 [node name="Star" type="Area" groups=[
@@ -291,6 +296,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape"]
+autoplay = "Idle"
 anims/Idle = SubResource( 2 )
 anims/Pickup = SubResource( 3 )
 
@@ -301,15 +307,17 @@ visible = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00258112, 0.00666428, 0.00320959 )
 
 [node name="Ring" parent="Meshes" index="0"]
-transform = Transform( -0.947528, -0.319673, 1.39734e-08, 0, -4.37114e-08, -1, 0.319673, -0.947528, 4.14178e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
 [node name="Star" parent="Meshes" index="1"]
-transform = Transform( 0.795618, -0.605799, 2.64803e-08, 0, -4.37114e-08, -1, 0.605799, 0.795618, -3.47776e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
 [node name="SmallStar" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="StarParticles" type="Particles" parent="."]
+[node name="EffectStarPickup" type="Spatial" parent="."]
+
+[node name="StarParticles" type="Particles" parent="EffectStarPickup"]
 emitting = false
 amount = 64
 lifetime = 3.0
@@ -320,19 +328,19 @@ local_coords = false
 process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 7 )
 
-[node name="SmokeParticles" type="Particles" parent="."]
+[node name="SmokeParticles" type="Particles" parent="EffectStarPickup"]
 emitting = false
 amount = 32
 lifetime = 8.0
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 10 )
-draw_pass_1 = SubResource( 12 )
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 14 )
 
-[node name="OmniLight" type="OmniLight" parent="."]
+[node name="OmniLight" type="OmniLight" parent="EffectStarPickup"]
 light_color = Color( 0.921569, 0.517647, 0.933333, 1 )
-light_energy = 0.159223
+light_energy = 0.0
 light_bake_mode = 0
 shadow_enabled = true
 omni_range = 15.0
