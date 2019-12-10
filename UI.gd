@@ -17,7 +17,6 @@ func _ready():
 
 
 func _on_Player_star_collected():
-	print("UI: star collected!")
 	stars_collected += 1
 	# update UI
 	

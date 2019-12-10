@@ -269,7 +269,6 @@ params_billboard_mode = 3
 particles_anim_h_frames = 4
 particles_anim_v_frames = 4
 particles_anim_loop = false
-albedo_color = Color( 0.94902, 0.666667, 0.937255, 1 )
 albedo_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0

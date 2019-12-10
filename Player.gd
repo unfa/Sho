@@ -21,6 +21,8 @@ var velocity = Vector3(0, 0, 0)
 var walk_velocity = Vector2(0, 0)
 var walk_target_velocity = Vector2(0, 0)
 
+var in_water = false
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -30,6 +32,11 @@ func activate():
 	
 func collect_star():
 	emit_signal("star_collected")
+
+func water():
+	$WaterParticles.emitting = true
+	in_water = true
+	$Camera/AnimationPlayer.play("Water")
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -47,7 +54,7 @@ func _physics_process(delta):
 	
 	# Walk direction
 	
-	if not freeze:
+	if not freeze and not in_water:
 		if Input.is_action_pressed("player_forward"):
 			walk_direction += Vector2(0, 1)
 		
@@ -91,7 +98,7 @@ func _physics_process(delta):
 	
 	#jump logic
 	
-	if not freeze:
+	if not freeze and not in_water:
 			
 		if jump_active:
 			jump_time += delta
@@ -105,6 +112,9 @@ func _physics_process(delta):
 		if Input.is_action_just_released("player_jump"):
 			jump_active = false
 			jump_velocity = 0
+
+	if in_water:
+		velocity = Vector3(0, -150, 0)
 
 	velocity[1] += jump_velocity
 	
