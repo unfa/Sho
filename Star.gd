@@ -1,5 +1,9 @@
 extends Area
 
+#const SmokeBaseColor = preload("res://Assets/Smoke/Smoke BaseColor.png")
+#const SmokeNormal = preload("res://Assets/Smoke/Smoke Normal.png")
+
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -8,7 +12,6 @@ var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$CollisionShape/AnimationPlayer.play("Idle")
 	$Meshes.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

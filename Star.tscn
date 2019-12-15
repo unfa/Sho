@@ -228,7 +228,7 @@ surfaces/0 = {
 [sub_resource type="Curve" id=8]
 min_value = -360.0
 max_value = 360.0
-_data = [ Vector2( 0, 66.528 ), 0.0, -460.455, 0, 0, Vector2( 1, -66.528 ), -9.60779, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 25.344 ), 0.0, 0.0, 0, 0, Vector2( 0.977456, -6.336 ), -9.60779, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=9]
 width = 128
@@ -245,19 +245,18 @@ width = 128
 flag_rotate_y = true
 spread = 180.0
 gravity = Vector3( 0, 2, 0 )
-initial_velocity = 6.0
+initial_velocity = 2.0
 initial_velocity_random = 0.25
-angular_velocity = 1.05
 damping = 5.0
 damping_random = 0.1
-angle = 360.0
+angle = 720.0
 angle_random = 1.0
 angle_curve = SubResource( 9 )
 scale = 2.0
 scale_random = 0.2
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 11 )
-hue_variation = -0.17
+hue_variation = -0.15
 hue_variation_random = 1.0
 anim_offset = 1.0
 anim_offset_random = 1.0
@@ -269,6 +268,7 @@ params_billboard_mode = 3
 particles_anim_h_frames = 4
 particles_anim_v_frames = 4
 particles_anim_loop = false
+albedo_color = Color( 0.913725, 0.6, 1, 1 )
 albedo_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0
@@ -305,12 +305,6 @@ visible = false
 [node name="Meshes" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00258112, 0.00666428, 0.00320959 )
 
-[node name="Ring" parent="Meshes" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
-[node name="Star" parent="Meshes" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
 [node name="SmallStar" parent="." instance=ExtResource( 3 )]
 visible = false
 
@@ -329,7 +323,7 @@ draw_pass_1 = SubResource( 7 )
 
 [node name="SmokeParticles" type="Particles" parent="EffectStarPickup"]
 emitting = false
-amount = 32
+amount = 4
 lifetime = 8.0
 one_shot = true
 explosiveness = 1.0

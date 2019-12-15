@@ -28,7 +28,7 @@ var in_water = false
 # var b = "text"
 
 func activate():
-	$Camera/AnimationPlayer.play("Begin")
+	freeze = false
 	
 func collect_star():
 	emit_signal("star_collected")
@@ -36,7 +36,8 @@ func collect_star():
 func water():
 	$WaterParticles.emitting = true
 	in_water = true
-	$Camera/AnimationPlayer.play("Water")
+	freeze = true
+	#$Camera/AnimationPlayer.play("Water")
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
