@@ -1,6 +1,7 @@
 extends KinematicBody
 
 signal star_collected
+signal player_died
 
 const FALL_ACCEL = 50
 const FALL_VELOCITY = 980
@@ -12,7 +13,7 @@ const WALK_LERP_ACCEL = 0.1
 const WALK_LERP_DECEL = 0.25
 const WALK_AIR_CONTROL = 0.25
 
-export var freeze = true
+var freeze = true
 
 var jump_active = false
 var jump_velocity = 0
@@ -29,11 +30,24 @@ var in_water = false
 
 func activate():
 	freeze = false
+
+func respawn(var checkpoint):
 	
+	# wait 1 secnd before respawning
+	yield(get_tree().create_timer(1), "timeout")
+	
+	#print (name, " player respawn")
+	$WaterParticles.emitting = false
+	global_transform[3] = checkpoint.global_transform[3]
+	freeze = false
+	in_water = false
+	velocity = Vector3(0, 0, 0)
+
 func collect_star():
 	emit_signal("star_collected")
 
 func water():
+	emit_signal("player_died")
 	$WaterParticles.emitting = true
 	in_water = true
 	freeze = true
@@ -114,7 +128,7 @@ func _physics_process(delta):
 			jump_active = false
 			jump_velocity = 0
 
-	if in_water:
+	if in_water: #sinking in water
 		velocity = Vector3(0, -150, 0)
 
 	velocity[1] += jump_velocity
