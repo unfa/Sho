@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Checkpoint.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Checkpoint/CheckpointInactive.material" type="Material" id=2]
+[ext_resource path="res://Assets/Checkpoint/Checkpoint.tres" type="Material" id=2]
 
 [sub_resource type="SphereShape" id=1]
 radius = 3.0
@@ -12,46 +12,30 @@ height = 6.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "Activate"
-length = 3.0
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("MeshInstance:material_override:albedo_color:r")
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:material_override:shader_param/Color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0.470588, -0.25, 0, 0.25, 0, 0.388235, -0.25, 0, 0.25, 0, 1, -0.09, -0.37978, 0.18, -0.327367, 0.639216, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.001, 0.5, 1 )
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.341176, 0.568627, 0.996078, 1 ), Color( 1, 1, 1, 1 ), Color( 0.662745, 0.913725, 0.258824, 0.498039 ) ]
 }
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("MeshInstance:material_override:albedo_color:g")
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeshInstance:material_override:shader_param/FresnelPower")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.14, -0.0216243, 0.584314, -0.25, 0, 0.25, 0, 1, -0.07, -0.318631, 0.21, -0.00415337, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.001, 0.5, 1 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("MeshInstance:material_override:albedo_color:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 0.529412, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.199, -0.0128889, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.001, 0.5, 1 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("MeshInstance:material_override:albedo_color:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 0.156863, -0.25, 0, 0.25, 0, 0.196078, -0.25, 0, 0.25, 0, 1, -0.09, -0.266218, 0.13, -0.178863, 0.0745098, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.001, 0.5, 1 )
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 4.0, 0.5, 4.0 ]
 }
 
 [node name="Checkpoint" type="Area" groups=[
@@ -68,6 +52,8 @@ material_override = ExtResource( 2 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=[
+"tutorial",
+]]
 anims/Activate = SubResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_Checkpoint_body_entered"]

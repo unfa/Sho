@@ -3,6 +3,8 @@ extends KinematicBody
 signal star_collected
 signal player_died
 
+onready var UI = get_tree().get_nodes_in_group("ui")[0]
+
 const FALL_ACCEL = 50
 const FALL_VELOCITY = 980
 const JUMP_VELOCITY = 500
@@ -35,9 +37,7 @@ func respawn(var checkpoint):
 	
 	# wait 1 secnd before respawning
 	yield(get_tree().create_timer(1), "timeout")
-	
-	#print (name, " player respawn")
-	$WaterParticles.emitting = false
+
 	global_transform[3] = checkpoint.global_transform[3]
 	freeze = false
 	in_water = false
@@ -48,9 +48,22 @@ func collect_star():
 
 func water():
 	emit_signal("player_died")
-	$WaterParticles.emitting = true
 	in_water = true
 	freeze = true
+	UI.show_info("Oops!")
+	
+	#var water_splash_instance = water_splash.instance()
+	#water_splash_instance.global_transform[3] = global_transform[3]
+	#get_tree().root.add_child(water_splash_instance)
+	#add_child(water_splash_instance)
+	
+	var splash = preload("res://EffectWaterSplash.tscn")
+	var splash_instance = splash.instance()
+	splash_instance.set_name("splash")
+	splash_instance.global_transform[3] = global_transform[3]
+	get_tree().root.add_child(splash_instance)
+	
+
 	#$Camera/AnimationPlayer.play("Water")
 
 # Called when the node enters the scene tree for the first time.
@@ -63,7 +76,7 @@ func water():
 
 func _physics_process(delta):
 	# initialize local vars
-	
+		
 	var walk_direction = Vector2(0, 0)
 	var walk_lerp = 1
 	

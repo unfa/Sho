@@ -4,10 +4,8 @@ var active = false
 var recent = true
 
 onready var mesh = $MeshInstance
-var material_inactive = preload("res://Assets/Checkpoint/CheckpointInactive.material")
-var material_active = preload("res://Assets/Checkpoint/CheckpointActive.material")
-
 onready var player = get_tree().get_nodes_in_group("players")[0]
+onready var UI = get_tree().get_nodes_in_group("ui")[0]
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -15,12 +13,9 @@ onready var player = get_tree().get_nodes_in_group("players")[0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player.connect("player_died", self, "player_respawn")
-	
-	mesh.material_override = material_inactive
-	
+	player.connect("player_died", self, "player_respawn")	
 	# assign a unique material
-	#$MeshInstance.material_override = $MeshInstance.material_override.duplicate()
+	mesh.material_override = mesh.material_override.duplicate()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -34,9 +29,8 @@ func _on_Checkpoint_body_entered(body):
 	if body.is_in_group("players") and not active:
 		active = true
 		recent = true
-	
-		mesh.material_override = material_active	
-		#$AnimationPlayer.play("Activate")
+		UI.show_info("Checkpoint set!")
+		$AnimationPlayer.play("Activate")
 	
 		
 		for i in get_tree().get_nodes_in_group("checkpoints"):
