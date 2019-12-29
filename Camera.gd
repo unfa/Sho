@@ -16,7 +16,7 @@ var zoom = zoom_default
 # actual zoom values
 
 const zoom_factor_gamma = 1.2
-const zoom_factor_max = 0.12
+const zoom_factor_max = 0.17
 const zoom_factor_min = 1.5
 
 # Declare member variables here. Examples:
@@ -52,7 +52,7 @@ func _process(delta):
 	
 	var zoom_factor = lerp(zoom_factor_min, zoom_factor_max, pow(zoom, zoom_factor_gamma) )
 	
-	print("zoom:", zoom, " zoom factor: ", zoom_factor)
+	#print("zoom:", zoom, " zoom factor: ", zoom_factor)
 	
 	var offset_loc = Vector3 (0, 8, -16) * zoom_factor
 	var player_loc = player.global_transform[3]
