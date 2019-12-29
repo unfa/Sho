@@ -143,6 +143,9 @@ func _physics_process(delta):
 
 	if in_water: #sinking in water
 		velocity = Vector3(0, -150, 0)
+		
+#	if is_on_floor():
+#		velocity[1] = -FALL_VELOCITY * 0.001
 
 	velocity[1] += jump_velocity
 	
