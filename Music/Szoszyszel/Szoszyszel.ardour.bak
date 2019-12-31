@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session version="3002" name="Szoszyszel" sample-rate="48000" end-is-free="1" id-counter="7796" name-counter="1" event-counter="136251" vca-counter="1">
+<Session version="3002" name="Szoszyszel" sample-rate="48000" end-is-free="1" id-counter="7821" name-counter="1" event-counter="142560" vca-counter="1">
   <ProgramVersion created-with="Ardour 5.12" modified-with="Ardour 5.12"/>
   <MIDIPorts>
     <Port name="MIDI Clock in" direction="input"/>
@@ -420,7 +420,9 @@
     <Region name="Bass-42.1" muted="0" opaque="1" locked="0" video-locked="0" automatic="0" whole-file="1" import="0" external="0" sync-marked="0" left-of-split="0" right-of-split="0" hidden="0" position-locked="0" valid-transients="0" start="0" length="109714" position="8667430" beat="316.00004687500001" sync-position="0" ancestral-start="0" ancestral-length="0" stretch="1" shift="1" positional-lock-style="MusicTime" layering-index="51" start-beats="0" length-beats="4" id="6065" type="midi" first-edit="nothing" source-0="6063" master-source-0="6063"/>
     <Region name="Organ-16.1" muted="0" opaque="1" locked="0" video-locked="0" automatic="0" whole-file="1" import="0" external="0" sync-marked="0" left-of-split="0" right-of-split="0" hidden="0" position-locked="0" valid-transients="0" start="0" length="219429" position="7680001" beat="280.00003125000001" sync-position="0" ancestral-start="0" ancestral-length="0" stretch="1" shift="1" positional-lock-style="MusicTime" layering-index="24" start-beats="0" length-beats="8" id="6289" type="midi" first-edit="nothing" source-0="6287" master-source-0="6287"/>
   </Regions>
-  <Selection/>
+  <Selection>
+    <StripableAutomationControl stripable="404" control="0" order="25"/>
+  </Selection>
   <Locations>
     <Location id="612" name="session" start="0" end="8777143" flags="IsSessionRange" locked="0" position-lock-style="AudioTime"/>
     <Location id="1501" name="B" start="1755429" end="1755429" flags="IsMark,IsCDMarker" locked="0" position-lock-style="AudioTime"/>
@@ -732,6 +734,66 @@
         <Controllable name="Decay" id="6907" flags="" value="1.3494999408721924" parameter="21" symbol="decay"/>
         <Controllable name="Early Send" id="6909" flags="" value="9.20245361328125" parameter="22" symbol="early_send"/>
         <Controllable name="Modulation" id="6911" flags="" value="30" parameter="23" symbol="modulation"/>
+      </Processor>
+      <Processor id="7798" name="Calf Limiter" active="1" user-latency="0" type="lv2" unique-id="http://calf.sourceforge.net/plugins/Limiter" count="1" custom="0">
+        <Automation>
+          <AutomationList automation-id="parameter-4" id="7799" interpolation-style="Discrete" state="Off"/>
+          <AutomationList automation-id="parameter-5" id="7801" interpolation-style="Linear" state="Off"/>
+          <AutomationList automation-id="parameter-6" id="7803" interpolation-style="Linear" state="Off"/>
+          <AutomationList automation-id="parameter-15" id="7805" interpolation-style="Linear" state="Off"/>
+          <AutomationList automation-id="parameter-16" id="7807" interpolation-style="Linear" state="Off"/>
+          <AutomationList automation-id="parameter-17" id="7809" interpolation-style="Linear" state="Off"/>
+          <AutomationList automation-id="parameter-19" id="7811" interpolation-style="Discrete" state="Off"/>
+          <AutomationList automation-id="parameter-21" id="7813" interpolation-style="Linear" state="Off"/>
+          <AutomationList automation-id="parameter-22" id="7815" interpolation-style="Linear" state="Off"/>
+          <AutomationList automation-id="parameter-23" id="7817" interpolation-style="Discrete" state="Off"/>
+        </Automation>
+        <ConfiguredInput>
+          <Channels type="audio" count="2"/>
+          <Channels type="midi" count="1"/>
+        </ConfiguredInput>
+        <CustomSinks>
+          <Channels type="audio" count="2"/>
+          <Channels type="midi" count="1"/>
+        </CustomSinks>
+        <ConfiguredOutput>
+          <Channels type="audio" count="2"/>
+          <Channels type="midi" count="1"/>
+        </ConfiguredOutput>
+        <PresetOutput/>
+        <InputMap-0>
+          <Channelmap type="audio" from="0" to="0"/>
+          <Channelmap type="audio" from="1" to="1"/>
+          <Channelmap type="midi" from="0" to="0"/>
+        </InputMap-0>
+        <OutputMap-0>
+          <Channelmap type="audio" from="0" to="0"/>
+          <Channelmap type="audio" from="1" to="1"/>
+          <Channelmap type="midi" from="0" to="0"/>
+        </OutputMap-0>
+        <ThruMap/>
+        <lv2 last-preset-uri="" last-preset-label="" parameter-changed-since-last-preset="1">
+          <Port symbol="bypass" value="0"/>
+          <Port symbol="level_in" value="1"/>
+          <Port symbol="level_out" value="0.84674525260925293"/>
+          <Port symbol="limit" value="0.36856731772422791"/>
+          <Port symbol="attack" value="5"/>
+          <Port symbol="release" value="50"/>
+          <Port symbol="asc" value="1"/>
+          <Port symbol="asc_coeff" value="0.5"/>
+          <Port symbol="oversampling" value="4"/>
+          <Port symbol="auto_level" value="1"/>
+        </lv2>
+        <Controllable name="Bypass" id="7800" flags="Toggle" value="0" parameter="4" symbol="bypass"/>
+        <Controllable name="Input Gain" id="7802" flags="" value="1" parameter="5" symbol="level_in"/>
+        <Controllable name="Output Gain" id="7804" flags="" value="0.84674525260925293" parameter="6" symbol="level_out"/>
+        <Controllable name="Limit" id="7806" flags="" value="0.36856731772422791" parameter="15" symbol="limit"/>
+        <Controllable name="Lookahead" id="7808" flags="" value="5" parameter="16" symbol="attack"/>
+        <Controllable name="Release" id="7810" flags="" value="50" parameter="17" symbol="release"/>
+        <Controllable name="ASC" id="7812" flags="Toggle" value="1" parameter="19" symbol="asc"/>
+        <Controllable name="ASC Level" id="7814" flags="" value="0.5" parameter="21" symbol="asc_coeff"/>
+        <Controllable name="Oversampling" id="7816" flags="" value="4" parameter="22" symbol="oversampling"/>
+        <Controllable name="Auto-level" id="7818" flags="Toggle" value="1" parameter="23" symbol="auto_level"/>
       </Processor>
       <Processor id="434" name="Amp" active="1" user-latency="0" type="amp">
         <Automation>
@@ -1550,7 +1612,7 @@
       <Window name="add-routes" visible="0" x-off="-1" y-off="-1" x-size="754" y-size="490"/>
       <Window name="add-video" visible="0" x-off="1920" y-off="207" x-size="800" y-size="465"/>
       <Window name="inspector" visible="0" x-off="2789" y-off="57" x-size="620" y-size="370"/>
-      <Window name="audio-midi-setup" visible="0" x-off="2141" y-off="104" x-size="652" y-size="408"/>
+      <Window name="audio-midi-setup" visible="0" x-off="1920" y-off="0" x-size="652" y-size="408"/>
       <Window name="video-export" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="script-manager" visible="0" x-off="3496" y-off="1" x-size="431" y-size="388"/>
       <Window name="bundle-manager" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
@@ -1593,7 +1655,7 @@
       <Window name="PM-1207-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-1209-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-1210-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-1177-1259" visible="0" x-off="2147" y-off="206" x-size="641" y-size="205" custom-ui="1"/>
+      <Window name="P-1177-1259" visible="0" x-off="1920" y-off="0" x-size="641" y-size="205" custom-ui="1"/>
       <Window name="PM-1259-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="RPM-1528" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="P-1528-1558" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
@@ -1613,10 +1675,12 @@
       <Window name="PM-4487-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="P-4454-4548" visible="1" x-off="1920" y-off="95" x-size="641" y-size="225" custom-ui="1"/>
       <Window name="PM-4548-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-404-6782" visible="0" x-off="2030" y-off="0" x-size="874" y-size="677" custom-ui="1"/>
+      <Window name="P-404-6782" visible="0" x-off="1920" y-off="0" x-size="874" y-size="677" custom-ui="1"/>
       <Window name="PM-6782-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-404-6875" visible="0" x-off="1997" y-off="109" x-size="940" y-size="398" custom-ui="1"/>
+      <Window name="P-404-6875" visible="0" x-off="1920" y-off="0" x-size="940" y-size="398" custom-ui="1"/>
       <Window name="PM-6875-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="P-404-7798" visible="0" x-off="1920" y-off="0" x-size="878" y-size="361" custom-ui="1"/>
+      <Window name="PM-7798-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <GUIObjectState>
         <Object id="strip 54" visible="1" strip-width="Wide">
           <Object id="processor 84"/>
@@ -1644,6 +1708,7 @@
           <Object id="processor 434"/>
           <Object id="processor 6782"/>
           <Object id="processor 6875"/>
+          <Object id="processor 7798"/>
         </Object>
         <Object id="rtav 506" height="265" visible="1" midnam-model-name="Generic" midnam-custom-device-mode="MIDI" color-mode="MeterColors" note-range-min="55" note-range-max="105"/>
         <Object id="automation 510" height="68" visible="0"/>
