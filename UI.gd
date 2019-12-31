@@ -48,6 +48,12 @@ func _on_StartButton_pressed():
 	get_tree().get_nodes_in_group("players")[0].activate()
 	get_tree().paused = false
 	
+	# Start music stems
+	$Music/Bass.play(0)
+	$Music/Drums.play(0)
+	$Music/Lead.play(0)
+	$Music/Support.play(0)
+	
 	$CenterContainer/StartButton.hide()	
 	
 func _input(event):

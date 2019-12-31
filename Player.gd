@@ -109,15 +109,12 @@ func _physics_process(delta):
 	var walk_lerp = 1
 	
 	# check if the player is on the ground:
+
 	
-	print(feet.get_overlapping_areas())
-	
-	if feet.get_overlapping_areas().size() > 0:
+	if is_on_floor():
 		state_ground = true
 	else:
 		state_ground = false
-	
-	print("state_ground: ", state_ground)
 	
 	# Walk direction
 	
@@ -138,7 +135,7 @@ func _physics_process(delta):
 	if walk_direction.length() > 0:
 		state_running = true
 	else:
-		state_running = false	
+		state_running = false
 	
 	# calculate target velocity
 	
@@ -188,24 +185,24 @@ func _physics_process(delta):
 	
 	#jump logic
 	
-	state_just_jumped = false
-	
-	if not freeze and not in_water:
-			
-		if jump_active:
-			jump_time += delta
-			jump_velocity = ( max(0, JUMP_MAX_TIME - jump_time) / JUMP_MAX_TIME ) * (JUMP_AFTERBURN * JUMP_VELOCITY)
-	
-		if Input.is_action_just_pressed("player_jump") and state_ground:
-			jump_active = true
-			jump_time = 0
-			velocity[1] = JUMP_VELOCITY
-			
-			state_just_jumped = true
-		
-		if Input.is_action_just_released("player_jump"):
-			jump_active = false
-			jump_velocity = 0
+#	state_just_jumped = false
+#
+#	if not freeze and not in_water:
+#
+#		if jump_active:
+#			jump_time += delta
+#			jump_velocity = ( max(0, JUMP_MAX_TIME - jump_time) / JUMP_MAX_TIME ) * (JUMP_AFTERBURN * JUMP_VELOCITY)
+#
+#		if Input.is_action_just_pressed("player_jump") and state_ground:
+#			jump_active = true
+#			jump_time = 0
+#			velocity[1] = JUMP_VELOCITY
+#
+#			state_just_jumped = true
+#
+#		if Input.is_action_just_released("player_jump"):
+#			jump_active = false
+#			jump_velocity = 0
 
 	if in_water: #sinking in water
 		velocity = Vector3(0, -150, 0)

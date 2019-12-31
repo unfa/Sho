@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Szoszyszel_BASS_Ogg_Vorbis.ogg-6d307233a004c175725eae0dd0dc2add.oggstr"
+
+[deps]
+
+source_file="res://Music/Szoszyszel/export/Szoszyszel_BASS_Ogg_Vorbis.ogg"
+dest_files=[ "res://.import/Szoszyszel_BASS_Ogg_Vorbis.ogg-6d307233a004c175725eae0dd0dc2add.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
