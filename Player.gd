@@ -4,8 +4,10 @@ signal star_collected
 signal player_died
 
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
-
 onready var anim = $Mesh/AnimationPlayer
+onready var ground = $CollisionShape/Ground
+onready var feet = $Feet
+
 var action = ""
 var action_blend = 0
 var action_timeout = 0
@@ -41,6 +43,8 @@ var state_midair_previously = false
 var state_running = false
 var state_idle = false
 var state_idle_previously = false
+var state_flat_ground = false
+var state_ground = false
 
 # for calculating visual direction of the player model	
 var mesh_direction = 0
@@ -104,6 +108,17 @@ func _physics_process(delta):
 	var walk_direction = Vector2(0, 0)
 	var walk_lerp = 1
 	
+	# check if the player is on the ground:
+	
+	print(feet.get_overlapping_areas())
+	
+	if feet.get_overlapping_areas().size() > 0:
+		state_ground = true
+	else:
+		state_ground = false
+	
+	print("state_ground: ", state_ground)
+	
 	# Walk direction
 	
 	if not freeze and not in_water:
@@ -137,9 +152,15 @@ func _physics_process(delta):
 		walk_lerp = WALK_LERP_DECEL
 	
 	# air control affects the walk lerp factor
-	
-	if not is_on_floor():
+	if not state_ground:
 		walk_lerp *= WALK_AIR_CONTROL
+		
+	# check if the player is on flat ground - if not, we should be sliding from a slope or off a ledge
+	if not state_ground or ground.get_collision_normal() != Vector3(0, 1, 0):
+		state_flat_ground = false
+	else:
+		state_flat_ground = true
+			
 	
 	# interpolate the walk velocity
 	
@@ -158,13 +179,10 @@ func _physics_process(delta):
 	velocity[2] = walk_velocity[1]
 	
 	# apply fall velocity accelaration terminal velocity is reached
-	if velocity[1] > -FALL_VELOCITY and not is_on_floor():
+	if velocity[1] > -FALL_VELOCITY and not state_ground:
 		velocity[1] = velocity[1] - FALL_ACCEL
-	
-	# this fixes player glitching on the floor. For some reason if the velocity is made zero, some weird toggling occurs in velocity[1], which may potentially cause glitches
-	# it also breaks slopes, so TODO fix this
-	if is_on_floor() and not jump_active:
-		velocity[1] = - FALL_ACCEL * 0.001
+	elif state_flat_ground:
+		velocity[1] = -FALL_VELOCITY * 0.001
 	
 	#print(velocity)
 	
@@ -178,7 +196,7 @@ func _physics_process(delta):
 			jump_time += delta
 			jump_velocity = ( max(0, JUMP_MAX_TIME - jump_time) / JUMP_MAX_TIME ) * (JUMP_AFTERBURN * JUMP_VELOCITY)
 	
-		if Input.is_action_just_pressed("player_jump") and is_on_floor():
+		if Input.is_action_just_pressed("player_jump") and state_ground:
 			jump_active = true
 			jump_time = 0
 			velocity[1] = JUMP_VELOCITY
@@ -199,16 +217,20 @@ func _physics_process(delta):
 		
 	state_midair_previously = state_midair
 		
-	if is_on_floor():
+	if state_ground:
 		state_midair = false
 	else:
 		state_midair = true
 	
 		
-#	if is_on_floor():
+#	if state_ground:
 #		velocity[1] = -FALL_VELOCITY * 0.001
 
 	velocity[1] += jump_velocity
+	
+	#print(velocity)
+
+		
 	
 	# perform movement
 	self.move_and_slide(velocity * delta, Vector3(0, 1, 0))
@@ -252,6 +274,6 @@ func _physics_process(delta):
 		action = "Idle"
 		action_blend = 0.25
 
-	print("Action: ", action, " Timeout: ", action_timeout, " Idle time: ", idle_time)
+	#print("Action: ", action, " Timeout: ", action_timeout, " Idle time: ", idle_time)
 		
 	anim.play(action, action_blend)

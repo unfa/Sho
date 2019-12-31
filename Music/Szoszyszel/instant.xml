@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instant>
+  <Main x="1920" y="0" w="1920" h="1051" current-tab="editor"/>
+  <Editor id="12" edit-horizontal-pane-pos="0.97435897588729858" notebook-shrunk="0" edit-vertical-pane-pos="0.9043658971786499" mixer-width="Wide" zoom-focus="ZoomFocusLeft" zoom="7552" snap-to="SnapToBar" snap-mode="SnapMagnetic" internal-snap-to="SnapToBeatDiv8" internal-snap-mode="SnapNormal" pre-internal-snap-to="SnapToBar" pre-internal-snap-mode="SnapMagnetic" edit-point="EditAtMouse" visible-track-count="-1" playhead="7366217" left-frame="0" y-origin="0" show-measures="1" maximised="0" follow-playhead="0" stationary-playhead="1" region-list-sort-type="ByEndInFile" mouse-mode="MouseObject" join-object-range="0" show-editor-mixer="1" show-editor-list="1" editor-list-page="0" show-marker-lines="0" nudge-clock-value="240000">
+    <Window name="Editor" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" tabbed="1"/>
+    <Buttons>
+      <Press/>
+      <Release/>
+    </Buttons>
+    <Selection>
+      <StripableView id="404"/>
+    </Selection>
+    <RegionList sort-type="ByEndInFile" sort-ascending="1" show-all="0" show-automatic-regions="1"/>
+    <ActionScript lua="Lua 5.3">c2NyaXB0cyA9IHt9IA==</ActionScript>
+    <ActionHooks/>
+    <EditorLocations clock-mode="BBT"/>
+  </Editor>
+  <Mixer mixer-rhs-pane1-pos="0.60000002384185791" mixer-rhs_pane2-pos="0.69999998807907104" mixer-list-hpane-pos="0.00078125001164153218" mixer-inner-pane-pos="0.80000001192092896" narrow-strips="0" show-mixer="0" show-mixer-list="1" maximised="0" monitor-section-visible="0">
+    <Window name="Mixer" visible="0" x-off="0" y-off="0" x-size="1920" y-size="1006" tabbed="0"/>
+    <PluginOrder>
+      <PluginInfo sort="0" unique-id="http://gareus.org/oss/lv2/fat1" expanded="0"/>
+      <PluginInfo sort="1" unique-id="http://calf.sourceforge.net/plugins/Compressor" expanded="0"/>
+      <PluginInfo sort="2" unique-id="http://calf.sourceforge.net/plugins/Deesser" expanded="0"/>
+      <PluginInfo sort="3" unique-id="http://calf.sourceforge.net/plugins/Limiter" expanded="0"/>
+      <PluginInfo sort="4" unique-id="http://calf.sourceforge.net/plugins/MultiChorus" expanded="0"/>
+      <PluginInfo sort="5" unique-id="http://calf.sourceforge.net/plugins/SidechainCompressor" expanded="0"/>
+      <PluginInfo sort="6" unique-id="http://calf.sourceforge.net/plugins/StereoTools" expanded="0"/>
+      <PluginInfo sort="7" unique-id="http://calf.sourceforge.net/plugins/TransientDesigner" expanded="0"/>
+      <PluginInfo sort="8" unique-id="http://calf.sourceforge.net/plugins/VintageDelay" expanded="0"/>
+      <PluginInfo sort="9" unique-id="http://eq10q.sourceforge.net/eq/eq10qs" expanded="0"/>
+      <PluginInfo sort="10" unique-id="https://github.com/lucianodato/noise-repellent" expanded="0"/>
+      <PluginInfo sort="11" unique-id="http://calf.sourceforge.net/plugins/EnvelopeFilter" expanded="0"/>
+      <PluginInfo sort="12" unique-id="http://calf.sourceforge.net/plugins/MultibandEnhancer" expanded="0"/>
+      <PluginInfo sort="13" unique-id="http://calf.sourceforge.net/plugins/Pulsator" expanded="0"/>
+      <PluginInfo sort="14" unique-id="https://github.com/michaelwillis/dragonfly-reverb" expanded="0"/>
+      <PluginInfo sort="15" unique-id="http://vital.audio" expanded="0"/>
+      <PluginInfo sort="16" unique-id="1218" expanded="0"/>
+      <PluginInfo sort="17" unique-id="urn:ardour:a-comp#stereo" expanded="0"/>
+      <PluginInfo sort="18" unique-id="urn:ardour:a-delay" expanded="0"/>
+      <PluginInfo sort="19" unique-id="urn:ardour:a-eq" expanded="0"/>
+      <PluginInfo sort="20" unique-id="urn:ardour:a-fluidsynth" expanded="0"/>
+      <PluginInfo sort="21" unique-id="4b8061cfa9507036f494e922508e3133aae25b62" expanded="0"/>
+      <PluginInfo sort="22" unique-id="9286724135bde5e27d5b08ee30d28514d7021097" expanded="0"/>
+      <PluginInfo sort="23" unique-id="3b9404803e3624c4051ba8006e3036123dbbac2d" expanded="0"/>
+      <PluginInfo sort="24" unique-id="80fa9fa88c54df4a9f8f871af5d6f9da846ca4e7" expanded="0"/>
+      <PluginInfo sort="25" unique-id="https://community.ardour.org/node/7596" expanded="0"/>
+      <PluginInfo sort="26" unique-id="urn:ardour:a-reverb" expanded="0"/>
+      <PluginInfo sort="27" unique-id="http://drobilla.net/plugins/blop/adsr" expanded="0"/>
+      <PluginInfo sort="28" unique-id="1433" expanded="0"/>
+      <PluginInfo sort="29" unique-id="http://argotlunar.info/" expanded="0"/>
+      <PluginInfo sort="30" unique-id="4262" expanded="0"/>
+      <PluginInfo sort="31" unique-id="http://grejppi.github.io/plugins/bitrot/repeat" expanded="0"/>
+      <PluginInfo sort="32" unique-id="http://grejppi.github.io/plugins/bitrot/tapestop" expanded="0"/>
+      <PluginInfo sort="33" unique-id="2592" expanded="0"/>
+      <PluginInfo sort="34" unique-id="1771" expanded="0"/>
+      <PluginInfo sort="35" unique-id="http://calf.sourceforge.net/plugins/Filter" expanded="0"/>
+      <PluginInfo sort="36" unique-id="http://calf.sourceforge.net/plugins/Flanger" expanded="0"/>
+      <PluginInfo sort="37" unique-id="http://calf.sourceforge.net/plugins/Gate" expanded="0"/>
+      <PluginInfo sort="38" unique-id="http://calf.sourceforge.net/plugins/MultibandCompressor" expanded="0"/>
+      <PluginInfo sort="39" unique-id="http://calf.sourceforge.net/plugins/MultibandGate" expanded="0"/>
+      <PluginInfo sort="40" unique-id="http://calf.sourceforge.net/plugins/RingModulator" expanded="0"/>
+      <PluginInfo sort="41" unique-id="http://calf.sourceforge.net/plugins/SidechainGate" expanded="0"/>
+      <PluginInfo sort="42" unique-id="1190" expanded="0"/>
+      <PluginInfo sort="43" unique-id="1207" expanded="0"/>
+      <PluginInfo sort="44" unique-id="1402" expanded="0"/>
+      <PluginInfo sort="45" unique-id="urn:dragonfly:room" expanded="0"/>
+      <PluginInfo sort="46" unique-id="http://github.com/nicklan/drmr" expanded="0"/>
+      <PluginInfo sort="47" unique-id="http://gareus.org/oss/lv2/meters#EBUr128" expanded="0"/>
+      <PluginInfo sort="48" unique-id="http://geontime.com/geonkick" expanded="0"/>
+      <PluginInfo sort="49" unique-id="http://guitarix.sourceforge.net/plugins/gx_amp#GUITARIX" expanded="0"/>
+      <PluginInfo sort="50" unique-id="http://guitarix.sourceforge.net/plugins/gx_bossds1_#_bossds1_" expanded="0"/>
+      <PluginInfo sort="51" unique-id="http://guitarix.sourceforge.net/plugins/gx_chorus_stereo#_chorus_stereo" expanded="0"/>
+      <PluginInfo sort="52" unique-id="http://guitarix.sourceforge.net/plugins/gx_reverb_stereo#_reverb_stereo" expanded="0"/>
+      <PluginInfo sort="53" unique-id="1845" expanded="0"/>
+      <PluginInfo sort="54" unique-id="1413" expanded="0"/>
+      <PluginInfo sort="55" unique-id="http://tytel.org/helm" expanded="0"/>
+      <PluginInfo sort="56" unique-id="https://github.com/klangfreund/SpectrumAnalyser" expanded="0"/>
+      <PluginInfo sort="57" unique-id="http://tomszilagyi.github.io/plugins/lv2/ir" expanded="0"/>
+      <PluginInfo sort="58" unique-id="http://lsp-plug.in/plugins/lv2/dyna_processor_stereo" expanded="0"/>
+      <PluginInfo sort="59" unique-id="http://lsp-plug.in/plugins/lv2/limiter_stereo" expanded="0"/>
+      <PluginInfo sort="60" unique-id="http://lsp-plug.in/plugins/lv2/mb_compressor_stereo" expanded="0"/>
+      <PluginInfo sort="61" unique-id="http://lsp-plug.in/plugins/lv2/sc_gate_stereo" expanded="0"/>
+      <PluginInfo sort="62" unique-id="http://lsp-plug.in/plugins/lv2/sc_mb_compressor_stereo" expanded="0"/>
+      <PluginInfo sort="63" unique-id="http://distrho.sf.net/plugins/MaPitchshift" expanded="0"/>
+      <PluginInfo sort="64" unique-id="http://drobilla.net/plugins/mda/Piano" expanded="0"/>
+      <PluginInfo sort="65" unique-id="http://gareus.org/oss/lv2/midifilter#channelfilter" expanded="0"/>
+      <PluginInfo sort="66" unique-id="http://gareus.org/oss/lv2/midifilter#keyrange" expanded="0"/>
+      <PluginInfo sort="67" unique-id="http://kxstudio.sf.net/carla/plugins/miditranspose" expanded="0"/>
+      <PluginInfo sort="68" unique-id="1071" expanded="0"/>
+      <PluginInfo sort="69" unique-id="http://distrho.sf.net/plugins/MVerb" expanded="0"/>
+      <PluginInfo sort="70" unique-id="1792" expanded="0"/>
+      <PluginInfo sort="71" unique-id="1417" expanded="0"/>
+      <PluginInfo sort="72" unique-id="2979" expanded="0"/>
+      <PluginInfo sort="73" unique-id="9792" expanded="0"/>
+      <PluginInfo sort="74" unique-id="http://gareus.org/oss/lv2/spectra#Mono" expanded="0"/>
+      <PluginInfo sort="75" unique-id="https://github.com/lucianodato/speech-denoiser" expanded="0"/>
+      <PluginInfo sort="76" unique-id="https://surge-synthesizer.github.io/lv2/surge" expanded="0"/>
+      <PluginInfo sort="77" unique-id="urn:juce:TalFilter2" expanded="0"/>
+      <PluginInfo sort="78" unique-id="http://kunz.corrupt.ch/products/tal-vocoder" expanded="0"/>
+      <PluginInfo sort="79" unique-id="2155" expanded="0"/>
+      <PluginInfo sort="80" unique-id="2158" expanded="0"/>
+      <PluginInfo sort="81" unique-id="http://vital.audio/effects" expanded="0"/>
+      <PluginInfo sort="82" unique-id="https://github.com/pdesaulniers/wolf-lfo" expanded="0"/>
+      <PluginInfo sort="83" unique-id="https://github.com/pdesaulniers/wolf-shaper" expanded="0"/>
+      <PluginInfo sort="84" unique-id="https://github.com/pdesaulniers/wolf-spectrum" expanded="0"/>
+      <PluginInfo sort="85" unique-id="http://gareus.org/oss/lv2/tuna#one" expanded="0"/>
+      <PluginInfo sort="86" unique-id="http://gareus.org/oss/lv2/dpl#stereo" expanded="0"/>
+      <PluginInfo sort="87" unique-id="http://gareus.org/oss/lv2/fil4#stereo" expanded="0"/>
+      <PluginInfo sort="88" unique-id="urn:zamaudio:ZamDynamicEQ" expanded="0"/>
+      <PluginInfo sort="89" unique-id="http://zynaddsubfx.sourceforge.net" expanded="0"/>
+    </PluginOrder>
+  </Mixer>
+  <Preferences>
+    <Window name="Preferences" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" tabbed="1"/>
+  </Preferences>
+  <Meterbridge show-meterbridge="0">
+    <geometry x-size="600" y-size="400" x-pos="1" y-pos="1"/>
+  </Meterbridge>
+</instant>

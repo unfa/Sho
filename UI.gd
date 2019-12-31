@@ -49,3 +49,7 @@ func _on_StartButton_pressed():
 	get_tree().paused = false
 	
 	$CenterContainer/StartButton.hide()	
+	
+func _input(event):
+	if event is InputEventKey and Input.is_action_just_pressed("game_restart"):
+		get_tree().reload_current_scene()

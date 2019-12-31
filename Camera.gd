@@ -2,7 +2,21 @@ extends Camera
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
 
-var interpolation = 0.05
+# controlling camera responsivness according to zoom level
+
+const interpolation_mid= 0.05
+const interpolation_min = 0.01
+const interpolation_max = 0.5
+var interpolation = interpolation_mid
+
+# controlling camera placement according to zoom levels:
+
+const offset_mid = Vector3 (0, 8, -16) 
+const offset_max = Vector3 (0, 12, -16) * 2.5
+const offset_min = Vector3 (0, 4, -16) * 0.15
+var offset = offset_mid
+
+const player_origin_offset = Vector3(0,0.6,0) # the player origin is at the ground level - this makes sure the camera focuses in a proper spot
 
 # zoom steps
 
@@ -50,20 +64,30 @@ func _process(delta):
 	# tracking location
 	var transform = global_transform
 	
+	# trnslate zoom level to a zoom factor
 	var zoom_factor = lerp(zoom_factor_min, zoom_factor_max, pow(zoom, zoom_factor_gamma) )
+	
+	if zoom > 0.5:
+		interpolation = lerp(interpolation_mid, interpolation_max, zoom * 2 - 1)
+		offset = lerp(offset_mid, offset_min, zoom * 2 - 1)
+	else:
+		interpolation = lerp(interpolation_min, interpolation_mid, zoom * 2)
+		offset = lerp(offset_max, offset_mid, zoom * 2)
+	
+	#print (zoom, " ", interpolation)
 	
 	#print("zoom:", zoom, " zoom factor: ", zoom_factor)
 	
 	var offset_loc = Vector3 (0, 8, -16) * zoom_factor
 	var player_loc = player.global_transform[3]
 	var camera_loc = global_transform[3]
-	var target_loc = player_loc + offset_loc
-	
+	var target_loc = player_loc + offset
 
+	# interpolate camera location
 	transform[3] = lerp(camera_loc, target_loc, interpolation)
 	
 	# tracking rotation
-	transform[1] = lerp(transform[1], transform.looking_at(player_loc, Vector3(0, 1, 0))[1], interpolation)
+	transform[1] = lerp(transform[1], transform.looking_at(player_loc + player_origin_offset, Vector3(0, 1, 0))[1], interpolation)
 	
 	#apply the new transform
 	global_transform = transform
