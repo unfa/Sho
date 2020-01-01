@@ -176,7 +176,11 @@ func _physics_process(delta):
 	velocity[2] = walk_velocity[1]
 	
 	# increase downward velocity until terminal velocity is reached
-	velocity[1] = max(velocity[1] -FALL_ACCEL, -FALL_VELOCITY)
+	if not state_flat_ground: # if we're not on flat ground - accelerate until terminal velocity
+		velocity[1] = max(velocity[1] -FALL_ACCEL, -FALL_VELOCITY)
+	else: # if we're on flat ground, use minimum required acceleration
+		velocity[1] = -FALL_ACCEL
+		
 	
 	#print(velocity)
 	
@@ -218,10 +222,10 @@ func _physics_process(delta):
 	# apply jump afterburn
 	velocity[1] += jump_velocity
 	
-	print(velocity)
+	#print(velocity)
 	
 	# perform movement
-	self.move_and_slide(velocity * delta, Vector3(0, 1, 0))
+	print(self.move_and_slide(velocity * delta, Vector3(0, 1, 0)))
 	
 	if action_timeout > 0:
 		action_timeout = max (action_timeout - delta, 0)

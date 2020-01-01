@@ -1961,21 +1961,21 @@ text = "Start Game"
 [node name="Drums" type="AudioStreamPlayer" parent="UI/Music"]
 stream = ExtResource( 15 )
 volume_db = -12.0
-bus = "Music Drums"
+bus = "Music B"
 
 [node name="Bass" type="AudioStreamPlayer" parent="UI/Music"]
 stream = ExtResource( 14 )
 volume_db = -14.0
-bus = "Music Bass"
+bus = "Music A"
 
 [node name="Lead" type="AudioStreamPlayer" parent="UI/Music"]
 stream = ExtResource( 17 )
 volume_db = -14.0
-bus = "Music Lead"
+bus = "Music C"
 
 [node name="Support" type="AudioStreamPlayer" parent="UI/Music"]
 stream = ExtResource( 16 )
 volume_db = -12.0
-bus = "Music Support"
+bus = "Music D"
 [connection signal="body_entered" from="Level/Water/Area" to="Level/Water" method="_on_Area_body_entered"]
 [connection signal="pressed" from="UI/CenterContainer/StartButton" to="UI" method="_on_StartButton_pressed"]
