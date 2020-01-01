@@ -193,8 +193,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("player_jump") and state_ground:
 			jump_active = true
 			jump_time = 0
-			velocity[1] = JUMP_VELOCITY
-
+			velocity[1] = JUMP_VELOCITY # apply jump initial impulse
 			state_just_jumped = true
 
 		if Input.is_action_just_released("player_jump"):
@@ -216,6 +215,7 @@ func _physics_process(delta):
 	else:
 		state_midair = true
 	
+	# apply jump afterburn
 	velocity[1] += jump_velocity
 	
 	print(velocity)
