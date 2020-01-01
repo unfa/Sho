@@ -175,34 +175,31 @@ func _physics_process(delta):
 	velocity[0] = walk_velocity[0]
 	velocity[2] = walk_velocity[1]
 	
-	# apply fall velocity accelaration terminal velocity is reached
-	if velocity[1] > -FALL_VELOCITY and not state_ground:
-		velocity[1] = velocity[1] - FALL_ACCEL
-	elif state_flat_ground:
-		velocity[1] = -FALL_VELOCITY * 0.001
+	# increase downward velocity until terminal velocity is reached
+	velocity[1] = max(velocity[1] -FALL_ACCEL, -FALL_VELOCITY)
 	
 	#print(velocity)
 	
 	#jump logic
 	
-#	state_just_jumped = false
-#
-#	if not freeze and not in_water:
-#
-#		if jump_active:
-#			jump_time += delta
-#			jump_velocity = ( max(0, JUMP_MAX_TIME - jump_time) / JUMP_MAX_TIME ) * (JUMP_AFTERBURN * JUMP_VELOCITY)
-#
-#		if Input.is_action_just_pressed("player_jump") and state_ground:
-#			jump_active = true
-#			jump_time = 0
-#			velocity[1] = JUMP_VELOCITY
-#
-#			state_just_jumped = true
-#
-#		if Input.is_action_just_released("player_jump"):
-#			jump_active = false
-#			jump_velocity = 0
+	state_just_jumped = false
+
+	if not freeze and not in_water:
+
+		if jump_active:
+			jump_time += delta
+			jump_velocity = ( max(0, JUMP_MAX_TIME - jump_time) / JUMP_MAX_TIME ) * (JUMP_AFTERBURN * JUMP_VELOCITY)
+
+		if Input.is_action_just_pressed("player_jump") and state_ground:
+			jump_active = true
+			jump_time = 0
+			velocity[1] = JUMP_VELOCITY
+
+			state_just_jumped = true
+
+		if Input.is_action_just_released("player_jump"):
+			jump_active = false
+			jump_velocity = 0
 
 	if in_water: #sinking in water
 		velocity = Vector3(0, -150, 0)
@@ -219,15 +216,9 @@ func _physics_process(delta):
 	else:
 		state_midair = true
 	
-		
-#	if state_ground:
-#		velocity[1] = -FALL_VELOCITY * 0.001
-
 	velocity[1] += jump_velocity
 	
-	#print(velocity)
-
-		
+	print(velocity)
 	
 	# perform movement
 	self.move_and_slide(velocity * delta, Vector3(0, 1, 0))

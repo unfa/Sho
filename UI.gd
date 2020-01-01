@@ -54,6 +54,9 @@ func _on_StartButton_pressed():
 	$Music/Lead.play(0)
 	$Music/Support.play(0)
 	
+	# mute the MUSIC submix bus
+	AudioServer.set_bus_mute(1, true)
+	
 	$CenterContainer/StartButton.hide()	
 	
 func _input(event):

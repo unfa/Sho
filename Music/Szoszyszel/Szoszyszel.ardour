@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session version="3002" name="Szoszyszel" sample-rate="48000" end-is-free="1" id-counter="13596" name-counter="1" event-counter="227222" vca-counter="1">
+<Session version="3002" name="Szoszyszel" sample-rate="48000" end-is-free="1" id-counter="13608" name-counter="1" event-counter="242173" vca-counter="1">
   <ProgramVersion created-with="Ardour 5.12" modified-with="Ardour 5.12"/>
   <MIDIPorts>
     <Port name="MIDI Clock in" direction="input"/>
@@ -2665,13 +2665,29 @@
       <ExportTimespan format="Timecode">
         <Range id="612"/>
       </ExportTimespan>
-      <ExportFormat id="e61c1d0f-95bd-48fb-b812-def99dbabe28"/>
+      <ExportChannelConfiguration split="0" channels="2">
+        <Channel number="1"/>
+        <Channel number="2"/>
+      </ExportChannelConfiguration>
+      <ExportChannelConfiguration split="0" channels="2">
+        <Channel number="1"/>
+        <Channel number="2"/>
+      </ExportChannelConfiguration>
+      <ExportChannelConfiguration split="0" channels="2">
+        <Channel number="1"/>
+        <Channel number="2"/>
+      </ExportChannelConfiguration>
+      <ExportChannelConfiguration split="0" channels="2">
+        <Channel number="1"/>
+        <Channel number="2"/>
+      </ExportChannelConfiguration>
+      <ExportFormat id="fd73f19e-c0fb-4e72-906d-a25625b752b2"/>
       <ExportFilename>
         <Folder relative="1" path="/export"/>
         <Field name="label" enabled="0"/>
-        <Field name="session" enabled="0"/>
-        <Field name="snapshot" enabled="0"/>
-        <Field name="timespan" enabled="1"/>
+        <Field name="session" enabled="1"/>
+        <Field name="snapshot" enabled="1"/>
+        <Field name="timespan" enabled="0"/>
         <Field name="revision" enabled="0"/>
         <Field name="time" enabled="0" value="T_None"/>
         <Field name="date" enabled="0" value="D_None"/>
@@ -2685,7 +2701,7 @@
       <Window name="add-routes" visible="0" x-off="-1" y-off="-1" x-size="754" y-size="490"/>
       <Window name="add-video" visible="0" x-off="1920" y-off="207" x-size="800" y-size="465"/>
       <Window name="inspector" visible="0" x-off="2789" y-off="57" x-size="620" y-size="370"/>
-      <Window name="audio-midi-setup" visible="0" x-off="1920" y-off="0" x-size="652" y-size="408"/>
+      <Window name="audio-midi-setup" visible="0" x-off="3188" y-off="0" x-size="652" y-size="408"/>
       <Window name="video-export" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="script-manager" visible="0" x-off="3496" y-off="1" x-size="431" y-size="388"/>
       <Window name="bundle-manager" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
@@ -2805,7 +2821,7 @@
       <Window name="PM-10544-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-10546-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-10547-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-10514-10642" visible="0" x-off="1920" y-off="8" x-size="641" y-size="225" custom-ui="1"/>
+      <Window name="P-10514-10642" visible="0" x-off="3199" y-off="0" x-size="641" y-size="225" custom-ui="1"/>
       <Window name="PM-10642-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="RPM-11138" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="P-11138-11168" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
@@ -2814,7 +2830,7 @@
       <Window name="PM-11168-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-11170-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-11171-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-11138-11272" visible="0" x-off="1920" y-off="8" x-size="641" y-size="225" custom-ui="1"/>
+      <Window name="P-11138-11272" visible="0" x-off="3199" y-off="0" x-size="641" y-size="225" custom-ui="1"/>
       <Window name="PM-11272-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="RPM-11845" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="P-11845-11875" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
@@ -2832,7 +2848,7 @@
       <Window name="PM-12720-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-12722-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-12723-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-12690-12836" visible="0" x-off="1920" y-off="8" x-size="641" y-size="225" custom-ui="1"/>
+      <Window name="P-12690-12836" visible="0" x-off="3199" y-off="0" x-size="641" y-size="225" custom-ui="1"/>
       <Window name="PM-12836-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="P-12690-13026" visible="1" x-off="885" y-off="391" x-size="641" y-size="365" custom-ui="0"/>
       <Window name="PM-13026-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
