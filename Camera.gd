@@ -4,6 +4,8 @@ onready var player = get_tree().get_nodes_in_group("players")[0]
 
 # controlling camera responsivness according to zoom level
 
+const UP = Vector3(0, 1, 0)
+
 const interpolation_mid= 0.05
 const interpolation_min = 0.01
 const interpolation_max = 0.5
@@ -11,12 +13,14 @@ var interpolation = interpolation_mid
 
 # controlling camera placement according to zoom levels:
 
-const offset_mid = Vector3 (0, 8, -16) 
-const offset_max = Vector3 (0, 12, -16) * 2.5
-const offset_min = Vector3 (0, 4, -16) * 0.15
+const offset_mid = Vector3 (0, 6, 12) 
+const offset_max = Vector3 (0, 6, 12) * 2.5
+const offset_min = Vector3 (0, 4, 12) * 0.15
 var offset = offset_mid
 
-const player_origin_offset = Vector3(0,0.6,0) # the player origin is at the ground level - this makes sure the camera focuses in a proper spot
+const player_origin_offset = Vector3(0,4,0) # the player origin is at the ground level - this makes sure the camera focuses in a proper spot
+var predictive_offset = player_origin_offset
+var target_predictive_offset = predictive_offset
 
 # zoom steps
 
@@ -67,6 +71,7 @@ func _process(delta):
 	# translate zoom level to a zoom factor
 	var zoom_factor = lerp(zoom_factor_min, zoom_factor_max, pow(zoom, zoom_factor_gamma) )
 	
+	# interpolate between far, medium and near 	zoom offsets
 	if zoom > 0.5:
 		interpolation = lerp(interpolation_mid, interpolation_max, zoom * 2 - 1)
 		offset = lerp(offset_mid, offset_min, zoom * 2 - 1)
@@ -78,16 +83,27 @@ func _process(delta):
 	
 	#print("zoom:", zoom, " zoom factor: ", zoom_factor)
 	
-	var offset_loc = Vector3 (0, 8, -16) * zoom_factor
 	var player_loc = player.global_transform[3]
 	var camera_loc = global_transform[3]
 	var target_loc = player_loc + offset.rotated(Vector3(0,1,0), player.rotation.z)
 
 	# interpolate camera location
-	transform[3] = lerp(camera_loc, target_loc, interpolation)
+	#transform[3] = lerp(camera_loc, target_loc, interpolation)
 	
 	# tracking rotation
-	transform[1] = lerp(transform[1], transform.looking_at(player_loc + player_origin_offset, Vector3(0, 1, 0))[1], interpolation)
+	#transform[1] = lerp(transform[1], transform.looking_at(player_loc + player_origin_offset, Vector3(0, 1, 0))[1], interpolation)
+	
+	### TODO: create the target camera location here.
+	var target_transform = player.global_transform.translated(offset)
+	
+	# takie int account the static vertical offset of the player origin and also the player walking velocity - so the cameraman is predicting movement)
+	target_predictive_offset = player_origin_offset + Vector3(player.walk_velocity[0], 0, player.walk_velocity[1] * delta).rotated(UP, player.rotation[1]) / 4
+	
+	predictive_offset = lerp(predictive_offset, target_predictive_offset, interpolation)
+	
+	target_transform[2] = lerp(transform[2], target_transform[2], interpolation) # interpolate rotation
+	target_transform[3] = lerp(transform[3], target_transform[3], interpolation) # interpolate location
+	transform = target_transform.looking_at(player_loc + predictive_offset, UP) # point the camera at the player (no interpolation)
 	
 	#apply the new transform
 	global_transform = transform

@@ -123,10 +123,10 @@ func _physics_process(delta):
 	
 	if not freeze and not in_water:
 		if Input.is_action_pressed("player_forward"):
-			walk_direction += Vector2(0, 1)
+			walk_direction -= Vector2(0, 1)
 		
 		if Input.is_action_pressed("player_backward"):
-			walk_direction += Vector2(0, -1)
+			walk_direction += Vector2(0, 1)
 			
 	# animation state machine
 	if walk_direction.length() > 0:
