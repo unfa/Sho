@@ -6,12 +6,13 @@ signal player_died
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
 onready var anim = $Mesh/AnimationPlayer
 onready var ground = $CollisionShape/Ground
-onready var feet = $Feet
 
 var action = ""
 var action_blend = 0
 var action_timeout = 0
 var idle_time = 0
+
+const UP = Vector3(0, 1, 0)
 
 const FALL_ACCEL = 50
 const FALL_VELOCITY = 980
@@ -21,7 +22,9 @@ const JUMP_AFTERBURN = 0.25
 const WALK_VELOCITY = 1000
 const WALK_LERP_ACCEL = 0.1
 const WALK_LERP_DECEL = 0.25
+const WALK_LERP_IDLE = 0.1
 const WALK_AIR_CONTROL = 0.25
+const TURN_SPEED = 40
 
 const WALK_VELOCITY_DEFAULT = Vector2(0, -1) 
 
@@ -63,11 +66,11 @@ func respawn(var checkpoint):
 	# wait 1 secnd before respawning
 	yield(get_tree().create_timer(1), "timeout")
 
-	global_transform[3] = checkpoint.global_transform[3]
+	global_transform[3] = checkpoint.global_transform[3] # copy location
 	freeze = false
 	in_water = false
 	velocity = Vector3(0, 0, 0)
-	walk_velocity = WALK_VELOCITY_DEFAULT # reset the walk_velocity so the player model respawns facing the camera
+	#walk_velocity = WALK_VELOCITY_DEFAULT # reset the walk_velocity so the player model respawns facing the camera
 	
 	anim.play("Idle")
 
@@ -125,12 +128,6 @@ func _physics_process(delta):
 		if Input.is_action_pressed("player_backward"):
 			walk_direction += Vector2(0, -1)
 			
-		if Input.is_action_pressed("player_left"):
-			walk_direction += Vector2(1, 0)
-		
-		if Input.is_action_pressed("player_right"):
-			walk_direction += Vector2(-1, 0)
-		
 	# animation state machine
 	if walk_direction.length() > 0:
 		state_running = true
@@ -138,11 +135,9 @@ func _physics_process(delta):
 		state_running = false
 	
 	# calculate target velocity
-	
 	walk_target_velocity = walk_direction.normalized() * WALK_VELOCITY
 		
 	# check if the player is speedin up or slowing down and use approprate lerping factor
-		
 	if walk_velocity.dot(walk_target_velocity) > 0:
 		walk_lerp = WALK_LERP_ACCEL
 	else:
@@ -151,16 +146,25 @@ func _physics_process(delta):
 	# air control affects the walk lerp factor
 	if not state_ground:
 		walk_lerp *= WALK_AIR_CONTROL
+	
+	if not state_running and state_ground:
+		walk_lerp = WALK_LERP_IDLE
 		
 	# check if the player is on flat ground - if not, we should be sliding from a slope or off a ledge
-	if not state_ground or ground.get_collision_normal() != Vector3(0, 1, 0):
+	if not state_ground or ground.get_collision_normal() != UP:
 		state_flat_ground = false
 	else:
 		state_flat_ground = true
-			
+		
+	
+	if not freeze and not in_water:
+		if Input.is_action_pressed("player_left"):
+			rotate_y(TURN_SPEED * delta * walk_lerp)
+		
+		if Input.is_action_pressed("player_right"):
+			rotate_y(-TURN_SPEED * delta * walk_lerp)
 	
 	# interpolate the walk velocity
-	
 	walk_velocity = lerp(walk_velocity, walk_target_velocity, walk_lerp)
 
 	#$Mesh.rotation = Vector3(0,0,0)
@@ -171,7 +175,6 @@ func _physics_process(delta):
 	$Mesh.rotation = Vector3(0,-mesh_direction-PI/2,0)
 	
 	# assign the player velocity
-	
 	velocity[0] = walk_velocity[0]
 	velocity[2] = walk_velocity[1]
 	
@@ -224,8 +227,10 @@ func _physics_process(delta):
 	
 	#print(velocity)
 	
+	velocity = velocity.rotated(UP, rotation[1])
+	
 	# perform movement
-	print(self.move_and_slide(velocity * delta, Vector3(0, 1, 0)))
+	print(self.move_and_slide(velocity * delta, UP))
 	
 	if action_timeout > 0:
 		action_timeout = max (action_timeout - delta, 0)
@@ -243,19 +248,25 @@ func _physics_process(delta):
 		action_timeout = 0.2
 		action_blend = 0
 		state_idle = false
+		anim.stop() # cut off any currently playing animation immediately
 	elif state_just_landed:
 		action = "Land"
 		action_timeout = 0.15
 		action_blend = 0
 		state_idle = false
+		anim.stop() # cut off any currently playing animation immediately
 	elif state_midair and action_timeout == 0:
 		action = "Fly"
 		action_blend = 0.25
 		state_idle = false
+		if anim.current_animation in ["Idle", "Idle2"]: # if the current animation is an idle one - cut ot off immediately, skipping the blending time
+			anim.stop()
 	elif state_running and action_timeout == 0:
 		action = "Run"
 		action_blend = 0.1
 		state_idle = false
+		if anim.current_animation in ["Idle", "Idle2"]: # if the current animation is an idle one - cut ot off immediately, skipping the blending time
+			anim.stop()
 	elif state_idle and idle_time > 15:
 		action = "Idle2"
 		action_blend = 1

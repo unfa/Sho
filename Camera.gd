@@ -64,7 +64,7 @@ func _process(delta):
 	# tracking location
 	var transform = global_transform
 	
-	# trnslate zoom level to a zoom factor
+	# translate zoom level to a zoom factor
 	var zoom_factor = lerp(zoom_factor_min, zoom_factor_max, pow(zoom, zoom_factor_gamma) )
 	
 	if zoom > 0.5:
@@ -81,7 +81,7 @@ func _process(delta):
 	var offset_loc = Vector3 (0, 8, -16) * zoom_factor
 	var player_loc = player.global_transform[3]
 	var camera_loc = global_transform[3]
-	var target_loc = player_loc + offset
+	var target_loc = player_loc + offset.rotated(Vector3(0,1,0), player.rotation.z)
 
 	# interpolate camera location
 	transform[3] = lerp(camera_loc, target_loc, interpolation)
