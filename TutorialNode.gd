@@ -21,10 +21,13 @@ func _ready():
 
 func _on_TutorialNode_body_entered(body):
 	if body.is_in_group("players") and active:
-		UI.show_tutorial(tutorial_text)
-
+		$Timer.start()
 
 func _on_TutorialNode_body_exited(body):
 	if body.is_in_group("players") and active:
-		active = false
+		#active = false
+		$Timer.stop()
 		UI.hide_tutorial()
+
+func _on_Timer_timeout():
+	UI.show_tutorial(tutorial_text)

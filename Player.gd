@@ -21,7 +21,7 @@ const JUMP_MAX_TIME = 0.25
 const JUMP_AFTERBURN = 0.25
 const WALK_VELOCITY = 1000
 const WALK_LERP_ACCEL = 0.1
-const WALK_LERP_DECEL = 0.25
+const WALK_LERP_DECEL = 0.5
 const WALK_LERP_IDLE = 0.1
 const WALK_AIR_CONTROL = 0.25
 const TURN_SPEED = 40
@@ -30,15 +30,16 @@ const WALK_VELOCITY_DEFAULT = Vector2(0, -1)
 
 var freeze = true
 
-var jump_active = false
+
 var jump_velocity = 0
 var jump_time = 0
 var velocity = Vector3(0, 0, 0)
 var walk_velocity = WALK_VELOCITY_DEFAULT # the initial value ensures the player model is going to spawn facing the camera
 var walk_target_velocity = Vector2(0, 0)
 
-#animation state machine
+#state machine
 
+var state_jump = false
 var state_just_jumped = false
 var state_midair = false
 var state_just_landed = false
@@ -72,12 +73,14 @@ func respawn(var checkpoint):
 	velocity = Vector3(0, 0, 0)
 	#walk_velocity = WALK_VELOCITY_DEFAULT # reset the walk_velocity so the player model respawns facing the camera
 	
+	$WaterDroplets.emitting = true
 	anim.play("Idle")
 
 func collect_star():
 	emit_signal("star_collected")
 
 func water():
+	$WaterDroplets.emitting = false
 	emit_signal("player_died")
 	in_water = true
 	freeze = true
@@ -113,8 +116,10 @@ func _physics_process(delta):
 	
 	# check if the player is on the ground:
 
+	#print("is on floor: ", is_on_floor(), " is on wall: ", is_on_wall()," ground is colliding: ", ground.is_colliding())
 	
-	if is_on_floor():
+	# check if we should consider the player grounded
+	if (is_on_floor() or (is_on_wall() and ground.is_colliding())) and not state_jump:
 		state_ground = true
 	else:
 		state_ground = false
@@ -193,18 +198,18 @@ func _physics_process(delta):
 
 	if not freeze and not in_water:
 
-		if jump_active:
+		if state_jump:
 			jump_time += delta
 			jump_velocity = ( max(0, JUMP_MAX_TIME - jump_time) / JUMP_MAX_TIME ) * (JUMP_AFTERBURN * JUMP_VELOCITY)
 
 		if Input.is_action_just_pressed("player_jump") and state_ground:
-			jump_active = true
+			state_jump = true
 			jump_time = 0
 			velocity[1] = JUMP_VELOCITY # apply jump initial impulse
 			state_just_jumped = true
 
 		if Input.is_action_just_released("player_jump"):
-			jump_active = false
+			state_jump = false
 			jump_velocity = 0
 
 	if in_water: #sinking in water
@@ -230,7 +235,7 @@ func _physics_process(delta):
 	velocity = velocity.rotated(UP, rotation[1])
 	
 	# perform movement
-	print(self.move_and_slide(velocity * delta, UP))
+	self.move_and_slide(velocity * delta, UP)
 	
 	if action_timeout > 0:
 		action_timeout = max (action_timeout - delta, 0)

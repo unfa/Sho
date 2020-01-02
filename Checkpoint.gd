@@ -4,6 +4,8 @@ var active = false
 var recent = true
 
 onready var mesh = $MeshInstance
+onready var particles = $Particles
+onready var anim = $AnimationPlayer
 onready var player = get_tree().get_nodes_in_group("players")[0]
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
 
@@ -17,12 +19,20 @@ func _ready():
 	# assign a unique material
 	mesh.material_override = mesh.material_override.duplicate()
 	
+#	print(particles.draw_pass_1.surface_get_material(0))
+#	particles.draw_pass_1.surface_set_material(0, particles.draw_pass_1.surface_get_material(0).duplicate() )
+#	print(particles.draw_pass_1.surface_get_material(0))
+	
+	anim.play("Activate")
+	anim.stop(true)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 func player_respawn():
 	if active and recent:
+		print(name, " player respawn")
 		player.respawn(self)
 
 func _on_Checkpoint_body_entered(body):

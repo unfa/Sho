@@ -78,32 +78,32 @@ func _process(delta):
 	else:
 		interpolation = lerp(interpolation_min, interpolation_mid, zoom * 2)
 		offset = lerp(offset_max, offset_mid, zoom * 2)
-	
-	#print (zoom, " ", interpolation)
-	
-	#print("zoom:", zoom, " zoom factor: ", zoom_factor)
-	
-	var player_loc = player.global_transform[3]
-	var camera_loc = global_transform[3]
-	var target_loc = player_loc + offset.rotated(Vector3(0,1,0), player.rotation.z)
+		
 
-	# interpolate camera location
-	#transform[3] = lerp(camera_loc, target_loc, interpolation)
-	
-	# tracking rotation
-	#transform[1] = lerp(transform[1], transform.looking_at(player_loc + player_origin_offset, Vector3(0, 1, 0))[1], interpolation)
-	
-	### TODO: create the target camera location here.
+	# calculate camera location and rotation
 	var target_transform = player.global_transform.translated(offset)
 	
-	# takie int account the static vertical offset of the player origin and also the player walking velocity - so the cameraman is predicting movement)
+	# this is where the camera should be looking - in the directio of the player movement (not taking jump or gravity into account).
 	target_predictive_offset = player_origin_offset + Vector3(player.walk_velocity[0], 0, player.walk_velocity[1] * delta).rotated(UP, player.rotation[1]) / 4
 	
+	# interpolating the actual predictive offset, because without lerping the camera is jumping around like crazy)
 	predictive_offset = lerp(predictive_offset, target_predictive_offset, interpolation)
 	
 	target_transform[2] = lerp(transform[2], target_transform[2], interpolation) # interpolate rotation
 	target_transform[3] = lerp(transform[3], target_transform[3], interpolation) # interpolate location
-	transform = target_transform.looking_at(player_loc + predictive_offset, UP) # point the camera at the player (no interpolation)
+	
+	var occluded_transform = target_transform
+	
+	# cast a ray from player to the target camera location to make sure that level elements are not blockng the view
+	var space_state = get_world().direct_space_state
+	var raycast = space_state.intersect_ray(player.global_transform[3] + player_origin_offset, occluded_transform[3], [self])
+	if raycast.size() > 0:
+		occluded_transform[3][0] = raycast['position'][0]
+		occluded_transform[3][2] = raycast['position'][2]
+	
+	#VisualServer
+	
+	transform = occluded_transform.looking_at(player.global_transform[3] + predictive_offset, UP) # point the camera at the player (no interpolation)
 	
 	#apply the new transform
 	global_transform = transform
