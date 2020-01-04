@@ -13,9 +13,9 @@ var interpolation = interpolation_mid
 
 # controlling camera placement according to zoom levels:
 
-const offset_mid = Vector3 (0, 6, 12) 
-const offset_max = Vector3 (0, 6, 12) * 2.5
-const offset_min = Vector3 (0, 4, 12) * 0.15
+const offset_mid = Vector3 (0, 10, 12) 
+const offset_max = Vector3 (0, 10, 12) * 2.5
+const offset_min = Vector3 (0, 20, 40) * 0.2
 var offset = offset_mid
 
 const player_origin_offset = Vector3(0,4,0) # the player origin is at the ground level - this makes sure the camera focuses in a proper spot
@@ -84,7 +84,7 @@ func _process(delta):
 	var target_transform = player.global_transform.translated(offset)
 	
 	# this is where the camera should be looking - in the directio of the player movement (not taking jump or gravity into account).
-	target_predictive_offset = player_origin_offset + Vector3(player.walk_velocity[0], 0, player.walk_velocity[1] * delta).rotated(UP, player.rotation[1]) / 4
+	target_predictive_offset = player_origin_offset #+ Vector3(player.walk_velocity[0], 0, player.walk_velocity[1]).rotated(UP, player.rotation[1]) / 4
 	
 	# interpolating the actual predictive offset, because without lerping the camera is jumping around like crazy)
 	predictive_offset = lerp(predictive_offset, target_predictive_offset, interpolation)

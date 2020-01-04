@@ -13,6 +13,10 @@ var active = true
 func _ready():
 	$Meshes.show()
 	
+	# make the shockwave material unique
+	#$Meshes/Shockwave.mesh.surface_set_material(0, $Meshes/Shockwave.mesh.surface_get_material(0).duplicate(true))
+	$Meshes/Shockwave.hide()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

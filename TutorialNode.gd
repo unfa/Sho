@@ -3,6 +3,7 @@ extends Area
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
 var active = true
 export var tutorial_text = ""
+export var tutorial_delay = 5
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -21,7 +22,7 @@ func _ready():
 
 func _on_TutorialNode_body_entered(body):
 	if body.is_in_group("players") and active:
-		$Timer.start()
+		$Timer.start(tutorial_delay)
 
 func _on_TutorialNode_body_exited(body):
 	if body.is_in_group("players") and active:
