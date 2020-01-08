@@ -13,9 +13,9 @@ var interpolation = interpolation_mid
 
 # controlling camera placement according to zoom levels:
 
-const offset_mid = Vector3 (0, 10, 12) 
-const offset_max = Vector3 (0, 10, 12) * 2.5
-const offset_min = Vector3 (0, 20, 40) * 0.2
+const offset_mid = Vector3 (0, 10, -12) 
+const offset_max = Vector3 (0, 10, -12) * 2.5
+const offset_min = Vector3 (0, 20, -40) * 0.2
 var offset = offset_mid
 
 const player_origin_offset = Vector3(0,4,0) # the player origin is at the ground level - this makes sure the camera focuses in a proper spot
