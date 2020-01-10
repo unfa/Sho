@@ -14,7 +14,8 @@ onready var ground = $Ground
 const GRAVITY = -45
 const UP = Vector3(0, 1, 0)
 
-const AIR_CONTROL = 0.1 # multiplier for movement control when in air
+const AIR_CONTROL_WALK = 0.05 # multiplier for movement control when in air
+const AIR_CONTROL_TURN = 0.1 # multiplier for movement control when in air
 
 const JUMP_ACCEL = 12 # base jump velocity (will be applied verbatim, no delta)
 const JUMP_AFTERBURN = 400 # jump afterburn velocity (this will be mutipleid by delta)
@@ -106,7 +107,8 @@ func walk(delta):
 	var walk_direction = Vector2()
 	var walk_rotation = 0
 	var accel = 0
-	var control = 1
+	var control_walk = 1
+	var control_turn = 1
 	
 	if Input.is_action_pressed("player_forward"):
 		walk_direction.y += 1
@@ -126,14 +128,15 @@ func walk(delta):
 		accel = WALK_DECEL
 	
 	if not ground_contact:
-		control *= AIR_CONTROL
+		control_walk *= AIR_CONTROL_WALK
+		control_turn *= AIR_CONTROL_TURN
 	
-	walk_velocity = lerp(walk_velocity, walk_direction * WALK_SPEED, accel * control * delta)
+	walk_velocity = lerp(walk_velocity, walk_direction * WALK_SPEED, accel * control_walk * delta)
 	
 	velocity.x = walk_velocity.x * delta
 	velocity.z = walk_velocity.y * delta
 	
-	rotate_y(walk_rotation * TURN_SPEED * control * delta)
+	rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
 	
 	debug('walk_direction: ' + String(walk_direction))
 	debug('walk_rotation ' + String(walk_rotation))
