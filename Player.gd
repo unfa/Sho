@@ -27,7 +27,7 @@ const TURN_SPEED = 5
 const WALK_ACCEL = 15
 const WALK_DECEL = 25
 
-const MAX_GROUND_ANGLE = 50
+const MAX_GROUND_ANGLE = 30
 
 # player movement variables
 
@@ -43,6 +43,8 @@ var jump_max_height = 0
 var ground_contact = false
 var ground_normal = Vector3()
 var ground_angle = 0.0
+
+var movement = Vector3()
 
 func debug(text, clear = false): # print on_screen dubig text
 	var label = $Debug/Label # get the label node
@@ -145,16 +147,27 @@ func walk(delta):
 	
 	
 func gravity(delta):
-	
+	var gravity_mode = ""
 	if ground_contact and jump_finished and not is_on_floor(): # if we're floating above the ground
 			move_and_collide(Vector3(0,-1,0)) # snap to the ground
+			gravity_mode = 'snap'
+	elif ground_contact and jump_finished and is_on_floor() and  ground_angle < MAX_GROUND_ANGLE:
+		velocity.y = 0
+		gravity_mode = 'pass'
 	elif ground_contact and jump_finished: # if we're standing on the ground
 		velocity.y = GRAVITY * delta # apply minimal gravity
+		gravity_mode = 'slide'
 	else: # if we're during a jump or otherwis mid-air:
 		velocity.y += GRAVITY * delta # acculumate gravity to accelerate naturally
-		
+		gravity_mode = 'fall'
+	
+	debug('gravity_mode ' + gravity_mode)
+	
 #	if ground_contact and not is_on_floor() and (not jump_active or jump_accel < 0):
 #		move_and_collide(Vector3(0,-1,0))
+
+func move(delta): # perform movement
+	movement = move_and_slide(velocity.rotated(UP, rotation.y), UP) # slideddw
 
 func _physics_process(delta):
 	# clear the debug text
@@ -165,8 +178,8 @@ func _physics_process(delta):
 	jump(delta)
 	walk(delta)
 	gravity(delta)
+	move(delta)
 	
-	var movement = move_and_slide(velocity.rotated(UP, rotation.y), UP)
 	
 	debug('velocity: ' + String(velocity) )
 	debug('movement: ' + String(movement) )
