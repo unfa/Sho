@@ -106,8 +106,6 @@ anim_player = NodePath("../../Mesh/AnimationPlayer")
 active = true
 parameters/playback = SubResource( 2 )
 parameters/Idle/playback = SubResource( 11 )
-parameters/Idle/conditions/idle1 = false
-parameters/Idle/conditions/idle2 = false
 
 [node name="Body" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752172, 0 )

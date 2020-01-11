@@ -174,7 +174,8 @@ func walk(delta):
 	
 	rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
 	
-	$Mesh.rotation.y = ( PI * 0.5 * walk_last_direction.dot(Vector2(0,1)) ) + PI/2
+	if ground_contact: # rotate the player model forward and back, but only if it's on the ground
+		$Mesh.rotation.y = ( PI * 0.5 * walk_last_direction.dot(Vector2(0,1)) ) + PI/2
 		
 	debug('walk_direction: ' + String(walk_direction))
 	debug('walk_last_direction: ' + String(walk_last_direction))
@@ -264,8 +265,6 @@ func water():
 	get_tree().root.add_child(splash_instance)
 	
 	emit_signal("player_died")
-	
-
 	#$Camera/AnimationPlayer.play("Water")
 
 # Called when the node enters the scene tree for the first time.
@@ -277,55 +276,6 @@ func _ready():
 	for animation in animations:
 		animation = anim_player.get_animation(animation)	
 		animation.loop = true
-	
-	
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-	
-#	# animation state logic
-#	if state_just_jumped:
-#		action = "Jump"
-#		action_timeout = 0.2
-#		action_blend = 0
-#		state_idle = false
-#		anim.stop() # cut off any currently playing animation immediately
-#	elif state_just_landed:
-#		action = "Land"
-#		action_timeout = 0.15
-#		action_blend = 0
-#		state_idle = false
-#		anim.stop() # cut off any currently playing animation immediately
-#	elif state_midair and action_timeout == 0:
-#		action = "Fly"
-#		action_blend = 0.25
-#		state_idle = false
-#		if anim.current_animation in ["Idle", "Idle2"]: # if the current animation is an idle one - cut ot off immediately, skipping the blending time
-#			anim.stop()
-#	elif state_running and action_timeout == 0:
-#		action = "Run"
-#		action_blend = 0.1
-#		state_idle = false
-#		if anim.current_animation in ["Idle", "Idle2"]: # if the current animation is an idle one - cut ot off immediately, skipping the blending time
-#			anim.stop()
-#	elif state_idle and idle_time > 15:
-#		action = "Idle2"
-#		action_blend = 1
-#	elif not state_running and action_timeout == 0:
-#		if not state_idle_previously:
-#			idle_time = 0
-#		state_idle = true
-#		action = "Idle"
-#		action_blend = 0.25
-#
-#	#print("Action: ", action, " Timeout: ", action_timeout, " Idle time: ", idle_time)
-#
-#	anim.play(action, action_blend)
-
 
 func idle_timeout():
 	# switch to the "bored idle" animation

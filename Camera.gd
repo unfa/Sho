@@ -1,6 +1,7 @@
 extends Camera
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
+#onready var player_skeleton =  player.get_node("Mesh/Armature/Skeleton")
 
 # controlling camera responsivness according to zoom level
 
@@ -18,7 +19,7 @@ const offset_max = Vector3 (0, 10, -12) * 2.5
 const offset_min = Vector3 (0, 50, -40) * 0.125
 var offset = offset_mid
 
-const player_origin_offset = Vector3(0,4,0) # the player origin is at the ground level - this makes sure the camera focuses in a proper spot
+const player_origin_offset = Vector3(0,1,0.5) # the player origin is at the ground level - this makes sure the camera focuses in a proper spot
 var predictive_offset = player_origin_offset
 var target_predictive_offset = predictive_offset
 
@@ -96,10 +97,29 @@ func _process(delta):
 	
 	# cast a ray from player to the target camera location to make sure that level elements are not blockng the view
 	var space_state = get_world().direct_space_state
-	var raycast = space_state.intersect_ray(player.global_transform[3] + player_origin_offset, occluded_transform[3], [self])
+	
+	var ray_start = player.global_transform[3] + player_origin_offset.rotated(UP, player.rotation.y + PI - player.get_node("Mesh").rotation.y)
+	#var ray_start = player_skeleton.get_bone_global_pose(player_skeleton.find_bone("head"))[3]
+	var ray_end = occluded_transform[3]
+	var ray_hit = Vector3()
+	var corrected_transform = occluded_transform
+	var raycast = space_state.intersect_ray(ray_start, ray_end, [self])
+		
 	if raycast.size() > 0:
-		occluded_transform[3][0] = raycast['position'][0]
-		occluded_transform[3][2] = raycast['position'][2]
+		corrected_transform[3][0] = raycast['position'][0]
+		corrected_transform[3][2] = raycast['position'][2]
+		ray_hit = raycast['position']
+		$Marker3.show()
+		$Marker4.show()
+	else:
+		$Marker3.hide()
+		$Marker4.hide()
+	
+	$Marker1.global_transform[3] = ray_start
+	$Marker2.global_transform[3] = lerp(ray_start, ray_end, 0.80)
+	$Marker3.global_transform[3] = ray_hit
+	$Marker4.global_transform[3] = lerp(ray_start, corrected_transform[3], 0.80)
+		
 	
 	#VisualServer
 	
