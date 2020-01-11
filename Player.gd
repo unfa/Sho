@@ -37,6 +37,7 @@ const MAX_GROUND_ANGLE = 30
 
 var velocity = Vector3()
 var walk_velocity = Vector2()
+var walk_last_direction = Vector2(0, 1)
 var jump_accel = 0
 var jump_time = 0
 var jump_active = false
@@ -59,6 +60,10 @@ func debug(text, clear = false): # print on_screen dubig text
 		label.text = ''
 		
 	label.text += String(text) + '\n'
+
+func animation_blink(): # randomized blinking animation
+	$RandomAnimation/RandomAnimations.play("Blink")
+	$RandomAnimation/BlinkTimer.start(randf() * 7 + 3)
 
 func check_ground(): # check if the player is in contact with the ground	
 	ground_contact = true if is_on_floor() or ground.is_colliding() else false
@@ -130,6 +135,9 @@ func walk(delta):
 	if Input.is_action_pressed("player_right"):
 		walk_rotation -= 1
 	
+	if walk_direction.length() > 0:
+		walk_last_direction = walk_direction
+	
 	if walk_velocity.dot(walk_direction) > 0: # check if we're speeding up or slowing down
 		accel = WALK_ACCEL
 	else:
@@ -146,7 +154,10 @@ func walk(delta):
 	
 	rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
 	
+	$Mesh.rotation.y = ( PI * 0.5 * walk_last_direction.dot(Vector2(0,1)) ) + PI/2
+		
 	debug('walk_direction: ' + String(walk_direction))
+	debug('walk_last_direction: ' + String(walk_last_direction))
 	debug('walk_rotation ' + String(walk_rotation))
 	debug('walk_velocity ' + String(walk_velocity))
 	debug('accel ' + String(accel))
@@ -210,6 +221,8 @@ func respawn(var checkpoint):
 	rotation = checkpoint.rotation # copy rotation
 	
 	in_water = false
+	
+	walk_last_direction = Vector2(0,1)
 	
 	$WaterDroplets.emitting = true
 	anim.play("Idle")
