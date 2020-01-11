@@ -4,7 +4,7 @@ signal star_collected
 signal player_died
 
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
-onready var anim = $AnimationTree.get("parameters/playback")
+onready var anim = $AnimationManagement/AnimationTree.get("parameters/playback")
 onready var ground = $Ground
 
 ### EFFECTS
@@ -69,8 +69,8 @@ func debug(text, clear = false): # print on_screen dubig text
 	label.text += String(text) + '\n'
 
 func animation_blink(): # randomized blinking animation
-	$RandomAnimation/RandomAnimations.play("Blink")
-	$RandomAnimation/BlinkTimer.start(randf() * 7 + 3)
+	$AnimationManagement/RandomAnimations.play("Blink")
+	$AnimationManagement/BlinkTimer.start(randf() * 7 + 3)
 
 func check_ground(): # check if the player is in contact with the ground	
 	ground_contact = true if is_on_floor() or ground.is_colliding() else false
@@ -89,7 +89,6 @@ func jump(delta):
 		jump_time = 0
 		
 		anim.travel("Jump")
-		
 	
 	if Input.is_action_just_released("player_jump"):
 		# terminate jump immediately
@@ -147,6 +146,10 @@ func walk(delta):
 	
 	if walk_direction.length() > 0:
 		walk_last_direction = walk_direction
+		#if anim.get_current_node() != "Run":
+		anim.travel("Run")
+	else:# anim.get_current_node() != "Idle":
+		anim.travel("Idle")
 	
 	if walk_velocity.dot(walk_direction) > 0: # check if we're speeding up or slowing down
 		accel = WALK_ACCEL
@@ -189,6 +192,8 @@ func gravity(delta):
 	else: # if we're during a jump or otherwis mid-air:
 		velocity.y += GRAVITY * delta # acculumate gravity to accelerate naturally
 		gravity_mode = 'fall'
+		
+		anim.travel("Fly")
 	
 	debug('gravity_mode ' + gravity_mode)
 	
@@ -223,6 +228,8 @@ func _physics_process(delta):
 	debug('ground_angle: ' + String(ground_angle) )
 	
 	debug('in_water: ' + String(in_water) )
+	
+	debug('anim.get_current_node(): ' + String(anim.get_current_node()) )
 
 func respawn(var checkpoint):
 	# wait 1 second before respawning
@@ -235,7 +242,7 @@ func respawn(var checkpoint):
 	walk_last_direction = Vector2(0,1)
 	
 	$WaterDroplets.emitting = true
-	anim.play("Idle")
+	anim.travel("Idle")
 
 func collect_star():
 	emit_signal("star_collected")
