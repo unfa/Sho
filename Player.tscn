@@ -130,7 +130,7 @@ disabled = true
 [node name="Ground" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.717186, 0 )
 enabled = true
-cast_to = Vector3( 0, -2, 0 )
+cast_to = Vector3( 0, -1.5, 0 )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 

@@ -7,6 +7,10 @@ onready var UI = get_tree().get_nodes_in_group("ui")[0]
 onready var anim = $Mesh/AnimationPlayer
 onready var ground = $Ground
 
+### EFFECTS
+
+var effect_splash = preload("res://EffectWaterSplash.tscn")
+
 ### MOVEMENT
 
 # player movement constants
@@ -43,6 +47,8 @@ var jump_max_height = 0
 var ground_contact = false
 var ground_normal = Vector3()
 var ground_angle = 0.0
+
+var in_water = false
 
 var movement = Vector3()
 
@@ -148,15 +154,17 @@ func walk(delta):
 	
 func gravity(delta):
 	var gravity_mode = ""
-	if ground_contact and jump_finished and not is_on_floor(): # if we're floating above the ground
+	if ground_contact and jump_finished:
+		if ground_angle <= MAX_GROUND_ANGLE and walk_velocity.length() < 0.1:
+			velocity.y = 0
+			#move_and_collide(Vector3(0,-1,0)) # snap to the ground
+			gravity_mode = 'stand'
+		elif not is_on_floor(): # if we're floating above the ground
 			move_and_collide(Vector3(0,-1,0)) # snap to the ground
 			gravity_mode = 'snap'
-	elif ground_contact and jump_finished and is_on_floor() and  ground_angle < MAX_GROUND_ANGLE:
-		velocity.y = 0
-		gravity_mode = 'pass'
-	elif ground_contact and jump_finished: # if we're standing on the ground
-		velocity.y = GRAVITY * delta # apply minimal gravity
-		gravity_mode = 'slide'
+		else: # if we're standing on the ground
+			velocity.y = GRAVITY * delta # apply minimal gravity
+			gravity_mode = 'slide'
 	else: # if we're during a jump or otherwis mid-air:
 		velocity.y += GRAVITY * delta # acculumate gravity to accelerate naturally
 		gravity_mode = 'fall'
@@ -167,18 +175,24 @@ func gravity(delta):
 #		move_and_collide(Vector3(0,-1,0))
 
 func move(delta): # perform movement
-	movement = move_and_slide(velocity.rotated(UP, rotation.y), UP) # slideddw
+	movement = move_and_slide(velocity.rotated(UP, rotation.y), UP)
+	
+func sink(delta):
+	movement = Vector3(0,-5,0) * delta
+	global_translate(movement)
 
 func _physics_process(delta):
 	# clear the debug text
 	debug('FPS ' + String(Engine.get_frames_per_second()), true)
-	
 	check_ground()
-		
-	jump(delta)
-	walk(delta)
-	gravity(delta)
-	move(delta)
+
+	if in_water:
+		sink(delta)
+	else:
+		jump(delta)
+		walk(delta)
+		gravity(delta)
+		move(delta)
 	
 	
 	debug('velocity: ' + String(velocity) )
@@ -186,15 +200,17 @@ func _physics_process(delta):
 	debug('is_on_floor: ' + String(is_on_floor()) )
 	debug('ground_contact: ' + String(ground_contact) )
 	debug('ground_angle: ' + String(ground_angle) )
-
-
+	
+	debug('in_water: ' + String(in_water) )
 
 func respawn(var checkpoint):
 	# wait 1 second before respawning
 	yield(get_tree().create_timer(1), "timeout")
 	global_transform[3] = checkpoint.global_transform[3] # copy location
 	rotation = checkpoint.rotation # copy rotation
-
+	
+	in_water = false
+	
 	$WaterDroplets.emitting = true
 	anim.play("Idle")
 
@@ -202,18 +218,14 @@ func collect_star():
 	emit_signal("star_collected")
 
 func water():
+	in_water = true
 	UI.show_info("Oops!")
-	
-	#var water_splash_instance = water_splash.instance()
-	#water_splash_instance.global_transform[3] = global_transform[3]
-	#get_tree().root.add_child(water_splash_instance)
-	#add_child(water_splash_instance)
-	
-	var splash = preload("res://EffectWaterSplash.tscn")
-	var splash_instance = splash.instance()
+	var splash_instance = effect_splash.instance()
 	splash_instance.set_name("splash")
 	splash_instance.global_transform[3] = global_transform[3]
 	get_tree().root.add_child(splash_instance)
+	
+	emit_signal("player_died")
 	
 
 	#$Camera/AnimationPlayer.play("Water")
