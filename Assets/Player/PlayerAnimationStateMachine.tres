@@ -1,88 +1,78 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=20 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=19 format=2]
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Fly"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "Idle2"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 1
-advance_condition = "idle2"
 xfade_time = 2.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-switch_mode = 1
-advance_condition = "idle1"
-xfade_time = 0.5
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
-[sub_resource type="AnimationNodeStateMachine" id=37]
-states/Idle/node = SubResource( 34 )
-states/Idle/position = Vector2( 194, 108 )
-states/Idle2/node = SubResource( 35 )
-states/Idle2/position = Vector2( 594, 108 )
-transitions = [ "Idle", "Idle2", SubResource( 36 ), "Idle2", "Idle", SubResource( 38 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=24]
+resource_name = "IdleStateMachine"
+states/Idle/node = SubResource( 20 )
+states/Idle/position = Vector2( 352, 172 )
+states/Idle2/node = SubResource( 21 )
+states/Idle2/position = Vector2( 587, 172 )
+transitions = [ "Idle", "Idle2", SubResource( 22 ), "Idle2", "Idle", SubResource( 23 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeBlendTree" id=28]
-graph_offset = Vector2( -80.333, -16.25 )
-nodes/IdleStateMachine/node = SubResource( 37 )
-nodes/IdleStateMachine/position = Vector2( 260, 80 )
-nodes/output/position = Vector2( 860, 120 )
-node_connections = [ "output", 0, "IdleStateMachine" ]
-
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Jump"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Land"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "Run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 switch_mode = 2
 auto_advance = true
 xfade_time = 0.5
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 switch_mode = 2
 xfade_time = 0.25
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 2
 auto_advance = true
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 xfade_time = 0.25
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-xfade_time = 0.2
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+xfade_time = 0.1
 
 [resource]
-states/Fly/node = SubResource( 2 )
+states/Fly/node = SubResource( 1 )
 states/Fly/position = Vector2( -861, 105 )
-states/Idle/node = SubResource( 28 )
+states/Idle/node = SubResource( 24 )
 states/Idle/position = Vector2( -1212, -143.276 )
-states/Jump/node = SubResource( 5 )
+states/Jump/node = SubResource( 8 )
 states/Jump/position = Vector2( -861, -143.276 )
-states/Land/node = SubResource( 6 )
+states/Land/node = SubResource( 9 )
 states/Land/position = Vector2( -1212, 105 )
-states/Run/node = SubResource( 7 )
+states/Run/node = SubResource( 10 )
 states/Run/position = Vector2( -1030, -23 )
-transitions = [ "Jump", "Fly", SubResource( 9 ), "Fly", "Land", SubResource( 10 ), "Run", "Jump", SubResource( 11 ), "Land", "Run", SubResource( 12 ), "Land", "Idle", SubResource( 29 ), "Idle", "Run", SubResource( 30 ), "Idle", "Jump", SubResource( 31 ), "Run", "Idle", SubResource( 32 ), "Run", "Fly", SubResource( 33 ) ]
+transitions = [ "Jump", "Fly", SubResource( 11 ), "Fly", "Land", SubResource( 12 ), "Run", "Jump", SubResource( 13 ), "Land", "Run", SubResource( 14 ), "Run", "Fly", SubResource( 19 ), "Land", "Idle", SubResource( 25 ), "Run", "Idle", SubResource( 26 ), "Idle", "Jump", SubResource( 27 ), "Idle", "Run", SubResource( 28 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -1507, -208.276 )
+graph_offset = Vector2( -1552, -267.276 )

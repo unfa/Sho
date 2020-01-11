@@ -5,6 +5,8 @@ signal player_died
 
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
 onready var anim = $AnimationManagement/AnimationTree.get("parameters/playback")
+onready var anim_idle = $AnimationManagement/AnimationTree.get("parameters/Idle/playback")
+onready var idle_timer = $AnimationManagement/IdleTimer
 onready var ground = $Ground
 
 ### EFFECTS
@@ -67,6 +69,11 @@ func debug(text, clear = false): # print on_screen dubig text
 		label.text = ''
 		
 	label.text += String(text) + '\n'
+
+func animation_idle():
+	if not anim.get_current_node() == "Idle":
+		anim.travel("Idle")
+		idle_timer.start()
 
 func animation_blink(): # randomized blinking animation
 	$AnimationManagement/RandomAnimations.play("Blink")
@@ -149,7 +156,7 @@ func walk(delta):
 		#if anim.get_current_node() != "Run":
 		anim.travel("Run")
 	else:# anim.get_current_node() != "Idle":
-		anim.travel("Idle")
+		animation_idle()
 	
 	if walk_velocity.dot(walk_direction) > 0: # check if we're speeding up or slowing down
 		accel = WALK_ACCEL
@@ -230,6 +237,7 @@ func _physics_process(delta):
 	debug('in_water: ' + String(in_water) )
 	
 	debug('anim.get_current_node(): ' + String(anim.get_current_node()) )
+	debug('anim_idle.get_current_node(): ' + String(anim_idle.get_current_node()) )
 
 func respawn(var checkpoint):
 	# wait 1 second before respawning
@@ -242,7 +250,7 @@ func respawn(var checkpoint):
 	walk_last_direction = Vector2(0,1)
 	
 	$WaterDroplets.emitting = true
-	anim.travel("Idle")
+	animation_idle()
 
 func collect_star():
 	emit_signal("star_collected")
@@ -261,8 +269,17 @@ func water():
 	#$Camera/AnimationPlayer.play("Water")
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-	#pass
+func _ready():
+	
+	var anim_player = $Mesh/AnimationPlayer
+	var animations = ['Run', 'Idle', 'Idle2', 'Fly']
+	
+	for animation in animations:
+		animation = anim_player.get_animation(animation)	
+		animation.loop = true
+	
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -308,3 +325,8 @@ func water():
 #	#print("Action: ", action, " Timeout: ", action_timeout, " Idle time: ", idle_time)
 #
 #	anim.play(action, action_blend)
+
+
+func idle_timeout():
+	# switch to the "bored idle" animation
+	anim_idle.travel("Idle2")
