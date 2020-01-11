@@ -2054,7 +2054,7 @@ box_projection = true
 [node name="Tutorial" type="Spatial" parent="Level"]
 
 [node name="TutorialNode" parent="Level/Tutorial" instance=ExtResource( 13 )]
-transform = Transform( 3.55142, 0.00873975, 0, -0.00246091, 0.999997, 0, 0, 0, 4.41563, -0.0211678, 30.9758, 39.7872 )
+transform = Transform( 3.55142, 0.00873975, 0, -0.00721838, 2.93321, 0, 0, 0, 4.41563, -0.0211678, 30.9758, 41.7799 )
 tutorial_text = "Move you character using the WSAD or Arrow Keys"
 
 [node name="TutorialNode20" parent="Level/Tutorial" instance=ExtResource( 13 )]

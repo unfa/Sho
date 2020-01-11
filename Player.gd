@@ -4,7 +4,7 @@ signal star_collected
 signal player_died
 
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
-onready var anim = $Mesh/AnimationPlayer
+onready var anim = $AnimationTree.get("parameters/playback")
 onready var ground = $Ground
 
 ### EFFECTS
@@ -53,6 +53,13 @@ var in_water = false
 
 var movement = Vector3()
 
+### Animation State Machine
+
+#var anim_jump = false
+#var anim_land = false
+#var anim_run = false
+#var anim_idle = false
+
 func debug(text, clear = false): # print on_screen dubig text
 	var label = $Debug/Label # get the label node
 	
@@ -80,6 +87,9 @@ func jump(delta):
 		jump_finished = false
 		jump_accel = 0
 		jump_time = 0
+		
+		anim.travel("Jump")
+		
 	
 	if Input.is_action_just_released("player_jump"):
 		# terminate jump immediately
