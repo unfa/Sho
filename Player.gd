@@ -62,6 +62,9 @@ var movement = Vector3()
 #var anim_run = false
 #var anim_idle = false
 
+func Vector3toString(Vector):
+	return String("x: %1.2f y: %1.2f z: %1.2f" % [Vector.x, Vector.y, Vector.z])
+
 func debug(text, clear = false): # print on_screen dubig text
 	var label = $Debug/Label # get the label node
 	

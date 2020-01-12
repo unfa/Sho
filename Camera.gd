@@ -1,6 +1,12 @@
-extends Camera
+extends Spatial
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
+onready var camera = $Camera
+
+onready var marker1 = $Camera/Marker1
+onready var marker2 = $Camera/Marker2
+onready var marker3 = $Camera/Marker3
+onready var marker4 = $Camera/Marker4
 #onready var player_skeleton =  player.get_node("Mesh/Armature/Skeleton")
 
 # controlling camera responsivness according to zoom level
@@ -11,6 +17,11 @@ const interpolation_mid= 0.05
 const interpolation_min = 0.01
 const interpolation_max = 0.5
 var interpolation = interpolation_mid
+
+var corrected_transform
+
+var correction_blend = 0 # the blending factor between basic and corrected camera transform
+var correction_lerp = 0.1 # how fast do we transition correction_blend from 0 to 1 and back
 
 # controlling camera placement according to zoom levels:
 
@@ -45,6 +56,9 @@ const zoom_factor_min = 1.5
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+	
+func Vector3toString(Vector):
+	return String("x: %1.2f y: %1.2f z: %1.2f" % [Vector.x, Vector.y, Vector.z])
 	
 func _input(event):
 	if event is InputEventKey:
@@ -102,36 +116,59 @@ func _process(delta):
 	#var ray_start = player_skeleton.get_bone_global_pose(player_skeleton.find_bone("head"))[3]
 	var ray_end = occluded_transform[3]
 	var ray_hit = Vector3()
-	var corrected_transform = occluded_transform
+	
+	#corrected_transform = occluded_transform
 	var raycast = space_state.intersect_ray(ray_start, ray_end, [self])
 		
 	if raycast.size() > 0:
-		corrected_transform[3][0] = raycast['position'][0]
-		corrected_transform[3][2] = raycast['position'][2]
+		corrected_transform[3][0] = raycast['position'][0] # X
+		corrected_transform[3][2] = raycast['position'][2] # Z
+		corrected_transform[3][1] = occluded_transform[3][1] # Y
+		
+		
+		correction_blend = lerp(correction_blend, 1, correction_lerp)
+		
 		ray_hit = raycast['position']
-		$Marker3.show()
-		$Marker4.show()
+		marker3.show()
+		marker4.show()
 	else:
-		$Marker3.hide()
-		$Marker4.hide()
+		correction_blend = lerp(correction_blend, 0, correction_lerp)
+		corrected_transform[3][1] = occluded_transform[3][1] # Y
+		
+		marker3.hide()
+		marker4.hide()
 	
-	$Marker1.global_transform[3] = ray_start
-	$Marker2.global_transform[3] = lerp(ray_start, ray_end, 0.80)
-	$Marker3.global_transform[3] = ray_hit
-	$Marker4.global_transform[3] = lerp(ray_start, corrected_transform[3], 0.80)
+	
+	marker1.global_transform[3] = ray_start
+	marker2.global_transform[3] = lerp(ray_start, ray_end, 0.80)
+	marker3.global_transform[3] = ray_hit
+	marker4.global_transform[3] = lerp(ray_start, corrected_transform[3], 0.80)
 		
 	
 	#VisualServer
 	
-	transform = occluded_transform.looking_at(player.global_transform[3] + predictive_offset, UP) # point the camera at the player (no interpolation)
+	# move the Camera Gimbal
+	global_transform = occluded_transform
 	
-	#apply the new transform
-	global_transform = transform
+	# move the Camera
+	var final_transform = occluded_transform
+	
+	final_transform[2] = lerp(occluded_transform[2], corrected_transform[2], correction_blend)
+	final_transform[3] = lerp(occluded_transform[3], corrected_transform[3], correction_blend)
+	
+	camera.global_transform = final_transform.looking_at(ray_start, UP)
+	
+	player.debug('CAMERA')
+	player.debug('correction_blend: ' + String("%1.2f" % correction_blend))
+	player.debug('transform[3]: ' + Vector3toString(transform[3]))
+	player.debug('occluded_transform[3]: ' + Vector3toString(occluded_transform[3]))
+	player.debug('corrected_transform[3]: ' + Vector3toString(corrected_transform[3]))
+	player.debug('final_transform[3]: ' + Vector3toString(final_transform[3]))
 	
 #	var offset_rot = Vector3 (0, 45, 0)
 #	var player_rot = player.global_transform[1]
 #	var camera_rot = global_transform[1]
-#	var target_rot = player_rot + offset_rot
+#	var target_rot = player_rot + offset_rotd
 #
 #	global_transform[1] = lerp(camera_rot, target_rot, interpolation)
 	

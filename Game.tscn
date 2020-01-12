@@ -2186,32 +2186,36 @@ transform = Transform( 0.999988, 0.00491322, 8.74228e-08, 0.00491322, -0.999988,
 tutorial_text = "Color me impressed!"
 
 [node name="Camera_Gimbal" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 56.7248, 53.5799 )
+script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="Camera_Gimbal"]
-transform = Transform( -1, -1.86895e-07, 2.66914e-07, 2.07699e-07, 0.265556, 0.964095, -2.51065e-07, 0.964095, -0.265556, 0, 46.9412, 51.787 )
 environment = SubResource( 157 )
 current = true
 fov = 60.0
 far = 1024.0
-script = ExtResource( 1 )
 
 [node name="Marker1" type="MeshInstance" parent="Camera_Gimbal/Camera"]
 transform = Transform( -0.0761274, 0.961298, -0.264785, -0.961298, -0.000238851, 0.275512, 0.264786, 0.275511, 0.924111, -1.70984, 1.02611, -8.49129 )
+visible = false
 mesh = SubResource( 188 )
 material/0 = SubResource( 218 )
 
 [node name="Marker2" type="MeshInstance" parent="Camera_Gimbal/Camera"]
 transform = Transform( -0.0761274, 0.961298, -0.264785, -0.961298, -0.000238851, 0.275512, 0.264786, 0.275511, 0.924111, -0.518897, 0.93845, -8.46715 )
+visible = false
 mesh = SubResource( 219 )
 material/0 = SubResource( 280 )
 
 [node name="Marker3" type="MeshInstance" parent="Camera_Gimbal/Camera"]
 transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 1.7063, 0.779697, -8.4171 )
+visible = false
 mesh = SubResource( 250 )
 material/0 = SubResource( 310 )
 
 [node name="Marker4" type="MeshInstance" parent="Camera_Gimbal/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7063, 0.779697, -8.4171 )
+visible = false
 mesh = SubResource( 311 )
 material/0 = SubResource( 341 )
 [connection signal="body_entered" from="Level/Water/Area" to="Level/Water" method="_on_Area_body_entered"]
