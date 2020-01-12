@@ -33,7 +33,7 @@ const TURN_SPEED = 5
 const WALK_ACCEL = 15
 const WALK_DECEL = 25
 
-const MAX_GROUND_ANGLE = 30
+const MAX_GROUND_ANGLE = 50
 
 # player movement variables
 

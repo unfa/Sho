@@ -13,6 +13,8 @@ onready var marker4 = $Camera/Marker4
 
 const UP = Vector3(0, 1, 0)
 
+const camera_debug = false # display 3D debug Markers?
+
 const interpolation_mid= 0.05
 const interpolation_min = 0.01
 const interpolation_max = 0.5
@@ -117,6 +119,9 @@ func _process(delta):
 	var ray_end = occluded_transform[3]
 	var ray_hit = Vector3()
 	
+	if corrected_transform == null:
+		corrected_transform = occluded_transform
+	
 	#corrected_transform = occluded_transform
 	var raycast = space_state.intersect_ray(ray_start, ray_end, [self])
 		
@@ -129,20 +134,23 @@ func _process(delta):
 		correction_blend = lerp(correction_blend, 1, correction_lerp)
 		
 		ray_hit = raycast['position']
-		marker3.show()
-		marker4.show()
+		
+		if camera_debug:
+			marker3.show()
+			marker4.show()
 	else:
 		correction_blend = lerp(correction_blend, 0, correction_lerp)
 		corrected_transform[3][1] = occluded_transform[3][1] # Y
 		
-		marker3.hide()
-		marker4.hide()
+		if camera_debug:
+			marker3.hide()
+			marker4.hide()
 	
-	
-	marker1.global_transform[3] = ray_start
-	marker2.global_transform[3] = lerp(ray_start, ray_end, 0.80)
-	marker3.global_transform[3] = ray_hit
-	marker4.global_transform[3] = lerp(ray_start, corrected_transform[3], 0.80)
+	if camera_debug:
+		marker1.global_transform[3] = ray_start
+		marker2.global_transform[3] = lerp(ray_start, ray_end, 0.80)
+		marker3.global_transform[3] = ray_hit
+		marker4.global_transform[3] = lerp(ray_start, corrected_transform[3], 0.80)
 		
 	
 	#VisualServer
