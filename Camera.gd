@@ -13,7 +13,7 @@ onready var marker4 = $Camera/Marker4
 
 const UP = Vector3(0, 1, 0)
 
-const camera_debug = false # display 3D debug Markers?
+const camera_debug = true # display 3D debug Markers?
 
 const interpolation_mid= 0.05
 const interpolation_min = 0.01
@@ -124,23 +124,54 @@ func _process(delta):
 	
 	#corrected_transform = occluded_transform
 	var raycast = space_state.intersect_ray(ray_start, ray_end, [self])
-		
-	if raycast.size() > 0:
-		corrected_transform[3][0] = raycast['position'][0] # X
-		corrected_transform[3][2] = raycast['position'][2] # Z
-		corrected_transform[3][1] = occluded_transform[3][1] # Y
-		
-		
-		correction_blend = lerp(correction_blend, 1, correction_lerp)
-		
-		ray_hit = raycast['position']
-		
-		if camera_debug:
-			marker3.show()
-			marker4.show()
+	var raycast_up = space_state.intersect_ray(ray_start, ray_start + Vector3(0, 10, 0), [self])
+	var raycast_back = space_state.intersect_ray(ray_start, ray_start + Vector3(0, 0, -10).rotated(UP, player.rotation.y), [self])
+	
+	var occlusion_mode = 'none'
+	
+	if raycast.size() > 0: # something blocks the camera
+		if raycast_up.size() == 0: # player is not blocked from the top
+			
+			corrected_transform[3][0] = raycast['position'][0] # X
+			corrected_transform[3][1] = occluded_transform[3][1] # Y
+			corrected_transform[3][2] = raycast['position'][2] # Z
+	
+			correction_blend = lerp(correction_blend, 1, correction_lerp)
+	
+			ray_hit = raycast['position']
+			
+			occlusion_mode = 'high'
+			if camera_debug:
+				marker3.show()
+				marker4.show()
+		elif raycast_back.size() == 0: # nothing blocks from behind
+			corrected_transform[3][0] = occluded_transform[3][0] # X
+			corrected_transform[3][1] = ray_start[1] # Y
+			corrected_transform[3][2] = occluded_transform[3][2] # Z
+			
+			correction_blend = lerp(correction_blend, 1, correction_lerp)
+	
+			ray_hit = raycast['position']
+			
+			occlusion_mode = 'low'
+			
+		else: # something blocks from behind
+			corrected_transform[3][0] = raycast_back['position'][0] # X
+			corrected_transform[3][1] = raycast_back['position'][1] # Y
+			corrected_transform[3][2] = raycast_back['position'][2] # Z
+			
+			correction_blend = lerp(correction_blend, 1, correction_lerp)
+	
+			ray_hit = raycast['position']
+			
+			occlusion_mode = 'close'
+			
+			if camera_debug:
+				marker3.show()
+				marker4.show()
 	else:
 		correction_blend = lerp(correction_blend, 0, correction_lerp)
-		corrected_transform[3][1] = occluded_transform[3][1] # Y
+		#corrected_transform[3][1] = occluded_transform[3][1] # Y
 		
 		if camera_debug:
 			marker3.hide()
@@ -172,6 +203,7 @@ func _process(delta):
 	player.debug('occluded_transform[3]: ' + Vector3toString(occluded_transform[3]))
 	player.debug('corrected_transform[3]: ' + Vector3toString(corrected_transform[3]))
 	player.debug('final_transform[3]: ' + Vector3toString(final_transform[3]))
+	player.debug('occlusion_mode: ' + occlusion_mode)
 	
 #	var offset_rot = Vector3 (0, 45, 0)
 #	var player_rot = player.global_transform[1]
