@@ -13,7 +13,7 @@ onready var marker4 = $Camera/Marker4
 
 const UP = Vector3(0, 1, 0)
 
-const camera_debug = true # display 3D debug Markers?
+const camera_debug = false # display 3D debug Markers?
 
 const interpolation_mid= 0.05
 const interpolation_min = 0.01
@@ -57,8 +57,10 @@ const zoom_factor_min = 1.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-	
+	if not camera_debug:
+		for marker in [marker1, marker2, marker3, marker4]:
+			marker.hide()
+			
 func Vector3toString(Vector):
 	return String("x: %1.2f y: %1.2f z: %1.2f" % [Vector.x, Vector.y, Vector.z])
 	
@@ -125,12 +127,16 @@ func _process(delta):
 	#corrected_transform = occluded_transform
 	var raycast = space_state.intersect_ray(ray_start, ray_end, [self])
 	var raycast_up = space_state.intersect_ray(ray_start, ray_start + Vector3(0, 10, 0), [self])
-	var raycast_back = space_state.intersect_ray(ray_start, ray_start + Vector3(0, 0, -10).rotated(UP, player.rotation.y), [self])
+	var raycast_back = space_state.intersect_ray(ray_start, ray_start + Vector3(0, 0, -15).rotated(UP, player.rotation.y), [self])
+	var raycast_recursive
+	
+	if raycast.size() > 0: # check if the high mode will succeed
+		raycast_recursive = space_state.intersect_ray(occluded_transform[3], raycast['position'], [self])
 	
 	var occlusion_mode = 'none'
 	
 	if raycast.size() > 0: # something blocks the camera
-		if raycast_up.size() == 0: # player is not blocked from the top
+		if raycast_up.size() == 0 and raycast_recursive.size() == 0: # player is not blocked from the top or the high position
 			
 			corrected_transform[3][0] = raycast['position'][0] # X
 			corrected_transform[3][1] = occluded_transform[3][1] # Y
@@ -155,7 +161,7 @@ func _process(delta):
 			
 			occlusion_mode = 'low'
 			
-		else: # something blocks from behind
+		elif raycast_back.size() > 0 and raycast_up.size() > 0: # something blocks from behind, and from the top
 			corrected_transform[3][0] = raycast_back['position'][0] # X
 			corrected_transform[3][1] = raycast_back['position'][1] # Y
 			corrected_transform[3][2] = raycast_back['position'][2] # Z
@@ -165,6 +171,20 @@ func _process(delta):
 			ray_hit = raycast['position']
 			
 			occlusion_mode = 'close'
+			
+			if camera_debug:
+				marker3.show()
+				marker4.show()
+		else: # something blocks from behind but not the top
+			corrected_transform[3][0] = ray_start[0] # X
+			corrected_transform[3][1] = occluded_transform[3][1] # Y
+			corrected_transform[3][2] = ray_start[2] # Z
+			
+			correction_blend = lerp(correction_blend, 0.99, correction_lerp)
+	
+			ray_hit = raycast['position']
+			
+			occlusion_mode = 'up'
 			
 			if camera_debug:
 				marker3.show()
