@@ -247,7 +247,7 @@ func respawn(var checkpoint):
 	# wait 1 second before respawning
 	yield(get_tree().create_timer(1), "timeout")
 	global_transform[3] = checkpoint.global_transform[3] # copy location
-	rotation = checkpoint.rotation # copy rotation
+	rotation = checkpoint.rotation
 	
 	in_water = false
 	
