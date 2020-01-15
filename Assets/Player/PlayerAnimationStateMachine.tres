@@ -1,27 +1,30 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=19 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=23 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "Fly"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Idle2"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 1
 xfade_time = 2.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
-[sub_resource type="AnimationNodeStateMachine" id=24]
+[sub_resource type="AnimationNodeStateMachine" id=7]
 resource_name = "IdleStateMachine"
-states/Idle/node = SubResource( 20 )
+states/Idle/node = SubResource( 3 )
 states/Idle/position = Vector2( 352, 172 )
-states/Idle2/node = SubResource( 21 )
+states/Idle2/node = SubResource( 4 )
 states/Idle2/position = Vector2( 587, 172 )
-transitions = [ "Idle", "Idle2", SubResource( 22 ), "Idle2", "Idle", SubResource( 23 ) ]
+transitions = [ "Idle", "Idle2", SubResource( 5 ), "Idle2", "Idle", SubResource( 6 ) ]
 start_node = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
@@ -46,26 +49,39 @@ xfade_time = 0.5
 switch_mode = 2
 xfade_time = 0.25
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 xfade_time = 0.2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
 auto_advance = true
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 xfade_time = 0.25
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+xfade_time = 0.05
+
 [resource]
-states/Fly/node = SubResource( 1 )
+states/Attack/node = SubResource( 1 )
+states/Attack/position = Vector2( -1212, -266.276 )
+states/Fly/node = SubResource( 2 )
 states/Fly/position = Vector2( -861, 105 )
-states/Idle/node = SubResource( 24 )
+states/Idle/node = SubResource( 7 )
 states/Idle/position = Vector2( -1212, -143.276 )
 states/Jump/node = SubResource( 8 )
 states/Jump/position = Vector2( -861, -143.276 )
@@ -73,6 +89,6 @@ states/Land/node = SubResource( 9 )
 states/Land/position = Vector2( -1212, 105 )
 states/Run/node = SubResource( 10 )
 states/Run/position = Vector2( -1030, -23 )
-transitions = [ "Jump", "Fly", SubResource( 11 ), "Fly", "Land", SubResource( 12 ), "Run", "Jump", SubResource( 13 ), "Land", "Run", SubResource( 14 ), "Run", "Fly", SubResource( 19 ), "Land", "Idle", SubResource( 25 ), "Run", "Idle", SubResource( 26 ), "Idle", "Jump", SubResource( 27 ), "Idle", "Run", SubResource( 28 ) ]
+transitions = [ "Jump", "Fly", SubResource( 11 ), "Fly", "Land", SubResource( 12 ), "Run", "Jump", SubResource( 13 ), "Land", "Run", SubResource( 14 ), "Run", "Fly", SubResource( 15 ), "Land", "Idle", SubResource( 16 ), "Run", "Idle", SubResource( 17 ), "Idle", "Jump", SubResource( 18 ), "Idle", "Run", SubResource( 19 ), "Idle", "Attack", SubResource( 20 ), "Attack", "Idle", SubResource( 21 ), "Attack", "Run", SubResource( 22 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -1552, -267.276 )
+graph_offset = Vector2( -1554, -327.236 )

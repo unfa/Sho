@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Effects/EffectWaterSplash.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Smoke/Smoke BaseColor.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Smoke/Smoke Normal.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 128
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.1964 ), 0.0, 3.08499, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+width = 128
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_align_y = true
+flag_rotate_y = true
+direction = Vector3( 0, 1, 0 )
+initial_velocity = 10.0
+angular_velocity = -45.0
+angular_velocity_random = 1.0
+damping = 7.0
+angle = 360.0
+angle_random = 1.0
+scale = 2.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )
+transmission_enabled = true
+transmission = Color( 1, 1, 1, 1 )
+proximity_fade_enable = true
+proximity_fade_distance = 15.0
+
+[sub_resource type="QuadMesh" id=7]
+material = SubResource( 6 )
+size = Vector2( 4, 4 )
+
+[node name="WaterParticles" type="Particles"]
+emitting = false
+amount = 64
+lifetime = 4.0
+one_shot = true
+speed_scale = 1.4
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
+script = ExtResource( 1 )
