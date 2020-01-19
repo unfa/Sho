@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Player/Player.gltf" type="PackedScene" id=4]
 
 [sub_resource type="SphereShape" id=1]
-radius = 0.521399
+radius = 0.75
 
 [sub_resource type="Animation" id=2]
 length = 0.25

@@ -8,6 +8,25 @@ onready var anim = $AnimationManagement/AnimationTree.get("parameters/playback")
 onready var anim_idle = $AnimationManagement/AnimationTree.get("parameters/Idle/playback")
 onready var idle_timer = $AnimationManagement/IdleTimer
 onready var ground = $Ground
+onready var skeleton = $Mesh/Armature/Skeleton
+
+### Player Inventory and Health
+
+const MAX_HP = 5
+
+var hp = MAX_HP # hit points
+var stars_current = 0
+var stars_total = 0
+#var last_checkpoint
+
+func damage(amount = 1):
+	hp = max(hp - amount, 0)
+	if hp == 0:
+		emit_signal('player_died')
+
+func heal(amount = 1):
+	hp = min (hp + amount, MAX_HP)
+	
 
 ### EFFECTS
 
@@ -103,7 +122,7 @@ func check_ground(): # check if the player is in contact with the ground
 		ground_angle = 0
 
 func jump(delta):
-	if Input.is_action_just_pressed("player_jump") and ground_contact and ground_angle <= MAX_GROUND_ANGLE:
+	if Input.is_action_just_pressed("player_jump") and ground_contact and ground_angle <= MAX_GROUND_ANGLE and not attack:
 		jump_active = true
 		jump_finished = false
 		jump_accel = 0
@@ -201,18 +220,23 @@ func walk(delta):
 	debug('accel ' + String(accel))
 	
 func attack(delta):	
+	
+	if attack: # only update during attack for performance's sake
+		# put the attack hitbox where the tail is
+		var tail = skeleton.find_bone("tail_tip")
+		var tail_loc = skeleton.get_bone_global_pose(tail).origin
+		var skeleton_loc = skeleton.transform.origin
+		var target_loc = (skeleton_loc + tail_loc)
+		$Attack/CollisionShape.transform.origin = target_loc.rotated(UP, PI)
+		
+	
 	if ground_contact and Input.is_action_just_pressed("player_attack") and not attack:
+		$Attack.monitoring = true
 		attack = true
 		anim.start("Attack") #start the animation immediately, don't wait to travel
-		yield(get_tree().create_timer(ATTACK_DURATION / 3), "timeout")
-		
-		# Activate the attack hitbox
-		
-		$Attack.monitoring = true
-		yield(get_tree().create_timer(ATTACK_DURATION / 3), "timeout")
+	
+		yield(get_tree().create_timer(ATTACK_DURATION), "timeout")
 		$Attack.monitoring = false
-		
-		yield(get_tree().create_timer(ATTACK_DURATION / 3), "timeout")
 		attack = false
 		
 func gravity(delta):
@@ -260,6 +284,8 @@ func _physics_process(delta):
 		gravity(delta)
 		move(delta)
 	
+	# Fix Sun light's rotation
+	#print ($DirectionalLight.rotation_degrees)
 	
 	debug('velocity: ' + String(velocity) )
 	debug('movement: ' + String(movement) )
@@ -304,7 +330,6 @@ func water():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	var anim_player = $Mesh/AnimationPlayer
 	var animations = ['Run', 'Idle', 'Idle2', 'Fly']
 	
