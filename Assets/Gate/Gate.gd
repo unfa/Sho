@@ -1,5 +1,7 @@
 extends Spatial
 
+const debug = true
+
 var near = false
 var far  = false
 var follow = false
@@ -21,6 +23,7 @@ var blink_time = 0
 var blink_next = 0
 
 var open = false
+var open_prev = false
 
 const WANDER_RANGE = 0.75
 const WANDER_MIN_TIME = 0.25
@@ -51,8 +54,19 @@ var star_off = preload("res://Assets/Gate/Gate Star Off.material")
 onready var stars = [star1, star2, star3]
 var stars_active = 0
 
+func debug(text, clear = false): # print on_screen dubig text
+	var label = $Debug/Label # get the label node
+	if not debug:
+		label.hide()
+		return 1
+
+	
+	if clear: # flush the text if told to do so
+		label.text = ''
+		
+	label.text += String(text) + '\n'
+
 func open_gate():
-	anim.play("Open")
 	open = true
 
 func update_stars():
@@ -65,12 +79,12 @@ func update_stars():
 		star.mesh.surface_set_material(0, star_off)
 	
 	for star in stars_active:
-		print("Star " + String(star) + " is " + String(stars[star].name))
+		#print("Star " + String(star) + " is " + String(stars[star].name))
 		stars[star].mesh.surface_set_material(0, star_on)
 	
-	print ("---")
+	#print ("---")
 
-func collect_star():
+func collect_star():	
 	if stars_active < 3:
 		stars_active += 1
 		update_stars()
@@ -78,27 +92,21 @@ func collect_star():
 	else:
 		return false
 		
-func reset_stars():
-	if stars_active > 0:
-		stars_active = 0
-		update_stars()
-		return true
-	else:
-		return false
+func reset():
+	stars_active = 0
+	update_stars()
+	open = false
+	anim.play("Init")
 		
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#anim.start("Start")
-	#anim.stop()
-	anim.play("Start", -1, 0)
+	#anim.stop()	
+	update_stars()
 
 func eye_track(delta):
-	if not open:
-		eyeball.look_at(look_target, Vector3(0, 1, 0))
-		eyeball.rotate_object_local(Vector3(1,0,0), -PI/2)
-	else:
-		#eyeball.rotation_degrees = Vector3(0, 90, 0)
-		print(eyeball.rotation_degrees)
+	eyeball.look_at(look_target, Vector3(0, 1, 0))
+	eyeball.rotate_object_local(Vector3(1,0,0), -PI/2)
 
 func eye_blink(delta):
 	blink_time += delta
@@ -130,7 +138,8 @@ func pupil_track(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print("far: " + String(far) + " near: " + String(near))
-	
+	debug('GATE DEBUG', true)
+		
 	if not open:
 		if far and not far_prev: # Player enters the far field
 			#print("Start")
@@ -143,28 +152,33 @@ func _process(delta):
 		
 		if near and not near_prev: # Player enters the near field
 			follow = true
+			anim.play("Count Stars")
 	#
 	#	if not near and near_prev: # Player leaves the near field
 	#		pass#	
-		far_prev = far
-		near_prev = near
+		if near or far:
+			eye_blink(delta)
 	
-	if follow:
-		eye_wander(delta)
-		eye_track(delta)
-		#pupil_track(delta)
-		eye_blink(delta)
-		eye_limit_rotation(delta)
-		
+		if follow:
+			eye_wander(delta)
+			eye_track(delta)
+			#pupil_track(delta
+			eye_limit_rotation(delta)
 
-	
-	
 	if Input.is_action_just_pressed("ui_page_up"):
 		collect_star()
 	elif Input.is_action_just_pressed("ui_home"):
-		reset_stars()
-	
-	#update_stars()
+		reset()
+		
+	if open and not open_prev:
+		anim.play("Open")
+		
+	far_prev = far
+	near_prev = near
+	open_prev = open
+
+	debug('open: ' + String(open))
+	debug('open_prev: ' + String(open_prev))
 
 
 func _on_Far_body_entered(body):

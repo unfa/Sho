@@ -32,7 +32,7 @@ func heal(amount = 1):
 
 var effect_splash = preload("res://Assets/Effects/EffectWaterSplash.tscn")
 
-const debug = true
+const debug = false
 
 ### MOVEMENT
 
@@ -93,10 +93,11 @@ func Vector3toString(Vector):
 	return String("x: %1.2f y: %1.2f z: %1.2f" % [Vector.x, Vector.y, Vector.z])
 
 func debug(text, clear = false): # print on_screen dubig text
-	if not debug:
-		return 1
-		
 	var label = $Debug/Label # get the label node
+	
+	if not debug:
+		label.hide()
+		return 1
 	
 	if clear: # flush the text if told to do so
 		label.text = ''
