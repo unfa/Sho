@@ -32,18 +32,7 @@ export var debug = true
 # var a = 2
 # var b = "text"
 
-func debug(text, clear = false): # print on_screen dubig text
-	
-	if not debug:
-		return 1
-		
-	var label = $Debug/Label # get the label node
-	
-	if clear: # flush the text if told to do so
-		label.text = ''
-		
-	label.text += String(text) + '\n'
-
+var DebugHandle = Debug.DebugHandle.new("brie")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -78,13 +67,13 @@ func _physics_process(delta):
 	gravity(delta)
 	
 	#brie
-	if not debug:
-		$Debug/Label.hide()
 	
 	ai_process()
 	
-	debug('BRIE', true)
-	debug('AI state: ' + String(agent.ai_state) )
+	#debug('BRIE', true)
+	DebugHandle.debug('AI state: ' + String(agent.ai_state) )
+	
+	DebugHandle.flush_debug()
 	
 	
 
