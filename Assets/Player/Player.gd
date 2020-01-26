@@ -1,6 +1,6 @@
 extends KinematicBody
 
-signal star_collected
+signal player_update
 signal player_died
 
 onready var UI = get_tree().get_nodes_in_group("ui")[0]
@@ -316,7 +316,14 @@ func respawn(var checkpoint):
 	animation_idle()
 
 func collect_star():
-	emit_signal("star_collected")
+	stars_current += 1
+	stars_total += 1
+	emit_signal("player_update")
+
+func loose_star():
+	stars_current -= 1
+	#stars_total += 1
+	emit_signal("player_update")
 
 func water():
 	in_water = true

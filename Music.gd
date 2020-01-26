@@ -32,7 +32,7 @@ func _ready():
 		players[player].play()
 	
 	# mute the MUSIC submix bus
-	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Music A"), true)
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Music B"), true)
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Music C"), true)

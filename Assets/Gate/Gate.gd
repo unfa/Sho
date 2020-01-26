@@ -1,13 +1,100 @@
 extends Spatial
 
+class StateMachine: # This calss will help us track and manage what state our game entity is in.
+	
+	var states = []
+	var current_state: int = 0 setget set_current_state, get_current_state
+	var state_stack = []
+	var state_history = []
+
+	func get_current_state(as_string = false):
+		if as_string:
+			return get_state_name(get_current_state())
+		else:
+			return current_state
+	
+	func set_current_state(state):
+		var new_state = 0
+		if typeof(state) == TYPE_INT:
+			new_state = state
+		elif typeof(state) == TYPE_STRING:
+			new_state = self.states.find(state)
+		else:
+			return false
+		
+		self.state_history.append(self.current_state)
+		current_state = new_state
+		return true
+	
+	func get_previous_state(as_string = false):
+		if self.state_history.size() > 0:
+			if as_string:
+				return get_state_name(state_history.back())
+			else:
+				return state_history.back()
+		else:
+			return false
+
+
+	func get_next_state(as_string = false):
+		if self.state_stack.size() > 0:
+			if as_string:
+				return get_state_name(state_stack.front())
+			else:
+				return state_stack.front()
+		else:
+			return false
+		
+	func get_state_name(state: int):
+		if typeof(state) == TYPE_NIL:
+			return false
+		
+		var state_name = self.states[state]
+		
+		if typeof(state_name) == TYPE_STRING:
+			return state_name
+#		if self.states.size() >= state:
+#			return self.states[state]
+		else:
+			return ''
+		
+	func queue_state(state):
+		var new_state = 0
+		
+		if typeof(state) == TYPE_INT:
+			new_state = state
+		elif typeof(state) == TYPE_STRING:
+			new_state = self.states.find(state)
+		else:
+			return false
+
+		self.state_stack.append(new_state)
+		return true
+	
+	func advance_state():
+		var next_state = self.state_stack.pop_front()
+		if next_state == null:
+			return false
+		else:
+			set_current_state(next_state)
+	
+	func _init(states: Array, initial_state: int):
+		self.states = states
+		set_current_state(initial_state)
+		state_history.clear()
+
+
+var gate_state = StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Through', 'Closed'], 0)
+
 const debug = true
 
-var near = false
-var far  = false
-var follow = false
-
-var near_prev = false
-var far_prev  = false
+#var near = false
+#var far  = false
+#var follow = false
+#
+#
+#var near_prev = false
+#var far_prev  = false
 
 var look_target_current = Vector3()
 var look_target = Vector3()
@@ -25,6 +112,15 @@ var blink_next = 0
 var open = false
 var open_prev = false
 
+var close = false
+var close_prev = false
+
+var reject = false
+var reject_prev = false
+
+var collect = false
+var collect_prev = false
+
 const WANDER_RANGE = 0.75
 const WANDER_MIN_TIME = 0.25
 const WANDER_MAX_TIME = 2
@@ -33,6 +129,9 @@ const UP = Vector3(0, 1, 0)
 
 #onready var anim = $AnimationTree.get("parameters/playback")
 onready var anim = $AnimationManagement/AnimationPlayer
+onready var trigger_near = $Near
+onready var trigger_far = $Far
+onready var trigger_through = $Through
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
 
@@ -67,6 +166,7 @@ func debug(text, clear = false): # print on_screen dubig text
 	label.text += String(text) + '\n'
 
 func open_gate():
+	yield(get_tree().create_timer(0.75), "timeout")
 	open = true
 
 func update_stars():
@@ -84,18 +184,38 @@ func update_stars():
 	
 	#print ("---")
 
-func collect_star():	
-	if stars_active < 3:
-		stars_active += 1
-		update_stars()
-		return true
-	else:
-		return false
-		
+func reject():
+	yield(get_tree().create_timer(2), "timeout")
+	anim.play("Reject")
+	reject = true
+
+func collect_all_stars():
+	collect = true
+	anim.play("Collect Star")
+
+func collect_star():
+	if gate_state.get_current_state(true) == "Collect":
+		if player.stars_current > 0 and stars_active < 3:
+			player.loose_star()
+			stars_active += 1
+			#anim.get_animation("Collect Star").loop = true
+			update_stars()
+			return true
+		elif player.stars_current == 0 and stars_active < 3:
+			anim.play("Reject")
+			gate_state.set_current_state("Reject")
+		elif stars_active == 3:
+			anim.play("Open")
+			gate_state.set_current_state("Open")
+#	elif gate_state.get_current_state(true) == "Reject":
+#
+#		return false
+			
 func reset():
 	stars_active = 0
 	update_stars()
 	open = false
+	close = false
 	anim.play("Init")
 		
 # Called when the node enters the scene tree for the first time.
@@ -135,64 +255,65 @@ func pupil_track(delta):
 	#print (eyeball.global_transform.origin.distance_to(look_target))
 	pass
 
+func advance_state():
+	gate_state.advance_state()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print("far: " + String(far) + " near: " + String(near))
 	debug('GATE DEBUG', true)
-		
-	if not open:
-		if far and not far_prev: # Player enters the far field
-			#print("Start")
-			anim.play("Start")
-		
-		if not far and far_prev: # Player exists the far field
-			#print("End")
-			#anim.travel('End')
-			follow = false
-		
-		if near and not near_prev: # Player enters the near field
-			follow = true
-			anim.play("Count Stars")
-	#
-	#	if not near and near_prev: # Player leaves the near field
-	#		pass#	
-		if near or far:
-			eye_blink(delta)
 	
-		if follow:
-			eye_wander(delta)
-			eye_track(delta)
-			#pupil_track(delta
-			eye_limit_rotation(delta)
-
-	if Input.is_action_just_pressed("ui_page_up"):
-		collect_star()
-	elif Input.is_action_just_pressed("ui_home"):
-		reset()
-		
-	if open and not open_prev:
+	if gate_state.get_current_state(true) == "Sleep":
+		anim.play("Init")
+	elif gate_state.get_current_state(true) == "Start": # AWAKE
+		if not anim.is_playing():
+			anim.play("Start")
+			#gate_state.queue_state("Awake")
+			gate_state.set_current_state("Awake")
+			print("play start")
+	elif gate_state.get_current_state(true) == "Awake":
+		eye_blink(delta)
+	elif gate_state.get_current_state(true) == "Collect": # COLLECT
+		eye_wander(delta)
+		eye_track(delta)
+		eye_blink(delta)
+		eye_limit_rotation(delta)
+		anim.play("Collect Star")
+	elif gate_state.get_current_state(true) == "Reject": # REJECT
+		eye_track(delta)
+		eye_wander(delta)
+		eye_limit_rotation(delta)
+	elif gate_state.get_current_state(true) == "Open": # OPEN
 		anim.play("Open")
-		
-	far_prev = far
-	near_prev = near
-	open_prev = open
+	elif gate_state.get_current_state(true) == "Through":  # THROUGH
+		anim.play("Close")
+		gate_state.set_current_state("Closed")
+	elif gate_state.get_current_state(true) == "Closed":
+		anim.queue("Init")
+		pass
 
-	debug('open: ' + String(open))
-	debug('open_prev: ' + String(open_prev))
+
+	debug('previous state: ' + String(gate_state.get_previous_state(true)) )
+	debug('current state: ' + String(gate_state.get_current_state(true)) )
+	debug('next state: ' + String(gate_state.get_next_state(true)) )
 
 
 func _on_Far_body_entered(body):
-	if body.is_in_group("players"):
-		far = true
+	if body.is_in_group("players") and gate_state.get_current_state(true) == "Sleep":
+		gate_state.set_current_state("Start")
 
 func _on_Far_body_exited(body):
-	if body.is_in_group("players"):
-		far = false
+	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Through", "Closed"]:
+		gate_state.set_current_state("Sleep")
 
 func _on_Near_body_entered(body):
-	if body.is_in_group("players"):
-		near = true
+	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Reject", "Open", "Through", "Closed"]:
+			gate_state.set_current_state("Collect")
 
 func _on_Near_body_exited(body):
-	if body.is_in_group("players"):
-		near = false
+	if body.is_in_group("players") and gate_state.get_current_state(true) == "Collect":
+		gate_state.set_current_state("Awake")
+
+func _on_CloseTrigger_body_entered(body):
+	if body.is_in_group("players") and gate_state.get_current_state(true) == "Open":
+		gate_state.set_current_state("Through")
