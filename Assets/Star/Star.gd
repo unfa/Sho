@@ -26,8 +26,8 @@ func spawn_effect():
 	var effect = preload("res://Assets/Effects/EffectStarPickup.tscn")
 	var effect_instance = effect.instance()
 	effect_instance.set_name("effect star pickup")
-	effect_instance.global_transform[3] = global_transform[3]
 	get_tree().root.add_child(effect_instance)
+	effect_instance.global_transform.origin = self.global_transform.origin
 
 func _on_Star_body_entered(body):
 	if body.is_in_group("players") and active:
