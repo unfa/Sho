@@ -36,9 +36,12 @@ class DebugHandle:
 		self.flushed_buffer = ''
 		
 		#Debug.label.text = ''
-		self.flushed_buffer += self.object_name.to_upper() + '\n'
 		
-		for i in range(0, self.object_name.length()):
+		var header = self.object_name.to_upper() + ' (' + String(self.get_instance_id()) + ')'
+		
+		self.flushed_buffer += header + '\n'
+		
+		for i in range(0, header.length()):
 			self.flushed_buffer += "-"
 			
 		self.flushed_buffer += "\n"
