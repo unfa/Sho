@@ -86,7 +86,7 @@ class StateMachine: # This calss will help us track and manage what state our ga
 
 var gate_state = StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
-const debug = true
+const debug = false
 
 #var near = false
 #var far  = false
