@@ -1,43 +1,39 @@
 extends KinematicBody
 
-var brie_state = Classes.StateMachine.new(['Idle', 'Wander', 'Turn', 'Alert', 'Follow', 'Attack', 'Die', 'Dead'], 0)
-var DebugHandle = Debug.DebugHandle.new("brie")
-
 onready var anim = $Brie/AnimationPlayer
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
 
-export var debug = true
+export var debug = false
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var BrieState = Classes.StateMachine.new(['Idle', 'Wander', 'Turn', 'Alert', 'Follow', 'Attack', 'Die', 'Dead'], 0)
+var DebugHandle = Debug.DebugHandle.new("brie")
 
+func debug(text):
+	DebugHandle.debug(String(text))
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	if debug:
+		DebugHandle.enable()
+	BrieState.set_current_state(1)
 
 func die():
 	$Brie/AnimationPlayer.play("Die")
 	
-	
 func gravity(delta): # drop to the ground
 	move_and_collide(Vector3(0,-10*delta,0))
 
-
 func _physics_process(delta):
 	gravity(delta)
-	
-	#debug('BRIE', true)
-	DebugHandle.debug('current state: ' + brie_state.get_current_state(true) )
-	
-	DebugHandle.flush_debug()
-	
-	
 
+func _process(delta):
+	debug('previous state: ' + String(BrieState.get_previous_state(true)) )
+	debug('current state: ' + String(BrieState.get_current_state(true)) )
+	debug('next state: ' + String(BrieState.get_next_state(true)) )
+	
+	DebugHandle.flush_debug()	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Near_body_entered(body):
+	if body.is_in_group("players"):
+		#print("Player near")
+		BrieState.set_current_state("Alert")

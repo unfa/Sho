@@ -147,6 +147,7 @@ cast_to = Vector3( 0, -1.5, 0 )
 [node name="Debug" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="Debug"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 32.0

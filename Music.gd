@@ -6,7 +6,7 @@ extends Node
 
 class musicTrack:
 	
-	var name = ''
+	var track_name = ''
 	var stems = { 'A': '' ,
 				  'B': '' ,
 				  'C': '' ,
@@ -16,7 +16,7 @@ class musicTrack:
 		pass
 	
 	func _init(name: String, stems_path: String):
-		self.name = name
+		self.track_name = name
 		load_stems(stems_path)
 		return
 		

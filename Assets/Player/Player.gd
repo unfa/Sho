@@ -34,6 +34,12 @@ var effect_splash = preload("res://Assets/Effects/EffectWaterSplash.tscn")
 
 const debug = false
 
+var DebugHandle = Debug.DebugHandle.new("Player")
+
+func debug(text):
+	if debug:
+		DebugHandle.debug(String(text))
+
 ### MOVEMENT
 
 # player movement constants
@@ -91,18 +97,6 @@ var attack = false
 
 func Vector3toString(Vector):
 	return String("x: %1.2f y: %1.2f z: %1.2f" % [Vector.x, Vector.y, Vector.z])
-
-func debug(text, clear = false): # print on_screen dubig text
-	var label = $Debug/Label # get the label node
-	
-	if not debug:
-		label.hide()
-		return 1
-	
-	if clear: # flush the text if told to do so
-		label.text = ''
-		
-	label.text += String(text) + '\n'
 
 func animation_idle():
 	if not anim.get_current_node() == "Idle" and not attack:
@@ -273,7 +267,7 @@ func sink(delta):
 
 func _physics_process(delta):
 	# clear the debug text
-	debug('FPS ' + String(Engine.get_frames_per_second()), true)
+	debug('FPS ' + String(Engine.get_frames_per_second()))
 	check_ground()
 
 	if in_water:
@@ -301,6 +295,9 @@ func _physics_process(delta):
 	
 	debug('attack: ' + String(attack))
 	debug('$Attack.monitoring: ' + String($Attack.monitoring))
+	
+	if debug:
+		DebugHandle.flush_debug()
 
 func respawn(var checkpoint):
 	# wait 1 second before respawning
