@@ -15,7 +15,6 @@ func debug(text):
 func _ready():
 	if debug:
 		DebugHandle.enable()
-	BrieState.set_current_state(1)
 
 func die():
 	$Brie/AnimationPlayer.play("Die")
@@ -36,4 +35,4 @@ func _process(delta):
 func _on_Near_body_entered(body):
 	if body.is_in_group("players"):
 		#print("Player near")
-		BrieState.set_current_state("Alert")
+		BrieState.set_current_state("Follow")
