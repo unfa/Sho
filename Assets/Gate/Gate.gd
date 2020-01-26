@@ -84,7 +84,7 @@ class StateMachine: # This calss will help us track and manage what state our ga
 		state_history.clear()
 
 
-var gate_state = StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Through', 'Closed'], 0)
+var gate_state = StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
 const debug = true
 
@@ -270,7 +270,7 @@ func _process(delta):
 			anim.play("Start")
 			#gate_state.queue_state("Awake")
 			gate_state.set_current_state("Awake")
-			print("play start")
+			#print("play start")
 	elif gate_state.get_current_state(true) == "Awake":
 		eye_blink(delta)
 	elif gate_state.get_current_state(true) == "Collect": # COLLECT
@@ -285,6 +285,9 @@ func _process(delta):
 		eye_limit_rotation(delta)
 	elif gate_state.get_current_state(true) == "Open": # OPEN
 		anim.play("Open")
+		gate_state.set_current_state("Opened")
+	elif gate_state.get_current_state(true) == "Opened": # OPENED
+		pass
 	elif gate_state.get_current_state(true) == "Through":  # THROUGH
 		anim.play("Close")
 		gate_state.set_current_state("Closed")
@@ -303,11 +306,11 @@ func _on_Far_body_entered(body):
 		gate_state.set_current_state("Start")
 
 func _on_Far_body_exited(body):
-	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Through", "Closed"]:
+	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Through", "Closed", "Open", "Opened"]:
 		gate_state.set_current_state("Sleep")
 
 func _on_Near_body_entered(body):
-	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Reject", "Open", "Through", "Closed"]:
+	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Reject", "Open", "Opened", "Through", "Closed"]:
 			gate_state.set_current_state("Collect")
 
 func _on_Near_body_exited(body):
@@ -315,5 +318,5 @@ func _on_Near_body_exited(body):
 		gate_state.set_current_state("Awake")
 
 func _on_CloseTrigger_body_entered(body):
-	if body.is_in_group("players") and gate_state.get_current_state(true) == "Open":
+	if body.is_in_group("players") and gate_state.get_current_state(true) in ["Open", "Opened"]:
 		gate_state.set_current_state("Through")
