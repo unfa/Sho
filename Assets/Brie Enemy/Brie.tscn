@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Brie Enemy/Brie.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Brie Enemy/Brie.gd" type="Script" id=4]
@@ -39,6 +39,9 @@ height = 1.56517
 [sub_resource type="SphereShape" id=9]
 radius = 8.0
 
+[sub_resource type="SphereShape" id=10]
+radius = 16.0
+
 [node name="Brie" type="KinematicBody" groups=[
 "enemies",
 ]]
@@ -48,6 +51,11 @@ script = ExtResource( 4 )
 tree_root = SubResource( 6 )
 anim_player = NodePath("../Brie/AnimationPlayer")
 parameters/playback = SubResource( 7 )
+
+[node name="AI" type="Node" parent="."]
+
+[node name="WanderIdle" type="Timer" parent="AI"]
+autostart = true
 
 [node name="Brie" parent="." instance=ExtResource( 1 )]
 
@@ -61,13 +69,19 @@ monitorable = false
 [node name="CollisionShape" type="CollisionShape" parent="Near"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03089, 0 )
 shape = SubResource( 9 )
+disabled = true
 
 [node name="Far" type="Area" parent="."]
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Far"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03089, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
+disabled = true
+[connection signal="timeout" from="AI/WanderIdle" to="." method="_on_WanderIdle_timeout"]
 [connection signal="body_entered" from="Near" to="." method="_on_Near_body_entered"]
+[connection signal="body_exited" from="Near" to="." method="_on_Near_body_exited"]
+[connection signal="body_entered" from="Far" to="." method="_on_Far_body_entered"]
+[connection signal="body_exited" from="Far" to="." method="_on_Far_body_exited"]
 
 [editable path="Brie"]
