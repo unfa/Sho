@@ -2,7 +2,9 @@ extends Control
 
 onready var label = $Label
 
-var debug = true
+var debug = true # debugging the debugger
+
+var active = false
 
 var handles = []
 var handles_flushed = []
@@ -15,22 +17,31 @@ class DebugHandle:
 	var enabled = false
 		
 	func enable():
+		if not Debug.active:
+			return false
 		self.enabled = true
 	
 	func disable():
+		if not Debug.active:
+			return false
 		self.enabled = false
 	
 	func debug(text:String):
+		if not Debug.active:
+			return false
 		self.buffer += text + '\n'
 	
 	func _init(name:String):
+		if not Debug.active:
+			return false
+		
 		if Debug.debug:
 			print("New debug handle: " + name)
 		object_name = name
 		Debug.handles.append(self)
 	
 	func flush_debug():
-		if not enabled:
+		if not Debug.active or self.enabled:
 			return false
 		
 		self.flushed_buffer = ''
@@ -41,7 +52,7 @@ class DebugHandle:
 		
 		self.flushed_buffer += header + '\n'
 		
-		for i in range(0, header.length()):
+		for _si in range(0, header.length()):
 			self.flushed_buffer += "-"
 			
 		self.flushed_buffer += "\n"
