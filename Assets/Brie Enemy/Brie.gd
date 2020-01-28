@@ -6,8 +6,10 @@ onready var player = get_tree().get_nodes_in_group("players")[0]
 
 export var debug = false
 
-var BrieState = Classes.StateMachine.new(['Idle', 'Wander', 'Turn Left', 'Turn Right', 'Walk', 'Alert', 'Follow', 'Attack', 'Die', 'Dead'], 0)
-var DebugHandle = Debug.DebugHandle.new("brie")
+var MovementState = Classes.StateMachine.new(['Idle', 'Turn Left', 'Turn Right', 'Walk'], 0)
+var ActionState = Classes.StateMachine.new(['Wander', 'Alert', 'Follow', 'Attack', 'Die', 'Dead'], 0)
+
+var DebugHandle = Debug.DebugHandle.new('brie')
 
 onready var WanderIdleTimer = $AI/WanderIdle
 #
@@ -47,13 +49,12 @@ func _ready():
 		DebugHandle.enable()
 
 func die():
-	$Brie/AnimationPlayer.play("Die")
+	#$Brie/AnimationPlayer.play("Die")
+	ActionState.set_current_state("Die")
 	
 func gravity(delta): # drop to the ground
 	move_and_collide(Vector3(0,-10*delta,0))
 	
-func idle():
-	anim.play("Idle -loop")
 
 func sensor(sensor:String):
 	var collision = true if sensors[sensor].is_colliding() else false
@@ -61,7 +62,7 @@ func sensor(sensor:String):
 #	if sensors[sensor].get_overlapping_areas().size() > 0:
 #		collision = true
 
-	debug(sensor + ": " + String(collision))
+	#debug(sensor + ": " + String(collision))
 	return collision
 	
 func walk(delta):
@@ -74,11 +75,12 @@ func walk(delta):
 
 	
 func wander(delta):	
+	# rotate in a random durection
 	self.rotate_y(deg2rad(rand_range(1, 360)))
-	BrieState.set_current_state("Walk")
+	# start going forward
+	MovementState.set_current_state("Walk")
 
-func navigate(delta):
-	
+func navigate(delta): # avoid obstacles and getting stuck on them
 	if futile_motion_prev_location.length() == 0:
 		futile_motion_prev_location = global_transform.origin
 	
@@ -87,10 +89,10 @@ func navigate(delta):
 	if futile_motion_check_timer >= FUTILE_MOTION_TIMEOUT: # it's time to check
 		futile_motion_check_timer = 0
 		if (global_transform.origin - futile_motion_prev_location).length() <= FUTILE_MOTION_MIN_DISTANCE: # if we hadn't covered enough ground
-			#BrieState.set_current_state(["Turn left", "Turn Right"][randi() % 2]) # let's do a random turn
-			#BrieState.set_current_state("Idle") # let's do a random turn
+			#MovementState.set_current_state(["Turn left", "Turn Right"][randi() % 2]) # let's do a random turn
+			#MovementState.set_current_state("Idle") # let's do a random turn
 			self.rotate_y(deg2rad(180))
-			BrieState.set_current_state("Walk")
+			MovementState.set_current_state("Walk")
 			#print("FUTILE MOTION!")
 			futile_motion = true
 		else:
@@ -111,38 +113,14 @@ func navigate(delta):
 	var r = sensor('right')
 	
 	if fl and not fr:
-		BrieState.set_current_state("Turn Right")
+		MovementState.set_current_state("Turn Right")
 	elif fr and not fl:
-		BrieState.set_current_state("Turn Left")
+		MovementState.set_current_state("Turn Left")
 	elif not fr and not fl and not f:
-		BrieState.set_current_state("Walk")
+		MovementState.set_current_state("Walk")
 	elif (fr and fl) or f:
-		BrieState.set_current_state(["Turn left", "Turn Right"][randi() % 2])
+		MovementState.set_current_state(["Turn Left", "Turn Right"][randi() % 2])
 	
-#	if not f and not fl and not fr:
-#		BrieState.set_current_state("Walk")
-#	elif f:
-#		BrieState.set_current_state(["Turn left", "Turn Right"][randi() % 2])
-#	elif fl and fr:
-#		BrieState.set_current_state(["Turn left", "Turn Right"][randi() % 2])
-#	elif fl or l:
-#		BrieState.set_current_state("Turn Right")
-#	elif fr or r:
-#		BrieState.set_current_state("Turn Left")
-
-	
-
-#	if not f: 
-#		BrieState.set_current_state("Walk")
-#	elif motion:
-#		self.rotate_y(deg2rad(180))
-#	elif fl or l:
-#		BrieState.set_current_state("Turn Right")
-#	elif fr or r:
-#		BrieState.set_current_state("Turn Left")
-#	elif f:
-#		BrieState.set_current_state(["Turn left", "Turn Right"][randi() % 2])
-
 
 func turn(delta, speed, left:bool):
 	if left:
@@ -150,28 +128,58 @@ func turn(delta, speed, left:bool):
 	else:
 		self.rotate_y(deg2rad(-speed * delta))
 
-func _physics_process(delta):
-	navigate(delta)
-	gravity(delta)
-	
-	if BrieState.get_current_state(true) == "Wander":
+func perform_movement(delta):
+	if MovementState.get_current_state(true) == "Wander":
 		wander(delta)
 	
-	if BrieState.get_current_state(true) == "Walk":
+	if MovementState.get_current_state(true) == "Walk":
 		walk(delta)
 	
-	if BrieState.get_current_state(true) == "Turn Left":
+	if MovementState.get_current_state(true) == "Turn Left":
 		turn(delta, TURN_SPEED, true)
 	
-	if BrieState.get_current_state(true) == "Turn Right":
+	if MovementState.get_current_state(true) == "Turn Right":
 		turn(delta, TURN_SPEED, false)
 
+func follow(delta):
+	pass
+
+func _physics_process(delta):
+	
+	if ActionState.get_current_state(true) == "Wander":
+		navigate(delta)
+		perform_movement(delta)
+		gravity(delta)
+	elif ActionState.get_current_state(true) == "Alert":
+		MovementState.set_current_state("Idle")
+		anim.play("Alert -loop")
+	elif ActionState.get_current_state(true) == "Follow":
+		follow(delta)
+	elif ActionState.get_current_state(true) == "Attack":
+		anim.play("Attack")
+	elif ActionState.get_current_state(true) == "Idle":
+		anim.play("Idle -loop")
+	elif ActionState.get_current_state(true) == "Die":
+		anim.play("Die")
+		ActionState.set_current_state("Dead")
+	elif ActionState.get_current_state(true) == "Dead":
+		self.set_physics_process(false)
+		self.set_process(false)
+		$CollisionShape.disabled = true
 
 func _process(delta):
-	debug('previous state: ' + String(BrieState.get_previous_state(true)) )
-	debug('current state: ' + String(BrieState.get_current_state(true)) )
-	debug('next state: ' + String(BrieState.get_next_state(true)) )
-		
+
+	debug('ACTION STATE')
+	debug('previous state: ' + String(ActionState.get_previous_state(true)) )
+	debug('current state: ' + String(ActionState.get_current_state(true)) )
+	debug('next state: ' + String(ActionState.get_next_state(true)) )
+	debug('\n')
+	debug('MOVEMENT STATE')
+	debug('previous state: ' + String(MovementState.get_previous_state(true)) )
+	debug('current state: ' + String(MovementState.get_current_state(true)) )
+	debug('next state: ' + String(MovementState.get_next_state(true)) )
+	debug('\n')
+	
 	debug("WanderIdleTimer: " + String(WanderIdleTimer.time_left) )
 	#debug("rotation: " + String(to_json(walk_direction)) )
 	debug("motion: " + to_json(motion))
@@ -184,32 +192,45 @@ func _process(delta):
 func _on_Near_body_entered(body):
 	if body.is_in_group("players"):
 		#print("Player near")
-		BrieState.set_current_state("Follow")
+		ActionState.set_current_state("Follow")
 
 
 func _on_Near_body_exited(body):
 	if body.is_in_group("players"):
 		#print("Player near")
-		BrieState.set_current_state("Alert")
+		ActionState.set_current_state("Follow")
 
 
 func _on_Far_body_entered(body):
 	if body.is_in_group("players"):
 		#print("Player near")
-		BrieState.set_current_state("Alert")
+		ActionState.set_current_state("Alert")
 
 
 func _on_Far_body_exited(body):
 	if body.is_in_group("players"):
 		#print("Player near")
-		BrieState.set_current_state("Idle")
+		ActionState.set_current_state("Alert")
 
-func _on_WanderIdle_timeout():
-	if BrieState.get_current_state(true) == "Idle":
-			BrieState.set_current_state("Wander")
-			WanderIdleTimer.start(rand_range(6, 12))
-			#wander()
-	elif BrieState.get_current_state(true) == "Wander":
-			BrieState.set_current_state("Idle")
-			WanderIdleTimer.start(rand_range(3, 6))
-			idle()
+#func _on_WanderIdle_timeout():
+#	if ActionState.get_current_state(true) == "Idle":
+#			ActionState.set_current_state("Wander")
+#			WanderIdleTimer.start(rand_range(6, 12))
+#			#wander()
+#	elif ActionState.get_current_state(true) == "Wander":
+#			ActionState.set_current_state("Idle")
+#			WanderIdleTimer.start(rand_range(3, 6))
+#			idle()
+
+func _on_Attack_body_entered(body):
+	if body.is_in_group("players"):
+		ActionState.set_current_state("Attack")
+
+func _on_Attack_body_exited(body):
+	if body.is_in_group("players"):
+		ActionState.set_current_state("Follow")
+#
+#func _input(event):
+#	if Input.is_action_just_pressed("player_jump"):
+#		print("Setting the state")
+#		MovementState.set_current_state("Idle")

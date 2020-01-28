@@ -4,7 +4,7 @@ onready var label = $Label
 
 var debug = true # debugging the debugger
 
-var active = false
+var active = true
 
 var handles = []
 var handles_flushed = []
@@ -41,7 +41,7 @@ class DebugHandle:
 		Debug.handles.append(self)
 	
 	func flush_debug():
-		if not Debug.active or self.enabled:
+		if not Debug.active or not self.enabled:
 			return false
 		
 		self.flushed_buffer = ''

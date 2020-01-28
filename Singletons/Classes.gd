@@ -24,6 +24,10 @@ class StateMachine: # This class will help us track and manage what state our ga
 		else:
 			return false
 		
+#		if new_state == false or not self.states.has(new_state):
+#			print("ERROR! " + Debug.name + ' (' + String(self.get_instance_id()) +'): cannot set non-existing state ' + String(state) )
+#			return false
+		
 		self.state_history.append(self.current_state)
 		current_state = new_state
 		return true
