@@ -7,10 +7,7 @@
 [ext_resource path="res://Assets/Player/HUD.gd" type="Script" id=5]
 [ext_resource path="res://Assets/HUD/Star Off.svg" type="Texture" id=6]
 
-[sub_resource type="SphereShape" id=1]
-radius = 0.75
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 length = 0.25
 step = 0.025
 tracks/0/type = "value"
@@ -26,16 +23,19 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0, 1.0, 0.0 ]
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-
-[sub_resource type="SphereShape" id=5]
+[sub_resource type="SphereShape" id=4]
 radius = 0.75
 
-[sub_resource type="CylinderShape" id=6]
+[sub_resource type="CylinderShape" id=5]
 radius = 0.339888
 height = 0.238795
+
+[sub_resource type="CapsuleShape" id=14]
+radius = 0.319811
 
 [sub_resource type="Image" id=15]
 data = {
@@ -75,14 +75,14 @@ albedo_texture = ExtResource( 2 )
 material = SubResource( 10 )
 size = Vector2( 0.1, 0.2 )
 
-[sub_resource type="DynamicFontData" id=13]
+[sub_resource type="DynamicFontData" id=12]
 font_path = "res://Assets/Fonts/Baloo_Tamma/BalooTamma-Regular.ttf"
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=13]
 size = 64
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 13 )
+font_data = SubResource( 12 )
 
 [node name="Player" type="KinematicBody" groups=[
 "players",
@@ -90,15 +90,6 @@ font_data = SubResource( 13 )
 collision_layer = 2
 collision_mask = 7
 script = ExtResource( 3 )
-
-[node name="Attack" type="Area" parent="."]
-input_ray_pickable = false
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape" type="CollisionShape" parent="Attack"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04601, 1.39195 )
-shape = SubResource( 1 )
 
 [node name="AnimationManagement" type="Node" parent="."]
 
@@ -120,23 +111,23 @@ __meta__ = {
 
 [node name="RandomAnimations" type="AnimationPlayer" parent="AnimationManagement"]
 root_node = NodePath("../../Mesh/Armature/Skeleton/Szoszyszel")
-anims/Blink = SubResource( 2 )
+anims/Blink = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationManagement"]
 tree_root = ExtResource( 1 )
 anim_player = NodePath("../../Mesh/AnimationPlayer")
 active = true
-parameters/playback = SubResource( 3 )
-parameters/Idle/playback = SubResource( 4 )
+parameters/playback = SubResource( 2 )
+parameters/Idle/playback = SubResource( 3 )
 
 [node name="Body" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752172, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Feet" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.91289, 0, 0.133463, 0 )
 visible = false
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="Ground" type="RayCast" parent="."]
@@ -164,6 +155,20 @@ __meta__ = {
 
 [node name="Mesh" parent="." instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0.000228882, 0.0112305, 0.00610352 )
+
+[node name="BoneAttachment" type="BoneAttachment" parent="Mesh/Armature/Skeleton" index="0"]
+transform = Transform( -0.936849, -0.251733, -0.242774, 0.0668183, -0.810228, 0.582287, -0.343295, 0.529308, 0.775889, -1.27171e-07, 0.577129, 1.57433 )
+bone_name = "tail_tip"
+
+[node name="Attack" type="Area" parent="Mesh/Armature/Skeleton/BoneAttachment"]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0, 0 )
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Mesh/Armature/Skeleton/BoneAttachment/Attack"]
+transform = Transform( 1, 0, 0, 0, -1.49012e-07, -1, 0, 1, -1.78814e-07, 0, 0, 0 )
+shape = SubResource( 14 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.93532, 0 )
@@ -218,13 +223,13 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 400.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 13 )
 text = "***"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="timeout" from="AnimationManagement/BlinkTimer" to="." method="animation_blink"]
 [connection signal="timeout" from="AnimationManagement/IdleTimer" to="." method="idle_timeout"]
+[connection signal="body_entered" from="Mesh/Armature/Skeleton/BoneAttachment/Attack" to="." method="_on_Attack_body_entered"]
 
 [editable path="Mesh"]

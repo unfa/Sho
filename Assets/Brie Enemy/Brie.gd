@@ -3,13 +3,10 @@ extends KinematicBody
 onready var anim = $Brie/AnimationPlayer
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
-
-onready var AttackParticles = $Brie/Armature/Skeleton/BoneAttachment/Attack/Particles
-
 export var debug = false
 
-var MovementState = Classes.StateMachine.new(['Idle', 'Turn Left', 'Turn Right', 'Walk'], 0)
-var ActionState = Classes.StateMachine.new(['Wander', 'Alert', 'Follow', 'Attack', 'Die', 'Dead'], 0)
+var MovementState = Classes.StateMachine.new(['Stand', 'Turn Left', 'Turn Right', 'Walk'], 0)
+var ActionState = Classes.StateMachine.new(['Wander', 'Alert', 'Follow', 'Attack', 'Die', 'Dead', 'Idle'], 0)
 
 var DebugHandle = Debug.DebugHandle.new('brie')
 
@@ -23,7 +20,12 @@ onready var sensors = { 'front': $AI/Front,
 						'left': $AI/Left,
 						'right': $AI/Right,
 						'front_left': $AI/FrontLeft,
-						'front_right': $AI/FrontRight }
+						'front_right': $AI/FrontRight,
+						'player_sight': $AI/PlayerSight }
+
+onready var zones = {	'alert': $AI/Alert,
+						'follow': $AI/Follow,
+						'attack': $AI/Attack }
 
 const WALK_SPEED = 30
 const TURN_SPEED = 100
@@ -38,29 +40,17 @@ var futile_motion_check_timer = 0
 var futile_motion_prev_location = Vector3()
 var futile_motion = false
 
+
+onready var AttackParticles = $Brie/Armature/Skeleton/Attack/Particles
+onready var AttackCollider = $Brie/Armature/Skeleton/Attack/Collider
 const ATTACK_WINDUP = 0.75
 const ATTACK_DURATION = 1.25
 const ATTACK_COOLDOWN = 5
 var attack_ready = true
+var attack_connected = false
 
 const NAVIGATE_INTERVAL = 0.1 # how often do we poll sensors and make navigational decisions?
 var navigate_delta = 0
-
-
-#var walk_direction = Vector2(0, 1)
-func attack(delta):
-	if attack_ready:
-		attack_ready = false
-		anim.play("Attack")
-		yield(get_tree().create_timer(ATTACK_WINDUP),"timeout")
-		AttackParticles.emitting = true
-		yield(get_tree().create_timer(ATTACK_DURATION),"timeout")
-		AttackParticles.emitting = false
-		yield(get_tree().create_timer(ATTACK_COOLDOWN), "timeout")
-		attack_ready = true
-	
-	ActionState.set_current_state("Follow") # return to previous Action State
-
 
 func debug(text):
 	DebugHandle.debug(String(text))
@@ -79,12 +69,42 @@ func gravity(delta): # drop to the ground
 
 func sensor(sensor:String):
 	var collision = true if sensors[sensor].is_colliding() else false
-#
-#	if sensors[sensor].get_overlapping_areas().size() > 0:
-#		collision = true
-
-	#debug(sensor + ": " + String(collision))
 	return collision
+	
+func zone(zone:String):
+	var collision = true if zones[zone].get_overlapping_bodies().size() > 0 else false
+	return collision
+
+func attack(delta):
+	if attack_ready and sensor('player_sight') and ActionState.state_just_changed() and zone("attack"):
+		attack_ready = false
+		attack_connected = false
+		MovementState.set_current_state("Stand")
+		anim.play("Attack")
+		
+		yield(get_tree().create_timer(ATTACK_WINDUP),"timeout")
+		
+		AttackParticles.emitting = true
+		AttackCollider.monitoring = true
+		
+		yield(get_tree().create_timer(ATTACK_DURATION),"timeout")
+		
+		AttackParticles.emitting = false
+		AttackCollider.monitoring = false
+		
+		#$AI/Attack.monitoring = false
+		yield(get_tree().create_timer(ATTACK_COOLDOWN), "timeout")
+		#$AI/Attack.monitoring = true
+		attack_ready = true
+		ActionState.set_current_state("Attack")
+	elif not sensor('player_sight') and not anim.is_playing():
+		ActionState.set_current_state("Follow")
+	elif not attack_ready and not anim.is_playing():
+		MovementState.set_current_state("Walk")
+	elif not zone("attack"):
+		ActionState.set_current_state("Follow")
+
+	#ActionState.set_current_state("Follow") # return to previous Action State
 	
 func walk(delta):
 	
@@ -97,7 +117,8 @@ func walk(delta):
 	
 func wander(delta):	
 	# rotate in a random durection
-	self.rotate_y(deg2rad(rand_range(1, 360)))
+	if MovementState.state_just_changed():
+		self.rotate_y(deg2rad(rand_range(1, 360)))
 	# start going forward
 	MovementState.set_current_state("Walk")
 
@@ -161,38 +182,58 @@ func perform_movement(delta):
 	
 	if MovementState.get_current_state(true) == "Turn Right":
 		turn(delta, TURN_SPEED, false)
+	elif MovementState.get_current_state(true) == "Stand":
+		if not anim.is_playing():
+			anim.play("Idle -loop")
 
 func follow(delta):
 	global_transform = global_transform.interpolate_with(global_transform.looking_at(player.global_transform.origin, Vector3.UP), FOLLOW_SLERP * delta)
 	rotation.x = 0
 	
+	if sensor('player_sight'):
+		MovementState.set_current_state("Walk")
+	else:
+		MovementState.set_current_state("Stand")
 func _physics_process(delta):
 	
+#	if zone('attack'):
+#		ActionState.set_current_state('Attack')
+#	elif zone('follow'):
+#		ActionState.set_current_state('Follow')
+#	elif zone('alert'):
+#		ActionState.set_current_state('Alert')
+#	else:
+#		ActionState.set_current_state('Wander')
+
+	if not zone('alert') and not zone('follow') and not zone('alert'):
+		ActionState.set_current_state('Wander')
+
+		
 	# manual way to rotate the enemy
 	if Input.is_action_pressed("ui_page_up"):
 		turn(delta, TURN_SPEED, false)
 	elif Input.is_action_pressed("ui_page_down"):
 		turn(delta, TURN_SPEED, true)
 	
-#	follow(delta)
-#	gravity(delta)
+	gravity(delta)
+	perform_movement(delta)
 #	return
 	
 	if ActionState.get_current_state(true) == "Wander":
+		wander(delta)
 		navigate(delta)
-		perform_movement(delta)
-		gravity(delta)
 	elif ActionState.get_current_state(true) == "Alert":
-		MovementState.set_current_state("Idle")
+		MovementState.set_current_state("Stand")
 		anim.play("Alert -loop")
 	elif ActionState.get_current_state(true) == "Follow":
 		follow(delta)
-		perform_movement(delta)
+		#perform_movement(delta)
 	elif ActionState.get_current_state(true) == "Attack":
-		follow(delta)
+		MovementState.set_current_state("Stand")
 		attack(delta)
 	elif ActionState.get_current_state(true) == "Idle":
 		anim.play("Idle -loop")
+		MovementState.set_current_state("Stand")
 	elif ActionState.get_current_state(true) == "Die":
 		anim.play("Die")
 		ActionState.set_current_state("Dead")
@@ -221,6 +262,16 @@ func _process(delta):
 	debug("futile motion check timer: " + String(futile_motion_check_timer))
 	debug("futile motion: " + String(futile_motion))
 	
+	debug('\n')
+	debug("ZONES")
+	debug('attack: ' + String(zone("attack")))
+	debug('follow: ' + String(zone("follow")))
+	debug('alert: ' + String(zone("alert")))
+	
+	debug('\n')
+	debug('ATTACK')
+	debug('attack_ready: ' + String(attack_ready))
+	
 	DebugHandle.flush_debug()	
 
 func _on_Near_body_entered(body):
@@ -244,7 +295,7 @@ func _on_Far_body_entered(body):
 func _on_Far_body_exited(body):
 	if body.is_in_group("players"):
 		#print("Player near")
-		ActionState.set_current_state("Alert")
+		ActionState.set_current_state("Wander")
 
 #func _on_WanderIdle_timeout():
 #	if ActionState.get_current_state(true) == "Idle":
@@ -268,3 +319,10 @@ func _on_Attack_body_exited(body):
 #	if Input.is_action_just_pressed("player_jump"):
 #		print("Setting the state")
 #		MovementState.set_current_state("Idle")
+
+
+func _on_Collider_body_entered(body): 
+	if body.is_in_group("players"):
+		if not attack_connected: #this is the first time we're dealing damage for this attack
+			body.damage(10)
+			attack_connected = true

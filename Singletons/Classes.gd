@@ -14,7 +14,7 @@ class StateMachine: # This class will help us track and manage what state our ga
 			return get_state_name(get_current_state())
 		else:
 			return current_state
-	
+			
 	func set_current_state(state):
 		var new_state = 0
 		if typeof(state) == TYPE_INT:
@@ -41,7 +41,6 @@ class StateMachine: # This class will help us track and manage what state our ga
 		else:
 			return false
 
-
 	func get_next_state(as_string = false):
 		if self.state_stack.size() > 0:
 			if as_string:
@@ -50,6 +49,14 @@ class StateMachine: # This class will help us track and manage what state our ga
 				return state_stack.front()
 		else:
 			return false
+	
+	func state_just_changed():
+		if not get_previous_state():
+			return false
+		elif String(get_current_state(true)) == String(get_previous_state(true)):
+			return false
+		else:
+			return true
 		
 	func get_state_name(state: int):
 		if typeof(state) == TYPE_NIL:
@@ -79,6 +86,13 @@ class StateMachine: # This class will help us track and manage what state our ga
 	
 	func advance_state():
 		var next_state = self.state_stack.pop_front()
+		if next_state == null:
+			return false
+		else:
+			set_current_state(next_state)
+	
+	func revert_state():
+		var next_state = self.state_history.pop_back()
 		if next_state == null:
 			return false
 		else:

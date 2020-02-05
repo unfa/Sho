@@ -8,11 +8,12 @@ onready var anim = $AnimationManagement/AnimationTree.get("parameters/playback")
 onready var anim_idle = $AnimationManagement/AnimationTree.get("parameters/Idle/playback")
 onready var idle_timer = $AnimationManagement/IdleTimer
 onready var ground = $Ground
-onready var skeleton = $Mesh/Armature/Skeleton
+#onready var skeleton = $Mesh/Armature/Skeleton
+onready var AttackCollider = $Mesh/Armature/Skeleton/BoneAttachment/Attack
 
 ### Player Inventory and Health
 
-const MAX_HP = 5
+const MAX_HP = 100
 
 var hp = MAX_HP # hit points
 var stars_current = 0
@@ -20,6 +21,7 @@ var stars_total = 0
 #var last_checkpoint
 
 func damage(amount = 1):
+	print("Player took " + String(amount) + " damage!")
 	hp = max(hp - amount, 0)
 	if hp == 0:
 		emit_signal('player_died')
@@ -216,22 +218,23 @@ func walk(delta):
 	
 func attack(delta):	
 	
-	if attack: # only update during attack for performance's sake
-		# put the attack hitbox where the tail is
-		var tail = skeleton.find_bone("tail_tip")
-		var tail_loc = skeleton.get_bone_global_pose(tail).origin
-		var skeleton_loc = skeleton.transform.origin
-		var target_loc = (skeleton_loc + tail_loc)
-		$Attack/CollisionShape.transform.origin = target_loc.rotated(UP, PI)
+	# this is now done by the BoneAttachement node
+#	if attack: # only update during attack for performance's sake
+#		# put the attack hitbox where the tail is
+#		var tail = skeleton.find_bone("tail_tip")
+#		var tail_loc = skeleton.get_bone_global_pose(tail).origin
+#		var skeleton_loc = skeleton.transform.origin
+#		var target_loc = (skeleton_loc + tail_loc)
+#		$Attack/CollisionShape.transform.origin = target_loc.rotated(UP, PI)
 		
 	
 	if ground_contact and Input.is_action_just_pressed("player_attack") and not attack:
-		$Attack.monitoring = true
+		AttackCollider.monitoring = true
 		attack = true
 		anim.start("Attack") #start the animation immediately, don't wait to travel
 	
 		yield(get_tree().create_timer(ATTACK_DURATION), "timeout")
-		$Attack.monitoring = false
+		AttackCollider.monitoring = false
 		attack = false
 		
 func gravity(delta):
@@ -294,7 +297,7 @@ func _physics_process(delta):
 	debug('anim_idle.get_current_node(): ' + String(anim_idle.get_current_node()) )
 	
 	debug('attack: ' + String(attack))
-	debug('$Attack.monitoring: ' + String($Attack.monitoring))
+	debug('$Attack.monitoring: ' + String(AttackCollider.monitoring))
 	
 	if debug:
 		DebugHandle.flush_debug()
@@ -306,6 +309,8 @@ func respawn(var checkpoint):
 	rotation = checkpoint.rotation
 	
 	in_water = false
+	
+	hp = MAX_HP
 	
 	walk_last_direction = Vector2(0,1)
 	
