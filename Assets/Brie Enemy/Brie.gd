@@ -21,6 +21,7 @@ onready var sensors = { 'front': $AI/Front,
 						'right': $AI/Right,
 						'front_left': $AI/FrontLeft,
 						'front_right': $AI/FrontRight,
+						'edge': $AI/Edge,
 						'player_sight': $AI/PlayerSight }
 
 onready var zones = {	'alert': $AI/Alert,
@@ -68,6 +69,9 @@ func gravity(delta): # drop to the ground
 	
 
 func sensor(sensor:String):
+	#if sensor == 'player_sight':
+	
+	
 	var collision = true if sensors[sensor].is_colliding() else false
 	return collision
 	
@@ -109,10 +113,12 @@ func attack(delta):
 func walk(delta):
 	
 	#var velocity2D = walk_direction * WALK_SPEED
-	velocity = Vector3(0, 0, - WALK_SPEED * delta).rotated(Vector3(0,1,0), self.rotation.y)
-	motion = move_and_slide(velocity, Vector3(0, 1, 0))
-	
-	anim.play("Walk -loop")
+	if sensor('edge'):
+		velocity = Vector3(0, 0, - WALK_SPEED * delta).rotated(Vector3(0,1,0), self.rotation.y)
+		motion = move_and_slide(velocity, Vector3(0, 1, 0))
+		anim.play("Walk -loop")
+	else:
+		anim.play("Alert -loop")
 
 	
 func wander(delta):	

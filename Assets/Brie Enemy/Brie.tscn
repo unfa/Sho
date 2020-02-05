@@ -125,6 +125,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82198, 0.0468478 )
 enabled = true
 cast_to = Vector3( 0, 0, -3 )
 
+[node name="Edge" type="RayCast" parent="AI"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.880697, 0 )
+enabled = true
+cast_to = Vector3( 0, -1, -0.5 )
+
 [node name="Left" type="RayCast" parent="AI"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82198, 0.0468478 )
 enabled = true
