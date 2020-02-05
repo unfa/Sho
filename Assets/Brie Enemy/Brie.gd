@@ -4,6 +4,8 @@ onready var anim = $Brie/AnimationPlayer
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
 
+onready var AttackParticles = $Brie/Armature/Skeleton/BoneAttachment/Attack/Particles
+
 export var debug = false
 
 var MovementState = Classes.StateMachine.new(['Idle', 'Turn Left', 'Turn Right', 'Walk'], 0)
@@ -24,8 +26,8 @@ onready var sensors = { 'front': $AI/Front,
 						'front_right': $AI/FrontRight }
 
 const WALK_SPEED = 30
-
 const TURN_SPEED = 100
+const FOLLOW_SLERP = 2
 
 var motion = []
 var velocity = Vector3()
@@ -36,10 +38,29 @@ var futile_motion_check_timer = 0
 var futile_motion_prev_location = Vector3()
 var futile_motion = false
 
+const ATTACK_WINDUP = 0.75
+const ATTACK_DURATION = 1.25
+const ATTACK_COOLDOWN = 5
+var attack_ready = true
+
 const NAVIGATE_INTERVAL = 0.1 # how often do we poll sensors and make navigational decisions?
 var navigate_delta = 0
 
+
 #var walk_direction = Vector2(0, 1)
+func attack(delta):
+	if attack_ready:
+		attack_ready = false
+		anim.play("Attack")
+		yield(get_tree().create_timer(ATTACK_WINDUP),"timeout")
+		AttackParticles.emitting = true
+		yield(get_tree().create_timer(ATTACK_DURATION),"timeout")
+		AttackParticles.emitting = false
+		yield(get_tree().create_timer(ATTACK_COOLDOWN), "timeout")
+		attack_ready = true
+	
+	ActionState.set_current_state("Follow") # return to previous Action State
+
 
 func debug(text):
 	DebugHandle.debug(String(text))
@@ -68,7 +89,7 @@ func sensor(sensor:String):
 func walk(delta):
 	
 	#var velocity2D = walk_direction * WALK_SPEED
-	velocity = Vector3(0, 0, WALK_SPEED * delta).rotated(Vector3(0,1,0), self.rotation.y)
+	velocity = Vector3(0, 0, - WALK_SPEED * delta).rotated(Vector3(0,1,0), self.rotation.y)
 	motion = move_and_slide(velocity, Vector3(0, 1, 0))
 	
 	anim.play("Walk -loop")
@@ -142,9 +163,20 @@ func perform_movement(delta):
 		turn(delta, TURN_SPEED, false)
 
 func follow(delta):
-	pass
-
+	global_transform = global_transform.interpolate_with(global_transform.looking_at(player.global_transform.origin, Vector3.UP), FOLLOW_SLERP * delta)
+	rotation.x = 0
+	
 func _physics_process(delta):
+	
+	# manual way to rotate the enemy
+	if Input.is_action_pressed("ui_page_up"):
+		turn(delta, TURN_SPEED, false)
+	elif Input.is_action_pressed("ui_page_down"):
+		turn(delta, TURN_SPEED, true)
+	
+#	follow(delta)
+#	gravity(delta)
+#	return
 	
 	if ActionState.get_current_state(true) == "Wander":
 		navigate(delta)
@@ -155,8 +187,10 @@ func _physics_process(delta):
 		anim.play("Alert -loop")
 	elif ActionState.get_current_state(true) == "Follow":
 		follow(delta)
+		perform_movement(delta)
 	elif ActionState.get_current_state(true) == "Attack":
-		anim.play("Attack")
+		follow(delta)
+		attack(delta)
 	elif ActionState.get_current_state(true) == "Idle":
 		anim.play("Idle -loop")
 	elif ActionState.get_current_state(true) == "Die":
