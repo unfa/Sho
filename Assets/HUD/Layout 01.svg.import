@@ -4,15 +4,16 @@ importer="texture"
 type="StreamTexture"
 path.s3tc="res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.s3tc.stex"
 path.etc2="res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.etc2.stex"
+path.etc="res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.etc.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
+"imported_formats": [ "s3tc", "etc2", "etc" ],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/HUD/Layout 01.svg"
-dest_files=[ "res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.s3tc.stex", "res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.etc2.stex" ]
+dest_files=[ "res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.s3tc.stex", "res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.etc2.stex", "res://.import/Layout 01.svg-533fc317e4bc1d6f371d2453b3c84b26.etc.stex" ]
 
 [params]
 

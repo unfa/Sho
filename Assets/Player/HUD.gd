@@ -6,15 +6,17 @@ extends Control
 
 onready var player = get_tree().get_nodes_in_group('players')[0]
 
-onready var health_bar = $MarginContainer/HboxContainer/MarginContainer/HealthBar
+onready var health_bar = $MainMargin/Rows/Columns/HealthMargin/HealthBar
 
-onready var star_1 = $MarginContainer/HboxContainer/MarginContainer2/Stars/star_1
-onready var star_2 = $MarginContainer/HboxContainer/MarginContainer2/Stars/star_2
-onready var star_3 = $MarginContainer/HboxContainer/MarginContainer2/Stars/star_3
-
-onready var stage_label = $MarginContainer/HboxContainer/MarginContainer3/StageLabel
+onready var star_1 = $MainMargin/Rows/Columns/StarsMargin/Stars/star_1
+onready var star_2 = $MainMargin/Rows/Columns/StarsMargin/Stars/star_2
+onready var star_3 = $MainMargin/Rows/Columns/StarsMargin/Stars/star_3
 
 onready var stars = [star_1, star_2, star_3]
+
+onready var stage_label = $MainMargin/Rows/Columns/StageLabelMargin/StageLabel
+onready var info_label = $MainMargin/Rows/InfoLabelContainer/InfoLabel
+
 
 var star_on = preload("res://Assets/HUD/StarOn.png")
 var star_off = preload("res://Assets/HUD/StarOff.png")

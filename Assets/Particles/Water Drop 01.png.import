@@ -4,15 +4,16 @@ importer="texture"
 type="StreamTexture"
 path.s3tc="res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.s3tc.stex"
 path.etc2="res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.etc2.stex"
+path.etc="res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.etc.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
+"imported_formats": [ "s3tc", "etc2", "etc" ],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Particles/Water Drop 01.png"
-dest_files=[ "res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.s3tc.stex", "res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.etc2.stex" ]
+dest_files=[ "res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.s3tc.stex", "res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.etc2.stex", "res://.import/Water Drop 01.png-b0fca1f5fa7c5df61817df16ca7e528a.etc.stex" ]
 
 [params]
 
