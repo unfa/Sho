@@ -25,9 +25,11 @@ func damage(amount = 1):
 	hp = max(hp - amount, 0)
 	if hp == 0:
 		emit_signal('player_died')
+	emit_signal("player_update")
 
 func heal(amount = 1):
 	hp = min (hp + amount, MAX_HP)
+	emit_signal("player_update")
 	
 
 ### EFFECTS
@@ -316,6 +318,8 @@ func respawn(var checkpoint):
 	
 	$WaterDroplets.emitting = true
 	animation_idle()
+	
+	emit_signal("player_update")
 
 func collect_star():
 	stars_current += 1
@@ -346,6 +350,8 @@ func _ready():
 	for animation in animations:
 		animation = anim_player.get_animation(animation)	
 		animation.loop = true
+	
+	emit_signal("player_update")
 
 func idle_timeout():
 	# switch to the "bored idle" animation

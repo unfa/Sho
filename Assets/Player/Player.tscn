@@ -1,11 +1,13 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Player/PlayerAnimationStateMachine.tres" type="AnimationNodeStateMachine" id=1]
 [ext_resource path="res://Assets/Particles/Water Drop 01.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Player/Player.gltf" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Player/HUD.gd" type="Script" id=5]
-[ext_resource path="res://Assets/HUD/Star Off.svg" type="Texture" id=6]
+[ext_resource path="res://Assets/HUD/HealthBarProgress9.png" type="Texture" id=6]
+[ext_resource path="res://Assets/HUD/HealthBarOver9.png" type="Texture" id=7]
+[ext_resource path="res://Assets/HUD/StarOff.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 length = 0.25
@@ -156,6 +158,9 @@ __meta__ = {
 [node name="Mesh" parent="." instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0.000228882, 0.0112305, 0.00610352 )
 
+[node name="Skeleton" parent="Mesh/Armature" index="0"]
+bones/33/bound_children = [ NodePath("BoneAttachment") ]
+
 [node name="BoneAttachment" type="BoneAttachment" parent="Mesh/Armature/Skeleton" index="0"]
 transform = Transform( -0.936849, -0.251733, -0.242774, 0.0668183, -0.810228, 0.582287, -0.343295, 0.529308, 0.775889, -1.27171e-07, 0.577129, 1.57433 )
 bone_name = "tail_tip"
@@ -185,46 +190,111 @@ local_coords = false
 process_material = SubResource( 9 )
 draw_pass_1 = SubResource( 11 )
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 5 )
-
-[node name="Stars" type="HBoxContainer" parent="HUD"]
-anchor_right = 0.446
-anchor_bottom = 0.462
-margin_left = 25.0
-margin_top = 25.0
-margin_right = -530.88
-margin_bottom = -292.64
-custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="star_1" type="TextureRect" parent="HUD/Stars"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -576.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HboxContainer" type="HBoxContainer" parent="HUD/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1248.0
+margin_bottom = 144.0
+custom_constants/separation = 128
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/HboxContainer"]
+margin_top = 40.0
+margin_right = 320.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="HealthBar" type="TextureProgress" parent="HUD/MarginContainer/HboxContainer/MarginContainer"]
+margin_right = 320.0
+margin_bottom = 32.0
+value = 75.0
+texture_over = ExtResource( 7 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/MarginContainer/HboxContainer"]
+margin_left = 448.0
+margin_top = 10.0
+margin_right = 768.0
+margin_bottom = 102.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Stars" type="HBoxContainer" parent="HUD/MarginContainer/HboxContainer/MarginContainer2"]
+margin_left = 8.0
+margin_right = 312.0
+margin_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="star_1" type="TextureRect" parent="HUD/MarginContainer/HboxContainer/MarginContainer2/Stars"]
 margin_right = 96.0
-margin_bottom = 96.0
-texture = ExtResource( 6 )
+margin_bottom = 92.0
+texture = ExtResource( 8 )
 
-[node name="star_2" type="TextureRect" parent="HUD/Stars"]
-margin_left = 96.0
-margin_right = 192.0
-margin_bottom = 96.0
-texture = ExtResource( 6 )
+[node name="star_2" type="TextureRect" parent="HUD/MarginContainer/HboxContainer/MarginContainer2/Stars"]
+margin_left = 104.0
+margin_right = 200.0
+margin_bottom = 92.0
+texture = ExtResource( 8 )
 
-[node name="star_3" type="TextureRect" parent="HUD/Stars"]
-margin_left = 192.0
-margin_right = 288.0
-margin_bottom = 96.0
-texture = ExtResource( 6 )
+[node name="star_3" type="TextureRect" parent="HUD/MarginContainer/HboxContainer/MarginContainer2/Stars"]
+margin_left = 208.0
+margin_right = 304.0
+margin_bottom = 92.0
+texture = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="HUD"]
-visible = false
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 400.0
-margin_bottom = 100.0
+[node name="MarginContainer3" type="MarginContainer" parent="HUD/MarginContainer/HboxContainer"]
+margin_left = 896.0
+margin_right = 1216.0
+margin_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="StageLabel" type="Label" parent="HUD/MarginContainer/HboxContainer/MarginContainer3"]
+margin_right = 320.0
+margin_bottom = 112.0
 custom_fonts/font = SubResource( 13 )
-text = "***"
+text = "STAGE 01"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
