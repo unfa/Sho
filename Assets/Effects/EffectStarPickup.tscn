@@ -5,29 +5,7 @@
 [ext_resource path="res://Assets/Effects/EffectStarPickup.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Smoke/Smoke Normal.png" type="Texture" id=4]
 
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0.522 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=2]
-width = 128
-curve = SubResource( 1 )
-
-[sub_resource type="ParticlesMaterial" id=3]
-resource_name = "Star Small"
-flag_align_y = true
-flag_rotate_y = true
-spread = 180.0
-initial_velocity = 12.0
-initial_velocity_random = 1.0
-angular_velocity = 1.0
-angular_velocity_random = 1.0
-damping = 8.0
-damping_random = 1.0
-angle = 360.0
-angle_random = 1.0
-scale_curve = SubResource( 2 )
-
-[sub_resource type="ArrayMesh" id=4]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "Circle.005"
 surfaces/0 = {
 "aabb": AABB( -0.234536, -0.199508, -0.0760849, 0.469072, 0.446114, 0.15217 ),
@@ -42,43 +20,10 @@ surfaces/0 = {
 "vertex_count": 60
 }
 
-[sub_resource type="Curve" id=5]
-min_value = -360.0
-max_value = 360.0
-_data = [ Vector2( 0, 25.344 ), 0.0, 0.0, 0, 0, Vector2( 0.977456, -6.336 ), -9.60779, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.522 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-width = 128
-curve = SubResource( 5 )
-
-[sub_resource type="Gradient" id=7]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
-width = 128
-
-[sub_resource type="ParticlesMaterial" id=9]
-flag_rotate_y = true
-spread = 180.0
-gravity = Vector3( 0, 2, 0 )
-initial_velocity = 2.0
-initial_velocity_random = 0.25
-damping = 5.0
-damping_random = 0.1
-angle = 720.0
-angle_random = 1.0
-angle_curve = SubResource( 6 )
-scale = 2.0
-scale_random = 0.2
-scale_curve = SubResource( 2 )
-color_ramp = SubResource( 8 )
-hue_variation = -0.15
-hue_variation_random = 1.0
-anim_offset = 1.0
-anim_offset_random = 1.0
-
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -95,14 +40,68 @@ transmission = Color( 1, 1, 1, 1 )
 proximity_fade_enable = true
 proximity_fade_distance = 15.0
 
-[sub_resource type="QuadMesh" id=11]
-material = SubResource( 10 )
+[sub_resource type="QuadMesh" id=4]
+material = SubResource( 3 )
 size = Vector2( 8, 8 )
+
+[sub_resource type="Curve" id=5]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 25.344 ), 0.0, 0.0, 0, 0, Vector2( 0.977456, -6.336 ), -9.60779, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=6]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="CurveTexture" id=7]
+width = 128
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_align_y = true
+flag_rotate_y = true
+spread = 180.0
+initial_velocity = 12.0
+initial_velocity_random = 1.0
+angular_velocity = 1.0
+angular_velocity_random = 1.0
+damping = 8.0
+damping_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_curve = SubResource( 7 )
+
+[sub_resource type="CurveTexture" id=9]
+width = 128
+curve = SubResource( 5 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 6 )
+width = 128
+
+[sub_resource type="ParticlesMaterial" id=11]
+flag_rotate_y = true
+spread = 180.0
+gravity = Vector3( 0, 2, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 0.25
+damping = 5.0
+damping_random = 0.1
+angle = 720.0
+angle_random = 1.0
+angle_curve = SubResource( 9 )
+scale = 2.0
+scale_random = 0.2
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 10 )
+hue_variation = -0.15
+hue_variation_random = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
 
 [node name="EffectStarPickup" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="StarParticles" type="Particles" parent="."]
+[node name="StarParticles" type="CPUParticles" parent="."]
 emitting = false
 amount = 64
 lifetime = 3.0
@@ -110,18 +109,65 @@ one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 local_coords = false
-process_material = SubResource( 3 )
-draw_pass_1 = SubResource( 4 )
+mesh = SubResource( 1 )
+flag_align_y = true
+flag_rotate_y = true
+spread = 180.0
+initial_velocity = 12.0
+initial_velocity_random = 1.0
+angular_velocity = 1.0
+angular_velocity_random = 1.0
+damping = 8.0
+damping_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_amount_curve = SubResource( 2 )
 
-[node name="SmokeParticles" type="Particles" parent="."]
+[node name="SmokeParticles" type="CPUParticles" parent="."]
 emitting = false
 amount = 4
 lifetime = 8.0
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 9 )
-draw_pass_1 = SubResource( 11 )
+mesh = SubResource( 4 )
+flag_rotate_y = true
+spread = 180.0
+gravity = Vector3( 0, 2, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 0.25
+damping = 5.0
+damping_random = 0.1
+angle = 720.0
+angle_random = 1.0
+angle_curve = SubResource( 5 )
+scale_amount = 2.0
+scale_amount_random = 0.2
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 6 )
+hue_variation = -0.15
+hue_variation_random = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="StarParticles2" type="Particles" parent="."]
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 1 )
+
+[node name="SmokeParticles2" type="Particles" parent="."]
+amount = 4
+lifetime = 8.0
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 4 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 light_color = Color( 0.921569, 0.517647, 0.933333, 1 )

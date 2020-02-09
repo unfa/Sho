@@ -4,7 +4,7 @@ onready var label = $Label
 
 var debug = true # debugging the debugger
 
-var active = true
+var active = false
 
 var handles = []
 var handles_flushed = []

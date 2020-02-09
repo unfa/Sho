@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Brie Enemy/Brie.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Brie Enemy/Attack/Cheese Puke Particles 01.svg" type="Texture" id=2]
+[ext_resource path="res://Assets/Effects/ShadowBlob.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Brie Enemy/Brie.gd" type="Script" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
@@ -42,42 +43,11 @@ radius = 8.0
 [sub_resource type="SphereShape" id=10]
 radius = 16.0
 
-[sub_resource type="CapsuleShape" id=19]
+[sub_resource type="CapsuleShape" id=11]
 radius = 0.326976
 height = 2.68358
 
-[sub_resource type="Gradient" id=14]
-offsets = PoolRealArray( 0, 0.0762712, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.835294, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=15]
-gradient = SubResource( 14 )
-width = 128
-
-[sub_resource type="Curve" id=16]
-_data = [ Vector2( 0, 0.136364 ), 0.0, 1.89512, 0, 0, Vector2( 0.996139, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=17]
-curve = SubResource( 16 )
-
-[sub_resource type="ParticlesMaterial" id=12]
-lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 0.1
-direction = Vector3( 0, 0, -1 )
-spread = 5.0
-initial_velocity = 12.0
-damping = 30.0
-damping_random = 0.25
-angle = 720.0
-angle_random = 1.0
-scale_random = 0.25
-scale_curve = SubResource( 17 )
-color_ramp = SubResource( 15 )
-anim_offset = 1.0
-anim_offset_random = 1.0
-
-[sub_resource type="SpatialMaterial" id=18]
+[sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
@@ -94,9 +64,40 @@ transmission_enabled = true
 transmission = Color( 0.784314, 0.784314, 0.784314, 1 )
 
 [sub_resource type="QuadMesh" id=13]
-material = SubResource( 18 )
+material = SubResource( 12 )
 
-[sub_resource type="CapsuleShape" id=11]
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 0.136364 ), 0.0, 1.89512, 0, 0, Vector2( 0.996139, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=15]
+offsets = PoolRealArray( 0, 0.0762712, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.835294, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+width = 128
+
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3( 0, 0, -1 )
+spread = 5.0
+initial_velocity = 12.0
+damping = 30.0
+damping_random = 0.25
+angle = 720.0
+angle_random = 1.0
+scale_random = 0.25
+scale_curve = SubResource( 17 )
+color_ramp = SubResource( 16 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="CapsuleShape" id=19]
 radius = 0.75397
 height = 0.212272
 
@@ -104,6 +105,9 @@ height = 0.212272
 "enemies",
 ]]
 script = ExtResource( 4 )
+
+[node name="Shadow" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505342, 0 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 6 )
@@ -191,23 +195,47 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Brie/Armature/Skeleton/Attack/Collider"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35278e-07, -0.286735, 1.64285 )
-shape = SubResource( 19 )
+shape = SubResource( 11 )
 
-[node name="Particles" type="Particles" parent="Brie/Armature/Skeleton/Attack"]
+[node name="Particles" type="CPUParticles" parent="Brie/Armature/Skeleton/Attack"]
 transform = Transform( -1, 0, 3.25841e-07, -5.46881e-40, 1, -1.67836e-33, -3.25841e-07, -1.67836e-33, -1, -1.16747e-07, -0.0314221, 0.358294 )
 emitting = false
 amount = 64
 lifetime = 0.5
 randomness = 0.48
+lifetime_randomness = 0.5
+local_coords = false
+mesh = SubResource( 13 )
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3( 0, 0, -1 )
+spread = 5.0
+initial_velocity = 12.0
+damping = 30.0
+damping_random = 0.25
+angle = 720.0
+angle_random = 1.0
+scale_amount_random = 0.25
+scale_amount_curve = SubResource( 14 )
+color_ramp = SubResource( 15 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="Particles2" type="Particles" parent="Brie/Armature/Skeleton/Attack"]
+transform = Transform( -1, 0, 3.25841e-07, -5.46881e-40, 1, -1.67836e-33, -3.25841e-07, -1.67836e-33, -1, -1.16747e-07, -0.0314221, 0.358294 )
+visible = false
+amount = 64
+lifetime = 0.5
+randomness = 0.48
 visibility_aabb = AABB( -1.06367, -1.21051, -3.80052, 2.12734, 1.77062, 4.12546 )
 local_coords = false
-process_material = SubResource( 12 )
+process_material = SubResource( 18 )
 draw_pass_1 = SubResource( 13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.84164, 0 )
 visible = false
-shape = SubResource( 11 )
+shape = SubResource( 19 )
 [connection signal="timeout" from="AI/WanderIdle" to="." method="_on_WanderIdle_timeout"]
 [connection signal="body_entered" from="AI/Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="body_exited" from="AI/Attack" to="." method="_on_Attack_body_exited"]
