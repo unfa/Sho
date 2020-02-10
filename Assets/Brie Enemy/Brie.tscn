@@ -49,19 +49,13 @@ height = 2.68358
 
 [sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
+flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_billboard_mode = 3
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
 particles_anim_loop = false
 albedo_texture = ExtResource( 2 )
-metallic_specular = 1.0
-roughness = 0.25
-rim_enabled = true
-rim = 1.0
-rim_tint = 0.5
-transmission_enabled = true
-transmission = Color( 0.784314, 0.784314, 0.784314, 1 )
 
 [sub_resource type="QuadMesh" id=13]
 material = SubResource( 12 )
@@ -183,6 +177,9 @@ shape = SubResource( 10 )
 
 [node name="Brie" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+
+[node name="Skeleton" parent="Brie/Armature" index="0"]
+bones/2/bound_children = [ NodePath("Attack") ]
 
 [node name="Attack" type="BoneAttachment" parent="Brie/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, -5.90522e-20, 0, 1, -1.67836e-33, 5.90522e-20, 1.67836e-33, 1, -9.4879e-15, 0.786849, 2.29589e-41 )

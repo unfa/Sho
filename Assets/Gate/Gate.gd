@@ -1,5 +1,9 @@
 extends Spatial
 
+enum GateType {GATE_ENTRY, GATE_EXIT}
+export (GateType) var gate_type = 0
+export (String, FILE, "*.tscn") var target_scene
+
 var gate_state = Classes.StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
 const debug = false

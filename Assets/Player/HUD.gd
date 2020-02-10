@@ -23,6 +23,7 @@ var star_off = preload("res://Assets/HUD/StarOff.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hide_message()
 	player.connect("player_update", self, "update")
 	
 func update_health(hp: int):
@@ -46,7 +47,7 @@ func display_message(message: String):
 	info_label.text = message
 
 func hide_message():
-	info_label.text.empty()
+	info_label.text = ''
 
 func _process(delta):
 	pass
