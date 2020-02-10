@@ -14,7 +14,7 @@ material = SubResource( 1 )
 [node name="Shadow" type="RayCast"]
 transform = Transform( 0.999998, -0.00183413, 0.000663044, 0.00183667, 0.999991, -0.00384395, -0.000655983, 0.00384517, 0.999992, 0, 0.194887, 0 )
 enabled = true
-cast_to = Vector3( 0, -100, 0 )
+cast_to = Vector3( 0, -1000, 0 )
 script = ExtResource( 1 )
 
 [node name="Mesh" type="MeshInstance" parent="."]

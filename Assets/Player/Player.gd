@@ -20,18 +20,6 @@ var stars_current = 0
 var stars_total = 0
 #var last_checkpoint
 
-func damage(amount = 1):
-	print("Player took " + String(amount) + " damage!")
-	hp = max(hp - amount, 0)
-	if hp == 0:
-		emit_signal('player_died')
-	emit_signal("player_update")
-
-func heal(amount = 1):
-	hp = min (hp + amount, MAX_HP)
-	emit_signal("player_update")
-	
-
 ### EFFECTS
 
 var effect_splash = preload("res://Assets/Effects/EffectWaterSplash.tscn")
@@ -43,6 +31,23 @@ var DebugHandle = Debug.DebugHandle.new("Player")
 func debug(text):
 	if debug:
 		DebugHandle.debug(String(text))
+
+### HEALTH
+
+func damage(amount = 1):
+	print("Player took " + String(amount) + " damage!")
+	hp = max(hp - amount, 0)
+	if hp == 0:
+		emit_signal('player_died')
+		Input.vibrate_handheld(500)
+	emit_signal("player_update")
+	Input.vibrate_handheld(100)
+
+func heal(amount = 1):
+	hp = min (hp + amount, MAX_HP)
+	emit_signal("player_update")
+	
+
 
 ### MOVEMENT
 
