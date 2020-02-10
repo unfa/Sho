@@ -3,7 +3,7 @@ extends KinematicBody
 signal player_update
 signal player_died
 
-onready var UI = get_tree().get_nodes_in_group("ui")[0]
+#onready var UI = get_tree().get_nodes_in_group("ui")[0]
 onready var anim = $AnimationManagement/AnimationTree.get("parameters/playback")
 onready var anim_idle = $AnimationManagement/AnimationTree.get("parameters/Idle/playback")
 onready var idle_timer = $AnimationManagement/IdleTimer
@@ -333,7 +333,8 @@ func loose_star():
 
 func water():
 	in_water = true
-	UI.show_info("Oops!")
+	#UI.show_info("Oops!")
+	HUD.display_message("Oops!")
 	var splash_instance = effect_splash.instance()
 	splash_instance.set_name("splash")
 	splash_instance.global_transform[3] = global_transform[3]

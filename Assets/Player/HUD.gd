@@ -41,6 +41,13 @@ func update_stars(star_num: int):
 			stars[i].texture = star_off
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func display_message(message: String):
+	info_label.text = message
+
+func hide_message():
+	info_label.text.empty()
+
 func _process(delta):
 	pass
 	

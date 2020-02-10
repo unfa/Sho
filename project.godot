@@ -27,6 +27,7 @@ mix_rate=48000
 
 Classes="*res://Singletons/Classes.gd"
 Debug="*res://Singletons/Debug.tscn"
+HUD="*res://Singletons/HUD.tscn"
 
 [display]
 

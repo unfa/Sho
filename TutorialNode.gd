@@ -1,6 +1,6 @@
 extends Area
 
-onready var UI = get_tree().get_nodes_in_group("ui")[0]
+#onready var UI = get_tree().get_nodes_in_group("ui")[0]
 var active = true
 export var tutorial_text = ""
 export var tutorial_delay = 5
@@ -28,7 +28,9 @@ func _on_TutorialNode_body_exited(body):
 	if body.is_in_group("players") and active:
 		#active = false
 		$Timer.stop()
-		UI.hide_tutorial()
+		#UI.hide_tutorial()
+		HUD.hide_message()
 
 func _on_Timer_timeout():
-	UI.show_tutorial(tutorial_text)
+	#UI.show_tutorial(tutorial_text)
+	HUD.display_message(tutorial_text)
