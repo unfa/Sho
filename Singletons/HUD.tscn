@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/HUD/StarOff.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Player/HUD.gd" type="Script" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://Assets/HUD/HealthBarOver9.png" type="Texture" id=5]
 [ext_resource path="res://Assets/HUD/HealthBarProgress9.png" type="Texture" id=6]
 [ext_resource path="res://Assets/HUD/TouchControlMove On.png" type="Texture" id=7]
+[ext_resource path="res://Assets/HUD/TouchControlAttack On.png" type="Texture" id=8]
+[ext_resource path="res://Assets/HUD/TouchControlAttack Off.png" type="Texture" id=9]
+[ext_resource path="res://Assets/HUD/TouchControlJump On.png" type="Texture" id=10]
+[ext_resource path="res://Assets/HUD/TouchControlJump Off.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Assets/Fonts/Baloo_Tamma/BalooTamma-Regular.ttf"
@@ -150,19 +154,40 @@ autowrap = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -252.284
-margin_bottom = 3.71582
+margin_left = -3.69629
+margin_top = -267.069
+margin_right = -3.69629
+margin_bottom = -11.0688
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Movement" type="HBoxContainer" parent="TouchControls"]
+[node name="Left Cluster" type="Control" parent="TouchControls"]
+margin_right = 1280.0
+margin_bottom = 256.0
+grow_vertical = 0
+
+[node name="jump" type="TouchScreenButton" parent="TouchControls/Left Cluster"]
+position = Vector2( 62.8636, -77.9312 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 11 )
+pressed = ExtResource( 10 )
+action = "player_jump"
+
+[node name="Attack" type="TouchScreenButton" parent="TouchControls/Left Cluster"]
+position = Vector2( 209.287, 78.9907 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 9 )
+pressed = ExtResource( 8 )
+action = "player_attack"
+
+[node name="RightCluster" type="HBoxContainer" parent="TouchControls"]
 margin_right = 1280.0
 margin_bottom = 256.0
 custom_constants/separation = 16
 alignment = 2
 
-[node name="LeftMargin" type="MarginContainer" parent="TouchControls/Movement"]
+[node name="LeftMargin" type="MarginContainer" parent="TouchControls/RightCluster"]
 margin_left = 1248.0
 margin_right = 1248.0
 margin_bottom = 256.0
@@ -171,48 +196,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Left" type="TouchScreenButton" parent="TouchControls/Movement/LeftMargin"]
-position = Vector2( 811.226, 151.172 )
+[node name="Left" type="TouchScreenButton" parent="TouchControls/RightCluster/LeftMargin"]
+position = Vector2( -478.867, 126.581 )
 rotation = -1.57079
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 7 )
 action = "player_left"
 
-[node name="UpDownContainer" type="VBoxContainer" parent="TouchControls/Movement"]
+[node name="UpDownContainer" type="VBoxContainer" parent="TouchControls/RightCluster"]
 margin_left = 1264.0
 margin_right = 1264.0
 margin_bottom = 256.0
 grow_horizontal = 0
 
-[node name="UpMargin" type="MarginContainer" parent="TouchControls/Movement/UpDownContainer"]
+[node name="UpMargin" type="MarginContainer" parent="TouchControls/RightCluster/UpDownContainer"]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Up" type="TouchScreenButton" parent="TouchControls/Movement/UpDownContainer/UpMargin"]
-position = Vector2( 930.681, -36.6935 )
+[node name="Up" type="TouchScreenButton" parent="TouchControls/RightCluster/UpDownContainer/UpMargin"]
+position = Vector2( -332.304, -77.9312 )
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 7 )
 action = "player_forward"
 
-[node name="DownMargin" type="MarginContainer" parent="TouchControls/Movement/UpDownContainer"]
+[node name="DownMargin" type="MarginContainer" parent="TouchControls/RightCluster/UpDownContainer"]
 margin_top = 4.0
 margin_bottom = 4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Down" type="TouchScreenButton" parent="TouchControls/Movement/UpDownContainer/DownMargin"]
-position = Vector2( 1067.45, 240.176 )
+[node name="Down" type="TouchScreenButton" parent="TouchControls/RightCluster/UpDownContainer/DownMargin"]
+position = Vector2( -204.304, 208.425 )
 rotation = -3.14159
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 7 )
 action = "player_backward"
 
-[node name="RightMargin" type="MarginContainer" parent="TouchControls/Movement"]
+[node name="RightMargin" type="MarginContainer" parent="TouchControls/RightCluster"]
 margin_left = 1280.0
 margin_right = 1280.0
 margin_bottom = 256.0
@@ -221,8 +246,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rigth" type="TouchScreenButton" parent="TouchControls/Movement/RightMargin"]
-position = Vector2( 1194.21, 46.7008 )
+[node name="Rigth" type="TouchScreenButton" parent="TouchControls/RightCluster/RightMargin"]
+position = Vector2( -56.2563, 4 )
 rotation = 1.5642
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 3 )

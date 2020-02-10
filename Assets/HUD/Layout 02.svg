@@ -39,8 +39,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="733.25711"
-     inkscape:cy="-176.82376"
+     inkscape:cx="612.0388"
+     inkscape:cy="-429.36969"
      inkscape:document-units="mm"
      inkscape:current-layer="layer4"
      showgrid="false"
@@ -625,7 +625,10 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Shrikhand;-inkscape-font-specification:Shrikhand;fill:#ffffff;stroke:none;stroke-width:0.68317515">↑</tspan></text>
     </g>
     <g
-       id="g4645">
+       id="g4645"
+       inkscape:export-filename="TouchControlJump Off.png"
+       inkscape:export-xdpi="183.70525"
+       inkscape:export-ydpi="183.70525">
       <rect
          style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
          id="rect4594"
@@ -652,7 +655,10 @@
       </g>
     </g>
     <g
-       id="g4649">
+       id="g4649"
+       inkscape:export-filename="TouchControlAttack Off.png"
+       inkscape:export-xdpi="183.70525"
+       inkscape:export-ydpi="183.70525">
       <rect
          ry="6.1471992"
          rx="6.1471992"
@@ -668,6 +674,59 @@
          id="path4618"
          d="m 69.642113,277.82899 c 7.261925,9.25021 10.049236,9.58618 20.127232,2.69308 -7.19756,8.67801 -8.569451,10.54604 2.362351,15.73326 -8.784067,-1.94456 -14.580661,-2.56105 -15.638766,8.40997 0.234441,-10.27737 -2.365953,-14.29204 -12.945684,-8.78795 8.801005,-4.77545 11.727028,-8.26169 6.094867,-18.04836 z"
          style="fill:none;stroke:#ffffff;stroke-width:1.76499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4614"
+       transform="translate(0,81.249937)"
+       inkscape:export-filename="TouchControlJump On.png"
+       inkscape:export-xdpi="183.70525"
+       inkscape:export-ydpi="183.70525">
+      <rect
+         ry="6.1471992"
+         rx="6.1471992"
+         y="232.60484"
+         x="18.98455"
+         height="34.395832"
+         width="34.395832"
+         id="rect4606"
+         style="opacity:1;fill:#ffffff;fill-opacity:0.25098041;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+      <g
+         id="g4612"
+         style="stroke:#ffffff"
+         transform="translate(0,142.07072)">
+        <path
+           inkscape:connector-curvature="0"
+           id="path4608"
+           d="M 28.873256,117.03166 C 35.865815,91.329277 43.992304,104.84193 43.992304,104.84193"
+           style="fill:none;stroke:#ffffff;stroke-width:2.16499996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4610"
+           d="m 38.67248,105.59152 h 6.425606 v -6.307475"
+           style="fill:none;stroke:#ffffff;stroke-width:2.16499996;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+    </g>
+    <g
+       id="g4621"
+       transform="translate(0,81.249937)"
+       inkscape:export-filename="TouchControlAttack On.png"
+       inkscape:export-xdpi="183"
+       inkscape:export-ydpi="183">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:0.25098041;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect4616"
+         width="34.395832"
+         height="34.395832"
+         x="60.561932"
+         y="272.96255"
+         rx="6.1471992"
+         ry="6.1471992" />
+      <path
+         style="fill:none;stroke:#ffffff;stroke-width:1.76499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+         d="m 69.642113,277.82899 c 7.261925,9.25021 10.049236,9.58618 20.127232,2.69308 -7.19756,8.67801 -8.569451,10.54604 2.362351,15.73326 -8.784067,-1.94456 -14.580661,-2.56105 -15.638766,8.40997 0.234441,-10.27737 -2.365953,-14.29204 -12.945684,-8.78795 8.801005,-4.77545 11.727028,-8.26169 6.094867,-18.04836 z"
+         id="path4619"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccc" />
     </g>
   </g>
   <g
