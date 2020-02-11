@@ -11,6 +11,8 @@ onready var ground = $Ground
 #onready var skeleton = $Mesh/Armature/Skeleton
 onready var AttackCollider = $Mesh/Armature/Skeleton/BoneAttachment/Attack
 
+onready var HitEffect = preload("res://Assets/Effects/Hit.tscn")
+
 ### Player Inventory and Health
 
 const MAX_HP = 100
@@ -365,3 +367,7 @@ func idle_timeout():
 func _on_Attack_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.die()
+		var effect = HitEffect.instance()
+		effect.global_transform.origin = AttackCollider.global_transform.origin
+		get_tree().root.add_child(effect)
+		
