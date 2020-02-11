@@ -60,6 +60,8 @@ margin_bottom = 72.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
+[node name="Tween" type="Tween" parent="Display/Rows/Columns/HealthMargin"]
+
 [node name="HealthBar" type="TextureProgress" parent="Display/Rows/Columns/HealthMargin"]
 margin_right = 320.0
 margin_bottom = 32.0

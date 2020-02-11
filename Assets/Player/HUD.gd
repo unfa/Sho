@@ -7,6 +7,7 @@ extends Control
 onready var player = get_tree().get_nodes_in_group('players')[0]
 
 onready var health_bar = $Display/Rows/Columns/HealthMargin/HealthBar
+onready var health_tween = $Display/Rows/Columns/HealthMargin/Tween
 
 onready var star_1 = $Display/Rows/Columns/StarsMargin/Stars/star_1
 onready var star_2 = $Display/Rows/Columns/StarsMargin/Stars/star_2
@@ -27,7 +28,25 @@ func _ready():
 	player.connect("player_update", self, "update")
 	
 func update_health(hp: int):
+	var new_color = Color.white
+	var health_difference = hp - health_bar.value
+	#print(health_difference)
+		
+	if health_difference < 0:
+		new_color = Color.red
+	else:
+		new_color = Color.green
+	
+	var tween_time = abs(health_difference) / 10
+	
+	#print("tween_time: " + String(tween_time))
+	
 	health_bar.value = hp
+	
+	Input.vibrate_handheld(100)
+	
+	health_tween.interpolate_property(health_bar, "tint_progress", new_color, Color.white, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	health_tween.set_active(true)
 	
 func update_stage(stage: int):
 	stage_label.text = 'STAGE %dd' %stage

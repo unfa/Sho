@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=23 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=25 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Attack"
@@ -76,9 +76,15 @@ xfade_time = 0.25
 switch_mode = 2
 xfade_time = 0.05
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+xfade_time = 0.2
+
 [resource]
 states/Attack/node = SubResource( 1 )
-states/Attack/position = Vector2( -1212, -266.276 )
+states/Attack/position = Vector2( -1048, -263.276 )
 states/Fly/node = SubResource( 2 )
 states/Fly/position = Vector2( -861, 105 )
 states/Idle/node = SubResource( 7 )
@@ -89,6 +95,6 @@ states/Land/node = SubResource( 9 )
 states/Land/position = Vector2( -1212, 105 )
 states/Run/node = SubResource( 10 )
 states/Run/position = Vector2( -1030, -23 )
-transitions = [ "Jump", "Fly", SubResource( 11 ), "Fly", "Land", SubResource( 12 ), "Run", "Jump", SubResource( 13 ), "Land", "Run", SubResource( 14 ), "Run", "Fly", SubResource( 15 ), "Land", "Idle", SubResource( 16 ), "Run", "Idle", SubResource( 17 ), "Idle", "Jump", SubResource( 18 ), "Idle", "Run", SubResource( 19 ), "Idle", "Attack", SubResource( 20 ), "Attack", "Idle", SubResource( 21 ), "Attack", "Run", SubResource( 22 ) ]
+transitions = [ "Jump", "Fly", SubResource( 11 ), "Fly", "Land", SubResource( 12 ), "Run", "Jump", SubResource( 13 ), "Land", "Run", SubResource( 14 ), "Run", "Fly", SubResource( 15 ), "Land", "Idle", SubResource( 16 ), "Run", "Idle", SubResource( 17 ), "Idle", "Jump", SubResource( 18 ), "Idle", "Run", SubResource( 19 ), "Idle", "Attack", SubResource( 20 ), "Attack", "Idle", SubResource( 21 ), "Attack", "Run", SubResource( 22 ), "Jump", "Attack", SubResource( 23 ), "Attack", "Jump", SubResource( 24 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -1554, -327.236 )
+graph_offset = Vector2( -1568, -316.236 )

@@ -41,7 +41,6 @@ func damage(amount = 1):
 		emit_signal('player_died')
 		Input.vibrate_handheld(500)
 	emit_signal("player_update")
-	Input.vibrate_handheld(100)
 
 func heal(amount = 1):
 	hp = min (hp + amount, MAX_HP)
@@ -235,7 +234,7 @@ func attack(delta):
 #		$Attack/CollisionShape.transform.origin = target_loc.rotated(UP, PI)
 		
 	
-	if ground_contact and Input.is_action_just_pressed("player_attack") and not attack:
+	if Input.is_action_just_pressed("player_attack") and not attack:
 		AttackCollider.monitoring = true
 		attack = true
 		anim.start("Attack") #start the animation immediately, don't wait to travel
@@ -283,9 +282,9 @@ func _physics_process(delta):
 	if in_water:
 		sink(delta)
 	else:
+		attack(delta)
 		jump(delta)
 		walk(delta)
-		attack(delta)
 		gravity(delta)
 		move(delta)
 	
