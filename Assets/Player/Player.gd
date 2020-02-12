@@ -3,7 +3,6 @@ extends KinematicBody
 signal player_update
 signal player_died
 
-#onready var UI = get_tree().get_nodes_in_group("ui")[0]
 onready var anim = $AnimationManagement/AnimationTree.get("parameters/playback")
 onready var anim_idle = $AnimationManagement/AnimationTree.get("parameters/Idle/playback")
 onready var idle_timer = $AnimationManagement/IdleTimer
@@ -34,28 +33,11 @@ func debug(text):
 	if debug:
 		DebugHandle.debug(String(text))
 
-### HEALTH
-
-func damage(amount = 1):
-	print("Player took " + String(amount) + " damage!")
-	hp = max(hp - amount, 0)
-	if hp == 0:
-		emit_signal('player_died')
-		Input.vibrate_handheld(500)
-	emit_signal("player_update")
-
-func heal(amount = 1):
-	hp = min (hp + amount, MAX_HP)
-	emit_signal("player_update")
-	
-
-
 ### MOVEMENT
 
 # player movement constants
 
 const GRAVITY = -45
-const UP = Vector3(0, 1, 0)
 
 const AIR_CONTROL_WALK = 0.05 # multiplier for movement control when in air
 const AIR_CONTROL_TURN = 0.1 # multiplier for movement control when in air
@@ -74,7 +56,7 @@ const MAX_GROUND_ANGLE = 50
 
 # player movement variables
 
-var velocity = Vector3()
+var velocity = Vector3.ZERO
 var walk_velocity = Vector2()
 var walk_last_direction = Vector2(0, 1)
 var jump_accel = 0
@@ -85,12 +67,12 @@ var jump_base_height = 0
 var jump_max_height = 0
 
 var ground_contact = false
-var ground_normal = Vector3()
+var ground_normal = Vector3.ZERO
 var ground_angle = 0.0
 
 var in_water = false
 
-var movement = Vector3()
+var movement = Vector3.ZERO
 
 # ATTACK
 
@@ -121,9 +103,9 @@ func check_ground(): # check if the player is in contact with the ground
 	ground_contact = true if is_on_floor() or ground.is_colliding() else false
 	if ground_contact:
 		ground_normal = ground.get_collision_normal()
-		ground_angle = rad2deg(ground_normal.angle_to(UP) )
+		ground_angle = rad2deg(ground_normal.angle_to(Vector3.UP) )
 	else:
-		ground_normal = Vector3()
+		ground_normal = Vector3.ZERO
 		ground_angle = 0
 
 func jump(delta):
@@ -184,10 +166,11 @@ func walk(delta):
 		walk_direction.y -= 1
 	
 	if Input.is_action_pressed("player_left"):
-		walk_rotation += 1
+		#walk_rotation += 1
+		walk_direction.x += 1
 	
 	if Input.is_action_pressed("player_right"):
-		walk_rotation -= 1
+		walk_direction.x -= 1
 	
 	if attack: # cannot walk while attacking
 		walk_direction = Vector2()
@@ -213,10 +196,11 @@ func walk(delta):
 	velocity.x = walk_velocity.x * delta
 	velocity.z = walk_velocity.y * delta
 	
-	rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
+	#rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
 	
 	if ground_contact: # rotate the player model forward and back, but only if it's on the ground
-		$Mesh.rotation.y = ( PI * 0.5 * walk_last_direction.dot(Vector2(0,1)) ) + PI/2
+		#$Mesh.rotation.y = ( PI * 0.5 * walk_last_direction.dot(Vector2(0,1)) ) + PI/2
+		$Mesh.rotation.y = lerp_angle($Mesh.rotation.y, walk_last_direction.angle_to(Vector2.UP), 0.2)
 		
 	debug('walk_direction: ' + String(walk_direction))
 	debug('walk_last_direction: ' + String(walk_last_direction))
@@ -225,7 +209,6 @@ func walk(delta):
 	debug('accel ' + String(accel))
 	
 func attack(delta):	
-	
 	# this is now done by the BoneAttachement node
 #	if attack: # only update during attack for performance's sake
 #		# put the attack hitbox where the tail is
@@ -233,7 +216,7 @@ func attack(delta):
 #		var tail_loc = skeleton.get_bone_global_pose(tail).origin
 #		var skeleton_loc = skeleton.transform.origin
 #		var target_loc = (skeleton_loc + tail_loc)
-#		$Attack/CollisionShape.transform.origin = target_loc.rotated(UP, PI)
+#		$Attack/CollisionShape.transform.origin = target_loc.rotated(Vector3.UP, PI)
 		
 	
 	if Input.is_action_just_pressed("player_attack") and not attack:
@@ -270,11 +253,25 @@ func gravity(delta):
 #		move_and_collide(Vector3(0,-1,0))
 
 func move(delta): # perform movement
-	movement = move_and_slide(velocity.rotated(UP, rotation.y), UP)
+	movement = move_and_slide(velocity.rotated(Vector3.UP, rotation.y), Vector3.UP)
 	
 func sink(delta):
 	movement = Vector3(0,-5,0) * delta
 	global_translate(movement)
+	
+### HEALTH
+
+func damage(amount = 1):
+	print("Player took " + String(amount) + " damage!")
+	hp = max(hp - amount, 0)
+	if hp == 0:
+		emit_signal('player_died')
+	emit_signal("player_update")
+
+func heal(amount = 1):
+	hp = min (hp + amount, MAX_HP)
+	emit_signal("player_update")
+	
 
 func _physics_process(delta):
 	# clear the debug text

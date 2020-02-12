@@ -4,6 +4,10 @@ extends Control
 # var a = 2
 # var b = "text"
 
+### ENVIRONMENT
+
+onready var on_mobile = true if OS.get_name() in ['Android', 'iOS'] else false # we can use this everywhere now to check if the game is runnon on a mobile device
+
 onready var player = get_tree().get_nodes_in_group('players')[0]
 
 onready var health_bar = $Display/Rows/Columns/HealthMargin/HealthBar
@@ -24,6 +28,9 @@ var star_off = preload("res://Assets/HUD/StarOff.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not on_mobile: # hide the touch controls if we're not running on a mobile device
+		$TouchControls.hide()
+	
 	hide_message()
 	player.connect("player_update", self, "update")
 	

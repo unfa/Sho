@@ -178,9 +178,6 @@ shape = SubResource( 10 )
 [node name="Brie" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
 
-[node name="Skeleton" parent="Brie/Armature" index="0"]
-bones/2/bound_children = [ NodePath("Attack") ]
-
 [node name="Attack" type="BoneAttachment" parent="Brie/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, -5.90522e-20, 0, 1, -1.67836e-33, 5.90522e-20, 1.67836e-33, 1, -9.4879e-15, 0.786849, 2.29589e-41 )
 bone_name = "upper_body"
