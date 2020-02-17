@@ -7,7 +7,6 @@ onready var mesh = $MeshInstance
 onready var particles = $Particles
 onready var anim = $AnimationPlayer
 onready var player = get_tree().get_nodes_in_group("players")[0]
-onready var UI = get_tree().get_nodes_in_group("ui")[0]
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -39,7 +38,6 @@ func _on_Checkpoint_body_entered(body):
 	if body.is_in_group("players") and not active:
 		active = true
 		recent = true
-		UI.show_info("Checkpoint set!")
 		$AnimationPlayer.play("Activate")
 	
 		

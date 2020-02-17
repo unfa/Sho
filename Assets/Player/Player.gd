@@ -15,7 +15,6 @@ onready var HitEffect = preload("res://Assets/Effects/Hit.tscn")
 ### Player Inventory and Health
 
 const MAX_HP = 100
-
 var hp = MAX_HP # hit points
 var stars_current = 0
 var stars_total = 0
@@ -39,8 +38,8 @@ const debug = true
 
 const GRAVITY = -45
 
-const AIR_CONTROL_WALK = 0.05 # multiplier for movement control when in air
-const AIR_CONTROL_TURN = 0.1 # multiplier for movement control when in air
+const AIR_CONTROL_WALK = 0.1 # multiplier for movement control when in air
+const AIR_CONTROL_TURN = 0.15 # multiplier for movement control when in air
 
 const JUMP_ACCEL = 12 # base jump velocity (will be applied verbatim, no delta)
 const JUMP_AFTERBURN = 400 # jump afterburn velocity (this will be mutipleid by delta)
@@ -54,11 +53,13 @@ const WALK_DECEL = 25
 
 const MAX_GROUND_ANGLE = 50
 
+const DEFAULT_WALK_DIRECTION = Vector2(0,-1) 
+
 # player movement variables
 
 var velocity = Vector3.ZERO
-var walk_velocity = Vector2()
-var walk_last_direction = Vector2(0, 1)
+var walk_velocity = Vector2.ZERO
+var walk_last_direction = DEFAULT_WALK_DIRECTION
 var jump_accel = 0
 var jump_time = 0
 var jump_active = false
@@ -160,10 +161,10 @@ func walk(delta):
 	var control_turn = 1
 	
 	if Input.is_action_pressed("player_forward"):
-		walk_direction.y += 1
+		walk_direction.y -= 1
 	
 	if Input.is_action_pressed("player_backward"):
-		walk_direction.y -= 1
+		walk_direction.y += 1
 	
 	if Input.is_action_pressed("player_left"):
 		walk_rotation += 1
@@ -319,7 +320,7 @@ func respawn(var checkpoint):
 	
 	hp = MAX_HP
 	
-	walk_last_direction = Vector2(0,1)
+	walk_last_direction = DEFAULT_WALK_DIRECTION
 	
 	$WaterDroplets.emitting = true
 	animation_idle()
