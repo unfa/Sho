@@ -81,9 +81,6 @@ collision_layer = 2
 collision_mask = 7
 script = ExtResource( 3 )
 
-[node name="Shadow" parent="." instance=ExtResource( 10 )]
-transform = Transform( 0.914734, 0, 0, 0, 0.914734, 0, 0, 0, 1.62238, 0, 0.194887, 0 )
-
 [node name="AnimationManagement" type="Node" parent="."]
 
 [node name="BlinkTimer" type="Timer" parent="AnimationManagement"]
@@ -128,24 +125,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.717186, 0 )
 enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
 
-[node name="Debug" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="Debug"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "player debug text"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Mesh" parent="." instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0.000228882, 0.0112305, 0.00610352 )
 
@@ -162,6 +141,9 @@ monitorable = false
 [node name="CollisionShape" type="CollisionShape" parent="Mesh/Armature/Skeleton/BoneAttachment/Attack"]
 transform = Transform( 1, 0, 0, 0, -1.49012e-07, -1, 0, 1, -1.78814e-07, 0, 0, 0 )
 shape = SubResource( 6 )
+
+[node name="Shadow" parent="Mesh" instance=ExtResource( 10 )]
+transform = Transform( -0.914734, 0, 5.28638e-07, 0, 0.914734, 0, -2.98058e-07, 0, -1.62238, 0.00022888, 0.183656, 0.00610352 )
 
 [node name="WaterDroplets" type="CPUParticles" parent="."]
 emitting = false
@@ -189,7 +171,5 @@ draw_pass_1 = SubResource( 8 )
 [connection signal="timeout" from="AnimationManagement/BlinkTimer" to="." method="animation_blink"]
 [connection signal="timeout" from="AnimationManagement/IdleTimer" to="." method="idle_timeout"]
 [connection signal="body_entered" from="Mesh/Armature/Skeleton/BoneAttachment/Attack" to="." method="_on_Attack_body_entered"]
-
-[editable path="Shadow"]
 
 [editable path="Mesh"]

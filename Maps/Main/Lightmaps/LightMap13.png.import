@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/LightMap13.png-2df6b2c2922e0fbff101318097fa727d.s3tc.stex"
+path.etc2="res://.import/LightMap13.png-2df6b2c2922e0fbff101318097fa727d.etc2.stex"
+path.etc="res://.import/LightMap13.png-2df6b2c2922e0fbff101318097fa727d.etc.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2", "etc" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://Maps/Main/Lightmaps/LightMap13.png"
+dest_files=[ "res://.import/LightMap13.png-2df6b2c2922e0fbff101318097fa727d.s3tc.stex", "res://.import/LightMap13.png-2df6b2c2922e0fbff101318097fa727d.etc2.stex", "res://.import/LightMap13.png-2df6b2c2922e0fbff101318097fa727d.etc.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=false
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=true
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

@@ -8,7 +8,7 @@ export var debug = false
 var MovementState = Classes.StateMachine.new(['Stand', 'Turn Left', 'Turn Right', 'Walk'], 0)
 var ActionState = Classes.StateMachine.new(['Wander', 'Alert', 'Follow', 'Attack', 'Die', 'Dead', 'Idle'], 0)
 
-var DebugHandle = Debug.DebugHandle.new('brie')
+#var DebugHandle = Debug.DebugHandle.new('brie')
 
 onready var WanderIdleTimer = $AI/WanderIdle
 #
@@ -53,12 +53,12 @@ var attack_connected = false
 const NAVIGATE_INTERVAL = 0.1 # how often do we poll sensors and make navigational decisions?
 var navigate_delta = 0
 
-func debug(text):
-	DebugHandle.debug(String(text))
+#func debug(text):
+#	DebugHandle.debug(String(text))
 
 func _ready():
-	if debug:
-		DebugHandle.enable()
+#	if debug:
+#		DebugHandle.enable()
 	
 	AttackParticles.emitting = false
 	AttackCollider.monitoring = false
@@ -251,37 +251,37 @@ func _physics_process(delta):
 		self.set_process(false)
 		$CollisionShape.disabled = true
 
-func _process(delta):
-
-	debug('ACTION STATE')
-	debug('previous state: ' + String(ActionState.get_previous_state(true)) )
-	debug('current state: ' + String(ActionState.get_current_state(true)) )
-	debug('next state: ' + String(ActionState.get_next_state(true)) )
-	debug('\n')
-	debug('MOVEMENT STATE')
-	debug('previous state: ' + String(MovementState.get_previous_state(true)) )
-	debug('current state: ' + String(MovementState.get_current_state(true)) )
-	debug('next state: ' + String(MovementState.get_next_state(true)) )
-	debug('\n')
-	
-	debug("WanderIdleTimer: " + String(WanderIdleTimer.time_left) )
-	#debug("rotation: " + String(to_json(walk_direction)) )
-	debug("motion: " + to_json(motion))
-	
-	debug("futile motion check timer: " + String(futile_motion_check_timer))
-	debug("futile motion: " + String(futile_motion))
-	
-	debug('\n')
-	debug("ZONES")
-	debug('attack: ' + String(zone("attack")))
-	debug('follow: ' + String(zone("follow")))
-	debug('alert: ' + String(zone("alert")))
-	
-	debug('\n')
-	debug('ATTACK')
-	debug('attack_ready: ' + String(attack_ready))
-	
-	DebugHandle.flush_debug()	
+#func _process(delta):
+#	pass
+#	debug('ACTION STATE')
+#	debug('previous state: ' + String(ActionState.get_previous_state(true)) )
+#	debug('current state: ' + String(ActionState.get_current_state(true)) )
+#	debug('next state: ' + String(ActionState.get_next_state(true)) )
+#	debug('\n')
+#	debug('MOVEMENT STATE')
+#	debug('previous state: ' + String(MovementState.get_previous_state(true)) )
+#	debug('current state: ' + String(MovementState.get_current_state(true)) )
+#	debug('next state: ' + String(MovementState.get_next_state(true)) )
+#	debug('\n')
+#
+#	debug("WanderIdleTimer: " + String(WanderIdleTimer.time_left) )
+#	#debug("rotation: " + String(to_json(walk_direction)) )
+#	debug("motion: " + to_json(motion))
+#
+#	debug("futile motion check timer: " + String(futile_motion_check_timer))
+#	debug("futile motion: " + String(futile_motion))
+#
+#	debug('\n')
+#	debug("ZONES")
+#	debug('attack: ' + String(zone("attack")))
+#	debug('follow: ' + String(zone("follow")))
+#	debug('alert: ' + String(zone("alert")))
+#
+#	debug('\n')
+#	debug('ATTACK')
+#	debug('attack_ready: ' + String(attack_ready))
+#
+#	DebugHandle.flush_debug()	
 
 func _on_Near_body_entered(body):
 	if body.is_in_group("players"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/HUD/StarOff.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Player/HUD.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/HUD/TouchControlAttack Off.png" type="Texture" id=9]
 [ext_resource path="res://Assets/HUD/TouchControlJump On.png" type="Texture" id=10]
 [ext_resource path="res://Assets/HUD/TouchControlJump Off.png" type="Texture" id=11]
+[ext_resource path="res://Tools/Debug.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Assets/Fonts/Baloo_Tamma/BalooTamma-Regular.ttf"
@@ -255,3 +256,5 @@ scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 7 )
 action = "player_right"
+
+[node name="Debug" parent="." instance=ExtResource( 12 )]

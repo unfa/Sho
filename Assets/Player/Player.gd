@@ -25,13 +25,13 @@ var stars_total = 0
 
 var effect_splash = preload("res://Assets/Effects/EffectWaterSplash.tscn")
 
-const debug = false
+const debug = true
 
-var DebugHandle = Debug.DebugHandle.new("Player")
+#var DebugHandle = Debug.DebugHandle.new("Player")
 
-func debug(text):
-	if debug:
-		DebugHandle.debug(String(text))
+#func debug(text):
+#	if debug:
+#		DebugHandle.debug(String(text))
 
 ### MOVEMENT
 
@@ -146,11 +146,11 @@ func jump(delta):
 	jump_max_height = max (jump_max_height, global_transform[3].y - jump_base_height)
 	
 		
-	debug('jump_active: ' + String(jump_active))
-	debug('jump_finished: ' + String(jump_finished))
-	debug('jump_accel ' + String(jump_accel))
-	debug('jump_time: ' + String("%1.2f" % jump_time) )
-	debug('jump_max_height: ' + String("%1.2f" % jump_max_height) )
+#	debug('jump_active: ' + String(jump_active))
+#	debug('jump_finished: ' + String(jump_finished))
+#	debug('jump_accel ' + String(jump_accel))
+#	debug('jump_time: ' + String("%1.2f" % jump_time) )
+#	debug('jump_max_height: ' + String("%1.2f" % jump_max_height) )
 	
 func walk(delta):
 	var walk_direction = Vector2()
@@ -166,11 +166,12 @@ func walk(delta):
 		walk_direction.y -= 1
 	
 	if Input.is_action_pressed("player_left"):
-		#walk_rotation += 1
-		walk_direction.x += 1
+		walk_rotation += 1
+		#walk_direction.x += 1
 	
 	if Input.is_action_pressed("player_right"):
-		walk_direction.x -= 1
+		walk_rotation -= 1
+		#walk_direction.x -= 1
 	
 	if attack: # cannot walk while attacking
 		walk_direction = Vector2()
@@ -196,17 +197,17 @@ func walk(delta):
 	velocity.x = walk_velocity.x * delta
 	velocity.z = walk_velocity.y * delta
 	
-	#rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
+	rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
 	
 	if ground_contact: # rotate the player model forward and back, but only if it's on the ground
 		#$Mesh.rotation.y = ( PI * 0.5 * walk_last_direction.dot(Vector2(0,1)) ) + PI/2
 		$Mesh.rotation.y = lerp_angle($Mesh.rotation.y, walk_last_direction.angle_to(Vector2.UP), 0.2)
 		
-	debug('walk_direction: ' + String(walk_direction))
-	debug('walk_last_direction: ' + String(walk_last_direction))
-	debug('walk_rotation ' + String(walk_rotation))
-	debug('walk_velocity ' + String(walk_velocity))
-	debug('accel ' + String(accel))
+#	debug('walk_direction: ' + String(walk_direction))
+#	debug('walk_last_direction: ' + String(walk_last_direction))
+#	debug('walk_rotation ' + String(walk_rotation))
+#	debug('walk_velocity ' + String(walk_velocity))
+#	debug('accel ' + String(accel))
 	
 func attack(delta):	
 	# this is now done by the BoneAttachement node
@@ -218,6 +219,7 @@ func attack(delta):
 #		var target_loc = (skeleton_loc + tail_loc)
 #		$Attack/CollisionShape.transform.origin = target_loc.rotated(Vector3.UP, PI)
 		
+	Input.action_press("camera_zoom_in")
 	
 	if Input.is_action_just_pressed("player_attack") and not attack:
 		AttackCollider.monitoring = true
@@ -247,7 +249,7 @@ func gravity(delta):
 		
 		anim.travel("Fly")
 	
-	debug('gravity_mode ' + gravity_mode)
+#	debug('gravity_mode ' + gravity_mode)
 	
 #	if ground_contact and not is_on_floor() and (not jump_active or jump_accel < 0):
 #		move_and_collide(Vector3(0,-1,0))
@@ -275,7 +277,7 @@ func heal(amount = 1):
 
 func _physics_process(delta):
 	# clear the debug text
-	debug('FPS ' + String(Engine.get_frames_per_second()))
+#	debug('FPS ' + String(Engine.get_frames_per_second()))
 	check_ground()
 
 	if in_water:
@@ -290,22 +292,22 @@ func _physics_process(delta):
 	# Fix Sun light's rotation
 	#print ($DirectionalLight.rotation_degrees)
 	
-	debug('velocity: ' + String(velocity) )
-	debug('movement: ' + String(movement) )
-	debug('is_on_floor: ' + String(is_on_floor()) )
-	debug('ground_contact: ' + String(ground_contact) )
-	debug('ground_angle: ' + String(ground_angle) )
+#	debug('velocity: ' + String(velocity) )
+#	debug('movement: ' + String(movement) )
+#	debug('is_on_floor: ' + String(is_on_floor()) )
+#	debug('ground_contact: ' + String(ground_contact) )
+#	debug('ground_angle: ' + String(ground_angle) )
+#
+#	debug('in_water: ' + String(in_water) )
+#
+#	debug('anim.get_current_node(): ' + String(anim.get_current_node()) )
+#	debug('anim_idle.get_current_node(): ' + String(anim_idle.get_current_node()) )
+#
+#	debug('attack: ' + String(attack))
+#	debug('$Attack.monitoring: ' + String(AttackCollider.monitoring))
 	
-	debug('in_water: ' + String(in_water) )
-	
-	debug('anim.get_current_node(): ' + String(anim.get_current_node()) )
-	debug('anim_idle.get_current_node(): ' + String(anim_idle.get_current_node()) )
-	
-	debug('attack: ' + String(attack))
-	debug('$Attack.monitoring: ' + String(AttackCollider.monitoring))
-	
-	if debug:
-		DebugHandle.flush_debug()
+#	if debug:
+#		DebugHandle.flush_debug()
 
 func respawn(var checkpoint):
 	# wait 1 second before respawning

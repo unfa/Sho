@@ -103,6 +103,9 @@ script = ExtResource( 4 )
 [node name="Shadow" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505342, 0 )
 
+[node name="Mesh" parent="Shadow" index="0"]
+transform = Transform( 3.66058, 0, 0, 0, -8.74228e-08, 1, 0, -2, -4.37114e-08, 0, 0, 0 )
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 6 )
 anim_player = NodePath("../Brie/AnimationPlayer")
@@ -239,5 +242,7 @@ shape = SubResource( 19 )
 [connection signal="body_entered" from="AI/Alert" to="." method="_on_Far_body_entered"]
 [connection signal="body_exited" from="AI/Alert" to="." method="_on_Far_body_exited"]
 [connection signal="body_entered" from="Brie/Armature/Skeleton/Attack/Collider" to="." method="_on_Collider_body_entered"]
+
+[editable path="Shadow"]
 
 [editable path="Brie"]

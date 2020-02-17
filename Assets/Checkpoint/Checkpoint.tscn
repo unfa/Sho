@@ -102,7 +102,6 @@ shape = SubResource( 1 )
 
 [node name="Particles" type="CPUParticles" parent="."]
 cast_shadow = 0
-emitting = false
 amount = 128
 lifetime = 1.5
 speed_scale = 0.5

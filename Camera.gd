@@ -217,13 +217,13 @@ func _process(delta):
 	
 	camera.global_transform = final_transform.looking_at(ray_start, UP)
 	
-	player.debug('CAMERA')
-	player.debug('correction_blend: ' + String("%1.2f" % correction_blend))
-	player.debug('transform[3]: ' + Vector3toString(transform[3]))
-	player.debug('occluded_transform[3]: ' + Vector3toString(occluded_transform[3]))
-	player.debug('corrected_transform[3]: ' + Vector3toString(corrected_transform[3]))
-	player.debug('final_transform[3]: ' + Vector3toString(final_transform[3]))
-	player.debug('occlusion_mode: ' + occlusion_mode)
+#	player.debug('CAMERA')
+#	player.debug('correction_blend: ' + String("%1.2f" % correction_blend))
+#	player.debug('transform[3]: ' + Vector3toString(transform[3]))
+#	player.debug('occluded_transform[3]: ' + Vector3toString(occluded_transform[3]))
+#	player.debug('corrected_transform[3]: ' + Vector3toString(corrected_transform[3]))
+#	player.debug('final_transform[3]: ' + Vector3toString(final_transform[3]))
+#	player.debug('occlusion_mode: ' + occlusion_mode)
 	
 #	var offset_rot = Vector3 (0, 45, 0)
 #	var player_rot = player.global_transform[1]

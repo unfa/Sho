@@ -1,8 +1,6 @@
 extends Control
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var debug = true
 
 ### ENVIRONMENT
 
@@ -76,7 +74,10 @@ func hide_message():
 	info_label.text = ''
 
 func _process(delta):
-	pass
+	if debug:
+		var text =	'HUD debug\n'
+		text +=		'FPS: ' + String(Engine.get_frames_per_second()) + '\n'
+		$Debug/Label.text = text
 	
 func update():
 	print ("HUD update")
