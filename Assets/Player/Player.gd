@@ -165,7 +165,7 @@ func walk(delta):
 		walk_direction.y -= 1
 	
 	if Input.is_action_pressed("player_backward"):
-		walk_direction.y += 1
+		walk_direction.y += 0.5
 	
 	if Input.is_action_pressed("player_left"):
 		walk_rotation += 1
@@ -203,9 +203,10 @@ func walk(delta):
 	velocity.x = walk_velocity.x * delta
 	velocity.z = walk_velocity.y * delta
 	
+
 	rotate_y(walk_rotation * TURN_SPEED * control_turn * delta)
 	
-	if ground_contact: # rotate the player model forward and back, but only if it's on the ground
+	if walk_velocity.y <= 0: # rotate the player model forward and back, but only if it's on the ground
 		#$Mesh.rotation.y = ( PI * 0.5 * walk_last_direction.dot(Vector2(0,1)) ) + PI/2
 		$Mesh.rotation.y = lerp_angle($Mesh.rotation.y, walk_last_direction.angle_to(Vector2.UP), 0.2)
 		

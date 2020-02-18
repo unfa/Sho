@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Player/PlayerAnimationStateMachine.tres" type="AnimationNodeStateMachine" id=1]
 [ext_resource path="res://Assets/Particles/Water Drop 01.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Player/Player.gltf" type="PackedScene" id=4]
+[ext_resource path="res://Tools/Debug.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Effects/ShadowBlob.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
@@ -82,6 +83,16 @@ collision_layer = 2
 collision_mask = 7
 script = ExtResource( 3 )
 
+[node name="Debug" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="Label" parent="Debug" index="0"]
+anchor_right = 31.992
+margin_top = 58.0
+margin_right = -79.6801
+margin_bottom = -31.64
+text = "PLAYER DEBUG"
+
 [node name="AnimationManagement" type="Node" parent="."]
 
 [node name="BlinkTimer" type="Timer" parent="AnimationManagement"]
@@ -129,9 +140,6 @@ cast_to = Vector3( 0, -1.5, 0 )
 [node name="Mesh" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000228882, 0.0112305, 0.00610352 )
 
-[node name="Skeleton" parent="Mesh/Armature" index="0"]
-bones/33/bound_children = [ NodePath("BoneAttachment") ]
-
 [node name="BoneAttachment" type="BoneAttachment" parent="Mesh/Armature/Skeleton" index="0"]
 transform = Transform( -0.936849, -0.251733, -0.242774, 0.0668183, -0.810228, 0.582287, -0.343295, 0.529308, 0.775889, -1.27171e-07, 0.577129, 1.57433 )
 bone_name = "tail_tip"
@@ -148,10 +156,6 @@ shape = SubResource( 6 )
 
 [node name="Shadow" parent="Mesh" instance=ExtResource( 10 )]
 transform = Transform( -0.914734, 0, 5.28638e-07, 0, 0.914734, 0, -2.98058e-07, 0, -1.62238, 0.00022888, 0.183656, 0.00610352 )
-
-[node name="VisibilityNotifier" type="VisibilityNotifier" parent="Mesh"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000228882, 0.689338, -0.00610352 )
-aabb = AABB( -0.480882, -0.718367, -1.09106, 0.961764, 1.43673, 2.18211 )
 
 [node name="WaterDroplets" type="CPUParticles" parent="."]
 emitting = false
@@ -179,5 +183,7 @@ draw_pass_1 = SubResource( 8 )
 [connection signal="timeout" from="AnimationManagement/BlinkTimer" to="." method="animation_blink"]
 [connection signal="timeout" from="AnimationManagement/IdleTimer" to="." method="idle_timeout"]
 [connection signal="body_entered" from="Mesh/Armature/Skeleton/BoneAttachment/Attack" to="." method="_on_Attack_body_entered"]
+
+[editable path="Debug"]
 
 [editable path="Mesh"]
