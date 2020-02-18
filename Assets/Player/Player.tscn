@@ -129,6 +129,9 @@ cast_to = Vector3( 0, -1.5, 0 )
 [node name="Mesh" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000228882, 0.0112305, 0.00610352 )
 
+[node name="Skeleton" parent="Mesh/Armature" index="0"]
+bones/33/bound_children = [ NodePath("BoneAttachment") ]
+
 [node name="BoneAttachment" type="BoneAttachment" parent="Mesh/Armature/Skeleton" index="0"]
 transform = Transform( -0.936849, -0.251733, -0.242774, 0.0668183, -0.810228, 0.582287, -0.343295, 0.529308, 0.775889, -1.27171e-07, 0.577129, 1.57433 )
 bone_name = "tail_tip"
@@ -145,6 +148,10 @@ shape = SubResource( 6 )
 
 [node name="Shadow" parent="Mesh" instance=ExtResource( 10 )]
 transform = Transform( -0.914734, 0, 5.28638e-07, 0, 0.914734, 0, -2.98058e-07, 0, -1.62238, 0.00022888, 0.183656, 0.00610352 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="Mesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000228882, 0.689338, -0.00610352 )
+aabb = AABB( -0.480882, -0.718367, -1.09106, 0.961764, 1.43673, 2.18211 )
 
 [node name="WaterDroplets" type="CPUParticles" parent="."]
 emitting = false

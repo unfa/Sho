@@ -159,6 +159,7 @@ func walk(delta):
 	var accel = 0
 	var control_walk = 1
 	var control_turn = 1
+	var motion = false
 	
 	if Input.is_action_pressed("player_forward"):
 		walk_direction.y -= 1
@@ -168,10 +169,12 @@ func walk(delta):
 	
 	if Input.is_action_pressed("player_left"):
 		walk_rotation += 1
+		motion = true
 		#walk_direction.x += 1
 	
 	if Input.is_action_pressed("player_right"):
 		walk_rotation -= 1
+		motion = true
 		#walk_direction.x -= 1
 	
 	if attack: # cannot walk while attacking
@@ -181,6 +184,8 @@ func walk(delta):
 		walk_last_direction = walk_direction
 		#if anim.get_current_node() != "Run":
 		anim.travel("Run")
+	elif motion: # if we moved in any other way
+		anim_idle.travel("Idle") # reet the idle animation to the basic one
 	else:# anim.get_current_node() != "Idle":
 		animation_idle()
 	
