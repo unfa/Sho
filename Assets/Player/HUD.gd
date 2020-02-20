@@ -10,6 +10,8 @@ onready var player = get_tree().get_nodes_in_group('players')[0]
 
 onready var health_bar = $Display/Rows/Columns/HealthMargin/HealthBar
 onready var health_tween = $Display/Rows/Columns/HealthMargin/Tween
+onready var health_anim = $Display/Rows/Columns/HealthMargin/AnimationPlayer
+
 
 onready var star_1 = $Display/Rows/Columns/StarsMargin/Stars/star_1
 onready var star_2 = $Display/Rows/Columns/StarsMargin/Stars/star_2
@@ -17,7 +19,8 @@ onready var star_3 = $Display/Rows/Columns/StarsMargin/Stars/star_3
 
 onready var stars = [star_1, star_2, star_3]
 
-onready var stage_label = $Display/Rows/Columns/StageLabelMargin/StageLabel
+onready var stage_label = $Display/Rows/Columns/StageScoreMargin/StageScoreRows/StageLabel
+onready var score_label = $Display/Rows/Columns/StageScoreMargin/StageScoreRows/ScoreLabel
 onready var info_label = $Display/Rows/InfoLabelContainer/InfoLabel
 
 
@@ -45,13 +48,24 @@ func update_health(hp: int):
 	var tween_time = abs(health_difference) / 10
 	
 	#print("tween_time: " + String(tween_time))
-	
-	health_bar.value = hp
-	
+
+	# vibrate phones
 	Input.vibrate_handheld(100)
 	
+	# interpolate health bar value
+	health_tween.interpolate_property(health_bar, "value", health_bar.value, hp, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	
+	# interpolate color
 	health_tween.interpolate_property(health_bar, "tint_progress", new_color, Color.white, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	
+	# start interpolations
 	health_tween.set_active(true)
+	
+	if hp <= player.LOW_HP:
+		health_anim.play("LowHealth")
+	elif health_anim.is_playing():
+		health_anim.stop()
+		health_bar.tint_over = Color.white
 	
 func update_stage(stage: int):
 	stage_label.text = 'STAGE %dd' %stage

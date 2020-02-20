@@ -15,6 +15,7 @@ onready var HitEffect = preload("res://Assets/Effects/Hit.tscn")
 ### Player Inventory and Health
 
 const MAX_HP = 100
+const LOW_HP = MAX_HP / 4
 var hp = MAX_HP # hit points
 var stars_current = 0
 var stars_total = 0

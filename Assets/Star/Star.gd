@@ -12,11 +12,9 @@ var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Meshes.show()
-	
 	# make the shockwave material unique
 	#$Meshes/Shockwave.mesh.surface_set_material(0, $Meshes/Shockwave.mesh.surface_get_material(0).duplicate(true))
 	$Meshes/Shockwave.hide()
-	
 	$CollisionShape/AnimationPlayer.play("Idle")
 	
 
@@ -34,7 +32,7 @@ func spawn_effect():
 func _on_Star_body_entered(body):
 	if body.is_in_group("players") and active:
 		active = false
-		body.collect_star()
+		body.pickup_star()
 		$CollisionShape/AnimationPlayer.play("Pickup")
 
 

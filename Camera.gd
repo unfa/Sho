@@ -6,7 +6,7 @@ onready var player = get_tree().get_nodes_in_group("players")[0]
 onready var debug = $Debug/Label
 
 	
-const translation_offset = Vector3(0, 5, 10)
+const translation_offset = Vector3(0, 3, 6)
 const lookat_offset = Vector3(0, 0, -10)
 const player_origin_offset = Vector3(0, 1, 0)
 
@@ -47,7 +47,7 @@ func _physics_process(delta):
 
 	# test if we can cast teh camera collider from here to the player and have nothing collide with it. Move only 80% of the way to avoid false positives from floor, fences and enemies
 	if player_moved:
-		player_occluded = true if move_and_collide((player.global_transform.origin - global_transform.origin) * 0.8, true, true, true) != null else false
+		player_occluded = true if move_and_collide((player.global_transform.origin - global_transform.origin) * 0.7, true, true, true) != null else false
 	
 	debug.text += "Player Occluded: " + String(player_occluded) + "\n"
 	

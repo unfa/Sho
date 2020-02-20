@@ -1,9 +1,11 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Gate/Gate.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Gate/Gate.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Smoke/Smoke BaseColor.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Smoke/Smoke Normal.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Materials/NoisyMaterials/GrayscaleNoise.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/Materials/NoisyMaterials/Shader.tres" type="Shader" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Blink"
@@ -692,43 +694,55 @@ height = 12.2177
 radius = 7.2395
 height = 11.5262
 
-[sub_resource type="Gradient" id=12]
+[sub_resource type="ShaderMaterial" id=12]
+shader = ExtResource( 6 )
+shader_param/BaseColor = Color( 0.235294, 0.235294, 0.235294, 1 )
+shader_param/NoiseBlend = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+shader_param/Roughness = 0.5
+shader_param/NormalDepth = 0.25
+shader_param/Rim = 0.01
+shader_param/triplanar_scale = Vector3( 0.05, 0.05, 0.05 )
+shader_param/triplanar_offset = null
+shader_param/triplanar_sharpness = 1.0
+shader_param/TextureUniformTriplanar = ExtResource( 5 )
+
+[sub_resource type="Gradient" id=13]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=13]
-gradient = SubResource( 12 )
+[sub_resource type="GradientTexture" id=14]
+gradient = SubResource( 13 )
 width = 128
 
-[sub_resource type="Curve" id=14]
+[sub_resource type="Curve" id=15]
 min_value = -200.0
 max_value = 200.0
 _data = [ Vector2( 0, 25.4545 ), 0.0, -145.124, 0, 0, Vector2( 0.986333, -10.9091 ), 3.79737, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=15]
-curve = SubResource( 14 )
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
 
-[sub_resource type="Curve" id=16]
+[sub_resource type="Curve" id=17]
 _data = [ Vector2( 0, 0.363636 ), 0.0, 0.249432, 0, 0, Vector2( 0.995444, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=17]
-curve = SubResource( 16 )
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 17 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="ParticlesMaterial" id=19]
 emission_shape = 2
 emission_box_extents = Vector3( 1.5, 0.25, 0.5 )
 direction = Vector3( 0, -1, 0 )
 initial_velocity = 0.5
 linear_accel = -3.0
-linear_accel_curve = SubResource( 15 )
+linear_accel_curve = SubResource( 16 )
 damping = 7.0
 damping_random = 0.25
 scale = 2.0
-scale_curve = SubResource( 17 )
-color_ramp = SubResource( 13 )
+scale_curve = SubResource( 18 )
+color_ramp = SubResource( 14 )
 anim_offset = 1.0
 anim_offset_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=19]
+[sub_resource type="SpatialMaterial" id=20]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
@@ -743,8 +757,8 @@ normal_texture = ExtResource( 4 )
 proximity_fade_enable = true
 proximity_fade_distance = 0.5
 
-[sub_resource type="QuadMesh" id=20]
-material = SubResource( 19 )
+[sub_resource type="QuadMesh" id=21]
+material = SubResource( 20 )
 size = Vector2( 2, 2 )
 
 [node name="Gate" type="Spatial"]
@@ -786,9 +800,15 @@ shape = SubResource( 11 )
 
 [node name="Gate" parent="." instance=ExtResource( 1 )]
 
+[node name="Gate " parent="Gate" index="0"]
+material/0 = SubResource( 12 )
+
 [node name="Eyeball" parent="Gate" index="1"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.8572, 2.32424 )
 "blend_shapes/Pupul Big" = 0.0
+
+[node name="Door " parent="Gate" index="2"]
+material/0 = SubResource( 12 )
 
 [node name="Eye Lid Top" parent="Gate" index="4"]
 transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 6.8572, 2.32424 )
@@ -801,8 +821,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.27958, 1.4411 )
 amount = 128
 lifetime = 2.0
 visibility_aabb = AABB( -4.81706, -4, -4, 9.63413, 8, 8 )
-process_material = SubResource( 18 )
-draw_pass_1 = SubResource( 20 )
+process_material = SubResource( 19 )
+draw_pass_1 = SubResource( 21 )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 
