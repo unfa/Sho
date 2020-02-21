@@ -1,18 +1,16 @@
-[gd_resource type="Environment" load_steps=4 format=2]
+[gd_resource type="Environment" load_steps=3 format=2]
 
-[sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0, 0, 0, 1, 0.416061, 0.616806, 0.714844, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-width = 128
+[ext_resource path="res://Assets/Skyboxes/Skybox-01.png" type="Texture" id=1]
 
 [sub_resource type="PanoramaSky" id=3]
-panorama = SubResource( 2 )
+radiance_size = 0
+panorama = ExtResource( 1 )
 
 [resource]
 background_mode = 2
 background_sky = SubResource( 3 )
+background_sky_orientation = Basis( 0.766594, 0, -0.642132, 0, 1, 0, 0.642132, 0, 0.766594 )
+background_energy = 0.85
 fog_enabled = true
 fog_color = Color( 0.501961, 0.6, 0.701961, 1 )
 fog_depth_begin = 50.0

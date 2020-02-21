@@ -32,7 +32,7 @@ func spawn_effect():
 func _on_Star_body_entered(body):
 	if body.is_in_group("players") and active:
 		active = false
-		body.pickup_star()
+		body.collect_star()
 		$CollisionShape/AnimationPlayer.play("Pickup")
 
 
