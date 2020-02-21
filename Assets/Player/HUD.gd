@@ -35,6 +35,8 @@ func _ready():
 	hide_message()
 	player.connect("player_update", self, "update")
 	
+	health_bar.tint_over = Color.white
+	
 func update_health(hp: int):
 	var new_color = Color.white
 	var health_difference = hp - health_bar.value
