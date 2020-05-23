@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Effects/ShadowBlob.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Effects/Shockwave 01.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Gems/Gem1.material" type="Material" id=3]
 [ext_resource path="res://Assets/Gems/Gem3.material" type="Material" id=4]
 [ext_resource path="res://Assets/Gems/Gem.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Gems/Gem2.material" type="Material" id=6]
@@ -118,7 +119,6 @@ anims/Pickup = SubResource( 3 )
 
 [node name="Gem4" parent="Gems" index="0"]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
-visible = false
 material/0 = ExtResource( 8 )
 
 [node name="Gem3" parent="Gems" index="1"]
@@ -128,11 +128,13 @@ material/0 = ExtResource( 4 )
 
 [node name="Gem2" parent="Gems" index="2"]
 transform = Transform( 0.604787, 0, 0, 0, 0.604787, 0, 0, 0, 0.604787, 0, 0, 0 )
+visible = false
 material/0 = ExtResource( 6 )
 
 [node name="Gem1" parent="Gems" index="3"]
 transform = Transform( 0.54533, 0, 0, 0, 0.54533, 0, 0, 0, 0.54533, 0, 0, 0 )
 visible = false
+material/0 = ExtResource( 3 )
 
 [node name="Shockwave" type="MeshInstance" parent="Gems"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00258112, 0.00666428, 0.00320959 )

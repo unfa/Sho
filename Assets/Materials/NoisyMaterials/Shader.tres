@@ -65,9 +65,11 @@ render_mode world_vertex_coords;
 
 uniform vec4 BaseColor : hint_color;
 uniform sampler2D TextureUniformTriplanar : hint_black;
-uniform sampler2D tex_frg_15;uniform vec4 NoiseBlend : hint_color;
+uniform sampler2D tex_frg_15;
+uniform vec4 NoiseBlend : hint_color;
 uniform float Roughness;
-uniform sampler2D tex_frg_16 : hint_normal;uniform float NormalDepth;
+uniform sampler2D tex_frg_16 : hint_normal;
+uniform float NormalDepth;
 uniform float Rim;
 
 
@@ -99,10 +101,8 @@ void vertex() {
 
 void fragment() {
 // ColorUniform:3
-	vec3 n_out3p0;
-	float n_out3p1;
-	n_out3p0 = BaseColor.rgb;
-	n_out3p1 = BaseColor.a;
+	vec3 n_out3p0 = BaseColor.rgb;
+	float n_out3p1 = BaseColor.a;
 
 // TextureUniformTriplanar:2
 	vec3 n_out2p0;
@@ -114,33 +114,27 @@ void fragment() {
 	}
 
 // Texture:15
-	vec3 n_out15p0;
-	float n_out15p1;
-	vec4 tex_frg_15_read = texture( tex_frg_15 , n_out2p0.xy );
-	n_out15p0 = tex_frg_15_read.rgb;
-	n_out15p1 = tex_frg_15_read.a;
+	vec4 tex_frg_15_read = texture(tex_frg_15, n_out2p0.xy);
+	vec3 n_out15p0 = tex_frg_15_read.rgb;
+	float n_out15p1 = tex_frg_15_read.a;
 
 // ColorUniform:6
-	vec3 n_out6p0;
-	float n_out6p1;
-	n_out6p0 = NoiseBlend.rgb;
-	n_out6p1 = NoiseBlend.a;
+	vec3 n_out6p0 = NoiseBlend.rgb;
+	float n_out6p1 = NoiseBlend.a;
 
 // VectorOp:7
-	vec3 n_in7p0 = vec3(1.00000,1.00000,1.00000);
-	vec3 n_out7p0;
-	n_out7p0 = n_in7p0 - n_out6p0;
+	vec3 n_in7p0 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out7p0 = n_in7p0 - n_out6p0;
 
 // VectorMix:5
-	vec3 n_in5p1 = vec3(0.50000,0.50000,0.50000);
-	vec3 n_out5p0;
-	n_out5p0 = mix( n_out15p0 , n_in5p1 , n_out7p0 );
+	vec3 n_in5p1 = vec3(0.50000, 0.50000, 0.50000);
+	vec3 n_out5p0 = mix(n_out15p0, n_in5p1, n_out7p0);
 
 // ColorOp:4
 	vec3 n_out4p0;
 	{
-		float base=n_out3p0.x;
-		float blend=n_out5p0.x;
+		float base = n_out3p0.x;
+		float blend = n_out5p0.x;
 		if (base < 0.5) {
 			n_out4p0.x = 2.0 * base * blend;
 		} else {
@@ -148,8 +142,8 @@ void fragment() {
 		}
 	}
 	{
-		float base=n_out3p0.y;
-		float blend=n_out5p0.y;
+		float base = n_out3p0.y;
+		float blend = n_out5p0.y;
 		if (base < 0.5) {
 			n_out4p0.y = 2.0 * base * blend;
 		} else {
@@ -157,8 +151,8 @@ void fragment() {
 		}
 	}
 	{
-		float base=n_out3p0.z;
-		float blend=n_out5p0.z;
+		float base = n_out3p0.z;
+		float blend = n_out5p0.z;
 		if (base < 0.5) {
 			n_out4p0.z = 2.0 * base * blend;
 		} else {
@@ -167,8 +161,7 @@ void fragment() {
 	}
 
 // ScalarUniform:8
-	float n_out8p0;
-	n_out8p0 = Roughness;
+	float n_out8p0 = Roughness;
 
 // ColorFunc:10
 	vec3 n_out10p0;
@@ -181,43 +174,34 @@ void fragment() {
 	}
 
 // ScalarOp:11
-	float n_out11p0;
-	n_out11p0 = n_out8p0 * dot(n_out10p0,vec3(0.333333,0.333333,0.333333));
+	float n_out11p0 = n_out8p0 * dot(n_out10p0, vec3(0.333333, 0.333333, 0.333333));
 
 // ScalarOp:12
 	float n_in12p1 = 0.25000;
-	float n_out12p0;
-	n_out12p0 = n_out11p0 + n_in12p1;
+	float n_out12p0 = n_out11p0 + n_in12p1;
 
 // ScalarOp:14
 	float n_in14p1 = 0.90000;
-	float n_out14p0;
-	n_out14p0 = n_out12p0 * n_in14p1;
+	float n_out14p0 = n_out12p0 * n_in14p1;
 
 // ScalarOp:13
 	float n_in13p1 = 1.00000;
-	float n_out13p0;
-	n_out13p0 = min( n_out14p0 , n_in13p1 );
+	float n_out13p0 = min(n_out14p0, n_in13p1);
 
 // ScalarOp:18
 	float n_in18p1 = 0.60000;
-	float n_out18p0;
-	n_out18p0 = max( n_out13p0 , n_in18p1 );
+	float n_out18p0 = max(n_out13p0, n_in18p1);
 
 // Texture:16
-	vec3 n_out16p0;
-	float n_out16p1;
-	vec4 tex_frg_16_read = texture( tex_frg_16 , n_out2p0.xy );
-	n_out16p0 = tex_frg_16_read.rgb;
-	n_out16p1 = tex_frg_16_read.a;
+	vec4 tex_frg_16_read = texture(tex_frg_16, n_out2p0.xy);
+	vec3 n_out16p0 = tex_frg_16_read.rgb;
+	float n_out16p1 = tex_frg_16_read.a;
 
 // ScalarUniform:17
-	float n_out17p0;
-	n_out17p0 = NormalDepth;
+	float n_out17p0 = NormalDepth;
 
 // ScalarUniform:9
-	float n_out9p0;
-	n_out9p0 = Rim;
+	float n_out9p0 = Rim;
 
 // Output:0
 	ALBEDO = n_out4p0;

@@ -6,9 +6,9 @@ onready var player = get_tree().get_nodes_in_group("players")[0]
 onready var debug = $Debug/Label
 
 	
-const translation_offset = Vector3(0, 3, 6)
+const translation_offset = Vector3(0, 10, 10)
 const lookat_offset = Vector3(0, 0, -10)
-const player_origin_offset = Vector3(0, 1, 0)
+const player_origin_offset = Vector3(0, 4, 0)
 
 const follow_time = 3
 const lookat_time = 4

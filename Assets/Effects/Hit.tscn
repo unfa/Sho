@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Effects/Hit.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Effects/Hit.gd" type="Script" id=2]
-
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 3, 3 )
@@ -15,51 +14,56 @@ operator = 2
 output_port_for_preview = 0
 function = 31
 
-[sub_resource type="VisualShaderNodeScalarClamp" id=15]
+[sub_resource type="VisualShaderNodeScalarClamp" id=4]
 default_input_values = [ 0, 0.0, 1, 0.0, 2, 0.03 ]
 
-[sub_resource type="VisualShaderNodeScalarOp" id=16]
+[sub_resource type="VisualShaderNodeScalarOp" id=5]
 default_input_values = [ 0, 0.0, 1, 0.03 ]
 operator = 3
 
-[sub_resource type="VisualShaderNodeScalarUniform" id=17]
+[sub_resource type="VisualShaderNodeScalarUniform" id=6]
 uniform_name = "Softness"
 
-[sub_resource type="VisualShaderNodeTexture" id=4]
+[sub_resource type="VisualShaderNodeColorUniform" id=7]
+uniform_name = "Color"
+
+[sub_resource type="VisualShaderNodeTexture" id=8]
 texture = ExtResource( 1 )
 
-[sub_resource type="VisualShaderNodeScalarUniform" id=5]
+[sub_resource type="VisualShaderNodeScalarUniform" id=9]
 uniform_name = "Center"
 
-[sub_resource type="VisualShaderNodeScalarOp" id=6]
+[sub_resource type="VisualShaderNodeScalarOp" id=10]
 output_port_for_preview = 0
 default_input_values = [ 0, 0.0, 1, 0.1 ]
 operator = 8
 
-[sub_resource type="VisualShaderNodeScalarOp" id=7]
+[sub_resource type="VisualShaderNodeScalarOp" id=11]
 output_port_for_preview = 0
 default_input_values = [ 0, 0.1, 1, 0.2 ]
 operator = 8
 
-[sub_resource type="VisualShaderNodeScalarUniform" id=8]
+[sub_resource type="VisualShaderNodeScalarUniform" id=12]
 uniform_name = "Width"
 
-[sub_resource type="VisualShaderNodeScalarOp" id=9]
+[sub_resource type="VisualShaderNodeScalarOp" id=13]
 operator = 1
 
-[sub_resource type="VisualShaderNodeScalarOp" id=10]
+[sub_resource type="VisualShaderNodeScalarOp" id=14]
 
-[sub_resource type="VisualShaderNodeScalarFunc" id=11]
+[sub_resource type="VisualShaderNodeScalarFunc" id=15]
 output_port_for_preview = 0
 function = 31
 
-[sub_resource type="VisualShader" id=12]
+[sub_resource type="VisualShader" id=16]
 code = "shader_type spatial;
 render_mode cull_front, unshaded;
 
+uniform vec4 Color : hint_color;
 uniform float Center;
 uniform float Width;
-uniform sampler2D tex_frg_2;uniform float Softness;
+uniform sampler2D tex_frg_2;
+uniform float Softness;
 
 
 
@@ -69,59 +73,51 @@ void vertex() {
 }
 
 void fragment() {
+// ColorUniform:19
+	vec3 n_out19p0 = Color.rgb;
+	float n_out19p1 = Color.a;
+
 // ScalarUniform:3
-	float n_out3p0;
-	n_out3p0 = Center;
+	float n_out3p0 = Center;
 
 // ScalarUniform:6
-	float n_out6p0;
-	n_out6p0 = Width;
+	float n_out6p0 = Width;
 
 // ScalarOp:7
-	float n_out7p0;
-	n_out7p0 = n_out3p0 - n_out6p0;
+	float n_out7p0 = n_out3p0 - n_out6p0;
 
 // Texture:2
-	vec3 n_out2p0;
-	float n_out2p1;
-	vec4 tex_frg_2_read = texture( tex_frg_2 , UV.xy );
-	n_out2p0 = tex_frg_2_read.rgb;
-	n_out2p1 = tex_frg_2_read.a;
+	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
 
 // ScalarOp:5
-	float n_out5p0;
-	n_out5p0 = atan( n_out7p0 , dot(n_out2p0,vec3(0.333333,0.333333,0.333333)) );
+	float n_out5p0 = atan(n_out7p0, dot(n_out2p0, vec3(0.333333, 0.333333, 0.333333)));
 
 // ScalarFunc:11
-	float n_out11p0;
-	n_out11p0 = 1.0-n_out5p0;
+	float n_out11p0 = 1.0 - n_out5p0;
 
 // ScalarOp:4
-	float n_out4p0;
-	n_out4p0 = atan( dot(n_out2p0,vec3(0.333333,0.333333,0.333333)) , n_out7p0 );
+	float n_out4p0 = atan(dot(n_out2p0, vec3(0.333333, 0.333333, 0.333333)), n_out7p0);
 
 // ScalarFunc:9
-	float n_out9p0;
-	n_out9p0 = 1.0-n_out4p0;
+	float n_out9p0 = 1.0 - n_out4p0;
 
 // ScalarOp:10
-	float n_out10p0;
-	n_out10p0 = n_out11p0 * n_out9p0;
+	float n_out10p0 = n_out11p0 * n_out9p0;
 
 // ScalarUniform:17
-	float n_out17p0;
-	n_out17p0 = Softness;
+	float n_out17p0 = Softness;
 
 // ScalarClamp:15
 	float n_in15p1 = 0.00000;
-	float n_out15p0;
-	n_out15p0 = clamp( n_out10p0, n_in15p1, n_out17p0 );
+	float n_out15p0 = clamp(n_out10p0, n_in15p1, n_out17p0);
 
 // ScalarOp:16
-	float n_out16p0;
-	n_out16p0 = n_out15p0 / n_out17p0;
+	float n_out16p0 = n_out15p0 / n_out17p0;
 
 // Output:0
+	ALBEDO = n_out19p0;
 	ALPHA = n_out16p0;
 
 }
@@ -131,47 +127,48 @@ void light() {
 
 }
 "
-graph_offset = Vector2( 470.5, -26.25 )
+graph_offset = Vector2( 769.75, -36 )
 modes/cull = 1
 flags/unshaded = true
-nodes/fragment/0/position = Vector2( 1500, 160 )
-nodes/fragment/2/node = SubResource( 4 )
+nodes/fragment/0/position = Vector2( 1620, 160 )
+nodes/fragment/2/node = SubResource( 8 )
 nodes/fragment/2/position = Vector2( -400, 280 )
-nodes/fragment/3/node = SubResource( 5 )
+nodes/fragment/3/node = SubResource( 9 )
 nodes/fragment/3/position = Vector2( -320, -80 )
-nodes/fragment/4/node = SubResource( 6 )
+nodes/fragment/4/node = SubResource( 10 )
 nodes/fragment/4/position = Vector2( 280, 400 )
-nodes/fragment/5/node = SubResource( 7 )
+nodes/fragment/5/node = SubResource( 11 )
 nodes/fragment/5/position = Vector2( 340, 160 )
-nodes/fragment/6/node = SubResource( 8 )
+nodes/fragment/6/node = SubResource( 12 )
 nodes/fragment/6/position = Vector2( -340, 20 )
-nodes/fragment/7/node = SubResource( 9 )
+nodes/fragment/7/node = SubResource( 13 )
 nodes/fragment/7/position = Vector2( -60, -60 )
-nodes/fragment/8/node = SubResource( 10 )
+nodes/fragment/8/node = SubResource( 14 )
 nodes/fragment/8/position = Vector2( 200, -80 )
-nodes/fragment/9/node = SubResource( 11 )
+nodes/fragment/9/node = SubResource( 15 )
 nodes/fragment/9/position = Vector2( 500, 420 )
 nodes/fragment/10/node = SubResource( 2 )
 nodes/fragment/10/position = Vector2( 740, 320 )
 nodes/fragment/11/node = SubResource( 3 )
 nodes/fragment/11/position = Vector2( 540, 140 )
-nodes/fragment/15/node = SubResource( 15 )
-nodes/fragment/15/position = Vector2( 920, 280 )
-nodes/fragment/16/node = SubResource( 16 )
-nodes/fragment/16/position = Vector2( 1100, 280 )
-nodes/fragment/17/node = SubResource( 17 )
+nodes/fragment/15/node = SubResource( 4 )
+nodes/fragment/15/position = Vector2( 940, 280 )
+nodes/fragment/16/node = SubResource( 5 )
+nodes/fragment/16/position = Vector2( 1160, 220 )
+nodes/fragment/17/node = SubResource( 6 )
 nodes/fragment/17/position = Vector2( 740, 40 )
-nodes/fragment/connections = PoolIntArray( 2, 0, 4, 0, 3, 0, 7, 0, 6, 0, 7, 1, 6, 0, 8, 1, 3, 0, 8, 0, 4, 0, 9, 0, 9, 0, 10, 1, 5, 0, 11, 0, 11, 0, 10, 0, 7, 0, 4, 1, 7, 0, 5, 0, 2, 0, 5, 1, 10, 0, 15, 0, 15, 0, 16, 0, 16, 0, 0, 1, 17, 0, 15, 2, 17, 0, 16, 1 )
+nodes/fragment/19/node = SubResource( 7 )
+nodes/fragment/19/position = Vector2( 1200, 60 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 4, 0, 3, 0, 7, 0, 6, 0, 7, 1, 6, 0, 8, 1, 3, 0, 8, 0, 4, 0, 9, 0, 9, 0, 10, 1, 5, 0, 11, 0, 11, 0, 10, 0, 7, 0, 4, 1, 7, 0, 5, 0, 2, 0, 5, 1, 10, 0, 15, 0, 15, 0, 16, 0, 17, 0, 15, 2, 17, 0, 16, 1, 16, 0, 0, 1, 19, 0, 0, 0 )
 
-[sub_resource type="ShaderMaterial" id=13]
-resource_name = "HitShader"
-shader = SubResource( 12 )
-shader_param/Center = 1.0
-shader_param/Width = 0.001
-shader_param/Softness = 0.03
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 16 )
+shader_param/Color = Color( 2, 2, 2, 1 )
+shader_param/Center = 0.0
+shader_param/Width = 0.01
+shader_param/Softness = 0.08
 
-[sub_resource type="Animation" id=14]
-resource_name = "Hit"
+[sub_resource type="Animation" id=18]
 length = 0.6
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:material/0:shader_param/Center")
@@ -217,11 +214,23 @@ tracks/3/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:material/0:shader_param/Color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.0717936, 1 ),
+"update": 0,
+"values": [ Color( 3, 2.8, 2, 1 ), Color( 2, 2, 2, 1 ) ]
+}
 
 [node name="Hit" type="MeshInstance"]
 mesh = SubResource( 1 )
-material/0 = SubResource( 13 )
+material/0 = SubResource( 17 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 14 )
+anims/Hit = SubResource( 18 )
