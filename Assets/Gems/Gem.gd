@@ -7,7 +7,18 @@ extends Area
 # var a = 2
 # var b = "text"
 
+enum GEM_TYPE{
+	small
+	medium
+	large
+	extraLarge
+}
+
+export var type = GEM_TYPE.small
+
 var active = true
+
+var value = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,11 +42,8 @@ func _ready():
 
 func _on_Star_body_entered(body):
 	if body.is_in_group("players") and active:
-		if body.hp < body.MAX_HP:
-			active = false
-			body.heal(25)
-			$CollisionShape/AnimationPlayer.play("Pickup")
-		else:
-			pass
-
+		active = false
+		body.increase_score(value)
+		#body.heal(25)
+		$CollisionShape/AnimationPlayer.play("Pickup")
 

@@ -17,6 +17,7 @@ onready var HitEffect = preload("res://Assets/Effects/Hit.tscn")
 const MAX_HP = 100
 const LOW_HP = MAX_HP / 4
 var hp = MAX_HP # hit points
+var score = 0
 var stars_current = 0
 var stars_total = 0
 #var last_checkpoint
@@ -323,15 +324,21 @@ func respawn(var checkpoint):
 	global_transform[3] = checkpoint.global_transform[3] # copy location
 	rotation = checkpoint.rotation
 	
-	in_water = false
+	
+	# if the player died in water, spawn droplets
+	if in_water:
+		$WaterDroplets2.emitting = true
+		in_water = false
 	
 	hp = MAX_HP
 	
 	walk_last_direction = DEFAULT_WALK_DIRECTION
-	
-	$WaterDroplets2.emitting = true
 	animation_idle()
 	
+	emit_signal("player_update")
+
+func increase_score(points):
+	score += points
 	emit_signal("player_update")
 
 func collect_star():

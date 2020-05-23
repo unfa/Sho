@@ -9,7 +9,7 @@ onready var on_mobile = true if OS.get_name() in ['Android', 'iOS'] else false #
 onready var player = get_tree().get_nodes_in_group('players')[0]
 
 onready var health_bar = $Display/Rows/Columns/HealthMargin/HealthBar
-onready var health_tween = $Display/Rows/Columns/HealthMargin/Tween
+onready var health_tween = $Display/Rows/Columns/HealthMargin/HealthTween
 onready var health_anim = $Display/Rows/Columns/HealthMargin/AnimationPlayer
 
 
@@ -21,8 +21,12 @@ onready var stars = [star_1, star_2, star_3]
 
 onready var stage_label = $Display/Rows/Columns/StageScoreMargin/StageScoreRows/StageLabel
 onready var score_label = $Display/Rows/Columns/StageScoreMargin/StageScoreRows/ScoreLabel
+onready var score_tween = $Display/Rows/Columns/StageScoreMargin/StageScoreRows/ScoreTween
 onready var info_label = $Display/Rows/InfoLabelContainer/InfoLabel
 
+var previous_score = 0
+var current_score = 0
+var target_score = 0
 
 var star_on = preload("res://Assets/HUD/StarOn.png")
 var star_off = preload("res://Assets/HUD/StarOff.png")
@@ -36,6 +40,23 @@ func _ready():
 	player.connect("player_update", self, "update")
 	
 	health_bar.tint_over = Color.white
+
+func update_score(score: int):
+	target_score = score
+	current_score = previous_score
+	var score_difference = score - previous_score
+	var tween_time = abs(score_difference) / 10
+	
+	# color tween
+	score_tween.interpolate_property(score_label, "custom_colors/font_color", Color.green, Color.white, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	
+	# value tween
+	score_tween.interpolate_property(self, "current_score", previous_score, target_score, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	
+	previous_score = score
+	score_tween.set_active(true)
+
+	print("SCORE UPDATE")
 	
 func update_health(hp: int):
 	var new_color = Color.white
@@ -99,5 +120,11 @@ func update():
 	print ("HUD update")
 	update_stars(player.stars_current)
 	update_health(player.hp)
+	update_score(player.score)
 	#update_stars(player.stars_current)
 	
+func _on_ScoreTween_tween_step(object, key, elapsed, value):
+	#print("Object: ", object,"\tKey: " , key)
+	
+	#if key == ":current_score":
+	score_label.text = "SCORE: " + String(round(current_score))
