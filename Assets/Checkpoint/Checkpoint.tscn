@@ -12,11 +12,14 @@ height = 6.0
 radius = 3.0
 
 [sub_resource type="SpatialMaterial" id=3]
-render_priority = 6
+render_priority = 1
 flags_transparent = true
+flags_unshaded = true
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
+params_specular_mode = 4
 params_blend_mode = 1
+params_depth_draw_mode = 2
 params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
