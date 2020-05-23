@@ -8,6 +8,8 @@ onready var on_mobile = true if OS.get_name() in ['Android', 'iOS'] else false #
 
 onready var player = get_tree().get_nodes_in_group('players')[0]
 
+onready var background = $Background
+
 onready var health_bar = $Display/Rows/Columns/HealthMargin/HealthBar
 onready var health_tween = $Display/Rows/Columns/HealthMargin/HealthTween
 onready var health_anim = $Display/Rows/Columns/HealthMargin/AnimationPlayer
@@ -128,3 +130,10 @@ func _on_ScoreTween_tween_step(object, key, elapsed, value):
 	
 	#if key == ":current_score":
 	score_label.text = "SCORE: " + String(round(current_score))
+
+func _on_Display_resized():
+	#print("HUD resized")
+	
+	# make the background strip as wide as the screen
+	if background != null:
+		background.scale[1] = -OS.get_window_size()[0]
