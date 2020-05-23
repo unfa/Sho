@@ -5,3 +5,5 @@
 [resource]
 render_priority = 1
 shader = ExtResource( 1 )
+shader_param/FresnelPower = 2.0
+shader_param/Color = Color( 0.309804, 0.545098, 0.996078, 0.647059 )
