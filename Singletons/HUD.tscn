@@ -329,4 +329,5 @@ scale = Vector2( 4, -1280 )
 z_index = -1
 texture = SubResource( 8 )
 centered = false
+[connection signal="resized" from="Display" to="." method="_on_Display_resized"]
 [connection signal="tween_step" from="Display/Rows/Columns/StageScoreMargin/StageScoreRows/ScoreTween" to="." method="_on_ScoreTween_tween_step"]
