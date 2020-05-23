@@ -98,13 +98,12 @@ demo_play={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
+quality/filters/anisotropic_filter_level=2
 vram_compression/import_etc=true
 quality/directional_shadow/size=2048
 quality/directional_shadow/size.mobile=1024
 quality/shadow_atlas/size=2048
 quality/shadows/filter_mode=2
+quality/subsurface_scattering/quality=0
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false
-quality/filters/anisotropic_filter_level=2
-quality/subsurface_scattering/quality=0
