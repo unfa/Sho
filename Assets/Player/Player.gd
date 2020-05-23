@@ -329,7 +329,7 @@ func respawn(var checkpoint):
 	
 	walk_last_direction = DEFAULT_WALK_DIRECTION
 	
-	$WaterDroplets.emitting = true
+	$WaterDroplets2.emitting = true
 	animation_idle()
 	
 	emit_signal("player_update")
