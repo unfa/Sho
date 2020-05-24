@@ -1,6 +1,6 @@
 extends Node
 
-var debug = true
+var debug = false
 
 class StateMachine: # This class will help us track and manage what state our game entity is in.
 	

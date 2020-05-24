@@ -64,6 +64,8 @@ func _ready():
 	
 	AttackParticles.emitting = false
 	AttackCollider.monitoring = false
+	
+	
 
 func die():
 	#$Brie/AnimationPlayer.play("Die")
