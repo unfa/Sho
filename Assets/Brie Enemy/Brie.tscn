@@ -197,6 +197,7 @@ shape = SubResource( 11 )
 
 [node name="Particles" type="CPUParticles" parent="Brie/Armature/Skeleton/Attack"]
 transform = Transform( -1, 0, 3.25841e-07, -5.46881e-40, 1, -1.67836e-33, -3.25841e-07, -1.67836e-33, -1, -1.16747e-07, -0.0314221, 0.358294 )
+visible = false
 emitting = false
 amount = 64
 lifetime = 0.5
@@ -221,7 +222,7 @@ anim_offset_random = 1.0
 
 [node name="Particles2" type="Particles" parent="Brie/Armature/Skeleton/Attack"]
 transform = Transform( -1, 0, 3.25841e-07, -5.46881e-40, 1, -1.67836e-33, -3.25841e-07, -1.67836e-33, -1, -1.16747e-07, -0.0314221, 0.358294 )
-visible = false
+emitting = false
 amount = 64
 lifetime = 0.5
 randomness = 0.48

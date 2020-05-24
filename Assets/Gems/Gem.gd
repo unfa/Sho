@@ -7,53 +7,67 @@ extends Area
 # var a = 2
 # var b = "text"
 
-enum GEM_TYPE{
+enum GEM_TYPES{
 	small
 	medium
 	large
 	extraLarge
 }
 
-const GEM_VALUES = {
-	GEM_TYPE.small: 15,
-	GEM_TYPE.medium: 50,
-	GEM_TYPE.large: 100,
-	GEM_TYPE.extraLarge: 250
-}
+#const GEM_VALUES = {
+#	0:	15,
+#	1:	50,
+#	2:	100,
+#	3:	250
+#}
 
 onready var GEM_MESHES = {
-	GEM_TYPE.small: $Pickup/Gem1,
-	GEM_TYPE.medium: $Pickup/Gem2,
-	GEM_TYPE.large: $Pickup/Gem3,
-	GEM_TYPE.extraLarge: $Pickup/Gem4
+	0: $Pickup/Gem1,
+	1: $Pickup/Gem2,
+	2: $Pickup/Gem3,
+	3: $Pickup/Gem4
 }
 
 const ROTATION = 0.25
 
-export (GEM_TYPE)var type = GEM_TYPE.small
+export (GEM_TYPES)var type = GEM_TYPES.small setget set_type # only define a setter so we can update the gem's looks in editor
+
+var old_type = type
 
 var active = true
 
-var value: int
+var value:int
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	# assign point value based on the selected Gem Type
-	value = GEM_VALUES[type]
+func set_type(value):
+	old_type = type
+	type = value
+	#update_type()
+
+func update_type():
+	value = Balance.GEM_VALUES[type]
 	
-	# Make the shockwave mesh unique
-	$Shockwave.mesh = $Shockwave.mesh.duplicate(true)
-	$Shockwave.hide()
 	
 	$Flash.light_energy = 0
 	
+	GEM_MESHES[old_type].hide()
 	GEM_MESHES[type].show()
+	
+	#GEM_MESHES[type].show()
 	
 	var GemColor = GEM_MESHES[type].get_surface_material(0).get_shader_param("Color")
 	$Flash.light_color = GemColor
 	var ShockwaveMaterial = $Shockwave.mesh.surface_get_material(0)
 	ShockwaveMaterial["albedo_color"] = GemColor
-	#$Shockwave.mesh.surface_set_material(0, ShockwaveMaterial)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#print("Gem _ready")
+	# Make the shockwave mesh unique
+	$Shockwave.mesh = $Shockwave.mesh.duplicate(true)
+	
+	# assign point value based on the selected Gem Type
+	update_type()
+	$Shockwave.hide()
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

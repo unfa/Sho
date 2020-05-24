@@ -19,7 +19,7 @@ const LOW_HP = MAX_HP / 4
 var hp = MAX_HP # hit points
 var score = 0
 var stars_current = 0
-var stars_total = 0
+#var stars_total = 0
 #var last_checkpoint
 
 ### EFFECTS
@@ -343,7 +343,7 @@ func increase_score(points):
 
 func collect_star():
 	stars_current += 1
-	stars_total += 1
+	#stars_total += 1
 	emit_signal("player_update")
 
 func loose_star():

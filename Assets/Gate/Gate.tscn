@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Gate/Gate.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Gate/Gate.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Smoke/Smoke Normal.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Materials/NoisyMaterials/GrayscaleNoise.tres" type="Texture" id=5]
 [ext_resource path="res://Assets/Materials/NoisyMaterials/Shader.tres" type="Shader" id=6]
+[ext_resource path="res://Tools/Debug.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Blink"
@@ -233,7 +234,7 @@ tracks/6/keys = {
 "values": [ 8.0, 16.0, 8.0 ]
 }
 tracks/7/type = "method"
-tracks/7/path = NodePath("../../Gates/Gate2")
+tracks/7/path = NodePath("..")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -763,6 +764,7 @@ size = Vector2( 2, 2 )
 
 [node name="Gate" type="Spatial"]
 script = ExtResource( 2 )
+debug = true
 
 [node name="AnimationManagement" type="Node" parent="."]
 
@@ -804,25 +806,29 @@ shape = SubResource( 11 )
 material/0 = SubResource( 12 )
 
 [node name="Eyeball" parent="Gate" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.8572, 2.32424 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.8572, 2.32424 )
 "blend_shapes/Pupul Big" = 0.0
 
 [node name="Door " parent="Gate" index="2"]
 material/0 = SubResource( 12 )
 
 [node name="Eye Lid Top" parent="Gate" index="4"]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 6.8572, 2.32424 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.8572, 2.32424 )
 
 [node name="Eye Lid Bottom" parent="Gate" index="7"]
-transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 6.8572, 2.32424 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.8572, 2.32424 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.27958, 1.4411 )
+emitting = false
 amount = 128
 lifetime = 2.0
 visibility_aabb = AABB( -4.81706, -4, -4, 9.63413, 8, 8 )
 process_material = SubResource( 19 )
 draw_pass_1 = SubResource( 21 )
+
+[node name="Debug2" parent="." instance=ExtResource( 7 )]
+visible = false
 
 [node name="Debug" type="CanvasLayer" parent="."]
 

@@ -32,7 +32,6 @@ custom_constants/line_spacing = 0
 custom_constants/shadow_offset_y = 1
 custom_constants/shadow_as_outline = 1
 text = "DEBUG LABEL"
-align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

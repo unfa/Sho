@@ -32,6 +32,8 @@ const WALK_SPEED = 30
 const TURN_SPEED = 100
 const FOLLOW_SLERP = 2
 
+const value = Balance.ENEMY_VALUES[0]
+
 var motion = []
 var velocity = Vector3()
 
@@ -42,7 +44,7 @@ var futile_motion_prev_location = Vector3()
 var futile_motion = false
 
 
-onready var AttackParticles = $Brie/Armature/Skeleton/Attack/Particles
+onready var AttackParticles = $Brie/Armature/Skeleton/Attack/Particles2
 onready var AttackCollider = $Brie/Armature/Skeleton/Attack/Collider
 const ATTACK_WINDUP = 0.75
 const ATTACK_DURATION = 1.25
@@ -66,6 +68,7 @@ func _ready():
 func die():
 	#$Brie/AnimationPlayer.play("Die")
 	ActionState.set_current_state("Die")
+	player.increase_score(value)
 	
 func gravity(delta): # drop to the ground
 	move_and_collide(Vector3(0,-10*delta,0))

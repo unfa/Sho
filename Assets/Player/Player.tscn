@@ -140,9 +140,6 @@ cast_to = Vector3( 0, -1.5, 0 )
 [node name="Mesh" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000228882, 0.0112305, 0.00610352 )
 
-[node name="Skeleton" parent="Mesh/Armature" index="0"]
-bones/33/bound_children = [ NodePath("BoneAttachment") ]
-
 [node name="BoneAttachment" type="BoneAttachment" parent="Mesh/Armature/Skeleton" index="0"]
 transform = Transform( -0.936849, -0.251733, -0.242774, 0.0668183, -0.810228, 0.582287, -0.343295, 0.529308, 0.775889, -1.27171e-07, 0.577129, 1.57433 )
 bone_name = "tail_tip"

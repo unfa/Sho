@@ -27,6 +27,7 @@ mix_rate=48000
 
 Classes="*res://Singletons/Classes.gd"
 HUD="*res://Singletons/HUD.tscn"
+Balance="*res://Singletons/Balance.gd"
 
 [display]
 

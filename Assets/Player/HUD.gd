@@ -39,13 +39,19 @@ func _ready():
 		$TouchControls.hide()
 	
 	hide_message()
+	
+	draw_score()
+	
 	player.connect("player_update", self, "update")
 	
 	health_bar.tint_over = Color.white
 
+func draw_score():
+	score_label.text = "SCORE: " + String(round(current_score))
+
 func update_score(score: int):
 	target_score = score
-	current_score = previous_score
+	#current_score = previous_score
 	var score_difference = score - previous_score
 	var tween_time = abs(score_difference) / 10
 	
@@ -53,7 +59,7 @@ func update_score(score: int):
 	score_tween.interpolate_property(score_label, "custom_colors/font_color", Color.green, Color.white, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	
 	# value tween
-	score_tween.interpolate_property(self, "current_score", previous_score, target_score, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	#score_tween.interpolate_property(self, "current_score", previous_score, target_score, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	
 	previous_score = score
 	score_tween.set_active(true)
@@ -117,6 +123,11 @@ func _process(delta):
 		var text =	'HUD debug\n'
 		text +=		'FPS: ' + String(Engine.get_frames_per_second()) + '\n'
 		$Debug/Label.text = text
+		
+	if current_score < target_score:
+		current_score += 1
+		draw_score()
+		
 	
 func update():
 	print ("HUD update")
@@ -129,7 +140,7 @@ func _on_ScoreTween_tween_step(object, key, elapsed, value):
 	#print("Object: ", object,"\tKey: " , key)
 	
 	#if key == ":current_score":
-	score_label.text = "SCORE: " + String(round(current_score))
+	pass
 
 func _on_Display_resized():
 	#print("HUD resized")

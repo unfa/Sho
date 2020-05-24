@@ -6,7 +6,7 @@ export (String, FILE, "*.tscn") var target_scene
 
 var gate_state = Classes.StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
-const debug = false
+export var debug = false
 
 #var near = false
 #var far  = false
