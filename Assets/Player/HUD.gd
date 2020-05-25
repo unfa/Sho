@@ -64,7 +64,7 @@ func update_score(score: int):
 	previous_score = score
 	score_tween.set_active(true)
 
-	print("SCORE UPDATE")
+	#print("SCORE UPDATE")
 	
 func update_health(hp: int):
 	var new_color = Color.white
@@ -130,7 +130,7 @@ func _process(delta):
 		
 	
 func update():
-	print ("HUD update")
+	#print ("HUD update")
 	update_stars(player.stars_current)
 	update_health(player.hp)
 	update_score(player.score)

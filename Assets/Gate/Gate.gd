@@ -8,6 +8,11 @@ var gate_state = Classes.StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect',
 
 export var debug = false
 
+var MapLoader
+
+var next_scene
+var next_scene_ready = false
+var next_scene_loading = false
 #var near = false
 #var far  = false
 #var follow = false
@@ -86,14 +91,23 @@ func debug(text, clear = false): # print on_screen dubig text
 	label.text += String(text) + '\n'
 
 func open_gate():
-	yield(get_tree().create_timer(0.75), "timeout")
+	print("open_gate")
+	while not next_scene_ready:
+		print("waiting for scene to be ready")
+		yield(get_tree().create_timer(1), "timeout")
+	
+	#next_scene_instance.set_process(true)		
+	anim.play("Open")
+	print("show scene")
+	next_scene.show()
+	
 	open = true
 
 func update_stars():
 	#print ("Stars: " + String(stars))
 	
 	if stars_active == 3:
-		open_gate()
+		gate_state.set_current_state("Open")
 	
 	for star in stars:
 		star.mesh.surface_set_material(0, star_off)
@@ -137,11 +151,33 @@ func reset():
 	open = false
 	close = false
 	anim.play("Init")
-		
+
+
+func load_map():
+	next_scene_loading = true
+	
+	print("Load map function")
+	
+	target_scene = "res://Maps/Testing.tscn"
+	
+	print("Target scene: ", target_scene)
+	
+	next_scene = load(target_scene).instance()
+	
+	print("Next scene: ", next_scene)
+	
+	get_tree().root.call_deferred("add_child", next_scene)
+	next_scene.global_translate(Vector3(5,0,0))
+	next_scene_ready = true
+
+func monitor_player_stars():
+	if player.stars_current == 3 and not next_scene_loading:
+		print ("map loader started")
+		self.call_deferred("load_map")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#anim.start("Start")
-	#anim.stop()	
+	player.connect("player_update", self, "monitor_player_stars")
 	update_stars()
 
 func eye_track(delta):
@@ -204,7 +240,7 @@ func _process(delta):
 		eye_wander(delta)
 		eye_limit_rotation(delta)
 	elif gate_state.get_current_state(true) == "Open": # OPEN
-		anim.play("Open")
+		open_gate()
 		gate_state.set_current_state("Opened")
 	elif gate_state.get_current_state(true) == "Opened": # OPENED
 		pass
