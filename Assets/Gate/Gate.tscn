@@ -762,8 +762,11 @@ proximity_fade_distance = 0.5
 material = SubResource( 20 )
 size = Vector2( 2, 2 )
 
-[node name="Gate" type="Spatial"]
+[node name="Gate" type="Spatial" groups=[
+"gates",
+]]
 script = ExtResource( 2 )
+target_scene = "EMPTY"
 debug = true
 
 [node name="AnimationManagement" type="Node" parent="."]

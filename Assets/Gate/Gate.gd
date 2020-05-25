@@ -154,11 +154,20 @@ func reset():
 
 
 func load_map():
+	
+	if gate_type != GateType.GATE_EXIT:
+		# only exit gates should do this
+		return 1
+	
+	if next_scene_loading or next_scene_ready:
+		# we don't want to spawn more than one instances of the new level
+		return 2
+		
 	next_scene_loading = true
 	
 	print("Load map function")
 	
-	target_scene = "res://Maps/Testing.tscn"
+	#target_scene = "res://Maps/01.tscn"
 	
 	print("Target scene: ", target_scene)
 	
@@ -166,8 +175,28 @@ func load_map():
 	
 	print("Next scene: ", next_scene)
 	
-	get_tree().root.call_deferred("add_child", next_scene)
-	next_scene.global_translate(Vector3(5,0,0))
+	var exit_transform = global_transform
+	
+	get_tree().root.add_child(next_scene)
+	
+	next_scene.set_process(false)
+	next_scene.set_physics_process(false)
+	#next_scene.hide()
+	
+	# remove extra entry gate
+	var new_entry = next_scene.find_node("Entry*")
+	var entry_transform = new_entry.global_transform
+	new_entry.queue_free()
+	
+	var location_offset = exit_transform.origin - entry_transform.origin
+	#var rotation_offset = exit_transform.basis.get_euler() - entry_transform.basis.get_euler()
+		
+	next_scene.global_translate(location_offset)
+	#next_scene.global_rotate(rotation_offset)
+	
+	next_scene.find_node("Player*").queue_free()
+	next_scene.find_node("CameraBody*").queue_free()
+	
 	next_scene_ready = true
 
 func monitor_player_stars():
