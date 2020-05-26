@@ -177,11 +177,13 @@ func load_map():
 	
 	var exit_transform = global_transform
 	
+	#get_tree().root.call_deferred("add_child", next_scene)
 	get_tree().root.add_child(next_scene)
-	
+	#yield(get_tree().root.call_deferred("add_child", next_scene), "completed")
+		
 	next_scene.set_process(false)
 	next_scene.set_physics_process(false)
-	#next_scene.hide()
+	next_scene.hide()
 	
 	# remove extra entry gate
 	var new_entry = next_scene.find_node("Entry*")
@@ -193,10 +195,6 @@ func load_map():
 		
 	next_scene.global_translate(location_offset)
 	#next_scene.global_rotate(rotation_offset)
-	
-	next_scene.find_node("Player*").queue_free()
-	next_scene.find_node("CameraBody*").queue_free()
-	
 	next_scene_ready = true
 
 func monitor_player_stars():
@@ -247,7 +245,7 @@ func advance_state():
 func _process(delta):
 	#print("far: " + String(far) + " near: " + String(near))
 	debug('GATE DEBUG', true)
-	
+		
 	if gate_state.get_current_state(true) == "Sleep":
 		anim.play("Init")
 	elif gate_state.get_current_state(true) == "Start": # AWAKE
@@ -284,6 +282,9 @@ func _process(delta):
 	debug('previous state: ' + String(gate_state.get_previous_state(true)) )
 	debug('current state: ' + String(gate_state.get_current_state(true)) )
 	debug('next state: ' + String(gate_state.get_next_state(true)) )
+	
+	if next_scene_loading and next_scene:
+		debug('Next scene\'s parent:', next_scene.get_parent())
 
 
 func _on_Far_body_entered(body):
