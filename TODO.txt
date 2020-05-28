@@ -1,16 +1,14 @@
-Things that have to be done to finish the game
+NOW:
 
-X Fix the gates not consuming stars
-- Make the gates preload next section and free the previous one after closing
-X Make The gems one asset that has a dropdown ENUM fro chaning value
-X Make gems grant score
-X Make killing enemies grant score
-? Make grabbing a star once the player already has 3 grant extra score
-X Make a single place that keeps all balance values so tweaking balance is easy
+
+
+
+
+
+LATER:
+
 - Make the music play more stems after the player grabs another star
-
 - Complete game mechanics
 - Make actual levels
 - Make sound effects
-X Make the UI scalable
 - Test on target machine

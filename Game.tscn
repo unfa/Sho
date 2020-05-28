@@ -3,7 +3,7 @@
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Assets/Camera/CameraRig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Maps/01.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MapManager.gd" type="Script" id=4]
 [ext_resource path="res://UI.gd" type="Script" id=11]
 [ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_BASS_Ogg_Vorbis.ogg" type="AudioStream" id=14]
 [ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_DRUMS_Ogg_Vorbis.ogg" type="AudioStream" id=15]
@@ -43,6 +43,7 @@ volume_db = -12.0
 bus = "Music D"
 
 [node name="World" type="Node" parent="."]
+script = ExtResource( 4 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource( 1 )
@@ -68,9 +69,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MapA" type="Node" parent="."]
+[node name="MapA" type="Node" parent="World"]
 
-[node name="Map" parent="MapA" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 9 )
-
-[node name="MapB" type="Node" parent="."]
+[node name="MapB" type="Node" parent="World"]

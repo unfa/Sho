@@ -1,21 +1,21 @@
 [gd_scene load_steps=190 format=2]
 
-[ext_resource path="res://Assets/Tiles/Wood.material" type="Material" id=2]
-[ext_resource path="res://Assets/Tiles/Arrow.material" type="Material" id=3]
-[ext_resource path="res://Water.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Gate/Gate.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/Water/NoiseTexture 02.tres" type="Texture" id=16]
-[ext_resource path="res://Assets/Tiles/Grass.material" type="Material" id=17]
-[ext_resource path="res://Assets/Tiles/Ground.material" type="Material" id=18]
-[ext_resource path="res://Assets/Tiles/Fence.material" type="Material" id=19]
-[ext_resource path="res://Assets/Water/NoiseTexture 01.tres" type="Texture" id=20]
-[ext_resource path="res://Assets/Tiles/Metal.material" type="Material" id=21]
-[ext_resource path="res://Assets/Brie Enemy/Brie.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Assets/Star/Star.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Assets/Mint/Mint.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Assets/Gems/Gem.tscn" type="PackedScene" id=25]
-[ext_resource path="res://TutorialNode.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Assets/Checkpoint/Checkpoint.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Water.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Tiles/Arrow.material" type="Material" id=2]
+[ext_resource path="res://Assets/Tiles/Wood.material" type="Material" id=3]
+[ext_resource path="res://Assets/Tiles/Grass.material" type="Material" id=4]
+[ext_resource path="res://Assets/Tiles/Metal.material" type="Material" id=5]
+[ext_resource path="res://Assets/Tiles/Fence.material" type="Material" id=6]
+[ext_resource path="res://Assets/Water/NoiseTexture 02.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/Gate/Gate.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Tiles/Ground.material" type="Material" id=9]
+[ext_resource path="res://Assets/Water/NoiseTexture 01.tres" type="Texture" id=10]
+[ext_resource path="res://Assets/Brie Enemy/Brie.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Star/Star.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Mint/Mint.tscn" type="PackedScene" id=13]
+[ext_resource path="res://TutorialNode.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Checkpoint/Checkpoint.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Gems/Gem.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -25,7 +25,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -38,7 +38,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -69,7 +69,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -100,7 +100,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 3,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -113,7 +113,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 57,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -144,7 +144,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -157,7 +157,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 48,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -188,7 +188,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 96,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -201,7 +201,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 336,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -232,7 +232,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -245,7 +245,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 12,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -276,7 +276,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 318,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -289,7 +289,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 132,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -320,7 +320,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 324,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -333,7 +333,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 324,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -364,7 +364,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 282,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -377,7 +377,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 282,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -408,7 +408,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 432,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -439,7 +439,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -452,7 +452,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 24,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -483,7 +483,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 24,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -496,7 +496,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 24,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -527,7 +527,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -540,7 +540,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 18,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -571,7 +571,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 18,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -584,7 +584,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 18,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -615,7 +615,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 246,
-"material": ExtResource( 19 ),
+"material": ExtResource( 6 ),
 "name": "Fence",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -646,7 +646,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 456,
-"material": ExtResource( 19 ),
+"material": ExtResource( 6 ),
 "name": "Fence",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -677,7 +677,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 252,
-"material": ExtResource( 19 ),
+"material": ExtResource( 6 ),
 "name": "Fence",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -708,7 +708,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 19 ),
+"material": ExtResource( 6 ),
 "name": "Fence",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -739,7 +739,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 216,
-"material": ExtResource( 19 ),
+"material": ExtResource( 6 ),
 "name": "Fence",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -770,7 +770,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 24,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -783,7 +783,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 51,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -814,7 +814,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 18,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -827,7 +827,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -858,7 +858,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 18,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -871,7 +871,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 18,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -902,7 +902,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 42,
-"material": ExtResource( 2 ),
+"material": ExtResource( 3 ),
 "name": "Wood",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -915,7 +915,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 72,
-"material": ExtResource( 3 ),
+"material": ExtResource( 2 ),
 "name": "Arrow",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -928,7 +928,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 180,
-"material": ExtResource( 21 ),
+"material": ExtResource( 5 ),
 "name": "Metal",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -959,7 +959,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 102,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -972,7 +972,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 42,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1003,7 +1003,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 42,
-"material": ExtResource( 2 ),
+"material": ExtResource( 3 ),
 "name": "Wood",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1016,7 +1016,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 72,
-"material": ExtResource( 3 ),
+"material": ExtResource( 2 ),
 "name": "Arrow",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1029,7 +1029,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 180,
-"material": ExtResource( 21 ),
+"material": ExtResource( 5 ),
 "name": "Metal",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1060,7 +1060,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 42,
-"material": ExtResource( 2 ),
+"material": ExtResource( 3 ),
 "name": "Wood",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1073,7 +1073,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 72,
-"material": ExtResource( 3 ),
+"material": ExtResource( 2 ),
 "name": "Arrow",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1086,7 +1086,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 180,
-"material": ExtResource( 21 ),
+"material": ExtResource( 5 ),
 "name": "Metal",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1117,7 +1117,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 42,
-"material": ExtResource( 2 ),
+"material": ExtResource( 3 ),
 "name": "Wood",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1130,7 +1130,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 72,
-"material": ExtResource( 3 ),
+"material": ExtResource( 2 ),
 "name": "Arrow",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1143,7 +1143,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 180,
-"material": ExtResource( 21 ),
+"material": ExtResource( 5 ),
 "name": "Metal",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1174,7 +1174,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1187,7 +1187,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1218,7 +1218,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1231,7 +1231,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1262,7 +1262,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1275,7 +1275,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 30,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1306,7 +1306,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 21,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1319,7 +1319,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 9,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1350,7 +1350,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 21,
-"material": ExtResource( 17 ),
+"material": ExtResource( 4 ),
 "name": "Grass",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1363,7 +1363,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 21,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1394,7 +1394,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 24,
-"material": ExtResource( 18 ),
+"material": ExtResource( 9 ),
 "name": "Ground",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1620,21 +1620,6 @@ __meta__ = {
 "_editor_source_scene": "res://Assets/Tiles/Tiles 07.dae"
 }
 
-[sub_resource type="BoxShape" id=134]
-extents = Vector3( 58, 8, 1 )
-
-[sub_resource type="BoxShape" id=135]
-extents = Vector3( 38, 8, 1 )
-
-[sub_resource type="BoxShape" id=136]
-extents = Vector3( 16, 8, 1 )
-
-[sub_resource type="BoxShape" id=137]
-extents = Vector3( 6, 8, 1 )
-
-[sub_resource type="BoxShape" id=138]
-extents = Vector3( 3, 8, 1 )
-
 [sub_resource type="VisualShaderNodeScalarConstant" id=139]
 constant = 1.0
 
@@ -1669,7 +1654,7 @@ constant = 128.0
 
 [sub_resource type="VisualShaderNodeTexture" id=149]
 output_port_for_preview = 0
-texture = ExtResource( 20 )
+texture = ExtResource( 10 )
 
 [sub_resource type="VisualShaderNodeScalarFunc" id=150]
 function = 11
@@ -1689,7 +1674,7 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id=156]
 output_port_for_preview = 0
-texture = ExtResource( 16 )
+texture = ExtResource( 7 )
 
 [sub_resource type="VisualShaderNodeScalarConstant" id=157]
 constant = 4.0
@@ -1700,7 +1685,7 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id=159]
 output_port_for_preview = 0
-texture = ExtResource( 20 )
+texture = ExtResource( 10 )
 
 [sub_resource type="VisualShaderNodeInput" id=160]
 output_port_for_preview = 0
@@ -1722,7 +1707,7 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id=166]
 output_port_for_preview = 0
-texture = ExtResource( 16 )
+texture = ExtResource( 7 )
 
 [sub_resource type="VisualShaderNodeScalarConstant" id=167]
 
@@ -1954,6 +1939,21 @@ size = Vector2( 8192, 8192 )
 radius = 1024.0
 height = 16.0
 
+[sub_resource type="BoxShape" id=134]
+extents = Vector3( 58, 8, 1 )
+
+[sub_resource type="BoxShape" id=135]
+extents = Vector3( 38, 8, 1 )
+
+[sub_resource type="BoxShape" id=136]
+extents = Vector3( 16, 8, 1 )
+
+[sub_resource type="BoxShape" id=137]
+extents = Vector3( 6, 8, 1 )
+
+[sub_resource type="BoxShape" id=138]
+extents = Vector3( 3, 8, 1 )
+
 [node name="Map" type="Spatial"]
 __meta__ = {
 "_edit_lock_": true
@@ -1962,7 +1962,7 @@ __meta__ = {
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = SubResource( 133 )
 data = {
-"cells": PoolIntArray( 0, 0, 1441792, 1, 0, 1441792, 2, 0, 1441792, 3, 0, 1441792, 4, 0, 1441792, 65531, 0, 1441792, 65532, 0, 1441792, 65533, 0, 1441792, 65534, 0, 1441792, 65535, 0, 1441792, 0, 1, 1441792, 1, 1, 1441792, 2, 1, 538312704, 3, 1, 1441792, 4, 1, 1441792, 65531, 1, 1441792, 65532, 1, 1441792, 65533, 1, 1441792, 65534, 1, 1441792, 65535, 1, 1441792, 0, 2, 1612054528, 1, 2, 1441792, 2, 2, 1441792, 3, 2, 1441792, 4, 2, 1441792, 65531, 2, 1441792, 65532, 2, 1441792, 65533, 2, 1441792, 65534, 2, 1441792, 65535, 2, 1441792, 0, 3, 1441792, 1, 3, 1441792, 2, 3, 1441792, 3, 3, 1441792, 4, 3, 1441792, 65531, 3, 1441792, 65532, 3, 1441792, 65533, 3, 1441792, 65534, 3, 1441792, 65535, 3, 1441792, 0, 4, 1441792, 1, 4, 1441792, 2, 4, 1441792, 3, 4, 1441792, 4, 4, 1441792, 65531, 4, 1441792, 65532, 4, 1441792, 65533, 4, 1441792, 65534, 4, 1441792, 65535, 4, 1441792, 0, 65531, 1441792, 1, 65531, 1441792, 2, 65531, 1441792, 3, 65531, 1441792, 4, 65531, 1441792, 65531, 65531, 1441792, 65532, 65531, 1441792, 65533, 65531, 1441792, 65534, 65531, 1441792, 65535, 65531, 1441792, 0, 65532, 1441792, 1, 65532, 1612054528, 2, 65532, 1441792, 3, 65532, 1441792, 4, 65532, 1441792, 65531, 65532, 1441792, 65532, 65532, 1441792, 65533, 65532, 1441792, 65534, 65532, 1441792, 65535, 65532, 1441792, 0, 65533, 1441792, 1, 65533, 1441792, 2, 65533, 1441792, 3, 65533, 1441792, 4, 65533, 1441792, 65531, 65533, 1441792, 65532, 65533, 1441792, 65533, 65533, 1441792, 65534, 65533, 1441792, 65535, 65533, 1441792, 0, 65534, 1441792, 1, 65534, 1441792, 2, 65534, 1441792, 3, 65534, 1441792, 4, 65534, 1441792, 65531, 65534, 1441792, 65532, 65534, 1441792, 65533, 65534, 1441792, 65534, 65534, 1441792, 65535, 65534, 1441792, 0, 65535, 1441792, 1, 65535, 1441792, 2, 65535, 1441792, 3, 65535, 1441792, 4, 65535, 1441792, 65531, 65535, 1441792, 65532, 65535, 1441792, 65533, 65535, 1441792, 65534, 65535, 1441792, 65535, 65535, 1441792 )
+"cells": PoolIntArray( 0, 0, 1441792, 1, 0, 1441792, 2, 0, 1441792, 3, 0, 1441792, 4, 0, 1441792, 65531, 0, 1441792, 65532, 0, 1441792, 65533, 0, 1441792, 65534, 0, 1441792, 65535, 0, 1441792, 0, 1, 1441792, 1, 1, 1441792, 2, 1, 1441792, 3, 1, 1441792, 4, 1, 1441792, 65531, 1, 1441792, 65532, 1, 1441792, 65533, 1, 1441792, 65534, 1, 1441792, 65535, 1, 1441792, 0, 2, 1441792, 1, 2, 1441792, 2, 2, 1441792, 3, 2, 1441792, 4, 2, 1441792, 65531, 2, 1441792, 65532, 2, 1441792, 65533, 2, 1441792, 65534, 2, 1441792, 65535, 2, 1441792, 0, 3, 1441792, 1, 3, 1441792, 2, 3, 1441792, 3, 3, 1441792, 4, 3, 1441792, 65531, 3, 1441792, 65532, 3, 1441792, 65533, 3, 1612054528, 65534, 3, 1441792, 65535, 3, 1441792, 0, 4, 1441792, 1, 4, 1441792, 2, 4, 1441792, 3, 4, 1441792, 4, 4, 1441792, 65531, 4, 1441792, 65532, 4, 1441792, 65533, 4, 1441792, 65534, 4, 1441792, 65535, 4, 1441792, 0, 65531, 1441792, 1, 65531, 1441792, 2, 65531, 1441792, 3, 65531, 1441792, 4, 65531, 1441792, 65531, 65531, 1441792, 65532, 65531, 1441792, 65533, 65531, 1441792, 65534, 65531, 1441792, 65535, 65531, 1441792, 0, 65532, 1441792, 1, 65532, 1441792, 2, 65532, 1441792, 3, 65532, 1441792, 4, 65532, 1441792, 65531, 65532, 1441792, 65532, 65532, 1441792, 65533, 65532, 1441792, 65534, 65532, 1441792, 65535, 65532, 1441792, 0, 65533, 1441792, 1, 65533, 1441792, 2, 65533, 1441792, 3, 65533, 1441792, 4, 65533, 1441792, 65531, 65533, 1441792, 65532, 65533, 1441792, 65533, 65533, 1612054528, 65534, 65533, 1441792, 65535, 65533, 1441792, 0, 65534, 1441792, 1, 65534, 1441792, 2, 65534, 1441792, 3, 65534, 1441792, 4, 65534, 1441792, 65531, 65534, 538312704, 65532, 65534, 1441792, 65533, 65534, 1441792, 65534, 65534, 1441792, 65535, 65534, 1441792, 0, 65535, 1441792, 1, 65535, 1441792, 2, 65535, 1441792, 3, 65535, 1441792, 4, 65535, 1441792, 65531, 65535, 1441792, 65532, 65535, 1441792, 65533, 65535, 1441792, 65534, 65535, 1441792, 65535, 65535, 1441792 )
 }
 __meta__ = {
 "_edit_lock_": true,
@@ -1970,32 +1970,61 @@ __meta__ = {
 "_editor_floor_": Vector3( -42, 0, 28 )
 }
 
-[node name="ReflectionProbes" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 48.7339, 33.9217 )
-visible = false
+[node name="Spawnpoints" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="ReflectionProbes"]
-extents = Vector3( 13.3398, 21.4881, 32 )
-origin_offset = Vector3( 0, -13.418, 0 )
-interior_enable = true
+[node name="Player" type="Position3D" parent="Spawnpoints" groups=[
+"spawnpoints",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 5 )
+
+[node name="Water" type="MeshInstance" parent="." groups=[
+"water",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.097, 0 )
+mesh = SubResource( 172 )
+material/0 = null
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Area" type="Area" parent="Water"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Water/Area"]
+shape = SubResource( 173 )
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="Water"]
+extents = Vector3( 64, 10, 64 )
+origin_offset = Vector3( 0, 2.23517e-10, 0 )
+box_projection = true
 
 [node name="Gates" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Exit" parent="Gates" instance=ExtResource( 13 )]
+[node name="Exit" parent="Gates" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9 )
 gate_type = 1
 target_scene = "res://Maps/02.tscn"
 
-[node name="Entry" parent="Gates" instance=ExtResource( 13 )]
+[node name="Entry" parent="Gates" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93257e-06, 2, 9 )
 target_scene = "ENTRY"
 debug = false
+
+[node name="ReflectionProbes" type="Spatial" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="ReflectionProbes"]
+visible = false
+extents = Vector3( 32, 32, 32 )
+interior_enable = true
 
 [node name="Pickups" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.10116, 6.63671, 0.01264 )
@@ -2003,28 +2032,40 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Star" parent="Pickups" instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, 1.31397 )
+[node name="Star1" parent="Pickups" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, 3.31397 )
 
-[node name="Star2" parent="Pickups" instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, -1.68603 )
+[node name="Star2" parent="Pickups" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, 0.31397 )
 
-[node name="Star3" parent="Pickups" instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, -4.68603 )
+[node name="Star3" parent="Pickups" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, -2.68603 )
 
-[node name="Gem" parent="Pickups" instance=ExtResource( 25 )]
-transform = Transform( 0.99328, 0, 0, 0, 1, 0, 0, 0, 0.99328, -9.8255, 0, 0 )
+[node name="Gem" parent="Pickups" instance=ExtResource( 16 )]
+transform = Transform( 0.99328, 0, 0, 0, 1, 0, 0, 0, 0.99328, -13.8255, -1.8904, 7 )
 
-[node name="Mint" parent="Pickups" instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01916, 2, -3 )
+[node name="Gem2" parent="Pickups" instance=ExtResource( 16 )]
+transform = Transform( 0.993272, 0, -0.00402194, 0, 1, 0, 0.00402194, 0, 0.993272, -13.8256, -1.8904, 4.82274 )
+type = 1
+
+[node name="Gem3" parent="Pickups" instance=ExtResource( 16 )]
+transform = Transform( 0.99328, 0, 0, 0, 1, 0, 0, 0, 0.99328, -13.8255, -1.8904, 2.79845 )
+type = 2
+
+[node name="Gem4" parent="Pickups" instance=ExtResource( 16 )]
+transform = Transform( 0.99328, 0, 0, 0, 1, 0, 0, 0, 0.99328, -13.8255, -1.8904, 0.798448 )
+type = 3
+
+[node name="Mint" parent="Pickups" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03707, -4.0255, 1.99359 )
 
 [node name="Enemies" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Brie" parent="Enemies" instance=ExtResource( 22 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -9.27503, 31.5211, 9.17718 )
+[node name="Brie" parent="Enemies" instance=ExtResource( 11 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6.72497, 2.5211, -3.82282 )
 
 [node name="Colliders" type="Spatial" parent="."]
 __meta__ = {
@@ -2084,135 +2125,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 27 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
-
-[node name="Water" type="MeshInstance" parent="." groups=[
-"water",
-]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.1017, -21.0969, 14.7456 )
-visible = false
-mesh = SubResource( 172 )
-material/0 = null
-script = ExtResource( 4 )
-
-[node name="Area" type="Area" parent="Water"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Water/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-shape = SubResource( 173 )
-
-[node name="ReflectionProbe" type="ReflectionProbe" parent="Water"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.13609, 0 )
-extents = Vector3( 64, 24, 64 )
-origin_offset = Vector3( 0, -12, 0 )
-box_projection = true
-
-[node name="ReflectionProbe2" type="ReflectionProbe" parent="Water"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -134.347, 6.13609, -124.958 )
-extents = Vector3( 54.9813, 24, 53.1708 )
-origin_offset = Vector3( 0, -15, 0 )
-box_projection = true
-
-[node name="ReflectionProbe3" type="ReflectionProbe" parent="Water"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48.9457, 6.13609, -82.1601 )
-extents = Vector3( 101.035, 24, 21.5729 )
-origin_offset = Vector3( 0, -12, 0 )
-box_projection = true
-
-[node name="ReflectionProbe4" type="ReflectionProbe" parent="Water"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -138.019, 0, -166.715 )
-extents = Vector3( 16, 8, 16 )
-origin_offset = Vector3( 8.58984, -5.89844, 6.75977 )
-box_projection = true
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, -4 )
 
 [node name="Tutorial" type="Spatial" parent="."]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TutorialNode8" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -150.225, 11.7032, -65.2928 )
-tutorial_text = "You could have also just jumped accross these small hills. Try that next time!"
+[node name="TutorialNode" parent="Tutorial" instance=ExtResource( 14 )]
 
-[node name="TutorialNode" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 3.55142, 0.00873975, 0, -0.00721838, 2.93321, 0, 0, 0, 4.41563, -0.0211678, 30.9758, 41.7799 )
-tutorial_text = "Move you character using the WSAD or Arrow Keys"
-
-[node name="TutorialNode20" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 2.53552, 0.00623971, 0, -0.00338912, 1.37718, 0, 0, 0, 2.04827, -8.47068, 30.9758, 11.9956 )
-tutorial_text = "Jump using the space bar."
-
-[node name="TutorialNode21" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 2.07616, 0.00510925, 0, -0.00338912, 1.37718, 0, 0, 0, 2.04827, -51.7079, 30.9758, 11.9956 )
-tutorial_text = "Hold the space bar to jump higher"
-
-[node name="TutorialNode2" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, 11.0053, 3.72884, 0 )
-tutorial_text = "Jump using the space bar"
-
-[node name="TutorialNode3" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, 26.1399, 5.15823, -0.0175018 )
-tutorial_text = "The longer you hold the Space Bar, the higher your character will jump"
-
-[node name="TutorialNode4" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, 35.8901, 0.893151, -5.9427 )
-tutorial_text = "The game migth take you in various directions, don't be afraid, it's not going to trick you "
-
-[node name="TutorialNode5" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, 35.8901, -4.19401, -34.1939 )
-tutorial_text = "If you missed this star - climb up and retry!"
-
-[node name="TutorialNode6" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, 35.8901, -4.19401, -46.4483 )
-tutorial_text = "Checkpoints will make sure you don't have to start all over if you fall"
-
-[node name="TutorialNode7" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -97.7242, 19.3204, -65.2928 )
-tutorial_text = "Now - down the rabit hole!"
-
-[node name="TutorialNode14" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -132.223, 13.9023, -65.2928 )
-tutorial_text = "Diagonal movement is much faster and fun than zigzagging"
-
-[node name="TutorialNode15" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -109.237, 13.9023, -65.2928 )
-tutorial_text = "You can move diagonally by holding two direction keys at once"
-
-[node name="TutorialNode10" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -64.613, 12.1971, -65.2928 )
-tutorial_text = "This star is a bit harder to get"
-
-[node name="TutorialNode11" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -24.3744, 6.02615, -65.2928 )
-tutorial_text = "Now onto some more difficult jumps!"
-
-[node name="TutorialNode12" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -2.04346, -1.47103, -63.7262 )
-tutorial_text = "This star is pretty easy to get, but you need precision"
-
-[node name="TutorialNode13" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, 34.212, -1.47103, -63.7262 )
-tutorial_text = "Now for some simple jumps "
-
-[node name="TutorialNode9" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -150.815, 11.7032, -82.8275 )
-tutorial_text = "Try not to fall over"
-
-[node name="TutorialNode16" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -136.89, 10.5057, -94.151 )
-tutorial_text = "Wee!"
-
-[node name="TutorialNode17" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999997, 0.00246091, 0, -0.00246091, 0.999997, 0, 0, 0, 1, -132.481, -0.902069, -90.0446 )
-tutorial_text = "There's nothing here for you"
-
-[node name="TutorialNode18" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( -0.198216, -0.000487793, 0, -0.000973885, 0.395741, 0, 0, 0, 1, -159.107, -4.67354, -95.1169 )
-tutorial_text = "Congratulatulations on thinking out of the box. Have an extra star!"
-
-[node name="TutorialNode19" parent="Tutorial" instance=ExtResource( 26 )]
-transform = Transform( 0.999988, 0.00491322, 8.74228e-08, 0.00491322, -0.999988, 0, 8.74217e-08, 4.29528e-10, -1, -151.339, -16.4853, -153.299 )
-tutorial_text = "Color me impressed!"
+[node name="CollisionShape" parent="Tutorial/TutorialNode" index="0"]
+transform = Transform( 1, 4.65661e-10, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 [connection signal="body_entered" from="Water/Area" to="Water" method="_on_Area_body_entered"]
+
+[editable path="Tutorial/TutorialNode"]
