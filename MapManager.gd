@@ -21,7 +21,9 @@ class MapSlot:
 	
 	func spawnMap(previousMap: MapSlot):
 		print("Spawning a map: ", map)
+		#parentNode.call_deferred("add_child", scene)
 		parentNode.add_child(scene)
+		
 		current = true
 	
 	func freeMap():
@@ -35,6 +37,12 @@ onready var SlotB = MapSlot.new($MapB, false)
 var firstMap = true
 
 var MapList = [
+	"res://Maps/Map01.tscn",
+	"res://Maps/Map02.tscn",
+	"res://Maps/Map03.tscn",
+	"res://Maps/Map01.tscn",
+	"res://Maps/Map02.tscn",
+	"res://Maps/Map03.tscn",
 	"res://Maps/Map01.tscn",
 	"res://Maps/Map02.tscn",
 	"res://Maps/Map03.tscn",
@@ -114,9 +122,16 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	var newEntry = nextMap.scene.find_node("Entry")
 	
 	if firstMap:
+		
+		# if this is the first map we're ever spawning - leave the gate visible and solid, just make it not process anything
+		
 		newEntry.set_process(false)
 	else:
-		newEntry.queue_free() # stop the first gate, so it doesn't eat up player's stars
+		
+		# if we're spawning another level, we can't have two gates one over another, so lets' make the door non-solid, adnd hide the whole gate (we'll reverse that later)	
+		newEntry.get_node("Gate/Door /static_collision/shape0").set_deferred("disabled", true)
+		newEntry.set_process(false) # stop the first gate, so it doesn't eat up player's stars
+		newEntry.hide()
 	
 	nextMap.scene.find_node("Exit").connect("LoadMap",	self, "loadNextMap")
 	nextMap.scene.find_node("Exit").connect("SpawnMap",	self, "spawnNextMap")
@@ -126,7 +141,7 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	if not firstMap: # omit this if it's the first spawned map
 		var oldExit = previousMap.scene.find_node("Exit")
 		var locationOffset = oldExit.global_transform.origin - newEntry.global_transform.origin
-		var rotationOffset = Vector3.ZERO
+		var rotationOffset = oldExit.rotation
 		
 		print("Location offset: ", locationOffset)
 		
@@ -139,7 +154,15 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 		firstMap = false
 
 func freePreviousMap(): # despawn the unneeded previous map from the game
+	
+	# release previous map 
 	getCurrentMapSlot(false).freeMap()
+	
+	# make current maps' entry gate door solid, and make the gate visible so we don't leave a hole in the level
+	
+	var currentEntry = getCurrentMapSlot().scene.find_node("Entry")
+	currentEntry.get_node("Gate/Door /static_collision/shape0").set_deferred("disabled", false)
+	currentEntry.show()
 
 func _process(delta):
 	#print("SlotA: ", SlotA.map, " SlotB: ", SlotB.map)
