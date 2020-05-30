@@ -19,7 +19,7 @@ class MapSlot:
 		scene = resource.instance()
 		free = false
 	
-	func spawnMap():
+	func spawnMap(previousMap: MapSlot):
 		print("Spawning a map: ", map)
 		parentNode.add_child(scene)
 		current = true
@@ -32,7 +32,7 @@ class MapSlot:
 onready var SlotA = MapSlot.new($MapA, true)
 onready var SlotB = MapSlot.new($MapB, false)
 
-var spawnPlayer = true
+var firstMap = true
 
 var MapList = [
 	"res://Maps/Map01.tscn",
@@ -40,6 +40,13 @@ var MapList = [
 	"res://Maps/Map03.tscn",
 	"res://Maps/Map01.tscn"
 ]
+
+# we're gonna need these for sure
+onready var player = $Player
+onready var cameraRig = $CameraRig
+#var player = preload("res://Assets/Player/Player.tscn")
+#var cameraRig = preload("res://Assets/Camera/CameraRig.tscn")
+
 
 func getCurrentMapSlot(check = true) -> MapSlot:
 	print ("getCurrentMapSlot check!")
@@ -78,11 +85,11 @@ func swapFreeMapSlot():
 		print("Both slots are free or none is")
 		return -1
 
-func spawnPlayer():
-	if not spawnPlayer:
-		return -1
+func spawnPlayer():	
+	var playerSpawner = getCurrentMapSlot().scene.find_node("Player").global_transform
 	
-	spawnPlayer = false
+	player.global_transform = playerSpawner
+	cameraRig.global_transform = playerSpawner
 
 func loadNextMap(): # load the next map resource so it's ready to spawn
 	var nextMap = MapList.pop_front()
@@ -99,12 +106,37 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	var previousMap = getCurrentMapSlot()
 	var nextMap = getCurrentMapSlot(false)
 
-	assert(nextMap.free == false)
+	#assert(nextMap.free == false)
 	
-	nextMap.spawnMap()
+	nextMap.spawnMap(getCurrentMapSlot())
 	previousMap.current = false
 	
-	spawnPlayer()
+	var newEntry = nextMap.scene.find_node("Entry")
+	
+	if firstMap:
+		newEntry.set_process(false)
+	else:
+		newEntry.queue_free() # stop the first gate, so it doesn't eat up player's stars
+	
+	nextMap.scene.find_node("Exit").connect("LoadMap",	self, "loadNextMap")
+	nextMap.scene.find_node("Exit").connect("SpawnMap",	self, "spawnNextMap")
+	nextMap.scene.find_node("Exit").connect("FreeMap",	self, "freePreviousMap")
+
+	# osffset the new map to alight properly wiht the current one
+	if not firstMap: # omit this if it's the first spawned map
+		var oldExit = previousMap.scene.find_node("Exit")
+		var locationOffset = oldExit.global_transform.origin - newEntry.global_transform.origin
+		var rotationOffset = Vector3.ZERO
+		
+		print("Location offset: ", locationOffset)
+		
+		nextMap.scene.call_deferred("global_translate", locationOffset)
+		nextMap.scene.call_deferred("global_rotate", 	rotationOffset)
+		
+		# TODO connect signals from the current exit gate to appropraite methods
+	else:
+		spawnPlayer()
+		firstMap = false
 
 func freePreviousMap(): # despawn the unneeded previous map from the game
 	getCurrentMapSlot(false).freeMap()
@@ -114,16 +146,11 @@ func _process(delta):
 	pass
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# wait for the player node to be ready
+	#yield(cameraRig, "ready")
 	#pass # Replace with function body.
-	
 	loadNextMap()
 	spawnNextMap()
-	spawnPlayer()
-	return
-	freePreviousMap()
-	loadNextMap()
-	spawnNextMap()
-	loadNextMap()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

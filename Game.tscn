@@ -48,12 +48,6 @@ script = ExtResource( 4 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource( 1 )
 
-[node name="CameraRig" parent="World" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 16 )
-
-[node name="Player" parent="World" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 4.13264e-07, 0, 1, 0, -4.13264e-07, 0, 1, 0, 0, 0 )
-
 [node name="Sun" type="DirectionalLight" parent="World"]
 transform = Transform( 0.786731, 0.360352, -0.5012, 0.0824952, 0.743269, 0.663887, 0.611759, -0.563647, 0.555025, 0, 32, 0 )
 light_color = Color( 0.933333, 0.905882, 0.803922, 1 )
@@ -72,3 +66,9 @@ __meta__ = {
 [node name="MapA" type="Node" parent="World"]
 
 [node name="MapB" type="Node" parent="World"]
+
+[node name="CameraRig" parent="World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
+
+[node name="Player" parent="World" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )

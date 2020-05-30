@@ -1,5 +1,9 @@
 extends Spatial
 
+signal SpawnMap # when we need to spawn new level
+signal FreeMap # When we can free previous level
+signal LoadMap # when player reaches 3 stars
+
 enum GateType {GATE_ENTRY, GATE_EXIT}
 export (GateType) var gate_type = 0
 export (String, FILE, "*.tscn") var target_scene
@@ -92,14 +96,16 @@ func debug(text, clear = false): # print on_screen dubig text
 
 func open_gate():
 	print("open_gate")
-	while not next_scene_ready:
-		print("waiting for scene to be ready")
-		yield(get_tree().create_timer(1), "timeout")
+#	while not next_scene_ready:
+#		print("waiting for scene to be ready")
+#		yield(get_tree().create_timer(1), "timeout")
 	
 	#next_scene_instance.set_process(true)		
 	anim.play("Open")
-	print("show scene")
-	next_scene.show()
+#	print("show scene")
+#	next_scene.show()
+	
+	emit_signal("SpawnMap")
 	
 	open = true
 
@@ -153,54 +159,55 @@ func reset():
 	anim.play("Init")
 
 
-func load_map():
-	
-	if gate_type != GateType.GATE_EXIT:
-		# only exit gates should do this
-		return 1
-	
-	if next_scene_loading or next_scene_ready:
-		# we don't want to spawn more than one instances of the new level
-		return 2
-		
-	next_scene_loading = true
-	
-	print("Load map function")
-	
-	#target_scene = "res://Maps/01.tscn"
-	
-	print("Target scene: ", target_scene)
-	
-	next_scene = load(target_scene).instance()
-	
-	print("Next scene: ", next_scene)
-	
-	var exit_transform = global_transform
-	
-	#get_tree().root.call_deferred("add_child", next_scene)
-	get_tree().root.add_child(next_scene)
-	#yield(get_tree().root.call_deferred("add_child", next_scene), "completed")
-		
-	next_scene.set_process(false)
-	next_scene.set_physics_process(false)
-	next_scene.hide()
-	
-	# remove extra entry gate
-	var new_entry = next_scene.find_node("Entry*")
-	var entry_transform = new_entry.global_transform
-	new_entry.queue_free()
-	
-	var location_offset = exit_transform.origin - entry_transform.origin
-	#var rotation_offset = exit_transform.basis.get_euler() - entry_transform.basis.get_euler()
-		
-	next_scene.global_translate(location_offset)
-	#next_scene.global_rotate(rotation_offset)
-	next_scene_ready = true
+#func load_map():
+#
+#	if gate_type != GateType.GATE_EXIT:
+#		# only exit gates should do this
+#		return 1
+#
+#	if next_scene_loading or next_scene_ready:
+#		# we don't want to spawn more than one instances of the new level
+#		return 2
+#
+#	next_scene_loading = true
+#
+#	print("Load map function")
+#
+#	#target_scene = "res://Maps/01.tscn"
+#
+#	print("Target scene: ", target_scene)
+#
+#	next_scene = load(target_scene).instance()
+#
+#	print("Next scene: ", next_scene)
+#
+#	var exit_transform = global_transform
+#
+#	#get_tree().root.call_deferred("add_child", next_scene)
+#	get_tree().root.add_child(next_scene)
+#	#yield(get_tree().root.call_deferred("add_child", next_scene), "completed")
+#
+#	next_scene.set_process(false)
+#	next_scene.set_physics_process(false)
+#	next_scene.hide()
+#
+#	# remove extra entry gate
+#	var new_entry = next_scene.find_node("Entry*")
+#	var entry_transform = new_entry.global_transform
+#	new_entry.queue_free()
+#
+#	var location_offset = exit_transform.origin - entry_transform.origin
+#	#var rotation_offset = exit_transform.basis.get_euler() - entry_transform.basis.get_euler()
+#
+#	next_scene.global_translate(location_offset)
+#	#next_scene.global_rotate(rotation_offset)
+#	next_scene_ready = true
 
 func monitor_player_stars():
 	if player.stars_current == 3 and not next_scene_loading:
-		print ("map loader started")
-		self.call_deferred("load_map")
+		#print ("map loader started")
+		emit_signal("LoadMap")
+		next_scene_loading = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -276,6 +283,8 @@ func _process(delta):
 		gate_state.set_current_state("Closed")
 	elif gate_state.get_current_state(true) == "Closed":
 		anim.queue("Init")
+		emit_signal("FreeMap")
+		set_process(false) # stop processing this gate - it will not be used any more
 		pass
 
 
@@ -283,8 +292,8 @@ func _process(delta):
 	debug('current state: ' + String(gate_state.get_current_state(true)) )
 	debug('next state: ' + String(gate_state.get_next_state(true)) )
 	
-	if next_scene_loading and next_scene:
-		debug('Next scene\'s parent:', next_scene.get_parent())
+#	if next_scene_loading and next_scene:
+#		debug('Next scene\'s parent:', next_scene.get_parent())
 
 
 func _on_Far_body_entered(body):
