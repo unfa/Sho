@@ -45,6 +45,12 @@ bus = "Music D"
 [node name="World" type="Node" parent="."]
 script = ExtResource( 4 )
 
+[node name="Player" parent="World" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CameraRig" parent="World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource( 1 )
 
@@ -66,9 +72,3 @@ __meta__ = {
 [node name="MapA" type="Node" parent="World"]
 
 [node name="MapB" type="Node" parent="World"]
-
-[node name="CameraRig" parent="World" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
-
-[node name="Player" parent="World" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
