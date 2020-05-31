@@ -10,6 +10,8 @@ onready var ground = $Ground
 #onready var skeleton = $Mesh/Armature/Skeleton
 onready var AttackCollider = $Mesh/Armature/Skeleton/BoneAttachment/Attack
 
+onready var ShoMesh = $Mesh/Armature/Skeleton/Szoszyszel
+
 onready var HitEffect = preload("res://Assets/Effects/Hit.tscn")
 
 ### Player Inventory and Health
@@ -284,7 +286,17 @@ func heal(amount = 1):
 	emit_signal("player_update")
 	
 
+func _process(delta):
+	var distance = get_viewport().get_camera().global_transform.origin.distance_to(self.global_transform.origin)
+	var material = ShoMesh.mesh.surface_get_material(0).next_pass
+	#print("material: ", material)
+	
+	material.set_shader_param("CameraDistance", distance)
+	print("distance: ", distance )#,"\t paremeter: ", ShoMesh.mesh.surface_get_material(0).get("shader_param/CameraDistance") )
+	
+
 func _physics_process(delta):
+
 	# clear the debug text
 #	debug('FPS ' + String(Engine.get_frames_per_second()))
 	check_ground()
@@ -365,6 +377,7 @@ func water():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	var anim_player = $Mesh/AnimationPlayer
 	var animations = ['Run', 'Idle', 'Idle2', 'Fly']
 	
