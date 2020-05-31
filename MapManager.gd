@@ -27,9 +27,9 @@ class MapSlot:
 		current = true
 	
 	func freeMap():
-		scene.queue_free()
 		free = true
 		current = false
+		scene.queue_free()
 			
 onready var SlotA = MapSlot.new($MapA, true)
 onready var SlotB = MapSlot.new($MapB, false)
@@ -46,7 +46,12 @@ var MapList = [
 	"res://Maps/Map01.tscn",
 	"res://Maps/Map02.tscn",
 	"res://Maps/Map03.tscn",
-	"res://Maps/Map01.tscn"
+	"res://Maps/Map03.tscn",
+	"res://Maps/Map03.tscn",
+	"res://Maps/Map01.tscn",
+	"res://Maps/Map02.tscn",
+	"res://Maps/Map02.tscn",
+	"res://Maps/Map01.tscn",
 ]
 
 # we're gonna need these for sure
@@ -119,6 +124,9 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	nextMap.spawnMap(getCurrentMapSlot())
 	previousMap.current = false
 	
+#	while not nextMap.scene:
+#		yield(get_tree(), "idle_frame")
+	
 	var newEntry = nextMap.scene.find_node("Entry")
 	
 	if firstMap:
@@ -154,23 +162,28 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 
 func freePreviousMap(): # despawn the unneeded previous map from the game
 	
-	# release previous map 
-	getCurrentMapSlot(false).freeMap()
+	# get a handle for the previous map 
+	var previousMap = getCurrentMapSlot(false)
 	
 	# make current maps' entry gate door solid, and make the gate visible so we don't leave a hole in the level
 	
 	var currentEntry = getCurrentMapSlot().scene.find_node("Entry")
 	currentEntry.get_node("Gate/Door /static_collision/shape0").set_deferred("disabled", false)
 	currentEntry.show()
+	
+	# free the previous map
+	previousMap.freeMap()
 
-func _process(delta):
+#func _process(delta):
 	#print("SlotA: ", SlotA.map, " SlotB: ", SlotB.map)
-	pass
+#	pass
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# wait for the player node to be ready
 	#yield(cameraRig, "ready")
 	#pass # Replace with function body.
+	#yield(get_tree().create_timer(1),"timeout")
+	
 	loadNextMap()
 	spawnNextMap()
 
