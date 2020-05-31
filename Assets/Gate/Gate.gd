@@ -6,15 +6,15 @@ signal LoadMap # when player reaches 3 stars
 
 enum GateType {GATE_ENTRY, GATE_EXIT}
 export (GateType) var gate_type = 0
-export (String, FILE, "*.tscn") var target_scene
+#export (String, FILE, "*.tscn") var target_scene
 
 var gate_state = Classes.StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
 export var debug = false
 
-var MapLoader
+#var MapLoader
 
-var next_scene
+#var next_scene
 var next_scene_ready = false
 var next_scene_loading = false
 #var near = false
@@ -53,8 +53,6 @@ var collect_prev = false
 const WANDER_RANGE = 0.75
 const WANDER_MIN_TIME = 0.25
 const WANDER_MAX_TIME = 2
-
-const UP = Vector3(0, 1, 0)
 
 #onready var anim = $AnimationTree.get("parameters/playback")
 onready var anim = $AnimationManagement/AnimationPlayer
@@ -211,6 +209,11 @@ func monitor_player_stars():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	# make iris material unique to avoid collisions betwen various animations
+	var irisMesh = $Gate/Eyeball.mesh
+	irisMesh.surface_set_material(1, irisMesh.surface_get_material(1).duplicate )
+	
 	player.connect("player_update", self, "monitor_player_stars")
 	update_stars()
 
