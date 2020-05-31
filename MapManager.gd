@@ -141,23 +141,11 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	if not firstMap: # omit this if it's the first spawned map
 		var oldExit: Spatial = previousMap.scene.find_node("Exit")
 		
-		# apply rotation offset
-
+		# apply transform offset to align maps gate to gate
 		
-		#var rotationOffset = oldExit.rotation - newEntry.rotation
-		var newRotation = oldExit.rotation_degrees - newEntry.rotation_degrees
-				
-		nextMap.scene.set_deferred("rotation_degrees", newRotation)
-
-		yield(get_tree(), "idle_frame")
-
-		# apply location offset
-		
-		var locationOffset = oldExit.global_transform.origin - newEntry.global_transform.origin
-		print("Location offset: ", locationOffset)
-		nextMap.scene.call_deferred("global_translate", locationOffset)
-
-		
+		var transformOffset = oldExit.global_transform * newEntry.global_transform.inverse()
+		print("transformOffset is: ", transformOffset)
+		nextMap.scene.set_deferred("global_transform", nextMap.scene.global_transform * transformOffset)
 		
 		# TODO connect signals from the current exit gate to appropraite methods
 	else:
