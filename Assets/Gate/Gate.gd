@@ -10,7 +10,7 @@ export (GateType) var gate_type = 0
 
 var gate_state = Classes.StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
-export var debug = false
+var debug = false
 
 #var MapLoader
 

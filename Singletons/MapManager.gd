@@ -43,17 +43,21 @@ onready var SlotB = MapSlot.new(MapManager.world.get_node("MapB"), false)
 var firstMap = true
 
 var MapList = [
-	"res://Maps/Map01.tscn",
-	"res://Maps/Map03.tscn",
-	"res://Maps/Map02.tscn",
-	"res://Maps/Map01.tscn",
-	"res://Maps/Map02.tscn",
-	"res://Maps/Map03.tscn",
-	"res://Maps/Map01.tscn",
-	"res://Maps/Map02.tscn",
-	"res://Maps/Map03.tscn",
-	"res://Maps/Map01.tscn"
+	"res://Maps/Campaign/A01.tscn"
 ]
+
+#var MapList = [
+#	"res://Maps/Map01.tscn",
+#	"res://Maps/Map03.tscn",
+#	"res://Maps/Map02.tscn",
+#	"res://Maps/Map01.tscn",
+#	"res://Maps/Map02.tscn",
+#	"res://Maps/Map03.tscn",
+#	"res://Maps/Map01.tscn",
+#	"res://Maps/Map02.tscn",
+#	"res://Maps/Map03.tscn",
+#	"res://Maps/Map01.tscn"
+#]
 
 
 #var player = preload("res://Assets/Player/Player.tscn")
