@@ -178,6 +178,20 @@ tracks/11/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/12/type = "method"
+tracks/12/path = NodePath("../Shadow")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
@@ -213,6 +227,12 @@ anims/Pickup = SubResource( 3 )
 
 [node name="Meshes" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00258112, 0.00666428, 0.00320959 )
+
+[node name="Ring" parent="Meshes" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Star" parent="Meshes" index="1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
 [node name="Shockwave" type="MeshInstance" parent="Meshes"]
 mesh = SubResource( 5 )
