@@ -6,13 +6,13 @@ signal LoadMap # when player reaches 3 stars
 
 enum GateType {GATE_ENTRY, GATE_EXIT}
 export (GateType) var gate_type = 0
-export (String, FILE, "*.tscn") var target_scene
+# export (String, FILE, "*.tscn") var target_scene
 
 var gate_state = Classes.StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
 export var debug = false
 
-var MapLoader
+#var MapLoader
 
 var next_scene
 var next_scene_ready = false
