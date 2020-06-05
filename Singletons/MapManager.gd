@@ -1,5 +1,11 @@
 extends Node
 
+# binding to world nodes
+onready var root = get_tree().root
+onready var world = root.get_node("Game/World")
+onready var player = world.get_node("Player")
+onready var cameraRig = world.get_node("CameraRig")
+
 class MapSlot:
 	var map: String
 	var parentNode: Node
@@ -22,7 +28,7 @@ class MapSlot:
 	func spawnMap(previousMap: MapSlot):
 		print("Spawning a map: ", map)
 		#parentNode.call_deferred("add_child", scene)
-		parentNode.add_child(scene)
+		MapManager.world.add_child(scene)
 		
 		current = true
 	
@@ -31,8 +37,8 @@ class MapSlot:
 		free = true
 		current = false
 			
-onready var SlotA = MapSlot.new($MapA, true)
-onready var SlotB = MapSlot.new($MapB, false)
+onready var SlotA = MapSlot.new(MapManager.world.get_node("MapA"), true)
+onready var SlotB = MapSlot.new(MapManager.world.get_node("MapB"), false)
 
 var firstMap = true
 
@@ -49,9 +55,7 @@ var MapList = [
 	"res://Maps/Map01.tscn"
 ]
 
-# we're gonna need these for sure
-onready var player = $Player
-onready var cameraRig = $CameraRig
+
 #var player = preload("res://Assets/Player/Player.tscn")
 #var cameraRig = preload("res://Assets/Camera/CameraRig.tscn")
 

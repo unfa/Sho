@@ -146,7 +146,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000228882, 0.0112305, 0.0061
 bones/33/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Mesh/Armature/Skeleton" index="0"]
-transform = Transform( -0.959487, -0.205289, -0.19297, -0.141666, -0.240511, 0.960248, -0.243549, 0.948696, 0.201688, 0.0176476, 0.8555, 1.67067 )
+transform = Transform( -0.936849, -0.251733, -0.242774, 0.0668183, -0.810228, 0.582287, -0.343295, 0.529308, 0.775889, -1.27171e-07, 0.577129, 1.57433 )
 bone_name = "tail_tip"
 
 [node name="Attack" type="Area" parent="Mesh/Armature/Skeleton/BoneAttachment"]

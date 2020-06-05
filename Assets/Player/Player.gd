@@ -292,7 +292,7 @@ func _process(delta):
 	#print("material: ", material)
 	
 	material.set_shader_param("CameraDistance", distance)
-	print("distance: ", distance )#,"\t paremeter: ", ShoMesh.mesh.surface_get_material(0).get("shader_param/CameraDistance") )
+	#print("distance: ", distance )#,"\t paremeter: ", ShoMesh.mesh.surface_get_material(0).get("shader_param/CameraDistance") )
 	
 
 func _physics_process(delta):

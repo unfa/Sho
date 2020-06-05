@@ -211,6 +211,12 @@ func monitor_player_stars():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	# if this is an entry gate, let's stop it
+	if gate_type == GateType.GATE_ENTRY:
+		set_process(false)
+		return 0
+	
 	player.connect("player_update", self, "monitor_player_stars")
 	update_stars()
 
