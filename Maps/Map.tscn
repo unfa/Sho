@@ -1,4 +1,4 @@
-[gd_scene load_steps=190 format=2]
+[gd_scene load_steps=186 format=2]
 
 [ext_resource path="res://Water.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles/Arrow.material" type="Material" id=2]
@@ -10,12 +10,8 @@
 [ext_resource path="res://Assets/Gate/Gate.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Tiles/Ground.material" type="Material" id=9]
 [ext_resource path="res://Assets/Water/NoiseTexture 01.tres" type="Texture" id=10]
-[ext_resource path="res://Assets/Brie Enemy/Brie.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Star/Star.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Assets/Mint/Mint.tscn" type="PackedScene" id=13]
 [ext_resource path="res://TutorialNode.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Assets/Checkpoint/Checkpoint.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/Gems/Gem.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -1620,104 +1616,104 @@ __meta__ = {
 "_editor_source_scene": "res://Assets/Tiles/Tiles 07.dae"
 }
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=139]
+[sub_resource type="VisualShaderNodeScalarConstant" id=134]
 constant = 1.0
 
-[sub_resource type="VisualShaderNodeInput" id=140]
+[sub_resource type="VisualShaderNodeInput" id=135]
 input_name = "time"
 
-[sub_resource type="VisualShaderNodeVectorOp" id=141]
+[sub_resource type="VisualShaderNodeVectorOp" id=136]
 
-[sub_resource type="VisualShaderNodeScalarOp" id=142]
+[sub_resource type="VisualShaderNodeScalarOp" id=137]
 default_input_values = [ 0, 0.0, 1, 0.003 ]
 operator = 2
 
-[sub_resource type="VisualShaderNodeVectorOp" id=143]
+[sub_resource type="VisualShaderNodeVectorOp" id=138]
 
-[sub_resource type="VisualShaderNodeScalarOp" id=144]
+[sub_resource type="VisualShaderNodeScalarOp" id=139]
 default_input_values = [ 0, 0.0, 1, -0.005 ]
 operator = 2
 
-[sub_resource type="VisualShaderNodeVectorOp" id=145]
+[sub_resource type="VisualShaderNodeVectorOp" id=140]
 
-[sub_resource type="VisualShaderNodeVectorOp" id=146]
+[sub_resource type="VisualShaderNodeVectorOp" id=141]
 output_port_for_preview = 0
 default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 2, 2, 2 ) ]
 operator = 3
 
-[sub_resource type="VisualShaderNodeVectorOp" id=147]
+[sub_resource type="VisualShaderNodeVectorOp" id=142]
 default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 16, 16, 16 ) ]
 operator = 2
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=148]
+[sub_resource type="VisualShaderNodeScalarConstant" id=143]
 constant = 128.0
 
-[sub_resource type="VisualShaderNodeTexture" id=149]
+[sub_resource type="VisualShaderNodeTexture" id=144]
 output_port_for_preview = 0
 texture = ExtResource( 10 )
 
-[sub_resource type="VisualShaderNodeScalarFunc" id=150]
+[sub_resource type="VisualShaderNodeScalarFunc" id=145]
 function = 11
 
-[sub_resource type="VisualShaderNodeScalarFunc" id=151]
+[sub_resource type="VisualShaderNodeScalarFunc" id=146]
 function = 11
 
-[sub_resource type="VisualShaderNodeVectorOp" id=152]
+[sub_resource type="VisualShaderNodeVectorOp" id=147]
 
-[sub_resource type="VisualShaderNodeVectorOp" id=153]
+[sub_resource type="VisualShaderNodeVectorOp" id=148]
 
-[sub_resource type="VisualShaderNodeScalarOp" id=154]
+[sub_resource type="VisualShaderNodeScalarOp" id=149]
 default_input_values = [ 0, 0.0, 1, 0.002 ]
 operator = 2
 
-[sub_resource type="VisualShaderNodeVectorCompose" id=155]
+[sub_resource type="VisualShaderNodeVectorCompose" id=150]
 
-[sub_resource type="VisualShaderNodeTexture" id=156]
+[sub_resource type="VisualShaderNodeTexture" id=151]
 output_port_for_preview = 0
 texture = ExtResource( 7 )
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=157]
+[sub_resource type="VisualShaderNodeScalarConstant" id=152]
 constant = 4.0
 
-[sub_resource type="VisualShaderNodeVectorOp" id=158]
+[sub_resource type="VisualShaderNodeVectorOp" id=153]
 default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 16, 16, 16 ) ]
 operator = 2
 
-[sub_resource type="VisualShaderNodeTexture" id=159]
+[sub_resource type="VisualShaderNodeTexture" id=154]
 output_port_for_preview = 0
 texture = ExtResource( 10 )
 
-[sub_resource type="VisualShaderNodeInput" id=160]
+[sub_resource type="VisualShaderNodeInput" id=155]
 output_port_for_preview = 0
 input_name = "uv"
 
-[sub_resource type="VisualShaderNodeVectorOp" id=161]
+[sub_resource type="VisualShaderNodeVectorOp" id=156]
 default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 22, 22, 22 ) ]
 operator = 2
 
-[sub_resource type="VisualShaderNodeScalarOp" id=162]
+[sub_resource type="VisualShaderNodeScalarOp" id=157]
 default_input_values = [ 0, 0.0, 1, -0.0023 ]
 operator = 2
 
-[sub_resource type="VisualShaderNodeVectorCompose" id=163]
+[sub_resource type="VisualShaderNodeVectorCompose" id=158]
 
-[sub_resource type="VisualShaderNodeVectorOp" id=164]
+[sub_resource type="VisualShaderNodeVectorOp" id=159]
 
-[sub_resource type="VisualShaderNodeVectorOp" id=165]
+[sub_resource type="VisualShaderNodeVectorOp" id=160]
 
-[sub_resource type="VisualShaderNodeTexture" id=166]
+[sub_resource type="VisualShaderNodeTexture" id=161]
 output_port_for_preview = 0
 texture = ExtResource( 7 )
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=167]
+[sub_resource type="VisualShaderNodeScalarConstant" id=162]
 
-[sub_resource type="VisualShaderNodeColorConstant" id=168]
+[sub_resource type="VisualShaderNodeColorConstant" id=163]
 constant = Color( 0.0672035, 0.0933768, 0.217773, 1 )
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=169]
+[sub_resource type="VisualShaderNodeScalarConstant" id=164]
 constant = 0.75
 
-[sub_resource type="VisualShader" id=170]
+[sub_resource type="VisualShader" id=165]
 code = "shader_type spatial;
 uniform sampler2D tex_frg_2;
 uniform sampler2D tex_frg_6;
@@ -1863,95 +1859,95 @@ void light() {
 "
 graph_offset = Vector2( -1599.93, -300 )
 nodes/fragment/0/position = Vector2( 1420, 280 )
-nodes/fragment/2/node = SubResource( 149 )
+nodes/fragment/2/node = SubResource( 144 )
 nodes/fragment/2/position = Vector2( -180, 380 )
-nodes/fragment/3/node = SubResource( 160 )
+nodes/fragment/3/node = SubResource( 155 )
 nodes/fragment/3/position = Vector2( -1260, 440 )
-nodes/fragment/6/node = SubResource( 166 )
+nodes/fragment/6/node = SubResource( 161 )
 nodes/fragment/6/position = Vector2( -20, 720 )
-nodes/fragment/7/node = SubResource( 167 )
+nodes/fragment/7/node = SubResource( 162 )
 nodes/fragment/7/position = Vector2( 900, 320 )
-nodes/fragment/8/node = SubResource( 168 )
+nodes/fragment/8/node = SubResource( 163 )
 nodes/fragment/8/position = Vector2( 960, 140 )
-nodes/fragment/9/node = SubResource( 169 )
+nodes/fragment/9/node = SubResource( 164 )
 nodes/fragment/9/position = Vector2( 900, 260 )
-nodes/fragment/10/node = SubResource( 139 )
+nodes/fragment/10/node = SubResource( 134 )
 nodes/fragment/10/position = Vector2( 900, 380 )
-nodes/fragment/11/node = SubResource( 140 )
+nodes/fragment/11/node = SubResource( 135 )
 nodes/fragment/11/position = Vector2( -1060, 780 )
-nodes/fragment/12/node = SubResource( 141 )
+nodes/fragment/12/node = SubResource( 136 )
 nodes/fragment/12/position = Vector2( -480, 520 )
-nodes/fragment/13/node = SubResource( 142 )
+nodes/fragment/13/node = SubResource( 137 )
 nodes/fragment/13/position = Vector2( -760, 640 )
-nodes/fragment/14/node = SubResource( 143 )
+nodes/fragment/14/node = SubResource( 138 )
 nodes/fragment/14/position = Vector2( -480, 740 )
-nodes/fragment/15/node = SubResource( 144 )
+nodes/fragment/15/node = SubResource( 139 )
 nodes/fragment/15/position = Vector2( -760, 800 )
-nodes/fragment/16/node = SubResource( 145 )
+nodes/fragment/16/node = SubResource( 140 )
 nodes/fragment/16/position = Vector2( 240, 660 )
-nodes/fragment/17/node = SubResource( 146 )
+nodes/fragment/17/node = SubResource( 141 )
 nodes/fragment/17/position = Vector2( 840, 640 )
-nodes/fragment/18/node = SubResource( 147 )
+nodes/fragment/18/node = SubResource( 142 )
 nodes/fragment/18/position = Vector2( -760, 380 )
-nodes/fragment/19/node = SubResource( 148 )
+nodes/fragment/19/node = SubResource( 143 )
 nodes/fragment/19/position = Vector2( -1540, 80 )
-nodes/fragment/20/node = SubResource( 150 )
+nodes/fragment/20/node = SubResource( 145 )
 nodes/fragment/20/position = Vector2( -1040, 80 )
-nodes/fragment/21/node = SubResource( 151 )
+nodes/fragment/21/node = SubResource( 146 )
 nodes/fragment/21/position = Vector2( -1280, 80 )
-nodes/fragment/22/node = SubResource( 152 )
+nodes/fragment/22/node = SubResource( 147 )
 nodes/fragment/22/position = Vector2( 340, 920 )
-nodes/fragment/23/node = SubResource( 153 )
+nodes/fragment/23/node = SubResource( 148 )
 nodes/fragment/23/position = Vector2( -480, 880 )
-nodes/fragment/24/node = SubResource( 154 )
+nodes/fragment/24/node = SubResource( 149 )
 nodes/fragment/24/position = Vector2( -859, 999 )
-nodes/fragment/25/node = SubResource( 155 )
+nodes/fragment/25/node = SubResource( 150 )
 nodes/fragment/25/position = Vector2( -680, 1020 )
-nodes/fragment/26/node = SubResource( 156 )
+nodes/fragment/26/node = SubResource( 151 )
 nodes/fragment/26/position = Vector2( -40, 1080 )
-nodes/fragment/27/node = SubResource( 157 )
+nodes/fragment/27/node = SubResource( 152 )
 nodes/fragment/27/position = Vector2( 600, 660 )
-nodes/fragment/28/node = SubResource( 158 )
+nodes/fragment/28/node = SubResource( 153 )
 nodes/fragment/28/position = Vector2( -279, 1019 )
-nodes/fragment/29/node = SubResource( 159 )
+nodes/fragment/29/node = SubResource( 154 )
 nodes/fragment/29/position = Vector2( -60, 1500 )
-nodes/fragment/30/node = SubResource( 161 )
+nodes/fragment/30/node = SubResource( 156 )
 nodes/fragment/30/position = Vector2( -280, 1280 )
-nodes/fragment/31/node = SubResource( 162 )
+nodes/fragment/31/node = SubResource( 157 )
 nodes/fragment/31/position = Vector2( -860, 1260 )
-nodes/fragment/32/node = SubResource( 163 )
+nodes/fragment/32/node = SubResource( 158 )
 nodes/fragment/32/position = Vector2( -680, 1280 )
-nodes/fragment/33/node = SubResource( 164 )
+nodes/fragment/33/node = SubResource( 159 )
 nodes/fragment/33/position = Vector2( -480, 1140 )
-nodes/fragment/34/node = SubResource( 165 )
+nodes/fragment/34/node = SubResource( 160 )
 nodes/fragment/34/position = Vector2( 560, 1140 )
 nodes/fragment/connections = PoolIntArray( 7, 0, 0, 3, 8, 0, 0, 0, 8, 1, 0, 1, 9, 0, 0, 2, 10, 0, 0, 4, 12, 0, 2, 0, 11, 0, 13, 0, 13, 0, 12, 1, 11, 0, 15, 0, 15, 0, 14, 1, 14, 0, 6, 0, 2, 0, 16, 0, 6, 0, 16, 1, 17, 0, 0, 8, 3, 0, 18, 0, 18, 0, 12, 0, 18, 0, 14, 0, 20, 0, 18, 1, 19, 0, 21, 0, 21, 0, 20, 0, 11, 0, 24, 0, 24, 0, 25, 0, 25, 0, 23, 1, 18, 0, 23, 0, 16, 0, 22, 0, 26, 0, 22, 1, 27, 0, 17, 1, 23, 0, 28, 0, 28, 0, 26, 0, 32, 0, 33, 1, 33, 0, 30, 0, 31, 0, 32, 1, 30, 0, 29, 0, 22, 0, 34, 0, 29, 0, 34, 1, 34, 0, 17, 0 )
 
-[sub_resource type="ShaderMaterial" id=171]
+[sub_resource type="ShaderMaterial" id=166]
 render_priority = -2
-shader = SubResource( 170 )
+shader = SubResource( 165 )
 
-[sub_resource type="PlaneMesh" id=172]
-material = SubResource( 171 )
+[sub_resource type="PlaneMesh" id=167]
+material = SubResource( 166 )
 size = Vector2( 8192, 8192 )
 
-[sub_resource type="CylinderShape" id=173]
+[sub_resource type="CylinderShape" id=168]
 radius = 1024.0
 height = 16.0
 
-[sub_resource type="BoxShape" id=134]
+[sub_resource type="BoxShape" id=169]
 extents = Vector3( 58, 8, 1 )
 
-[sub_resource type="BoxShape" id=135]
+[sub_resource type="BoxShape" id=170]
 extents = Vector3( 38, 8, 1 )
 
-[sub_resource type="BoxShape" id=136]
+[sub_resource type="BoxShape" id=171]
 extents = Vector3( 16, 8, 1 )
 
-[sub_resource type="BoxShape" id=137]
+[sub_resource type="BoxShape" id=172]
 extents = Vector3( 6, 8, 1 )
 
-[sub_resource type="BoxShape" id=138]
+[sub_resource type="BoxShape" id=173]
 extents = Vector3( 3, 8, 1 )
 
 [node name="Map" type="Spatial"]
@@ -1962,7 +1958,7 @@ __meta__ = {
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = SubResource( 133 )
 data = {
-"cells": PoolIntArray( 0, 0, 1441792, 1, 0, 1441792, 2, 0, 1441792, 3, 0, 1441792, 4, 0, 1441792, 65531, 0, 1441792, 65532, 0, 1441792, 65533, 0, 1441792, 65534, 0, 1441792, 65535, 0, 1441792, 0, 1, 1441792, 1, 1, 1441792, 2, 1, 1441792, 3, 1, 1441792, 4, 1, 1441792, 65531, 1, 1441792, 65532, 1, 1441792, 65533, 1, 1441792, 65534, 1, 1441792, 65535, 1, 1441792, 0, 2, 1441792, 1, 2, 1441792, 2, 2, 1441792, 3, 2, 1441792, 4, 2, 1441792, 65531, 2, 1441792, 65532, 2, 1441792, 65533, 2, 1441792, 65534, 2, 1441792, 65535, 2, 1441792, 0, 3, 1441792, 1, 3, 1441792, 2, 3, 1441792, 3, 3, 1441792, 4, 3, 1441792, 65531, 3, 1441792, 65532, 3, 1441792, 65533, 3, 1612054528, 65534, 3, 1441792, 65535, 3, 1441792, 0, 4, 1441792, 1, 4, 1441792, 2, 4, 1441792, 3, 4, 1441792, 4, 4, 1441792, 65531, 4, 1441792, 65532, 4, 1441792, 65533, 4, 1441792, 65534, 4, 1441792, 65535, 4, 1441792, 0, 65531, 1441792, 1, 65531, 1441792, 2, 65531, 1441792, 3, 65531, 1441792, 4, 65531, 1441792, 65531, 65531, 1441792, 65532, 65531, 1441792, 65533, 65531, 1441792, 65534, 65531, 1441792, 65535, 65531, 1441792, 0, 65532, 1441792, 1, 65532, 1441792, 2, 65532, 1441792, 3, 65532, 1441792, 4, 65532, 1441792, 65531, 65532, 1441792, 65532, 65532, 1441792, 65533, 65532, 1441792, 65534, 65532, 1441792, 65535, 65532, 1441792, 0, 65533, 1441792, 1, 65533, 1441792, 2, 65533, 1441792, 3, 65533, 1441792, 4, 65533, 1441792, 65531, 65533, 1441792, 65532, 65533, 1441792, 65533, 65533, 1612054528, 65534, 65533, 1441792, 65535, 65533, 1441792, 0, 65534, 1441792, 1, 65534, 1441792, 2, 65534, 1441792, 3, 65534, 1441792, 4, 65534, 1441792, 65531, 65534, 538312704, 65532, 65534, 1441792, 65533, 65534, 1441792, 65534, 65534, 1441792, 65535, 65534, 1441792, 0, 65535, 1441792, 1, 65535, 1441792, 2, 65535, 1441792, 3, 65535, 1441792, 4, 65535, 1441792, 65531, 65535, 1441792, 65532, 65535, 1441792, 65533, 65535, 1441792, 65534, 65535, 1441792, 65535, 65535, 1441792 )
+"cells": PoolIntArray( 0, 0, 1441792, 1, 0, 1441792, 2, 0, 1441792, 3, 0, 1441792, 4, 0, 1441792, 65531, 0, 1441792, 65532, 0, 1441792, 65533, 0, 1441792, 65534, 0, 1441792, 65535, 0, 1441792, 0, 1, 1441792, 1, 1, 1441792, 2, 1, 1441792, 3, 1, 1441792, 4, 1, 1441792, 65531, 1, 1441792, 65532, 1, 1441792, 65533, 1, 1441792, 65534, 1, 1441792, 65535, 1, 1441792, 0, 2, 1441792, 1, 2, 1441792, 2, 2, 1441792, 3, 2, 1441792, 4, 2, 1441792, 65531, 2, 1441792, 65532, 2, 1441792, 65533, 2, 1441792, 65534, 2, 1441792, 65535, 2, 1441792, 0, 3, 1441792, 1, 3, 1441792, 2, 3, 1441792, 3, 3, 1441792, 4, 3, 1441792, 65531, 3, 1441792, 65532, 3, 1441792, 65533, 3, 1441792, 65534, 3, 1441792, 65535, 3, 1441792, 0, 4, 1441792, 1, 4, 1441792, 2, 4, 1441792, 3, 4, 1441792, 4, 4, 1441792, 65531, 4, 1441792, 65532, 4, 1441792, 65533, 4, 1441792, 65534, 4, 1441792, 65535, 4, 1441792, 0, 65531, 1441792, 1, 65531, 1441792, 2, 65531, 1441792, 3, 65531, 1441792, 4, 65531, 1441792, 65531, 65531, 1441792, 65532, 65531, 1441792, 65533, 65531, 1441792, 65534, 65531, 1441792, 65535, 65531, 1441792, 0, 65532, 1441792, 1, 65532, 1441792, 2, 65532, 1441792, 3, 65532, 1441792, 4, 65532, 1441792, 65531, 65532, 1441792, 65532, 65532, 1441792, 65533, 65532, 1441792, 65534, 65532, 1441792, 65535, 65532, 1441792, 0, 65533, 1441792, 1, 65533, 1441792, 2, 65533, 1441792, 3, 65533, 1441792, 4, 65533, 1441792, 65531, 65533, 1441792, 65532, 65533, 1441792, 65533, 65533, 1441792, 65534, 65533, 1441792, 65535, 65533, 1441792, 0, 65534, 1441792, 1, 65534, 1441792, 2, 65534, 1441792, 3, 65534, 1441792, 4, 65534, 1441792, 65531, 65534, 1441792, 65532, 65534, 1441792, 65533, 65534, 1441792, 65534, 65534, 1441792, 65535, 65534, 1441792, 0, 65535, 1441792, 1, 65535, 1441792, 2, 65535, 1441792, 3, 65535, 1441792, 4, 65535, 1441792, 65531, 65535, 1441792, 65532, 65535, 1441792, 65533, 65535, 1441792, 65534, 65535, 1441792, 65535, 65535, 1441792 )
 }
 __meta__ = {
 "_edit_lock_": true,
@@ -1984,7 +1980,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 5 )
 "water",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.097, 0 )
-mesh = SubResource( 172 )
+mesh = SubResource( 167 )
 material/0 = null
 script = ExtResource( 1 )
 __meta__ = {
@@ -1994,7 +1990,7 @@ __meta__ = {
 [node name="Area" type="Area" parent="Water"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Water/Area"]
-shape = SubResource( 173 )
+shape = SubResource( 168 )
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="Water"]
 extents = Vector3( 64, 10, 64 )
@@ -2009,11 +2005,9 @@ __meta__ = {
 [node name="Exit" parent="Gates" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9 )
 gate_type = 1
-target_scene = "res://Maps/02.tscn"
 
 [node name="Entry" parent="Gates" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93257e-06, 2, 9 )
-target_scene = "ENTRY"
 debug = false
 
 [node name="ReflectionProbes" type="Spatial" parent="."]
@@ -2041,31 +2035,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, 0.31397 )
 [node name="Star3" parent="Pickups" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04253, -3, -2.68603 )
 
-[node name="Gem" parent="Pickups" instance=ExtResource( 16 )]
-transform = Transform( 0.99328, 0, 0, 0, 1, 0, 0, 0, 0.99328, -13.8255, -1.8904, 7 )
-
-[node name="Gem2" parent="Pickups" instance=ExtResource( 16 )]
-transform = Transform( 0.993272, 0, -0.00402194, 0, 1, 0, 0.00402194, 0, 0.993272, -13.8256, -1.8904, 4.82274 )
-type = 1
-
-[node name="Gem3" parent="Pickups" instance=ExtResource( 16 )]
-transform = Transform( 0.99328, 0, 0, 0, 1, 0, 0, 0, 0.99328, -13.8255, -1.8904, 2.79845 )
-type = 2
-
-[node name="Gem4" parent="Pickups" instance=ExtResource( 16 )]
-transform = Transform( 0.99328, 0, 0, 0, 1, 0, 0, 0, 0.99328, -13.8255, -1.8904, 0.798448 )
-type = 3
-
-[node name="Mint" parent="Pickups" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03707, -4.0255, 1.99359 )
-
 [node name="Enemies" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Brie" parent="Enemies" instance=ExtResource( 11 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6.72497, 2.5211, -3.82282 )
 
 [node name="Colliders" type="Spatial" parent="."]
 __meta__ = {
@@ -2077,56 +2050,53 @@ visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 41, 3 )
-shape = SubResource( 134 )
+shape = SubResource( 169 )
 disabled = true
 
 [node name="CollisionShape9" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 41, 21 )
-shape = SubResource( 135 )
+shape = SubResource( 170 )
 disabled = true
 
 [node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 41, 18 )
-shape = SubResource( 136 )
+shape = SubResource( 171 )
 disabled = true
 
 [node name="CollisionShape5" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 41, 26 )
-shape = SubResource( 137 )
+shape = SubResource( 172 )
 disabled = true
 
 [node name="CollisionShape6" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, 41, 33 )
-shape = SubResource( 138 )
+shape = SubResource( 173 )
 disabled = true
 
 [node name="CollisionShape7" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11, 41, 33 )
-shape = SubResource( 138 )
+shape = SubResource( 173 )
 disabled = true
 
 [node name="CollisionShape3" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13, 41, 44 )
-shape = SubResource( 136 )
+shape = SubResource( 171 )
 disabled = true
 
 [node name="CollisionShape8" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 41, 59 )
-shape = SubResource( 136 )
+shape = SubResource( 171 )
 disabled = true
 
 [node name="CollisionShape4" type="CollisionShape" parent="Colliders/StaticBody"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.9899, 40.8984, 43.9273 )
-shape = SubResource( 136 )
+shape = SubResource( 171 )
 disabled = true
 
 [node name="Checkpoints" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, -4 )
 
 [node name="Tutorial" type="Spatial" parent="."]
 __meta__ = {

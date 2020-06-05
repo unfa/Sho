@@ -136,12 +136,6 @@ func update():
 	update_score(player.score)
 	#update_stars(player.stars_current)
 	
-func _on_ScoreTween_tween_step(object, key, elapsed, value):
-	#print("Object: ", object,"\tKey: " , key)
-	
-	#if key == ":current_score":
-	pass
-
 func _on_Display_resized():
 	#print("HUD resized")
 	

@@ -29,6 +29,7 @@ Classes="*res://Singletons/Classes.gd"
 HUD="*res://Singletons/HUD.tscn"
 Balance="*res://Singletons/Balance.gd"
 MapManager="*res://Singletons/MapManager.gd"
+MusicManager="*res://Singletons/MusicManager.tscn"
 
 [display]
 

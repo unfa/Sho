@@ -1,14 +1,10 @@
 NOW:
 
-
-
-
-
+- Make actual levels
 
 LATER:
 
 - Make the music play more stems after the player grabs another star
 - Complete game mechanics
-- Make actual levels
 - Make sound effects
 - Test on target machine

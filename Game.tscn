@@ -1,45 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Assets/Camera/CameraRig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI.gd" type="Script" id=11]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_BASS_Ogg_Vorbis.ogg" type="AudioStream" id=14]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_DRUMS_Ogg_Vorbis.ogg" type="AudioStream" id=15]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_SUPPORT_Ogg_Vorbis.ogg" type="AudioStream" id=16]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_LEAD_Ogg_Vorbis.ogg" type="AudioStream" id=17]
-[ext_resource path="res://Music.gd" type="Script" id=22]
 
 [node name="Game" type="Node"]
-
-[node name="Control" type="Node" parent="." groups=[
-"ui",
-]]
-pause_mode = 2
-script = ExtResource( 11 )
-
-[node name="Music" type="Node" parent="Control"]
-script = ExtResource( 22 )
-
-[node name="A" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 15 )
-volume_db = -12.0
-bus = "Music B"
-
-[node name="B" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 14 )
-volume_db = -14.0
-bus = "Music A"
-
-[node name="C" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 17 )
-volume_db = -14.0
-bus = "Music C"
-
-[node name="D" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 16 )
-volume_db = -12.0
-bus = "Music D"
 
 [node name="World" type="Node" parent="."]
 
