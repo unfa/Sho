@@ -36,14 +36,23 @@ class MapSlot:
 		scene.queue_free()
 		free = true
 		current = false
-			
+		
+		MapManager.incStage()
+		
 onready var SlotA = MapSlot.new(MapManager.world.get_node("MapA"), true)
 onready var SlotB = MapSlot.new(MapManager.world.get_node("MapB"), false)
 
 var firstMap = true
 
+var stage = 0
+
+func incStage():
+	stage += 1
+	HUD.get_node("Display/Rows/Columns/StageScoreMargin/StageScoreRows/StageLabel").text = "STAGE: " + String(stage)
+
 var MapList = [
-	"res://Maps/Campaign/A01.tscn"
+	"res://Maps/Campaign/A01.tscn",
+	"res://Maps/Map01.tscn"
 ]
 
 #var MapList = [
@@ -181,6 +190,7 @@ func _ready():
 	#pass # Replace with function body.
 	loadNextMap()
 	spawnNextMap()
+	incStage()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
