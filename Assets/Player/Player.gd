@@ -46,7 +46,7 @@ const AIR_CONTROL_WALK = 0.1 # multiplier for movement control when in air
 const AIR_CONTROL_TURN = 0.15 # multiplier for movement control when in air
 
 const JUMP_ACCEL = 12 # base jump velocity (will be applied verbatim, no delta)
-const JUMP_AFTERBURN = 400 # jump afterburn velocity (this will be mutipleid by delta)
+const JUMP_AFTERBURN = 390 # jump afterburn velocity (this will be mutipleid by delta)
 const JUMP_DURATION = 0.25 # maximum time that the afterburn is active
 
 const WALK_SPEED = 1000
