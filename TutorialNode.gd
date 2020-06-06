@@ -2,8 +2,9 @@ extends Area
 
 #onready var UI = get_tree().get_nodes_in_group("ui")[0]
 var active = true
-export var tutorial_text = ""
-export var tutorial_delay = 5
+export (String, MULTILINE) var tutorial_text = ""
+export var tutorial_delay: float = 1
+export var single_use = false
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -26,10 +27,13 @@ func _on_TutorialNode_body_entered(body):
 
 func _on_TutorialNode_body_exited(body):
 	if body.is_in_group("players") and active:
-		#active = false
 		$Timer.stop()
 		#UI.hide_tutorial()
 		HUD.hide_message()
+		
+		# if the node should only be activated once - disable it now
+		if single_use:
+			active = false
 
 func _on_Timer_timeout():
 	#UI.show_tutorial(tutorial_text)
