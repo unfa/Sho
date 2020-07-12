@@ -28,6 +28,7 @@ output_port_for_preview = 1
 source = 4
 
 [sub_resource type="VisualShaderNodeVectorOp" id=9]
+output_port_for_preview = 0
 operator = 2
 
 [sub_resource type="VisualShaderNodeScalarConstant" id=10]
@@ -172,7 +173,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( 941, -160.25 )
+graph_offset = Vector2( -200, 291 )
 modes/blend = 1
 modes/cull = 2
 modes/depth_draw = 2
@@ -180,7 +181,7 @@ modes/specular = 4
 flags/depth_test_disable = true
 flags/shadows_disabled = true
 flags/unshaded = true
-nodes/fragment/0/position = Vector2( 1640, 120 )
+nodes/fragment/0/position = Vector2( 1840, 80 )
 nodes/fragment/2/node = SubResource( 8 )
 nodes/fragment/2/position = Vector2( -840, 240 )
 nodes/fragment/3/node = SubResource( 15 )
@@ -208,11 +209,11 @@ nodes/fragment/18/position = Vector2( 220, 140 )
 nodes/fragment/19/node = SubResource( 7 )
 nodes/fragment/19/position = Vector2( 860, -140 )
 nodes/fragment/20/node = SubResource( 9 )
-nodes/fragment/20/position = Vector2( 1160, 0 )
+nodes/fragment/20/position = Vector2( 1120, -100 )
 nodes/fragment/21/node = SubResource( 10 )
 nodes/fragment/21/position = Vector2( 800, -20 )
 nodes/fragment/22/node = SubResource( 11 )
-nodes/fragment/22/position = Vector2( 340, 420 )
+nodes/fragment/22/position = Vector2( 200, 420 )
 nodes/fragment/24/node = SubResource( 12 )
 nodes/fragment/24/position = Vector2( -460, 240 )
 nodes/fragment/28/node = SubResource( 13 )
@@ -225,4 +226,4 @@ nodes/fragment/31/node = SubResource( 17 )
 nodes/fragment/31/position = Vector2( 940, 400 )
 nodes/fragment/32/node = SubResource( 18 )
 nodes/fragment/32/position = Vector2( 1362, 144.75 )
-nodes/fragment/connections = PoolIntArray( 3, 0, 2, 0, 6, 0, 12, 0, 12, 0, 13, 0, 13, 0, 10, 0, 7, 0, 16, 0, 17, 0, 10, 1, 16, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 20, 1, 24, 0, 7, 0, 2, 0, 24, 0, 22, 0, 28, 0, 28, 0, 29, 0, 29, 0, 31, 0, 31, 0, 30, 0, 10, 0, 32, 0, 32, 0, 0, 1, 30, 0, 32, 1, 20, 0, 0, 0 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 2, 0, 6, 0, 12, 0, 12, 0, 13, 0, 13, 0, 10, 0, 7, 0, 16, 0, 17, 0, 10, 1, 16, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 20, 1, 24, 0, 7, 0, 2, 0, 24, 0, 22, 0, 28, 0, 28, 0, 29, 0, 29, 0, 31, 0, 31, 0, 30, 0, 10, 0, 32, 0, 30, 0, 32, 1, 32, 0, 0, 1, 20, 0, 0, 0 )

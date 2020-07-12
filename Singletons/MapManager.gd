@@ -38,7 +38,9 @@ class MapSlot:
 		current = false
 		
 		MapManager.incStage()
-		
+
+
+
 onready var SlotA = MapSlot.new(MapManager.world.get_node("MapA"), true)
 onready var SlotB = MapSlot.new(MapManager.world.get_node("MapB"), false)
 
@@ -52,7 +54,13 @@ func incStage():
 
 var MapList = [
 	"res://Maps/Campaign/A01.tscn",
-	"res://Maps/Map01.tscn"
+	"res://Maps/Campaign/A02.tscn",
+	"res://Maps/Campaign/A03.tscn",
+	"res://Maps/Campaign/A04.tscn",
+	"res://Maps/Campaign/A05.tscn",
+	"res://Maps/Campaign/A06.tscn",
+	"res://Maps/Campaign/A07.tscn",
+	"res://Maps/Campaign/A08.tscn"
 ]
 
 #var MapList = [
