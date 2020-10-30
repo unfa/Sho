@@ -14,7 +14,6 @@
 [ext_resource path="res://Tools/Debug.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
-resource_name = "LowHealth"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("HealthBar:tint_over")
@@ -216,7 +215,53 @@ text = "All in game-messages go herea  Blah blah it' too much text! no wait!!!! 
 align = 1
 autowrap = true
 
+[node name="ComboContainer" type="VBoxContainer" parent="Display/Rows"]
+visible = false
+margin_top = 282.0
+margin_right = 1216.0
+margin_bottom = 402.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="ComboLabelContainer" type="MarginContainer" parent="Display/Rows/ComboContainer"]
+margin_right = 1216.0
+margin_bottom = 84.0
+
+[node name="ComboLabel" type="Label" parent="Display/Rows/ComboContainer/ComboLabelContainer"]
+margin_right = 1216.0
+margin_bottom = 84.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 5 )
+custom_constants/line_spacing = -30
+text = "Combo 1x"
+align = 1
+autowrap = true
+
+[node name="ComboBarContainer" type="MarginContainer" parent="Display/Rows/ComboContainer"]
+margin_top = 88.0
+margin_right = 1216.0
+margin_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ComboBar" type="TextureProgress" parent="Display/Rows/ComboContainer/ComboBarContainer"]
+margin_right = 1216.0
+margin_bottom = 32.0
+step = 0.1
+value = 75.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TouchControls" type="MarginContainer" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

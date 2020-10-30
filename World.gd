@@ -13,7 +13,7 @@ const BACKGROUND_ENERGY = 1
 const FADE_TIME = 3
 
 func indoors():
-	tween.interpolate_property(environment.environment, "background_energy", environment.environment.background_energy, 0, FADE_TIME,Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	tween.interpolate_property(environment.environment, "background_energy", environment.environment.background_energy, 0.02, FADE_TIME,Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.interpolate_property(sun, "light_energy", sun.light_energy, 0, FADE_TIME, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.set_active(true)
 
