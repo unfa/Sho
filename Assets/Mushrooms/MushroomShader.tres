@@ -147,7 +147,7 @@ input_name = "uv"
 [resource]
 resource_name = "MushroomShader"
 code = "shader_type spatial;
-render_mode cull_disabled;
+render_mode cull_disabled, specular_schlick_ggx;
 
 uniform vec4 ColorUniform : hint_color;
 uniform sampler2D TextureUniformTriplanar;

@@ -97,6 +97,7 @@ height = 0.212272
 
 [node name="Brie" type="KinematicBody" groups=[
 "enemies",
+"managed",
 ]]
 script = ExtResource( 4 )
 

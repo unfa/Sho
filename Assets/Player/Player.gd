@@ -398,3 +398,23 @@ func _on_Attack_body_entered(body):
 		effect.global_transform.origin = AttackCollider.global_transform.origin
 		get_tree().root.add_child(effect)
 		
+
+# this function activates and deactivates object that require that based on player distance
+func manage_objects():
+	var CULL_DIST = 60
+	
+	for i in get_tree().get_nodes_in_group("managed"):
+		#print(" Player managing node ", i.name)
+		var distance = self.global_transform.origin.distance_to(i.global_transform.origin)
+		#print(" Distance is ", distance)
+		
+		if distance > CULL_DIST:
+			if i.has_method("deactivate"):
+				i.deactivate()
+		else:
+			if i.has_method("activate"):
+				i.activate()
+		
+
+func _on_ManagementTimer_timeout():
+	manage_objects() # Replace with function body.

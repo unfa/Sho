@@ -89,7 +89,9 @@ tracks/1/keys = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.32669, 0 )
 script = ExtResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance" type="MeshInstance" parent="." groups=[
+"managed",
+]]
 material_override = ExtResource( 2 )
 cast_shadow = 0
 mesh = SubResource( 1 )

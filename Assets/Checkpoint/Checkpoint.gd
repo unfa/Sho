@@ -46,3 +46,9 @@ func _on_Checkpoint_body_entered(body):
 				i.recent = false
 		
 		#print (self.name, " is now an active checkpoint")
+
+func activate():
+	$Particles.emitting = true
+	
+func deactivate():
+	$Particles.emitting = false

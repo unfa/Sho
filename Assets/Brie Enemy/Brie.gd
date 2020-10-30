@@ -340,3 +340,11 @@ func _on_Collider_body_entered(body):
 		if not attack_connected: #this is the first time we're dealing damage for this attack
 			body.damage(10)
 			attack_connected = true
+
+func activate():
+	set_physics_process(true)
+	show()
+
+func deactivate():
+	set_physics_process(false)
+	hide()

@@ -16,3 +16,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func activate():
+	#print(name, " torch activate")
+	$Fire.emitting = true
+	$Smoke.emitting = true
+	$Torch/TorchLight/TorchLight_Orientation/MainLight.shadow_enabled = true
+
+
+func deactivate():
+	#print(name, " torch deactivate")
+	$Fire.emitting = false
+	$Smoke.emitting = false
+	$Torch/TorchLight/TorchLight_Orientation/MainLight.shadow_enabled = false

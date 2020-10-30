@@ -61,7 +61,7 @@ uniform_name = "Rim"
 
 [resource]
 code = "shader_type spatial;
-render_mode world_vertex_coords;
+render_mode specular_schlick_ggx, world_vertex_coords;
 
 uniform vec4 BaseColor : hint_color;
 uniform sampler2D TextureUniformTriplanar : hint_black;
