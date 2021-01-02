@@ -71,6 +71,8 @@ var jump_finished = true
 var jump_base_height = 0
 var jump_max_height = 0
 
+var jump_pad_push = 0
+
 var ground_contact = false
 var ground_normal = Vector3.ZERO
 var ground_angle = 0.0
@@ -135,10 +137,10 @@ func jump(delta):
 			jump_max_height = 0
 			jump_base_height = global_transform[3].y
 			jump_accel = JUMP_ACCEL
-			velocity.y = jump_accel
+			velocity.y = jump_accel 
 		elif jump_time > 0: # apply afereburn
 			jump_accel = lerp(0, JUMP_AFTERBURN, JUMP_DURATION - jump_time)
-			velocity.y += jump_accel * delta
+			velocity.y += (jump_accel + jump_pad_push) * delta
 			
 		# accumulate jump time
 		jump_time = min (jump_time + delta, JUMP_DURATION)
@@ -255,7 +257,7 @@ func gravity(delta):
 			velocity.y = GRAVITY * delta # apply minimal gravity
 			gravity_mode = 'slide'
 	else: # if we're during a jump or otherwis mid-air:
-		velocity.y += GRAVITY * delta # acculumate gravity to accelerate naturally
+		velocity.y += (GRAVITY + jump_pad_push / 2) * delta # acculumate gravity to accelerate naturally
 		gravity_mode = 'fall'
 		
 		anim.travel("Fly")

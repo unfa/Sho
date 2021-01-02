@@ -250,10 +250,10 @@ bone_name = "root"
 shape = SubResource( 7 )
 
 [node name="Physical Bone back_middle" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="3"]
-transform = Transform( 6.46038e-07, -6.12734e-08, -1, 0.995132, -0.0985548, 7.03507e-07, -0.0985547, -0.995132, -1.19789e-07, 0.168433, 1.14097, 0.313641 )
+transform = Transform( 6.46038e-07, -6.12735e-08, -1, 0.995132, -0.0985548, 7.03507e-07, -0.0985547, -0.995132, -1.19789e-07, 0.168433, 1.14097, 0.313641 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.20141e-14, 7.18073e-15, 0.168433 )
-body_offset = Transform( 1, 7.45058e-09, 1.9007e-13, -7.45058e-09, 1, -4.26326e-14, -1.42109e-14, 2.84217e-14, 1, 0, 0, -0.168433 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.17149e-14, 9.57431e-15, 0.168433 )
+body_offset = Transform( 1, 1.49012e-08, 1.88294e-13, -1.49012e-08, 1, -5.68434e-14, -1.06581e-14, 8.52651e-14, 1, 0, 0, -0.168433 )
 bone_name = "back_middle"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -263,10 +263,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 8 )
 
 [node name="Physical Bone back_upper" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="4"]
-transform = Transform( 1, -4.58984e-08, 1.68224e-07, -2.30459e-07, 0.0632018, 0.998001, 5.79654e-08, -0.998001, 0.0632019, -1.93832e-07, 0.940128, -0.0322004 )
+transform = Transform( 1, -4.58983e-08, 1.68224e-07, -2.30459e-07, 0.0632018, 0.998001, 5.79654e-08, -0.998001, 0.0632019, -1.93832e-07, 0.940128, -0.0322004 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56621e-14, -7.45058e-09, 0.167982 )
-body_offset = Transform( 1, 2.27374e-13, -1.52767e-13, 2.84217e-14, 1, 0, -5.32907e-15, 0, 1, 0, 7.45058e-09, -0.167982 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3122e-14, -7.45058e-09, 0.167982 )
+body_offset = Transform( 1, 2.84217e-13, -1.97176e-13, 5.68434e-14, 1, 0, -2.13163e-14, 0, 1, 0, 7.45058e-09, -0.167982 )
 bone_name = "back_upper"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -276,10 +276,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 9 )
 
 [node name="Physical Bone neck" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="5"]
-transform = Transform( 1, -3.01846e-08, 2.61602e-07, -3.28408e-07, -0.0595615, 0.998224, 9.98547e-08, -0.998224, -0.0595613, -2.21058e-07, 0.975725, -0.34773 )
+transform = Transform( 1, -3.01845e-08, 2.61602e-07, -3.28408e-07, -0.0595615, 0.998225, 9.98547e-08, -0.998224, -0.0595613, -2.21029e-07, 0.975725, -0.34773 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01868e-10, 6.07487e-08, 0.153555 )
-body_offset = Transform( 1, 5.68434e-14, 2.84217e-14, -2.84217e-14, 1, -7.45058e-09, 2.35367e-13, -1.11759e-08, 1, 1.01863e-10, -5.96046e-08, -0.153555 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30972e-10, 9.05511e-08, 0.153555 )
+body_offset = Transform( 1, 8.52651e-14, 3.37508e-14, -5.68434e-14, 1, -7.45058e-09, 3.19744e-13, -1.86265e-08, 1, 1.30967e-10, -8.9407e-08, -0.153555 )
 bone_name = "neck"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -289,10 +289,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 10 )
 
 [node name="Physical Bone head" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="6"]
-transform = Transform( 0.881136, 0.446514, 0.15564, -5.58794e-08, -0.329145, 0.944279, 0.472862, -0.832039, -0.290021, -0.030068, 0.928292, -0.607415 )
+transform = Transform( 0.881136, 0.446514, 0.15564, -4.18085e-08, -0.329145, 0.944279, 0.472862, -0.832039, -0.290021, -0.0300679, 0.928292, -0.607415 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24967e-07, 1.23103e-07, 0.193188 )
-body_offset = Transform( 1, 0, 2.98023e-08, 0, 1, 1.3411e-07, 0, -4.47035e-08, 1, 1.19209e-07, -1.49012e-07, -0.193188 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24967e-07, 2.21812e-08, 0.193188 )
+body_offset = Transform( 1, 0, 2.98023e-08, 0, 1, 1.93715e-07, 1.49012e-08, -7.45058e-08, 1, 1.19209e-07, -5.96046e-08, -0.193188 )
 bone_name = "head"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -302,10 +302,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 11 )
 
 [node name="Physical Bone front_hip_l" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="7"]
-transform = Transform( 0.803909, -0.593896, 0.0319252, -0.592567, -0.795201, 0.128532, -0.0509481, -0.122246, -0.991191, -0.00642928, 1.10312, -0.157263 )
+transform = Transform( 0.803909, -0.593896, 0.0319252, -0.592568, -0.795201, 0.128532, -0.0509481, -0.122246, -0.991191, -0.00642922, 1.10312, -0.157263 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07776e-07, -5.21023e-08, 0.201387 )
-body_offset = Transform( 1, -3.77186e-08, 4.84288e-08, 3.17115e-07, 1, -3.72529e-08, 3.35276e-08, 5.96046e-08, 1, 2.98023e-07, 5.96046e-08, -0.201387 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.30737e-07, -1.10206e-07, 0.201387 )
+body_offset = Transform( 1, 2.28174e-08, 6.70552e-08, 4.09316e-07, 1, -4.47035e-08, 2.98023e-08, 4.47035e-08, 1, 4.17233e-07, 1.19209e-07, -0.201387 )
 bone_name = "front_hip_l"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -315,10 +315,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 12 )
 
 [node name="Physical Bone front_leg_l" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="8"]
-transform = Transform( -0.973725, 0.226907, 0.0194039, -0.212288, -0.935225, 0.283365, 0.082444, 0.2718, 0.958816, -0.244683, 0.728725, -0.676797 )
+transform = Transform( -0.973725, 0.226907, 0.0194039, -0.212288, -0.935225, 0.283365, 0.0824441, 0.2718, 0.958816, -0.244683, 0.728725, -0.676797 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62193e-09, 1.27623e-07, 0.28231 )
-body_offset = Transform( 1, 8.3819e-08, -7.45058e-09, 5.21541e-08, 1, -2.98023e-08, -3.72529e-08, 0, 1, 3.72529e-09, -1.19209e-07, -0.28231 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39737e-08, 2.46832e-07, 0.28231 )
+body_offset = Transform( 1, 6.89179e-08, -7.45058e-09, 4.47035e-08, 1, -2.98023e-08, -5.21541e-08, -2.98023e-08, 1, 2.6077e-08, -2.38419e-07, -0.28231 )
 bone_name = "front_leg_l"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -330,8 +330,8 @@ shape = SubResource( 13 )
 [node name="Physical Bone front_thig_l" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="9"]
 transform = Transform( 0.987984, -0.154551, -3.90495e-06, -0.137688, -0.880197, 0.454208, -0.0702003, -0.448746, -0.890901, -0.111089, 0.218823, -0.131328 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57181e-08, 4.47035e-08, 0.136179 )
-body_offset = Transform( 0.999999, 7.45058e-09, -7.45058e-09, 7.82311e-08, 1, 0, 7.45058e-09, 2.98023e-08, 1, -4.47035e-08, -4.47035e-08, -0.136179 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04217e-08, 8.9407e-08, 0.136179 )
+body_offset = Transform( 0.999999, 7.45058e-09, -7.45058e-09, 8.9407e-08, 1, 0, -1.49012e-08, 2.98023e-08, 1, -8.9407e-08, -8.9407e-08, -0.136179 )
 bone_name = "front_thig_l"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -341,10 +341,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 14 )
 
 [node name="Physical Bone front_hip_r" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="10"]
-transform = Transform( 0.803909, 0.593896, -0.0319245, 0.592567, -0.7952, 0.128532, 0.0509488, -0.122246, -0.991189, 0.00642887, 1.10312, -0.157264 )
+transform = Transform( 0.803909, 0.593896, -0.0319245, 0.592567, -0.7952, 0.128532, 0.0509487, -0.122246, -0.991189, 0.00642887, 1.10312, -0.157264 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50217e-10, 9.37018e-08, 0.201386 )
-body_offset = Transform( 1, 3.35276e-08, -3.72529e-09, 3.30154e-07, 1, 1.2666e-07, 2.23517e-08, 0, 1, 0, -1.19209e-07, -0.201386 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50044e-09, 8.31987e-08, 0.201386 )
+body_offset = Transform( 1, 3.25963e-08, -7.45058e-09, 4.22355e-07, 1, 1.78814e-07, 1.49012e-08, 1.49012e-08, 1, 0, -1.19209e-07, -0.201386 )
 bone_name = "front_hip_r"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -354,10 +354,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 15 )
 
 [node name="Physical Bone front_leg_r" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="11"]
-transform = Transform( -0.973725, -0.226903, -0.0194055, 0.212283, -0.935226, 0.283363, -0.082444, 0.271798, 0.958814, 0.244683, 0.728726, -0.676797 )
+transform = Transform( -0.973725, -0.226903, -0.0194055, 0.212283, -0.935226, 0.283363, -0.082444, 0.271798, 0.958814, 0.244683, 0.728727, -0.676796 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.40597e-08, 1.27623e-07, 0.28231 )
-body_offset = Transform( 1, -3.72529e-08, 7.45058e-09, -8.9407e-08, 1, -2.98023e-08, 0, 8.9407e-08, 1, 8.19564e-08, -1.19209e-07, -0.28231 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-08, 8.41348e-09, 0.28231 )
+body_offset = Transform( 1, -3.91155e-08, 0, -1.00583e-07, 1, -2.98023e-08, -7.45058e-09, 1.19209e-07, 1, 7.45058e-08, 0, -0.28231 )
 bone_name = "front_leg_r"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -367,10 +367,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 16 )
 
 [node name="Physical Bone front_thig_r" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="12"]
-transform = Transform( 0.987984, 0.154551, 3.20591e-06, 0.137691, -0.880187, 0.454212, 0.0702008, -0.448741, -0.890905, 0.11109, 0.218822, -0.131329 )
+transform = Transform( 0.987984, 0.154551, 3.20866e-06, 0.137691, -0.880186, 0.454212, 0.0702008, -0.448741, -0.890904, 0.11109, 0.218822, -0.131329 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42924e-07, 2.16854e-08, 0.136179 )
-body_offset = Transform( 1, -2.23517e-08, 4.47035e-08, -1.49012e-08, 1, 5.96046e-08, 3.72529e-08, -1.49012e-07, 1, -1.49012e-07, -2.98023e-08, -0.136179 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71712e-07, 4.0645e-08, 0.136179 )
+body_offset = Transform( 1, -4.09782e-08, 5.21541e-08, -2.23517e-08, 1, 2.98023e-08, 3.72529e-08, -1.78814e-07, 1, -1.78814e-07, -4.47035e-08, -0.136179 )
 bone_name = "front_thig_r"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -380,10 +380,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 17 )
 
 [node name="Physical Bone rear_hip_l" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="13"]
-transform = Transform( -0.0768398, -0.558397, -0.826008, -0.110728, -0.818553, 0.563659, -0.990875, 0.134774, 0.0010672, 0.150509, 1.03827, 0.313447 )
+transform = Transform( -0.0768398, -0.558396, -0.826008, -0.110728, -0.818552, 0.563659, -0.990875, 0.134773, 0.0010672, 0.150509, 1.03827, 0.313447 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9532e-08, 5.76266e-08, 0.182213 )
-body_offset = Transform( 1, 1.49012e-08, -5.44824e-08, 7.45058e-08, 1, 1.08557e-08, -4.6799e-08, -1.89655e-07, 1, -5.96046e-08, -5.96046e-08, -0.182213 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96169e-08, -1.21198e-07, 0.182213 )
+body_offset = Transform( 1, 0, -5.4948e-08, 7.45058e-08, 1, 1.09139e-08, -6.49597e-08, -2.49318e-07, 1, -5.96046e-08, 1.19209e-07, -0.182213 )
 bone_name = "rear_hip_l"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -395,8 +395,8 @@ shape = SubResource( 18 )
 [node name="Physical Bone rea_leg_l" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="14"]
 transform = Transform( -0.935649, -0.0125855, -0.352708, -0.0905689, -0.957335, 0.274423, -0.341113, 0.288708, 0.894589, -0.102258, 0.763905, 0.105986 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84252e-08, -3.42162e-08, 0.287026 )
-body_offset = Transform( 1, 0, -2.38419e-07, -2.98023e-08, 1, 1.19209e-07, -2.08616e-07, 0, 1, 9.68575e-08, 0, -0.287026 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.73942e-08, -2.56621e-08, 0.287026 )
+body_offset = Transform( 1, -7.45058e-09, -2.98023e-07, -1.49012e-08, 1, 8.9407e-08, -1.78814e-07, 2.98023e-08, 1, 1.22935e-07, 0, -0.287026 )
 bone_name = "rea_leg_l"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -406,10 +406,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 19 )
 
 [node name="Physical Bone rear_thigh_l" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="15"]
-transform = Transform( 0.956453, -0.291877, -4.77362e-07, -0.254111, -0.832703, 0.491974, -0.143595, -0.470553, -0.87061, -0.210719, 0.224189, 0.650457 )
+transform = Transform( 0.956453, -0.291877, -5.00313e-07, -0.254111, -0.832703, 0.491974, -0.143595, -0.470553, -0.870611, -0.210719, 0.224189, 0.650457 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4613e-08, -6.68021e-08, 0.140094 )
-body_offset = Transform( 1, 3.72529e-08, -1.04308e-07, -5.21541e-08, 1, 4.76837e-07, 1.49012e-08, 0, 1, 0, 0, -0.140094 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67005e-08, -7.09771e-08, 0.140094 )
+body_offset = Transform( 1, 6.70552e-08, -1.19209e-07, -5.21541e-08, 1, 5.06639e-07, 1.49012e-08, 2.98023e-08, 1, 0, 0, -0.140094 )
 bone_name = "rear_thigh_l"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -419,10 +419,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 20 )
 
 [node name="Physical Bone rear_hip_r" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="16"]
-transform = Transform( -0.0768409, 0.558396, 0.826006, 0.110727, -0.81855, 0.563658, 0.990868, 0.134774, 0.00106871, -0.150509, 1.03827, 0.313447 )
+transform = Transform( -0.0768409, 0.558396, 0.826007, 0.110727, -0.81855, 0.563658, 0.990867, 0.134774, 0.0010687, -0.150509, 1.03827, 0.313447 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54559e-10, 1.15068e-07, 0.182213 )
-body_offset = Transform( 1, 8.9407e-08, 1.39698e-09, -2.98023e-08, 1, 2.27301e-08, 5.00586e-09, 2.57569e-09, 1, 0, -1.19209e-07, -0.182213 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29395e-09, 1.09661e-07, 0.182213 )
+body_offset = Transform( 1, 8.9407e-08, -7.10133e-09, -2.98023e-08, 1, 5.24014e-08, 4.42378e-09, -2.72266e-08, 1, 0, -1.19209e-07, -0.182213 )
 bone_name = "rear_hip_r"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -434,8 +434,8 @@ shape = SubResource( 21 )
 [node name="Physical Bone rea_leg_r" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="17"]
 transform = Transform( -0.935647, 0.0125852, 0.352707, 0.0905681, -0.95733, 0.274422, 0.341109, 0.288706, 0.89458, 0.102258, 0.763906, 0.105989 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09058e-08, 4.27702e-08, 0.287026 )
-body_offset = Transform( 1, 7.45058e-09, 2.98023e-08, 1.49012e-08, 1, -1.49012e-07, 0, 1.49012e-07, 1, 2.23517e-08, 0, -0.287026 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69104e-08, 9.38208e-08, 0.287026 )
+body_offset = Transform( 1, 0, 5.96046e-08, 2.98023e-08, 1, -1.19209e-07, -2.98023e-08, 1.49012e-07, 1, 2.98023e-08, -5.96046e-08, -0.287026 )
 bone_name = "rea_leg_r"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -445,10 +445,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 22 )
 
 [node name="Physical Bone rear_thigh_r" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="18"]
-transform = Transform( 0.956439, 0.291877, 6.90458e-07, 0.254107, -0.832702, 0.491974, 0.143592, -0.470549, -0.870606, 0.210718, 0.224192, 0.650455 )
+transform = Transform( 0.956439, 0.291877, 6.90458e-07, 0.254107, -0.832702, 0.491974, 0.143592, -0.470549, -0.870607, 0.210718, 0.224192, 0.650455 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.04441e-07, -1.72769e-08, 0.140094 )
-body_offset = Transform( 1, -1.49012e-08, -2.98023e-08, 4.47035e-08, 1, -8.9407e-08, 0, 0, 1, 2.08616e-07, 2.98023e-08, -0.140094 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64046e-07, -1.72769e-08, 0.140094 )
+body_offset = Transform( 1, 0, -2.98023e-08, 8.19564e-08, 1, -8.9407e-08, -1.49012e-08, 2.98023e-08, 1, 2.68221e-07, 2.98023e-08, -0.140094 )
 bone_name = "rear_thigh_r"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -458,10 +458,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 23 )
 
 [node name="Physical Bone back_lower" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="19"]
-transform = Transform( 1, 2.63158e-08, 2.50961e-07, 2.50961e-07, -0.207441, -0.978248, 2.63161e-08, 0.978248, -0.207441, -1.8804e-07, 1.3088, 0.34923 )
+transform = Transform( 1, 2.63157e-08, 2.50961e-07, 2.50961e-07, -0.207441, -0.978248, 2.63161e-08, 0.978248, -0.207441, -1.88025e-07, 1.3088, 0.34923 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36899e-11, -1.49012e-08, 0.171561 )
-body_offset = Transform( 1, -2.27374e-13, -1.98952e-13, 1.7053e-13, 1, 0, 3.55271e-14, 0, 1, -4.36557e-11, 1.49012e-08, -0.171561 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36996e-11, -1.49012e-08, 0.171561 )
+body_offset = Transform( 1, -2.84217e-13, -2.55795e-13, 1.98952e-13, 1, 0, 0, 0, 1, -4.36557e-11, 1.49012e-08, -0.171561 )
 bone_name = "back_lower"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -471,10 +471,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 24 )
 
 [node name="Physical Bone tail" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="20"]
-transform = Transform( -1, 6.69226e-08, 1.51862e-07, 1.07118e-07, -0.43864, 0.898665, 1.26753e-07, 0.898669, 0.438641, -1.55356e-07, 0.953477, 0.592524 )
+transform = Transform( -1, 6.69224e-08, 1.51396e-07, 1.06699e-07, -0.43864, 0.898664, 1.26549e-07, 0.898668, 0.43864, -1.55516e-07, 0.953477, 0.592524 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8918e-10, -1.23067e-07, 0.129436 )
-body_offset = Transform( 1, -1.7053e-13, -4.26326e-14, -5.68434e-14, 1, 2.98023e-08, 0, -2.98023e-08, 1, -1.89175e-10, 1.19209e-07, -0.129436 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11712e-11, -9.7122e-08, 0.129436 )
+body_offset = Transform( 1, -2.84217e-14, 4.65675e-10, 0, 1, 5.96046e-08, -4.65661e-10, -2.98023e-08, 1, -2.91038e-11, 8.9407e-08, -0.129436 )
 bone_name = "tail"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -484,10 +484,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 25 )
 
 [node name="Physical Bone tail_lower" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="21"]
-transform = Transform( -1, 7.62762e-09, 6.0472e-08, 5.48226e-08, -0.321024, 0.947075, 2.66358e-08, 0.947077, 0.321024, -1.30036e-07, 0.774906, 0.820472 )
+transform = Transform( -1, 1.76868e-10, 5.95407e-08, 5.48226e-08, -0.321024, 0.947074, 2.6636e-08, 0.947077, 0.321024, -1.33849e-07, 0.774906, 0.820471 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01867e-10, 2.02667e-23, 0.191473 )
-body_offset = Transform( 1, -1.98952e-13, -2.13163e-14, -1.98952e-13, 1, 0, -4.26326e-14, 0, 1, -1.01863e-10, 0, -0.191473 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88906e-09, 1.24916e-07, 0.191473 )
+body_offset = Transform( 1, 7.45058e-09, 9.31323e-10, -2.84217e-14, 1, -2.98023e-08, -7.10543e-15, 0, 1, 3.71074e-09, -1.19209e-07, -0.191473 )
 bone_name = "tail_lower"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -497,10 +497,10 @@ joint_constraints/impulse_clamp = 0.0
 shape = SubResource( 26 )
 
 [node name="Physical Bone tail_medium" type="PhysicalBone" parent="Mesh/Armature/Skeleton" index="22"]
-transform = Transform( -1, -2.75798e-08, 2.04949e-07, 1.78762e-07, -0.613551, 0.789655, 1.03969e-07, 0.789662, 0.613556, -1.58325e-07, 0.668455, 1.11653 )
+transform = Transform( -1, -2.75798e-08, 2.124e-07, 1.84645e-07, -0.613551, 0.789655, 1.0854e-07, 0.789662, 0.613556, -1.58427e-07, 0.668455, 1.11653 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16415e-10, 6.22177e-09, 0.208768 )
-body_offset = Transform( 1, -2.84217e-14, 0, -1.13687e-13, 1, -2.98023e-08, 0, 2.98023e-08, 1, -1.16415e-10, 0, -0.208768 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57e-09, 3.60241e-08, 0.208768 )
+body_offset = Transform( 1, 0, -7.45058e-09, -2.84217e-14, 1, -2.98023e-08, 7.45058e-09, 2.98023e-08, 1, -1.45519e-11, -2.98023e-08, -0.208768 )
 bone_name = "tail_medium"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0

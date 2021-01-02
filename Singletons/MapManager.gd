@@ -53,8 +53,8 @@ func incStage():
 	HUD.get_node("Display/Rows/Columns/StageScoreMargin/StageScoreRows/StageLabel").text = "STAGE: " + String(stage)
 
 var MapList = [
-	#"res://Maps/Campaign/A01.tscn",
-	#"res://Maps/Campaign/A02.tscn",
+	"res://Maps/Campaign/A01.tscn",
+	"res://Maps/Campaign/A02.tscn",
 	"res://Maps/Campaign/A03.tscn",
 	"res://Maps/Campaign/A04.tscn",
 	"res://Maps/Campaign/A05.tscn",
