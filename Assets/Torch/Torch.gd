@@ -7,11 +7,9 @@ extends Spatial
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	#$AnimationPlayer.play("Cycle", -1, 1)
+func _ready(): 
+	# randomize animation phase
 	$AnimationPlayer.seek(rand_range(0,15))
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
