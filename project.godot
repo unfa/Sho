@@ -28,11 +28,15 @@ mix_rate=48000
 Classes="*res://Singletons/Classes.gd"
 HUD="*res://Singletons/HUD.tscn"
 Balance="*res://Singletons/Balance.gd"
+MapManager="*res://Singletons/MapManager.gd"
+MusicManager="*res://Singletons/MusicManager.tscn"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
+window/size/fullscreen=true
+window/vsync/vsync_via_compositor=true
 
 [input]
 
@@ -93,18 +97,19 @@ demo_play={
 
 [layer_names]
 
+3d_render/layer_1="Reflection Probes"
 3d_physics/layer_1="Level"
+3d_render/layer_2="Visible"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Pickups"
 
 [rendering]
 
-quality/filters/anisotropic_filter_level=2
+threads/thread_model=2
 vram_compression/import_etc=true
-quality/directional_shadow/size=2048
 quality/directional_shadow/size.mobile=1024
-quality/shadow_atlas/size=2048
 quality/shadows/filter_mode=2
-quality/subsurface_scattering/quality=0
+quality/subsurface_scattering/quality=2
+quality/voxel_cone_tracing/high_quality=true
+quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"
-quality/dynamic_fonts/use_oversampling=false

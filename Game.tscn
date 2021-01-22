@@ -1,55 +1,20 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Assets/Camera/CameraRig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MapManager.gd" type="Script" id=4]
-[ext_resource path="res://UI.gd" type="Script" id=11]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_BASS_Ogg_Vorbis.ogg" type="AudioStream" id=14]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_DRUMS_Ogg_Vorbis.ogg" type="AudioStream" id=15]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_SUPPORT_Ogg_Vorbis.ogg" type="AudioStream" id=16]
-[ext_resource path="res://Music/Szoszyszel/export/Szoszyszel_LEAD_Ogg_Vorbis.ogg" type="AudioStream" id=17]
-[ext_resource path="res://Music.gd" type="Script" id=22]
+[ext_resource path="res://World.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Preloader.tscn" type="PackedScene" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 
 [node name="Game" type="Node"]
-
-[node name="Control" type="Node" parent="." groups=[
-"ui",
-]]
-pause_mode = 2
-script = ExtResource( 11 )
-
-[node name="Music" type="Node" parent="Control"]
-script = ExtResource( 22 )
-
-[node name="A" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 15 )
-volume_db = -12.0
-bus = "Music B"
-
-[node name="B" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 14 )
-volume_db = -14.0
-bus = "Music A"
-
-[node name="C" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 17 )
-volume_db = -14.0
-bus = "Music C"
-
-[node name="D" type="AudioStreamPlayer" parent="Control/Music"]
-stream = ExtResource( 16 )
-volume_db = -12.0
-bus = "Music D"
 
 [node name="World" type="Node" parent="."]
 script = ExtResource( 4 )
 
-[node name="Player" parent="World" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="CameraRig" parent="World" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+[node name="Tween" type="Tween" parent="World"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource( 1 )
@@ -72,3 +37,20 @@ __meta__ = {
 [node name="MapA" type="Node" parent="World"]
 
 [node name="MapB" type="Node" parent="World"]
+
+[node name="CameraRig" parent="World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
+
+[node name="Debug" parent="World/CameraRig" index="0"]
+visible = false
+material = SubResource( 1 )
+
+[node name="Camera" parent="World/CameraRig" index="1"]
+far = 10000.0
+
+[node name="Player" parent="World" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
+
+[node name="Preloader" parent="." instance=ExtResource( 5 )]
+
+[editable path="World/CameraRig"]

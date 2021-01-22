@@ -38,13 +38,19 @@ func _ready():
 	if not on_mobile: # hide the touch controls if we're not running on a mobile device
 		$TouchControls.hide()
 	
+	update_background_strip()
+	
 	hide_message()
 	
 	draw_score()
 	
+	$Damage/Overlay.material['shader_param/Damage'] = 0
+	
 	player.connect("player_update", self, "update")
 	
 	health_bar.tint_over = Color.white
+	
+	
 
 func draw_score():
 	score_label.text = "SCORE: " + String(round(current_score))
@@ -73,6 +79,7 @@ func update_health(hp: int):
 		
 	if health_difference < 0:
 		new_color = Color.red
+		$Damage/AnimationPlayer.play("Damage")
 	else:
 		new_color = Color.green
 	
@@ -82,6 +89,8 @@ func update_health(hp: int):
 
 	# vibrate phones
 	Input.vibrate_handheld(100)
+	
+	health_tween.stop_all()
 	
 	# interpolate health bar value
 	health_tween.interpolate_property(health_bar, "value", health_bar.value, hp, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT)
@@ -94,6 +103,7 @@ func update_health(hp: int):
 	
 	if hp <= player.LOW_HP:
 		health_anim.play("LowHealth")
+		$Damage/AnimationPlayer.play("LowHealth")
 	elif health_anim.is_playing():
 		health_anim.stop()
 		health_bar.tint_over = Color.white
@@ -136,15 +146,12 @@ func update():
 	update_score(player.score)
 	#update_stars(player.stars_current)
 	
-func _on_ScoreTween_tween_step(object, key, elapsed, value):
-	#print("Object: ", object,"\tKey: " , key)
+func update_background_strip():
+	if background != null:
+		background.scale[1] = -OS.get_window_size()[0]
 	
-	#if key == ":current_score":
-	pass
-
 func _on_Display_resized():
 	#print("HUD resized")
 	
 	# make the background strip as wide as the screen
-	if background != null:
-		background.scale[1] = -OS.get_window_size()[0]
+	update_background_strip()

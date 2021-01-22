@@ -61,7 +61,7 @@ uniform_name = "Rim"
 
 [resource]
 code = "shader_type spatial;
-render_mode world_vertex_coords;
+render_mode specular_schlick_ggx, world_vertex_coords;
 
 uniform vec4 BaseColor : hint_color;
 uniform sampler2D TextureUniformTriplanar : hint_black;
@@ -217,7 +217,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( 580.5, 98.5 )
+graph_offset = Vector2( -66, -111 )
 flags/world_vertex_coords = true
 nodes/fragment/0/position = Vector2( 1420, 120 )
 nodes/fragment/2/node = SubResource( 10 )

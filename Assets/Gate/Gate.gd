@@ -6,15 +6,15 @@ signal LoadMap # when player reaches 3 stars
 
 enum GateType {GATE_ENTRY, GATE_EXIT}
 export (GateType) var gate_type = 0
-#export (String, FILE, "*.tscn") var target_scene
+# export (String, FILE, "*.tscn") var target_scene
 
 var gate_state = Classes.StateMachine.new(['Sleep', 'Start', 'Awake', 'Collect', 'Reject', 'Open', 'Opened', 'Through', 'Closed'], 0)
 
-export var debug = false
+var debug = false
 
 #var MapLoader
 
-#var next_scene
+var next_scene
 var next_scene_ready = false
 var next_scene_loading = false
 #var near = false
@@ -54,6 +54,8 @@ const WANDER_RANGE = 0.75
 const WANDER_MIN_TIME = 0.25
 const WANDER_MAX_TIME = 2
 
+const UP = Vector3(0, 1, 0)
+
 #onready var anim = $AnimationTree.get("parameters/playback")
 onready var anim = $AnimationManagement/AnimationPlayer
 onready var trigger_near = $Near
@@ -61,6 +63,7 @@ onready var trigger_far = $Far
 onready var trigger_through = $Through
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
+onready var camera = get_tree().get_nodes_in_group("camera_bodies")[0]
 
 onready var eyeball = $Gate/Eyeball
 onready var lid_top = $"Gate/Eye Lid Top"
@@ -210,9 +213,10 @@ func monitor_player_stars():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	# make iris material unique to avoid collisions betwen various animations
-	var irisMesh = $Gate/Eyeball.mesh
-	irisMesh.surface_set_material(1, irisMesh.surface_get_material(1).duplicate )
+	# if this is an entry gate, let's stop it
+	if gate_type == GateType.GATE_ENTRY:
+		set_process(false)
+		return 0
 	
 	player.connect("player_update", self, "monitor_player_stars")
 	update_stars()
@@ -258,6 +262,7 @@ func _process(delta):
 		
 	if gate_state.get_current_state(true) == "Sleep":
 		anim.play("Init")
+		#camera.snap(false)
 	elif gate_state.get_current_state(true) == "Start": # AWAKE
 		if not anim.is_playing():
 			anim.play("Start")
@@ -272,6 +277,7 @@ func _process(delta):
 		eye_blink(delta)
 		eye_limit_rotation(delta)
 		anim.play("Collect Star")
+		camera.snap(true, $Camera.global_transform)
 	elif gate_state.get_current_state(true) == "Reject": # REJECT
 		eye_track(delta)
 		eye_wander(delta)
@@ -283,6 +289,7 @@ func _process(delta):
 		pass
 	elif gate_state.get_current_state(true) == "Through":  # THROUGH
 		anim.play("Close")
+		camera.snap(false)
 		gate_state.set_current_state("Closed")
 	elif gate_state.get_current_state(true) == "Closed":
 		anim.queue("Init")
@@ -309,12 +316,15 @@ func _on_Far_body_exited(body):
 
 func _on_Near_body_entered(body):
 	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Reject", "Open", "Opened", "Through", "Closed"]:
-			gate_state.set_current_state("Collect")
+		gate_state.set_current_state("Collect")
+	# snap camera only in these states	
 
 func _on_Near_body_exited(body):
 	if body.is_in_group("players") and gate_state.get_current_state(true) == "Collect":
 		gate_state.set_current_state("Awake")
+		camera.snap(false)
 
 func _on_CloseTrigger_body_entered(body):
 	if body.is_in_group("players") and gate_state.get_current_state(true) in ["Open", "Opened"]:
 		gate_state.set_current_state("Through")
+		camera.snap(false)

@@ -45,6 +45,7 @@ var futile_motion = false
 
 
 onready var AttackParticles = $Brie/Armature/Skeleton/Attack/Particles2
+onready var WindupParticles = $Brie/Armature/Skeleton/Attack/WindupParticles
 onready var AttackCollider = $Brie/Armature/Skeleton/Attack/Collider
 const ATTACK_WINDUP = 0.75
 const ATTACK_DURATION = 1.25
@@ -93,6 +94,7 @@ func attack(delta):
 		attack_connected = false
 		MovementState.set_current_state("Stand")
 		anim.play("Attack")
+		WindupParticles.emitting = true
 		
 		yield(get_tree().create_timer(ATTACK_WINDUP),"timeout")
 		
@@ -338,5 +340,13 @@ func _on_Attack_body_exited(body):
 func _on_Collider_body_entered(body): 
 	if body.is_in_group("players"):
 		if not attack_connected: #this is the first time we're dealing damage for this attack
-			body.damage(10)
+			body.damage(25)
 			attack_connected = true
+
+func activate():
+	set_physics_process(true)
+	show()
+
+func deactivate():
+	set_physics_process(false)
+	hide()

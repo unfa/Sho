@@ -22,6 +22,7 @@ func _ready():
 #	particles.draw_pass_1.surface_set_material(0, particles.draw_pass_1.surface_get_material(0).duplicate() )
 #	print(particles.draw_pass_1.surface_get_material(0))
 	
+	# play the first frame of the animation, making sure the shaders are in proper state
 	anim.play("Activate")
 	anim.stop(true)
 	
@@ -46,3 +47,9 @@ func _on_Checkpoint_body_entered(body):
 				i.recent = false
 		
 		#print (self.name, " is now an active checkpoint")
+
+func activate():
+	$Particles.emitting = true
+	
+func deactivate():
+	$Particles.emitting = false

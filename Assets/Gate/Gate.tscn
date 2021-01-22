@@ -766,8 +766,9 @@ size = Vector2( 2, 2 )
 "gates",
 ]]
 script = ExtResource( 2 )
-target_scene = "EMPTY"
-debug = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.659, 11.57 )
 
 [node name="AnimationManagement" type="Node" parent="."]
 
@@ -837,6 +838,7 @@ visible = false
 [node name="Debug" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="Debug"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0

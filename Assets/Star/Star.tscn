@@ -37,6 +37,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( 90, 0, 0 ), Vector3( 90, -720, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../OmniLight:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4, 8.8 ),
+"transitions": PoolRealArray( 0.353553, 0.153893, 1 ),
+"update": 0,
+"values": [ 0.0, 3.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Meshes/Ring:material/0")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Pickup"
@@ -178,6 +202,20 @@ tracks/11/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/12/type = "method"
+tracks/12/path = NodePath("../Shadow")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
@@ -214,12 +252,25 @@ anims/Pickup = SubResource( 3 )
 [node name="Meshes" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00258112, 0.00666428, 0.00320959 )
 
+[node name="Ring" parent="Meshes" index="0"]
+layers = 2
+
+[node name="Star" parent="Meshes" index="1"]
+layers = 2
+
 [node name="Shockwave" type="MeshInstance" parent="Meshes"]
 mesh = SubResource( 5 )
 material/0 = null
 
 [node name="SmallStar" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="OmniLight" type="OmniLight" parent="."]
+visible = false
+light_color = Color( 0.956863, 0.0823529, 0.964706, 1 )
+light_energy = 0.0
+omni_range = 10.0
+omni_attenuation = 2.73208
 [connection signal="body_entered" from="." to="." method="_on_Star_body_entered"]
 
 [editable path="Meshes"]

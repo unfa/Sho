@@ -218,6 +218,7 @@ void fragment() {
 
 // Output:0
 	ALBEDO = n_out64p0;
+	ALPHA = dot(n_out64p0, vec3(0.333333, 0.333333, 0.333333));
 
 }
 
@@ -226,7 +227,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( 803.453, -401 )
+graph_offset = Vector2( 1005, -575.75 )
 modes/cull = 2
 modes/depth_draw = 3
 modes/specular = 4
@@ -252,9 +253,9 @@ nodes/fragment/18/position = Vector2( -1260, -540 )
 nodes/fragment/19/node = SubResource( 8 )
 nodes/fragment/19/position = Vector2( 280, -660 )
 nodes/fragment/31/node = SubResource( 9 )
-nodes/fragment/31/position = Vector2( 920, -420 )
+nodes/fragment/31/position = Vector2( 880, -440 )
 nodes/fragment/34/node = SubResource( 10 )
-nodes/fragment/34/position = Vector2( 580, -340 )
+nodes/fragment/34/position = Vector2( 440, -460 )
 nodes/fragment/35/node = SubResource( 11 )
 nodes/fragment/35/position = Vector2( -20, -600 )
 nodes/fragment/36/node = SubResource( 12 )
@@ -272,11 +273,11 @@ nodes/fragment/56/position = Vector2( -460, -580 )
 nodes/fragment/61/node = SubResource( 21 )
 nodes/fragment/61/position = Vector2( 1240, -160 )
 nodes/fragment/62/node = SubResource( 22 )
-nodes/fragment/62/position = Vector2( 1200, -340 )
+nodes/fragment/62/position = Vector2( 1120, -340 )
 nodes/fragment/63/node = SubResource( 23 )
 nodes/fragment/63/position = Vector2( 1540, -400 )
 nodes/fragment/64/node = SubResource( 24 )
-nodes/fragment/64/position = Vector2( 2020, -400 )
+nodes/fragment/64/position = Vector2( 2000, -340 )
 nodes/fragment/65/node = SubResource( 25 )
 nodes/fragment/65/position = Vector2( 1480, -160 )
 nodes/fragment/66/node = SubResource( 26 )
@@ -285,4 +286,4 @@ nodes/fragment/67/node = SubResource( 27 )
 nodes/fragment/67/position = Vector2( 1820, -220 )
 nodes/fragment/68/node = SubResource( 28 )
 nodes/fragment/68/position = Vector2( 1600, -300 )
-nodes/fragment/connections = PoolIntArray( 18, 0, 17, 1, 34, 0, 31, 0, 35, 0, 19, 0, 17, 0, 12, 0, 9, 0, 34, 0, 14, 0, 17, 0, 16, 0, 18, 0, 38, 0, 19, 1, 16, 0, 54, 0, 14, 0, 55, 0, 54, 0, 55, 1, 55, 0, 53, 0, 12, 0, 56, 0, 53, 0, 56, 1, 7, 0, 38, 3, 5, 0, 61, 0, 5, 1, 61, 1, 31, 0, 62, 0, 5, 0, 62, 1, 5, 1, 63, 2, 31, 0, 63, 0, 62, 0, 63, 1, 63, 0, 64, 0, 64, 0, 0, 0, 61, 0, 65, 0, 66, 0, 65, 1, 65, 0, 67, 1, 67, 0, 64, 1, 19, 0, 34, 1, 36, 0, 35, 1, 56, 0, 35, 0, 38, 0, 68, 0, 68, 0, 67, 0 )
+nodes/fragment/connections = PoolIntArray( 18, 0, 17, 1, 35, 0, 19, 0, 17, 0, 12, 0, 9, 0, 34, 0, 14, 0, 17, 0, 16, 0, 18, 0, 38, 0, 19, 1, 16, 0, 54, 0, 14, 0, 55, 0, 54, 0, 55, 1, 55, 0, 53, 0, 12, 0, 56, 0, 53, 0, 56, 1, 7, 0, 38, 3, 5, 0, 61, 0, 5, 1, 61, 1, 31, 0, 62, 0, 5, 0, 62, 1, 5, 1, 63, 2, 31, 0, 63, 0, 62, 0, 63, 1, 63, 0, 64, 0, 61, 0, 65, 0, 66, 0, 65, 1, 65, 0, 67, 1, 67, 0, 64, 1, 19, 0, 34, 1, 36, 0, 35, 1, 56, 0, 35, 0, 38, 0, 68, 0, 68, 0, 67, 0, 34, 0, 31, 0, 64, 0, 0, 0, 64, 0, 0, 1 )

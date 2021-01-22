@@ -11,12 +11,10 @@ var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Mint/Circle.show()
+	$Mint/Mint.show()
 	# make the shockwave material unique
-	#$Meshes/Shockwave.mesh.surface_set_material(0, $Meshes/Shockwave.mesh.surface_get_material(0).duplicate(true))
-	$Mint/Shockwave.hide()
-	$CollisionShape/AnimationPlayer.play("Idle")
-	
+	$Shockwave.mesh = $Shockwave.mesh.duplicate(true)
+	$Shockwave.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -34,7 +32,7 @@ func _on_Star_body_entered(body):
 		if body.hp < body.MAX_HP:
 			active = false
 			body.heal(25)
-			$CollisionShape/AnimationPlayer.play("Pickup")
+			$AnimationPlayer.play("Pickup")
 		else:
 			pass
 

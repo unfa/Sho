@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Camera.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Camera/CameraRig.gd" type="Script" id=1]
 [ext_resource path="res://Tools/Debug.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 
 [sub_resource type="SphereShape" id=2]
-radius = 0.5
+radius = 0.25
 
 [node name="CameraBody" type="KinematicBody" groups=[
 "camera_bodies",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 63.3397, 53.5453 )
+transform = Transform( 1, 0, 0, 0, 0.999936, -0.0112746, 0, 0.0112746, 0.999936, 0, 63.3397, 53.5453 )
 input_ray_pickable = false
 script = ExtResource( 1 )
 
@@ -22,12 +22,17 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Label" parent="Debug" index="0"]
-visible = false
+margin_left = 29.0
+margin_top = 173.0
+margin_right = -35.72
+margin_bottom = 109.0
 
-[node name="Camera" type="Camera" parent="."]
+[node name="Camera" type="Camera" parent="." groups=[
+"camera",
+]]
 current = true
 fov = 80.0
-far = 200.0
+far = 400.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 2 )
