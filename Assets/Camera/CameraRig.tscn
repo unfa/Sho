@@ -12,7 +12,7 @@ radius = 0.25
 [node name="CameraBody" type="KinematicBody" groups=[
 "camera_bodies",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 63.3397, 53.5453 )
+transform = Transform( 1, 0, 0, 0, 0.999936, -0.0112746, 0, 0.0112746, 0.999936, 0, 63.3397, 53.5453 )
 input_ray_pickable = false
 script = ExtResource( 1 )
 
@@ -22,12 +22,17 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Label" parent="Debug" index="0"]
-visible = false
+margin_left = 29.0
+margin_top = 173.0
+margin_right = -35.72
+margin_bottom = 109.0
 
-[node name="Camera" type="Camera" parent="."]
+[node name="Camera" type="Camera" parent="." groups=[
+"camera",
+]]
 current = true
 fov = 80.0
-far = 200.0
+far = 400.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 2 )

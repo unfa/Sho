@@ -11,79 +11,65 @@
 [sub_resource type="Animation" id=1]
 resource_name = "Pickup"
 length = 12.0
-tracks/0/type = "method"
-tracks/0/path = NodePath("../../Star13")
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Shockwave:mesh:material:albedo_color:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
-"times": PoolRealArray( 12 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
+"points": PoolRealArray( 0.992157, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("Shockwave:mesh:material:albedo_color:r")
+tracks/1/path = NodePath("Shockwave:mesh:material:albedo_color:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = false
 tracks/1/keys = {
-"points": PoolRealArray( 0.992157, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
 tracks/2/type = "bezier"
-tracks/2/path = NodePath("Shockwave:mesh:material:albedo_color:g")
+tracks/2/path = NodePath("Shockwave:mesh:material:albedo_color:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("Shockwave:mesh:material:albedo_color:b")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/keys = {
 "points": PoolRealArray( 0.0117647, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("Shockwave:mesh:material:albedo_color:a")
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Shockwave:mesh:material:albedo_color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.587821, -0.00785804, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Shockwave:mesh:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.587821, -0.00785804, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.7 )
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Shockwave:mesh:size")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 8, 8 ) ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Flash:light_energy")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/path = NodePath("Flash:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
@@ -101,7 +87,7 @@ flags_vertex_lighting = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
 params_billboard_mode = 1
-albedo_color = Color( 1, 0.882353, 0.12549, 1 )
+albedo_color = Color( 0.992157, 1, 0, 1 )
 albedo_texture = SubResource( 2 )
 
 [sub_resource type="QuadMesh" id=4]
@@ -150,20 +136,24 @@ __meta__ = {
 [node name="Gem4" parent="Pickup" index="0"]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
 visible = false
+layers = 2
 material/0 = ExtResource( 8 )
 
 [node name="Gem3" parent="Pickup" index="1"]
 transform = Transform( 0.8, 0, 0, 0, 0, -0.8, 0, 0.8, 0, 0, 0, 0 )
 visible = false
+layers = 2
 material/0 = ExtResource( 4 )
 
 [node name="Gem2" parent="Pickup" index="2"]
 transform = Transform( 0.604787, 0, 0, 0, 0.604787, 0, 0, 0, 0.604787, 0, 0, 0 )
 visible = false
+layers = 2
 material/0 = ExtResource( 6 )
 
 [node name="Gem1" parent="Pickup" index="3"]
 transform = Transform( 0.54533, 0, 0, 0, 0.54533, 0, 0, 0, 0.54533, 0, 0, 0 )
+layers = 2
 material/0 = ExtResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_Star_body_entered"]
 

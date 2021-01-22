@@ -767,6 +767,9 @@ size = Vector2( 2, 2 )
 ]]
 script = ExtResource( 2 )
 
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.659, 11.57 )
+
 [node name="AnimationManagement" type="Node" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationManagement"]

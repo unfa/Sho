@@ -22,10 +22,25 @@ var player_occluded = false
 
 var player_moved = false
 
+# snapping
+
+var snapped = false
+var snap_transform = Transform.IDENTITY
+
+func snap(enable: bool, transform: Transform = Transform.IDENTITY):
+	print("CAMERA SNAP ", enable)
+	if enable:
+		snapped = true
+		snap_transform = transform
+	else:
+		snapped = false
+		#snap_transform = Transform.IDENTITY
+
 func _ready():
 	print("Camera initiated")
 
 func _physics_process(delta):
+	
 	debug.text = "CAMERA DEBUG\n\n"
 	
 	player_loc = player.global_transform.origin
@@ -65,11 +80,8 @@ func _physics_process(delta):
 	
 	#lookat_target = lookat_target.interpolate_with(player.global_transform.translated(lookat_offset), 0.01)
 	
+	# project the camera location startin at the player location to the target location to make sure the player is not occluded
 	move_and_collide(temp_transform.origin - global_transform.origin)
 	
-	
-		
 	# look_at the player  applying an offset
 	camera.look_at(lookat_target, Vector3.UP)
-
-#	global_transform = temp_transform.interpolate_with(temp_transform.looking_at(player.global_transform.translated(lookat_offset).origin, Vector3.UP), lookat_time * delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Torch/Torch.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Smoke/Smoke BaseColor.png" type="Texture" id=2]
@@ -31,13 +31,13 @@ colors = PoolColorArray( 0, 0, 0, 1, 0.914062, 0.837212, 0.57486, 1, 0.964844, 0
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
-[sub_resource type="Curve" id=5]
-_data = [ Vector2( 0.00278552, 0.0272727 ), 0.0, 2.33117, 0, 0, Vector2( 1, 0.0727272 ), -0.212846, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=16]
+_data = [ Vector2( 0.00278552, 0.0272727 ), 0.0, 0.541799, 0, 0, Vector2( 0.706633, 0.859091 ), 0.169697, 0.118788, 0, 0, Vector2( 1, 0.145455 ), -1.67115, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 16 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=17]
 gravity = Vector3( 0, 0, 4 )
 initial_velocity = 1.0
 initial_velocity_random = 1.0
@@ -45,8 +45,7 @@ damping = 2.17
 damping_random = 0.5
 angle = 720.0
 angle_random = 1.0
-scale = 2.0
-scale_curve = SubResource( 6 )
+scale_curve = SubResource( 15 )
 color_ramp = SubResource( 4 )
 anim_offset = 1.0
 anim_offset_random = 1.0
@@ -74,7 +73,13 @@ colors = PoolColorArray( 1, 1, 1, 0, 0.501961, 0.545098, 0.537255, 0.266667, 1, 
 [sub_resource type="GradientTexture" id=11]
 gradient = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.00278552, 0.0272727 ), 0.0, 0.541799, 0, 0, Vector2( 0.706633, 0.859091 ), 0.169697, 0.118788, 0, 0, Vector2( 1, 0.145455 ), -1.67115, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=18]
 direction = Vector3( 0, 0, 1 )
 spread = 0.0
 flatness = 1.0
@@ -87,7 +92,7 @@ damping = 3.0
 damping_random = 0.5
 angle = 720.0
 angle_random = 1.0
-scale = 3.0
+scale = 2.0
 scale_curve = SubResource( 6 )
 color_ramp = SubResource( 11 )
 anim_offset = 1.0
@@ -102,7 +107,7 @@ params_billboard_mode = 3
 particles_anim_h_frames = 4
 particles_anim_v_frames = 4
 particles_anim_loop = false
-albedo_color = Color( 1, 1, 1, 0.172549 )
+albedo_color = Color( 1, 1, 1, 0.101961 )
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="QuadMesh" id=14]
@@ -112,6 +117,7 @@ size = Vector2( 2, 2 )
 [node name="Torch" type="Spatial" groups=[
 "managed",
 ]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0309112, 0.00890625, -0.0247836 )
 script = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
@@ -126,11 +132,11 @@ playback_speed = 3.0
 anims/Cycle = SubResource( 2 )
 
 [node name="Fire" type="Particles" parent="."]
-transform = Transform( 0.241937, 0, 0, 0, 0, 0.241937, 0, -0.241937, 0, 0.00688648, 0.412901, 0.501591 )
+transform = Transform( 0.241937, 0, 0, 0, 0, 0.241937, 0, -0.241937, 0, -0.00395286, 0.42191, 0.502923 )
 amount = 128
 lifetime = 2.0
 draw_order = 2
-process_material = SubResource( 7 )
+process_material = SubResource( 17 )
 draw_pass_1 = SubResource( 9 )
 
 [node name="Smoke" type="Particles" parent="."]
@@ -138,7 +144,7 @@ transform = Transform( 0.241937, 0, 0, 0, 0, 0.241937, 0, -0.241937, 0, 0.003360
 amount = 128
 lifetime = 3.0
 draw_order = 2
-process_material = SubResource( 12 )
+process_material = SubResource( 18 )
 draw_pass_1 = SubResource( 14 )
 
 [node name="Torch" parent="." instance=ExtResource( 1 )]

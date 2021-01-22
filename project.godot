@@ -35,6 +35,8 @@ MusicManager="*res://Singletons/MusicManager.tscn"
 
 window/size/width=1280
 window/size/height=720
+window/size/fullscreen=true
+window/vsync/vsync_via_compositor=true
 
 [input]
 
@@ -95,12 +97,15 @@ demo_play={
 
 [layer_names]
 
+3d_render/layer_1="Reflection Probes"
 3d_physics/layer_1="Level"
+3d_render/layer_2="Visible"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Pickups"
 
 [rendering]
 
+threads/thread_model=2
 vram_compression/import_etc=true
 quality/directional_shadow/size.mobile=1024
 quality/shadows/filter_mode=2

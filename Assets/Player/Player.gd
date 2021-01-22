@@ -3,6 +3,8 @@ extends KinematicBody
 signal player_update
 signal player_died
 
+export var is_contollable = true
+
 onready var anim = $AnimationManagement/AnimationTree.get("parameters/playback")
 onready var anim_idle = $AnimationManagement/AnimationTree.get("parameters/Idle/playback")
 onready var idle_timer = $AnimationManagement/IdleTimer
@@ -23,6 +25,11 @@ var score = 0
 var stars_current = 0
 #var stars_total = 0
 #var last_checkpoint
+
+### LOD management
+
+const LOD_TRAVEL_DISTANCE_THRESHOLD = 1000 # how fat the player needs to travel to trigger an LOD update
+var lod_travel_distance = 0 # current player travel distance
 
 ### EFFECTS
 
@@ -103,6 +110,7 @@ func animation_idle():
 		idle_timer.start()
 
 func animation_blink(): # randomized blinking animation
+	#print("BLINK")
 	$AnimationManagement/RandomAnimations.play("Blink")
 	$AnimationManagement/BlinkTimer.start(randf() * 7 + 3)
 
@@ -269,10 +277,16 @@ func gravity(delta):
 
 func move(delta): # perform movement
 	movement = move_and_slide(velocity.rotated(Vector3.UP, rotation.y), Vector3.UP)
+	lod_travel_distance += movement.length()
 	
 func sink(delta):
 	movement = Vector3(0,-5,0) * delta
 	global_translate(movement)
+	
+func lod_travel_distance_check(delta):
+	if lod_travel_distance > LOD_TRAVEL_DISTANCE_THRESHOLD:
+		lod_travel_distance = 0
+		lod_manage()
 	
 ### HEALTH
 
@@ -293,24 +307,27 @@ func _process(delta):
 	var material = ShoMesh.mesh.surface_get_material(0).next_pass
 	#print("material: ", material)
 	
-	material.set_shader_param("CameraDistance", distance)
+	if is_contollable: # if the player is 
+		material.set_shader_param("CameraDistance", distance)
+	else:
+		material.set_shader_param("CameraDistance", 0)
 	#print("distance: ", distance )#,"\t paremeter: ", ShoMesh.mesh.surface_get_material(0).get("shader_param/CameraDistance") )
-	
 
 func _physics_process(delta):
-
+	
 	# clear the debug text
 #	debug('FPS ' + String(Engine.get_frames_per_second()))
 	check_ground()
 
 	if in_water:
 		sink(delta)
-	else:
+	elif is_contollable: # disable all movement if the player model is used in a cutscene
 		attack(delta)
 		jump(delta)
 		walk(delta)
 		gravity(delta)
 		move(delta)
+		lod_travel_distance_check(delta)
 	
 	# Fix Sun light's rotation
 	#print ($DirectionalLight.rotation_degrees)
@@ -337,7 +354,7 @@ func respawn(var checkpoint):
 	yield(get_tree().create_timer(1), "timeout")
 	global_transform[3] = checkpoint.global_transform[3] # copy location
 	rotation = checkpoint.rotation
-	
+	lod_manage()
 	
 	# if the player died in water, spawn droplets
 	if in_water:
@@ -350,6 +367,9 @@ func respawn(var checkpoint):
 	animation_idle()
 	
 	emit_signal("player_update")
+	
+	yield(get_tree().create_timer(2), "timeout")
+	HUD.hide_message()
 
 func increase_score(points):
 	score += points
@@ -367,6 +387,7 @@ func loose_star():
 
 func water():
 	in_water = true
+	damage(MAX_HP)
 	#UI.show_info("Oops!")
 	HUD.display_message("Oops!")
 	var splash_instance = effect_splash.instance()
@@ -380,11 +401,14 @@ func water():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	if not is_contollable:
+		remove_from_group("players")
+			
 	var anim_player = $Mesh/AnimationPlayer
 	var animations = ['Run', 'Idle', 'Idle2', 'Fly']
 	
 	for animation in animations:
-		animation = anim_player.get_animation(animation)	
+		animation = anim_player.get_animation(animation)
 		animation.loop = true
 	
 	emit_signal("player_update")
@@ -402,10 +426,13 @@ func _on_Attack_body_entered(body):
 		
 
 # this function activates and deactivates object that require that based on player distance
-func manage_objects():
+func lod_manage():
+	#print("LOD manage")
+	
 	var CULL_DIST = 60
 	
 	for i in get_tree().get_nodes_in_group("managed"):
+		#print("managing: ", i)
 		#print(" Player managing node ", i.name)
 		var distance = self.global_transform.origin.distance_to(i.global_transform.origin)
 		#print(" Distance is ", distance)
@@ -416,7 +443,3 @@ func manage_objects():
 		else:
 			if i.has_method("activate"):
 				i.activate()
-		
-
-func _on_ManagementTimer_timeout():
-	manage_objects() # Replace with function body.

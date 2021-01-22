@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Assets/HUD/StarOff.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Player/HUD.gd" type="Script" id=2]
@@ -12,6 +12,387 @@
 [ext_resource path="res://Assets/HUD/TouchControlJump On.png" type="Texture" id=10]
 [ext_resource path="res://Assets/HUD/TouchControlJump Off.png" type="Texture" id=11]
 [ext_resource path="res://Tools/Debug.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/HUD/Damage.png" type="Texture" id=13]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=19]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=20]
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=21]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeVectorOp" id=22]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=23]
+uniform_name = "Damage"
+
+[sub_resource type="VisualShaderNodeTexture" id=24]
+texture = ExtResource( 13 )
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeColorOp" id=25]
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=27]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0, 0, 0 ), 2, 1.0 ]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=29]
+output_port_for_preview = 0
+default_input_values = [ 0, 0.0, 1, 1.0 ]
+operator = 5
+
+[sub_resource type="VisualShaderNodeColorConstant" id=9]
+constant = Color( 0.713726, 0, 0, 1 )
+
+[sub_resource type="VisualShaderNodeScalarInterp" id=30]
+default_input_values = [ 0, 2.0, 1, 0.6, 2, 0.0 ]
+
+[sub_resource type="VisualShaderNodeInput" id=31]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeTexture" id=32]
+source = 1
+
+[sub_resource type="OpenSimplexNoise" id=12]
+seed = 1
+period = 31.8
+persistence = 0.19
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=13]
+width = 1920
+height = 1080
+seamless = true
+as_normalmap = true
+bump_strength = 4.0
+noise = SubResource( 12 )
+
+[sub_resource type="VisualShaderNodeTexture" id=33]
+texture = SubResource( 13 )
+
+[sub_resource type="VisualShaderNodeInput" id=34]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=35]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=36]
+operator = 1
+
+[sub_resource type="VisualShaderNodeVectorOp" id=37]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=38]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=40]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 2, 2, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id=41]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=42]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.9, 1.6, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=43]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.9, 1.6, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVec3Constant" id=44]
+constant = Vector3( 1.6, 0.9, 0 )
+
+[sub_resource type="VisualShaderNodeInput" id=47]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=48]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=50]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=51]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.01, 0.04, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=52]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( -0.01, 0.03, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture" id=11]
+source = 1
+
+[sub_resource type="OpenSimplexNoise" id=45]
+seed = 2
+period = 55.5
+persistence = 0.19
+lacunarity = 1.34
+
+[sub_resource type="NoiseTexture" id=46]
+width = 1920
+height = 1080
+seamless = true
+as_normalmap = true
+bump_strength = 4.0
+noise = SubResource( 45 )
+
+[sub_resource type="VisualShaderNodeTexture" id=14]
+texture = SubResource( 46 )
+
+[sub_resource type="VisualShaderNodeInput" id=16]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShader" id=17]
+code = "shader_type canvas_item;
+uniform sampler2D tex_frg_23;
+uniform sampler2D tex_frg_15 : hint_albedo;
+uniform float Damage;
+uniform sampler2D tex_frg_7;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:21
+	vec3 n_out21p0 = vec3(SCREEN_UV, 0.0);
+
+// Input:24
+	vec3 n_out24p0 = vec3(SCREEN_UV, 0.0);
+
+// Vector:36
+	vec3 n_out36p0 = vec3(1.600000, 0.900000, 0.000000);
+
+// VectorOp:35
+	vec3 n_out35p0 = n_out24p0 * n_out36p0;
+
+// Input:37
+	float n_out37p0 = TIME;
+
+// VectorOp:42
+	vec3 n_in42p1 = vec3(0.01000, 0.04000, 0.00000);
+	vec3 n_out42p0 = vec3(n_out37p0) * n_in42p1;
+
+// VectorOp:40
+	vec3 n_out40p0 = n_out35p0 + n_out42p0;
+
+// Texture:23
+	vec4 tex_frg_23_read = texture(tex_frg_23, n_out40p0.xy);
+	vec3 n_out23p0 = tex_frg_23_read.rgb;
+	float n_out23p1 = tex_frg_23_read.a;
+
+// Scalar:12
+	float n_out12p0 = 0.500000;
+
+// VectorOp:26
+	vec3 n_out26p0 = n_out23p0 - vec3(n_out12p0);
+
+// Input:33
+	vec3 n_out33p0 = vec3(SCREEN_UV, 0.0);
+
+// Texture:15
+	vec4 tex_frg_15_read = texture(tex_frg_15, n_out33p0.xy);
+	vec3 n_out15p0 = tex_frg_15_read.rgb;
+	float n_out15p1 = tex_frg_15_read.a;
+
+// ScalarUniform:14
+	float n_out14p0 = Damage;
+
+// ScalarMix:20
+	float n_in20p0 = 2.00000;
+	float n_in20p1 = 0.60000;
+	float n_out20p0 = mix(n_in20p0, n_in20p1, n_out14p0);
+
+// ScalarOp:19
+	float n_out19p0 = pow(dot(n_out15p0, vec3(0.333333, 0.333333, 0.333333)), n_out20p0);
+
+// VectorOp:31
+	vec3 n_in31p1 = vec3(2.00000, 2.00000, 0.00000);
+	vec3 n_out31p0 = vec3(n_out19p0) * n_in31p1;
+
+// VectorOp:28
+	vec3 n_out28p0 = n_out26p0 * n_out31p0;
+
+// VectorOp:25
+	vec3 n_out25p0 = n_out21p0 + n_out28p0;
+
+// Texture:22
+	vec3 n_out22p0;
+	float n_out22p1;
+	{
+		vec4 _tex_read = textureLod(SCREEN_TEXTURE, n_out25p0.xy, 0.0);
+		n_out22p0 = _tex_read.rgb;
+		n_out22p1 = _tex_read.a;
+	}
+
+// Input:9
+	vec3 n_out9p0 = vec3(SCREEN_UV, 0.0);
+
+// VectorOp:34
+	vec3 n_out34p0 = n_out9p0 * n_out36p0;
+
+// VectorOp:43
+	vec3 n_in43p1 = vec3(-0.01000, 0.03000, 0.00000);
+	vec3 n_out43p0 = vec3(n_out37p0) * n_in43p1;
+
+// VectorOp:38
+	vec3 n_out38p0 = n_out34p0 + n_out43p0;
+
+// Texture:7
+	vec4 tex_frg_7_read = texture(tex_frg_7, n_out38p0.xy);
+	vec3 n_out7p0 = tex_frg_7_read.rgb;
+	float n_out7p1 = tex_frg_7_read.a;
+
+// VectorOp:11
+	vec3 n_out11p0 = n_out7p0 - vec3(n_out12p0);
+
+// VectorOp:13
+	vec3 n_out13p0 = n_out11p0 * n_out31p0;
+
+// VectorOp:10
+	vec3 n_out10p0 = n_out21p0 + n_out13p0;
+
+// Texture:6
+	vec3 n_out6p0;
+	float n_out6p1;
+	{
+		vec4 _tex_read = textureLod(SCREEN_TEXTURE, n_out10p0.xy, 0.0);
+		n_out6p0 = _tex_read.rgb;
+		n_out6p1 = _tex_read.a;
+	}
+
+// VectorScalarMix:29
+	float n_in29p2 = 0.50000;
+	vec3 n_out29p0 = mix(n_out22p0, n_out6p0, n_in29p2);
+
+// Color:2
+	vec3 n_out2p0 = vec3(0.713726, 0.000000, 0.000000);
+	float n_out2p1 = 1.000000;
+
+// ColorOp:16
+	vec3 n_out16p0 = vec3(1.0) - (vec3(1.0) - n_out29p0) * (vec3(1.0) - n_out2p0);
+
+// VectorScalarMix:18
+	vec3 n_in18p0 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out18p0 = mix(n_in18p0, vec3(n_out19p0), n_out14p0);
+
+// Output:0
+	COLOR.rgb = n_out16p0;
+	COLOR.a = dot(n_out18p0, vec3(0.333333, 0.333333, 0.333333));
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -3062.55, -282.25 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 1120, 400 )
+nodes/fragment/2/node = SubResource( 9 )
+nodes/fragment/2/position = Vector2( 20, 480 )
+nodes/fragment/6/node = SubResource( 11 )
+nodes/fragment/6/position = Vector2( -640, 380 )
+nodes/fragment/7/node = SubResource( 14 )
+nodes/fragment/7/position = Vector2( -2160, 300 )
+nodes/fragment/9/node = SubResource( 16 )
+nodes/fragment/9/position = Vector2( -3460, 400 )
+nodes/fragment/10/node = SubResource( 19 )
+nodes/fragment/10/position = Vector2( -820, 380 )
+nodes/fragment/11/node = SubResource( 20 )
+nodes/fragment/11/position = Vector2( -1660, 380 )
+nodes/fragment/12/node = SubResource( 21 )
+nodes/fragment/12/position = Vector2( -1980, 160 )
+nodes/fragment/13/node = SubResource( 22 )
+nodes/fragment/13/position = Vector2( -1240, 380 )
+nodes/fragment/14/node = SubResource( 23 )
+nodes/fragment/14/position = Vector2( -900, 1080 )
+nodes/fragment/15/node = SubResource( 24 )
+nodes/fragment/15/position = Vector2( -1720, 620 )
+nodes/fragment/16/node = SubResource( 25 )
+nodes/fragment/16/position = Vector2( 340, 300 )
+nodes/fragment/18/node = SubResource( 27 )
+nodes/fragment/18/position = Vector2( 560, 720 )
+nodes/fragment/19/node = SubResource( 29 )
+nodes/fragment/19/position = Vector2( -820, 620 )
+nodes/fragment/20/node = SubResource( 30 )
+nodes/fragment/20/position = Vector2( -780, 920 )
+nodes/fragment/21/node = SubResource( 31 )
+nodes/fragment/21/position = Vector2( -1100, 200 )
+nodes/fragment/22/node = SubResource( 32 )
+nodes/fragment/22/position = Vector2( -600, -60 )
+nodes/fragment/23/node = SubResource( 33 )
+nodes/fragment/23/position = Vector2( -1900, -180 )
+nodes/fragment/24/node = SubResource( 34 )
+nodes/fragment/24/position = Vector2( -2840, -40 )
+nodes/fragment/25/node = SubResource( 35 )
+nodes/fragment/25/position = Vector2( -800, -60 )
+nodes/fragment/26/node = SubResource( 36 )
+nodes/fragment/26/position = Vector2( -1640, -60 )
+nodes/fragment/28/node = SubResource( 37 )
+nodes/fragment/28/position = Vector2( -1240, -80 )
+nodes/fragment/29/node = SubResource( 38 )
+nodes/fragment/29/position = Vector2( -280, 160 )
+nodes/fragment/31/node = SubResource( 40 )
+nodes/fragment/31/position = Vector2( -1420, 140 )
+nodes/fragment/33/node = SubResource( 41 )
+nodes/fragment/33/position = Vector2( -1980, 760 )
+nodes/fragment/34/node = SubResource( 42 )
+nodes/fragment/34/position = Vector2( -2780, 420 )
+nodes/fragment/35/node = SubResource( 43 )
+nodes/fragment/35/position = Vector2( -2540, -20 )
+nodes/fragment/36/node = SubResource( 44 )
+nodes/fragment/36/position = Vector2( -3500, 140 )
+nodes/fragment/37/node = SubResource( 47 )
+nodes/fragment/37/position = Vector2( -3500, -100 )
+nodes/fragment/38/node = SubResource( 48 )
+nodes/fragment/38/position = Vector2( -2440, 400 )
+nodes/fragment/40/node = SubResource( 50 )
+nodes/fragment/40/position = Vector2( -2220, -40 )
+nodes/fragment/42/node = SubResource( 51 )
+nodes/fragment/42/position = Vector2( -2560, -200 )
+nodes/fragment/43/node = SubResource( 52 )
+nodes/fragment/43/position = Vector2( -2640, 240 )
+nodes/fragment/connections = PoolIntArray( 10, 0, 6, 0, 7, 0, 11, 0, 12, 0, 11, 1, 11, 0, 13, 0, 2, 0, 16, 1, 15, 0, 19, 0, 19, 0, 18, 1, 14, 0, 20, 2, 21, 0, 25, 0, 25, 0, 22, 0, 23, 0, 26, 0, 26, 0, 28, 0, 28, 0, 25, 1, 12, 0, 26, 1, 21, 0, 10, 0, 22, 0, 29, 0, 6, 0, 29, 1, 31, 0, 13, 1, 31, 0, 28, 1, 33, 0, 15, 0, 20, 0, 19, 1, 14, 0, 18, 2, 18, 0, 0, 1, 16, 0, 0, 0, 9, 0, 34, 0, 24, 0, 35, 0, 36, 0, 34, 1, 36, 0, 35, 1, 13, 0, 10, 1, 19, 0, 31, 0, 34, 0, 38, 0, 38, 0, 7, 0, 35, 0, 40, 0, 40, 0, 23, 0, 37, 0, 42, 0, 42, 0, 40, 1, 43, 0, 38, 1, 37, 0, 43, 0, 29, 0, 16, 0 )
+
+[sub_resource type="ShaderMaterial" id=18]
+shader = SubResource( 17 )
+shader_param/Damage = 0.25
+
+[sub_resource type="Animation" id=28]
+resource_name = "Damage"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlay:material:shader_param/Damage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 3 ),
+"transitions": PoolRealArray( 2.2974, 2.37841, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "LowHealth"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlay:material:shader_param/Damage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ 0.25, 1.0, 0.25 ]
+}
 
 [sub_resource type="Animation" id=1]
 loop = true
@@ -65,6 +446,29 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Damage" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="Damage"]
+material = SubResource( 18 )
+anchor_right = 31.5859
+anchor_bottom = 18.7049
+margin_right = -39150.0
+margin_bottom = -12747.5
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Damage"]
+playback_default_blend_time = 0.1
+anims/Damage = SubResource( 28 )
+anims/LowHealth = SubResource( 53 )
 
 [node name="Display" type="MarginContainer" parent="."]
 anchor_right = 1.0

@@ -8,8 +8,9 @@ extends Spatial
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$StarParticles.emitting = true
-	$SmokeParticles.emitting = true
+	#yield(get_tree().create_timer(0.1), "timeout")
+	$StarParticles2.emitting = true
+	$SmokeParticles2.emitting = true
 	yield(get_tree().create_timer(8),"timeout")
 	queue_free()
 

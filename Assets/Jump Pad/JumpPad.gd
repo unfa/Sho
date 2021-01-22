@@ -25,6 +25,9 @@ func _physics_process(delta):
 
 func _on_Area_body_entered(body):
 	if body.is_in_group("players") and not body in affected:
+		# test if there's nothing blocking the path with a raycast
+		#$RayCast.cast_to(body.global_transform.origin)
+		#print("Raycast collider: ", $RayCast.get_collider()
 		affected.append(body)
 	
 	print("Affected: ", affected)

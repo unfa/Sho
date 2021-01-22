@@ -22,10 +22,10 @@ func _ready():
 
 func _on_Indoors_body_entered(body):
 	#if body.is_in_group("Players"):
-	print("indoors")
-	world.indoors()
+		print("indoors")
+		world.indoors()
 
 func _on_Outdoors_body_entered(body):
 	#if body.is_in_group("Players"):
-	print("outdoors")
-	world.outdoors()
+		print("outdoors")
+		world.outdoors()

@@ -63,6 +63,7 @@ onready var trigger_far = $Far
 onready var trigger_through = $Through
 
 onready var player = get_tree().get_nodes_in_group("players")[0]
+onready var camera = get_tree().get_nodes_in_group("camera_bodies")[0]
 
 onready var eyeball = $Gate/Eyeball
 onready var lid_top = $"Gate/Eye Lid Top"
@@ -261,6 +262,7 @@ func _process(delta):
 		
 	if gate_state.get_current_state(true) == "Sleep":
 		anim.play("Init")
+		#camera.snap(false)
 	elif gate_state.get_current_state(true) == "Start": # AWAKE
 		if not anim.is_playing():
 			anim.play("Start")
@@ -275,6 +277,7 @@ func _process(delta):
 		eye_blink(delta)
 		eye_limit_rotation(delta)
 		anim.play("Collect Star")
+		camera.snap(true, $Camera.global_transform)
 	elif gate_state.get_current_state(true) == "Reject": # REJECT
 		eye_track(delta)
 		eye_wander(delta)
@@ -286,6 +289,7 @@ func _process(delta):
 		pass
 	elif gate_state.get_current_state(true) == "Through":  # THROUGH
 		anim.play("Close")
+		camera.snap(false)
 		gate_state.set_current_state("Closed")
 	elif gate_state.get_current_state(true) == "Closed":
 		anim.queue("Init")
@@ -312,12 +316,15 @@ func _on_Far_body_exited(body):
 
 func _on_Near_body_entered(body):
 	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Reject", "Open", "Opened", "Through", "Closed"]:
-			gate_state.set_current_state("Collect")
+		gate_state.set_current_state("Collect")
+	# snap camera only in these states	
 
 func _on_Near_body_exited(body):
 	if body.is_in_group("players") and gate_state.get_current_state(true) == "Collect":
 		gate_state.set_current_state("Awake")
+		camera.snap(false)
 
 func _on_CloseTrigger_body_entered(body):
 	if body.is_in_group("players") and gate_state.get_current_state(true) in ["Open", "Opened"]:
 		gate_state.set_current_state("Through")
+		camera.snap(false)

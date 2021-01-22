@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Jump Pad/Air Particle.png" type="Texture" id=3]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 1, 14, 1 )
+extents = Vector3( 1, 8, 1 )
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.0849421, 1 )
@@ -19,6 +19,7 @@ emission_shape = 2
 emission_box_extents = Vector3( 1.2, 0.1, 1.2 )
 direction = Vector3( 0, 1, 0 )
 spread = 0.0
+gravity = Vector3( 0, -3.267, 0 )
 initial_velocity = 11.34
 color_ramp = SubResource( 3 )
 
@@ -52,16 +53,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0559826, -9.53674e-07, 0.045
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0 )
 shape = SubResource( 1 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 amount = 32
+lifetime = 2.0
 randomness = 0.51
 visibility_aabb = AABB( -1, -1, -1, 2, 16, 2 )
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 6 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38584, 0 )
+cast_to = Vector3( 0, 8, 0 )
+collision_mask = 3
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
 

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Assets/Camera/CameraRig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Preloader.tscn" type="PackedScene" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 
 [node name="Game" type="Node"]
 
@@ -37,5 +41,16 @@ __meta__ = {
 [node name="CameraRig" parent="World" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
 
+[node name="Debug" parent="World/CameraRig" index="0"]
+visible = false
+material = SubResource( 1 )
+
+[node name="Camera" parent="World/CameraRig" index="1"]
+far = 10000.0
+
 [node name="Player" parent="World" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
+
+[node name="Preloader" parent="." instance=ExtResource( 5 )]
+
+[editable path="World/CameraRig"]
