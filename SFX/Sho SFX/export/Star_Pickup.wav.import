@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Star_Pickup.wav-ea04792984846421448b4e9a503c6723.sample"
+
+[deps]
+
+source_file="res://SFX/Sho SFX/export/Star_Pickup.wav"
+dest_files=[ "res://.import/Star_Pickup.wav-ea04792984846421448b4e9a503c6723.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
