@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UndoHistory>
+  <UndoTransaction tv-sec="1612729170" tv-usec="192818" name="change velocities">
+    <NoteDiffCommand midi-source="27513">
+      <ChangedNotes>
+        <Change property="Velocity" old="101" new="100" id="36976"/>
+        <Change property="Velocity" old="95" new="94" id="35536"/>
+        <Change property="Velocity" old="101" new="100" id="37711"/>
+      </ChangedNotes>
+      <AddedNotes/>
+      <RemovedNotes/>
+    </NoteDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729170" tv-usec="390095" name="change velocities">
+    <NoteDiffCommand midi-source="27513">
+      <ChangedNotes>
+        <Change property="Velocity" old="100" new="99" id="36976"/>
+        <Change property="Velocity" old="94" new="93" id="35536"/>
+        <Change property="Velocity" old="100" new="99" id="37711"/>
+      </ChangedNotes>
+      <AddedNotes/>
+      <RemovedNotes/>
+    </NoteDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729170" tv-usec="403584" name="change velocities">
+    <NoteDiffCommand midi-source="27513">
+      <ChangedNotes>
+        <Change property="Velocity" old="99" new="98" id="36976"/>
+        <Change property="Velocity" old="93" new="92" id="35536"/>
+        <Change property="Velocity" old="99" new="98" id="37711"/>
+      </ChangedNotes>
+      <AddedNotes/>
+      <RemovedNotes/>
+    </NoteDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729170" tv-usec="415926" name="change velocities">
+    <NoteDiffCommand midi-source="27513">
+      <ChangedNotes>
+        <Change property="Velocity" old="98" new="97" id="36976"/>
+        <Change property="Velocity" old="92" new="91" id="35536"/>
+        <Change property="Velocity" old="98" new="97" id="37711"/>
+      </ChangedNotes>
+      <AddedNotes/>
+      <RemovedNotes/>
+    </NoteDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729170" tv-usec="426147" name="change velocities">
+    <NoteDiffCommand midi-source="27513">
+      <ChangedNotes>
+        <Change property="Velocity" old="97" new="96" id="36976"/>
+        <Change property="Velocity" old="91" new="90" id="35536"/>
+        <Change property="Velocity" old="97" new="96" id="37711"/>
+      </ChangedNotes>
+      <AddedNotes/>
+      <RemovedNotes/>
+    </NoteDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseContent" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729284" tv-usec="572138" name="fixed time region copy">
+    <StatefulDiffCommand obj-id="545" type-name="ARDOUR::MidiPlaylist">
+      <Changes>
+        <Regions>
+          <Add id="28127"/>
+        </Regions>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27477"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="256" left-frame="506960" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28127"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729294" tv-usec="275001" name="region drag">
+    <StatefulDiffCommand obj-id="27687" type-name="ARDOUR::MidiRegion">
+      <Changes>
+        <position from="584528" to="581712"/>
+        <beat from="24.355333333333334" to="24.238"/>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="27687"/>
+          </Regions>
+          <MIDINotes region-id="27687">
+            <note note-id="37711"/>
+            <note note-id="35536"/>
+            <note note-id="36976"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729297" tv-usec="656638" name="resize notes">
+    <NoteDiffCommand midi-source="28125">
+      <ChangedNotes>
+        <Change property="StartTime" old="0.72499999999999998" new="1.1359375" id="67028"/>
+        <Change property="Length" old="11.029166666666667" new="10.618229166666666" id="67028"/>
+      </ChangedNotes>
+      <AddedNotes/>
+      <RemovedNotes/>
+    </NoteDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseContent" zoom="128" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28127"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseContent" zoom="128" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28127"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729470" tv-usec="182563" name="fixed time region copy">
+    <StatefulDiffCommand obj-id="597" type-name="ARDOUR::MidiPlaylist">
+      <Changes>
+        <Regions>
+          <Add id="28152"/>
+        </Regions>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="547152" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28127"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="547152" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28152"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729621" tv-usec="743158" name="split">
+    <StatefulDiffCommand obj-id="597" type-name="ARDOUR::MidiPlaylist">
+      <Changes>
+        <Regions>
+          <Add id="28161"/>
+          <Add id="28164"/>
+          <Remove id="28152"/>
+        </Regions>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28152"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729622" tv-usec="7381" name="remove region">
+    <StatefulDiffCommand obj-id="28164" type-name="ARDOUR::MidiRegion">
+      <Changes>
+        <layering-index from="1" to="0"/>
+      </Changes>
+    </StatefulDiffCommand>
+    <StatefulDiffCommand obj-id="597" type-name="ARDOUR::MidiPlaylist">
+      <Changes>
+        <Regions>
+          <Remove id="28161"/>
+        </Regions>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28161"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729622" tv-usec="944053" name="region drag">
+    <StatefulDiffCommand obj-id="28164" type-name="ARDOUR::MidiRegion">
+      <Changes>
+        <position from="583312" to="560528"/>
+        <beat from="24.304666666666666" to="23.355333333333334"/>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729626" tv-usec="525783" name="region drag">
+    <StatefulDiffCommand obj-id="28164" type-name="ARDOUR::MidiRegion">
+      <Changes>
+        <position from="560528" to="575120"/>
+        <beat from="23.355333333333334" to="23.963333333333335"/>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="531088" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729695" tv-usec="932832" name="region drag">
+    <StatefulDiffCommand obj-id="28164" type-name="ARDOUR::MidiRegion">
+      <Changes>
+        <position from="575120" to="584336"/>
+        <beat from="23.963333333333335" to="24.347333333333331"/>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="512" left-frame="531344" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="512" left-frame="531344" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729703" tv-usec="800368" name="region drag">
+    <StatefulDiffCommand obj-id="28164" type-name="ARDOUR::MidiRegion">
+      <Changes>
+        <position from="584336" to="578448"/>
+        <beat from="24.347333333333331" to="24.102"/>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="558864" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="128" left-frame="558864" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729727" tv-usec="632076" name="region drag">
+    <StatefulDiffCommand obj-id="28164" type-name="ARDOUR::MidiRegion">
+      <Changes>
+        <position from="578448" to="583440"/>
+        <beat from="24.102" to="24.310000000000002"/>
+      </Changes>
+    </StatefulDiffCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="64" left-frame="564240" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="64" left-frame="564240" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729736" tv-usec="538703" name="move marker">
+    <MementoCommand obj-id="50" type-name="ARDOUR::Locations">
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="574272" end="714560" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="574272" end="866624" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+    </MementoCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="512" left-frame="435216" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="0"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="512" left-frame="435216" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="0"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729738" tv-usec="213878" name="move marker">
+    <MementoCommand obj-id="50" type-name="ARDOUR::Locations">
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="574272" end="866624" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="574272" end="876352" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+    </MementoCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="512" left-frame="435216" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="0"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="512" left-frame="435216" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="0"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729767" tv-usec="920075" name="move marker">
+    <MementoCommand obj-id="50" type-name="ARDOUR::Locations">
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="574272" end="876352" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="571392" end="876352" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+    </MementoCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="64" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="64" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+  <UndoTransaction tv-sec="1612729770" tv-usec="572958" name="move marker">
+    <MementoCommand obj-id="50" type-name="ARDOUR::Locations">
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="571392" end="876352" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+      <Locations>
+        <Location id="242" name="session" start="0" end="6477600" flags="IsSessionRange" locked="0" position-lock-style="AudioTime" timestamp="1612721273"/>
+        <Location id="23214" name="Sho_Jump" start="9088" end="36096" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612725884"/>
+        <Location id="23547" name="Sho_Land-01" start="60800" end="75264" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726495"/>
+        <Location id="25303" name="Sho_Land-02" start="103040" end="119168" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726983"/>
+        <Location id="25316" name="Sho_Land-03" start="147328" end="164224" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612726995"/>
+        <Location id="25847" name="Sho_Step-01" start="199936" end="206912" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727304"/>
+        <Location id="27212" name="Sho_Step-02" start="215135" end="223967" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727529"/>
+        <Location id="27216" name="Sho_Step-03" start="229983" end="238367" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727531"/>
+        <Location id="27220" name="Sho_Step-04" start="244703" end="251167" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727536"/>
+        <Location id="27224" name="Sho_Step-05" start="258399" end="266911" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727538"/>
+        <Location id="27232" name="Sho_Step-06" start="275615" end="281055" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727542"/>
+        <Location id="27236" name="Sho_Step-07" start="290399" end="296287" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727546"/>
+        <Location id="27261" name="Checkpoint_Activate" start="347808" end="562720" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612727629"/>
+        <Location id="27466" name="Star_Pickup" start="573376" end="876352" flags="IsRangeMarker" locked="0" position-lock-style="AudioTime" timestamp="1612728571"/>
+      </Locations>
+    </MementoCommand>
+    <MementoCommand obj-id="43" type-name="SelectionMemento">
+      <SelectionMemento mouse-mode="MouseObject" zoom="64" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+      <SelectionMemento mouse-mode="MouseObject" zoom="64" left-frame="551632" y-origin="375">
+        <Selection>
+          <Regions>
+            <Region id="28164"/>
+          </Regions>
+          <MIDINotes region-id="28127">
+            <note note-id="67028"/>
+          </MIDINotes>
+          <Marker id="27466" start="1"/>
+        </Selection>
+      </SelectionMemento>
+    </MementoCommand>
+  </UndoTransaction>
+</UndoHistory>
