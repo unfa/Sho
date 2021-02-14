@@ -149,9 +149,15 @@ func update():
 func update_background_strip():
 	if background != null:
 		background.scale[1] = -OS.get_window_size()[0]
+		
+#func update_hud_scale():
+	#self.rect_scale OS.get_window_size()[0]
+	
 	
 func _on_Display_resized():
-	#print("HUD resized")
-	
+	print("HUD resized")
 	# make the background strip as wide as the screen
 	update_background_strip()
+	
+#	update_hud_scale()
+	

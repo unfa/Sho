@@ -23,7 +23,6 @@ auto_exposure_enabled = true
 auto_exposure_scale = 0.5
 auto_exposure_min_luma = 0.25
 auto_exposure_max_luma = 4.0
-ss_reflections_enabled = true
 ss_reflections_max_steps = 512
 ss_reflections_fade_in = 0.261164
 ss_reflections_fade_out = 6.06285

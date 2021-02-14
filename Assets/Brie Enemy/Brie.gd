@@ -2,7 +2,7 @@ extends KinematicBody
 
 onready var anim = $Brie/AnimationPlayer
 
-onready var player = get_tree().get_nodes_in_group("players")[0]
+var player
 export var debug = false
 
 var MovementState = Classes.StateMachine.new(['Stand', 'Turn Left', 'Turn Right', 'Walk'], 0)
@@ -62,11 +62,14 @@ var navigate_delta = 0
 func _ready():
 #	if debug:
 #		DebugHandle.enable()
+	if get_tree().get_nodes_in_group("players").size() >= 1:
+		player = get_tree().get_nodes_in_group("players")[0]
+	else:
+		player = null
 	
 	AttackParticles.emitting = false
 	AttackCollider.monitoring = false
-	
-	
+
 
 func die():
 	#$Brie/AnimationPlayer.play("Die")

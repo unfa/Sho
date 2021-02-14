@@ -1,0 +1,781 @@
+[gd_scene load_steps=62 format=2]
+
+[ext_resource path="res://Assets/HUD/StarOff.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Player/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Assets/HUD/TouchControlMove Off.png" type="Texture" id=3]
+[ext_resource path="res://Assets/HUD/Font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/HUD/HealthBarOver9.png" type="Texture" id=5]
+[ext_resource path="res://Assets/HUD/HealthBarProgress9.png" type="Texture" id=6]
+[ext_resource path="res://Assets/HUD/TouchControlMove On.png" type="Texture" id=7]
+[ext_resource path="res://Assets/HUD/TouchControlAttack On.png" type="Texture" id=8]
+[ext_resource path="res://Assets/HUD/TouchControlAttack Off.png" type="Texture" id=9]
+[ext_resource path="res://Assets/HUD/TouchControlJump On.png" type="Texture" id=10]
+[ext_resource path="res://Assets/HUD/TouchControlJump Off.png" type="Texture" id=11]
+[ext_resource path="res://Tools/Debug.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/HUD/Damage.png" type="Texture" id=13]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=1]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=2]
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=3]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeVectorOp" id=4]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=5]
+uniform_name = "Damage"
+
+[sub_resource type="VisualShaderNodeTexture" id=6]
+texture = ExtResource( 13 )
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeColorOp" id=7]
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=8]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0, 0, 0 ), 2, 1.0 ]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=9]
+output_port_for_preview = 0
+default_input_values = [ 0, 0.0, 1, 1.0 ]
+operator = 5
+
+[sub_resource type="VisualShaderNodeColorConstant" id=10]
+constant = Color( 0.713726, 0, 0, 1 )
+
+[sub_resource type="VisualShaderNodeScalarInterp" id=11]
+default_input_values = [ 0, 2.0, 1, 0.6, 2, 0.0 ]
+
+[sub_resource type="VisualShaderNodeInput" id=12]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeTexture" id=13]
+source = 1
+
+[sub_resource type="OpenSimplexNoise" id=14]
+seed = 1
+period = 31.8
+persistence = 0.19
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=15]
+width = 1920
+height = 1080
+seamless = true
+as_normalmap = true
+bump_strength = 4.0
+noise = SubResource( 14 )
+
+[sub_resource type="VisualShaderNodeTexture" id=16]
+texture = SubResource( 15 )
+
+[sub_resource type="VisualShaderNodeInput" id=17]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=18]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=19]
+operator = 1
+
+[sub_resource type="VisualShaderNodeVectorOp" id=20]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=21]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=22]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 2, 2, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id=23]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=24]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.9, 1.6, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=25]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.9, 1.6, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVec3Constant" id=26]
+constant = Vector3( 1.6, 0.9, 0 )
+
+[sub_resource type="VisualShaderNodeInput" id=27]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=28]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=29]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=30]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.01, 0.04, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=31]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( -0.01, 0.03, 0 ) ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture" id=32]
+source = 1
+
+[sub_resource type="OpenSimplexNoise" id=33]
+seed = 2
+period = 55.5
+persistence = 0.19
+lacunarity = 1.34
+
+[sub_resource type="NoiseTexture" id=34]
+width = 1920
+height = 1080
+seamless = true
+as_normalmap = true
+bump_strength = 4.0
+noise = SubResource( 33 )
+
+[sub_resource type="VisualShaderNodeTexture" id=35]
+texture = SubResource( 34 )
+
+[sub_resource type="VisualShaderNodeInput" id=36]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShader" id=37]
+code = "shader_type canvas_item;
+uniform sampler2D tex_frg_23;
+uniform sampler2D tex_frg_15 : hint_albedo;
+uniform float Damage;
+uniform sampler2D tex_frg_7;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:21
+	vec3 n_out21p0 = vec3(SCREEN_UV, 0.0);
+
+// Input:24
+	vec3 n_out24p0 = vec3(SCREEN_UV, 0.0);
+
+// Vector:36
+	vec3 n_out36p0 = vec3(1.600000, 0.900000, 0.000000);
+
+// VectorOp:35
+	vec3 n_out35p0 = n_out24p0 * n_out36p0;
+
+// Input:37
+	float n_out37p0 = TIME;
+
+// VectorOp:42
+	vec3 n_in42p1 = vec3(0.01000, 0.04000, 0.00000);
+	vec3 n_out42p0 = vec3(n_out37p0) * n_in42p1;
+
+// VectorOp:40
+	vec3 n_out40p0 = n_out35p0 + n_out42p0;
+
+// Texture:23
+	vec4 tex_frg_23_read = texture(tex_frg_23, n_out40p0.xy);
+	vec3 n_out23p0 = tex_frg_23_read.rgb;
+	float n_out23p1 = tex_frg_23_read.a;
+
+// Scalar:12
+	float n_out12p0 = 0.500000;
+
+// VectorOp:26
+	vec3 n_out26p0 = n_out23p0 - vec3(n_out12p0);
+
+// Input:33
+	vec3 n_out33p0 = vec3(SCREEN_UV, 0.0);
+
+// Texture:15
+	vec4 tex_frg_15_read = texture(tex_frg_15, n_out33p0.xy);
+	vec3 n_out15p0 = tex_frg_15_read.rgb;
+	float n_out15p1 = tex_frg_15_read.a;
+
+// ScalarUniform:14
+	float n_out14p0 = Damage;
+
+// ScalarMix:20
+	float n_in20p0 = 2.00000;
+	float n_in20p1 = 0.60000;
+	float n_out20p0 = mix(n_in20p0, n_in20p1, n_out14p0);
+
+// ScalarOp:19
+	float n_out19p0 = pow(dot(n_out15p0, vec3(0.333333, 0.333333, 0.333333)), n_out20p0);
+
+// VectorOp:31
+	vec3 n_in31p1 = vec3(2.00000, 2.00000, 0.00000);
+	vec3 n_out31p0 = vec3(n_out19p0) * n_in31p1;
+
+// VectorOp:28
+	vec3 n_out28p0 = n_out26p0 * n_out31p0;
+
+// VectorOp:25
+	vec3 n_out25p0 = n_out21p0 + n_out28p0;
+
+// Texture:22
+	vec3 n_out22p0;
+	float n_out22p1;
+	{
+		vec4 _tex_read = textureLod(SCREEN_TEXTURE, n_out25p0.xy, 0.0);
+		n_out22p0 = _tex_read.rgb;
+		n_out22p1 = _tex_read.a;
+	}
+
+// Input:9
+	vec3 n_out9p0 = vec3(SCREEN_UV, 0.0);
+
+// VectorOp:34
+	vec3 n_out34p0 = n_out9p0 * n_out36p0;
+
+// VectorOp:43
+	vec3 n_in43p1 = vec3(-0.01000, 0.03000, 0.00000);
+	vec3 n_out43p0 = vec3(n_out37p0) * n_in43p1;
+
+// VectorOp:38
+	vec3 n_out38p0 = n_out34p0 + n_out43p0;
+
+// Texture:7
+	vec4 tex_frg_7_read = texture(tex_frg_7, n_out38p0.xy);
+	vec3 n_out7p0 = tex_frg_7_read.rgb;
+	float n_out7p1 = tex_frg_7_read.a;
+
+// VectorOp:11
+	vec3 n_out11p0 = n_out7p0 - vec3(n_out12p0);
+
+// VectorOp:13
+	vec3 n_out13p0 = n_out11p0 * n_out31p0;
+
+// VectorOp:10
+	vec3 n_out10p0 = n_out21p0 + n_out13p0;
+
+// Texture:6
+	vec3 n_out6p0;
+	float n_out6p1;
+	{
+		vec4 _tex_read = textureLod(SCREEN_TEXTURE, n_out10p0.xy, 0.0);
+		n_out6p0 = _tex_read.rgb;
+		n_out6p1 = _tex_read.a;
+	}
+
+// VectorScalarMix:29
+	float n_in29p2 = 0.50000;
+	vec3 n_out29p0 = mix(n_out22p0, n_out6p0, n_in29p2);
+
+// Color:2
+	vec3 n_out2p0 = vec3(0.713726, 0.000000, 0.000000);
+	float n_out2p1 = 1.000000;
+
+// ColorOp:16
+	vec3 n_out16p0 = vec3(1.0) - (vec3(1.0) - n_out29p0) * (vec3(1.0) - n_out2p0);
+
+// VectorScalarMix:18
+	vec3 n_in18p0 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out18p0 = mix(n_in18p0, vec3(n_out19p0), n_out14p0);
+
+// Output:0
+	COLOR.rgb = n_out16p0;
+	COLOR.a = dot(n_out18p0, vec3(0.333333, 0.333333, 0.333333));
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -3062.55, -282.25 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 1120, 400 )
+nodes/fragment/2/node = SubResource( 10 )
+nodes/fragment/2/position = Vector2( 20, 480 )
+nodes/fragment/6/node = SubResource( 32 )
+nodes/fragment/6/position = Vector2( -640, 380 )
+nodes/fragment/7/node = SubResource( 35 )
+nodes/fragment/7/position = Vector2( -2160, 300 )
+nodes/fragment/9/node = SubResource( 36 )
+nodes/fragment/9/position = Vector2( -3460, 400 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( -820, 380 )
+nodes/fragment/11/node = SubResource( 2 )
+nodes/fragment/11/position = Vector2( -1660, 380 )
+nodes/fragment/12/node = SubResource( 3 )
+nodes/fragment/12/position = Vector2( -1980, 160 )
+nodes/fragment/13/node = SubResource( 4 )
+nodes/fragment/13/position = Vector2( -1240, 380 )
+nodes/fragment/14/node = SubResource( 5 )
+nodes/fragment/14/position = Vector2( -900, 1080 )
+nodes/fragment/15/node = SubResource( 6 )
+nodes/fragment/15/position = Vector2( -1720, 620 )
+nodes/fragment/16/node = SubResource( 7 )
+nodes/fragment/16/position = Vector2( 340, 300 )
+nodes/fragment/18/node = SubResource( 8 )
+nodes/fragment/18/position = Vector2( 560, 720 )
+nodes/fragment/19/node = SubResource( 9 )
+nodes/fragment/19/position = Vector2( -820, 620 )
+nodes/fragment/20/node = SubResource( 11 )
+nodes/fragment/20/position = Vector2( -780, 920 )
+nodes/fragment/21/node = SubResource( 12 )
+nodes/fragment/21/position = Vector2( -1100, 200 )
+nodes/fragment/22/node = SubResource( 13 )
+nodes/fragment/22/position = Vector2( -600, -60 )
+nodes/fragment/23/node = SubResource( 16 )
+nodes/fragment/23/position = Vector2( -1900, -180 )
+nodes/fragment/24/node = SubResource( 17 )
+nodes/fragment/24/position = Vector2( -2840, -40 )
+nodes/fragment/25/node = SubResource( 18 )
+nodes/fragment/25/position = Vector2( -800, -60 )
+nodes/fragment/26/node = SubResource( 19 )
+nodes/fragment/26/position = Vector2( -1640, -60 )
+nodes/fragment/28/node = SubResource( 20 )
+nodes/fragment/28/position = Vector2( -1240, -80 )
+nodes/fragment/29/node = SubResource( 21 )
+nodes/fragment/29/position = Vector2( -280, 160 )
+nodes/fragment/31/node = SubResource( 22 )
+nodes/fragment/31/position = Vector2( -1420, 140 )
+nodes/fragment/33/node = SubResource( 23 )
+nodes/fragment/33/position = Vector2( -1980, 760 )
+nodes/fragment/34/node = SubResource( 24 )
+nodes/fragment/34/position = Vector2( -2780, 420 )
+nodes/fragment/35/node = SubResource( 25 )
+nodes/fragment/35/position = Vector2( -2540, -20 )
+nodes/fragment/36/node = SubResource( 26 )
+nodes/fragment/36/position = Vector2( -3500, 140 )
+nodes/fragment/37/node = SubResource( 27 )
+nodes/fragment/37/position = Vector2( -3500, -100 )
+nodes/fragment/38/node = SubResource( 28 )
+nodes/fragment/38/position = Vector2( -2440, 400 )
+nodes/fragment/40/node = SubResource( 29 )
+nodes/fragment/40/position = Vector2( -2220, -40 )
+nodes/fragment/42/node = SubResource( 30 )
+nodes/fragment/42/position = Vector2( -2560, -200 )
+nodes/fragment/43/node = SubResource( 31 )
+nodes/fragment/43/position = Vector2( -2640, 240 )
+nodes/fragment/connections = PoolIntArray( 10, 0, 6, 0, 7, 0, 11, 0, 12, 0, 11, 1, 11, 0, 13, 0, 2, 0, 16, 1, 15, 0, 19, 0, 19, 0, 18, 1, 14, 0, 20, 2, 21, 0, 25, 0, 25, 0, 22, 0, 23, 0, 26, 0, 26, 0, 28, 0, 28, 0, 25, 1, 12, 0, 26, 1, 21, 0, 10, 0, 22, 0, 29, 0, 6, 0, 29, 1, 31, 0, 13, 1, 31, 0, 28, 1, 33, 0, 15, 0, 20, 0, 19, 1, 14, 0, 18, 2, 18, 0, 0, 1, 16, 0, 0, 0, 9, 0, 34, 0, 24, 0, 35, 0, 36, 0, 34, 1, 36, 0, 35, 1, 13, 0, 10, 1, 19, 0, 31, 0, 34, 0, 38, 0, 38, 0, 7, 0, 35, 0, 40, 0, 40, 0, 23, 0, 37, 0, 42, 0, 42, 0, 40, 1, 43, 0, 38, 1, 37, 0, 43, 0, 29, 0, 16, 0 )
+
+[sub_resource type="ShaderMaterial" id=38]
+shader = SubResource( 37 )
+shader_param/Damage = 0.25
+
+[sub_resource type="Animation" id=39]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlay:material:shader_param/Damage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 3 ),
+"transitions": PoolRealArray( 2.2974, 2.37841, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "LowHealth"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlay:material:shader_param/Damage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ 0.25, 1.0, 0.25 ]
+}
+
+[sub_resource type="Animation" id=41]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HealthBar:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFontData" id=42]
+font_path = "res://Assets/Fonts/Baloo_Tamma/BalooTamma-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=43]
+size = 32
+outline_color = Color( 0.976471, 0.937255, 0.937255, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 42 )
+
+[sub_resource type="DynamicFontData" id=44]
+font_path = "res://Assets/Fonts/Baloo_Tamma/BalooTamma-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=45]
+size = 48
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 44 )
+
+[sub_resource type="CanvasItemMaterial" id=46]
+blend_mode = 2
+light_mode = 1
+
+[sub_resource type="Gradient" id=47]
+colors = PoolColorArray( 0.222656, 0.222656, 0.222656, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=48]
+gradient = SubResource( 47 )
+width = 64
+
+[node name="HUD" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Damage" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="Damage"]
+material = SubResource( 38 )
+anchor_right = 31.5859
+anchor_bottom = 18.7049
+margin_right = -39150.0
+margin_bottom = -12747.5
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Damage"]
+playback_default_blend_time = 0.1
+anims/Damage = SubResource( 39 )
+anims/LowHealth = SubResource( 40 )
+
+[node name="Display" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -345.0
+grow_horizontal = 2
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rows" type="VBoxContainer" parent="Display"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1888.0
+margin_bottom = 287.0
+size_flags_vertical = 2
+
+[node name="Columns" type="HBoxContainer" parent="Display/Rows"]
+margin_right = 1856.0
+margin_bottom = 136.0
+custom_constants/separation = 128
+
+[node name="HealthMargin" type="MarginContainer" parent="Display/Rows/Columns"]
+margin_top = 52.0
+margin_right = 533.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Display/Rows/Columns/HealthMargin"]
+anims/LowHealth = SubResource( 41 )
+
+[node name="HealthTween" type="Tween" parent="Display/Rows/Columns/HealthMargin"]
+
+[node name="HealthBar" type="TextureProgress" parent="Display/Rows/Columns/HealthMargin"]
+margin_right = 533.0
+margin_bottom = 32.0
+step = 0.1
+value = 75.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarsMargin" type="MarginContainer" parent="Display/Rows/Columns"]
+margin_left = 661.0
+margin_top = 22.0
+margin_right = 1194.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Stars" type="HBoxContainer" parent="Display/Rows/Columns/StarsMargin"]
+margin_left = 114.0
+margin_right = 418.0
+margin_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="star_1" type="TextureRect" parent="Display/Rows/Columns/StarsMargin/Stars"]
+margin_right = 96.0
+margin_bottom = 92.0
+texture = ExtResource( 1 )
+
+[node name="star_2" type="TextureRect" parent="Display/Rows/Columns/StarsMargin/Stars"]
+margin_left = 104.0
+margin_right = 200.0
+margin_bottom = 92.0
+texture = ExtResource( 1 )
+
+[node name="star_3" type="TextureRect" parent="Display/Rows/Columns/StarsMargin/Stars"]
+margin_left = 208.0
+margin_right = 304.0
+margin_bottom = 92.0
+texture = ExtResource( 1 )
+
+[node name="StageScoreMargin" type="MarginContainer" parent="Display/Rows/Columns"]
+margin_left = 1322.0
+margin_right = 1856.0
+margin_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="StageScoreRows" type="VBoxContainer" parent="Display/Rows/Columns/StageScoreMargin"]
+margin_right = 534.0
+margin_bottom = 136.0
+custom_constants/separation = -32
+
+[node name="StageLabel" type="Label" parent="Display/Rows/Columns/StageScoreMargin/StageScoreRows"]
+margin_right = 534.0
+margin_bottom = 112.0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "STAGE 01"
+align = 1
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="Display/Rows/Columns/StageScoreMargin/StageScoreRows"]
+margin_top = 80.0
+margin_right = 534.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 43 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "SCORE: 0000"
+align = 1
+valign = 1
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreTween" type="Tween" parent="Display/Rows/Columns/StageScoreMargin/StageScoreRows"]
+
+[node name="InfoLabelContainer" type="MarginContainer" parent="Display/Rows"]
+margin_top = 140.0
+margin_right = 1856.0
+margin_bottom = 278.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="InfoLabel" type="Label" parent="Display/Rows/InfoLabelContainer"]
+margin_right = 1856.0
+margin_bottom = 138.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 45 )
+custom_constants/line_spacing = -30
+text = "All in game-messages go herea  Blah blah it' too much text! no wait!!!! How is this possible!?"
+align = 1
+autowrap = true
+
+[node name="ComboContainer" type="VBoxContainer" parent="Display/Rows"]
+visible = false
+margin_top = 282.0
+margin_right = 1216.0
+margin_bottom = 402.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="ComboLabelContainer" type="MarginContainer" parent="Display/Rows/ComboContainer"]
+margin_right = 1216.0
+margin_bottom = 84.0
+
+[node name="ComboLabel" type="Label" parent="Display/Rows/ComboContainer/ComboLabelContainer"]
+margin_right = 1216.0
+margin_bottom = 84.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 45 )
+custom_constants/line_spacing = -30
+text = "Combo 1x"
+align = 1
+autowrap = true
+
+[node name="ComboBarContainer" type="MarginContainer" parent="Display/Rows/ComboContainer"]
+margin_top = 88.0
+margin_right = 1216.0
+margin_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ComboBar" type="TextureProgress" parent="Display/Rows/ComboContainer/ComboBarContainer"]
+margin_right = 1216.0
+margin_bottom = 32.0
+step = 0.1
+value = 75.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TouchControls" type="MarginContainer" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.69629
+margin_top = -267.069
+margin_right = -3.69629
+margin_bottom = -11.0688
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left Cluster" type="Control" parent="TouchControls"]
+margin_right = 1920.0
+margin_bottom = 256.0
+grow_vertical = 0
+
+[node name="jump" type="TouchScreenButton" parent="TouchControls/Left Cluster"]
+position = Vector2( 62.8636, -77.9312 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 11 )
+pressed = ExtResource( 10 )
+action = "player_jump"
+
+[node name="Attack" type="TouchScreenButton" parent="TouchControls/Left Cluster"]
+position = Vector2( 209.287, 78.9907 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 9 )
+pressed = ExtResource( 8 )
+action = "player_attack"
+
+[node name="RightCluster" type="HBoxContainer" parent="TouchControls"]
+margin_right = 1920.0
+margin_bottom = 256.0
+custom_constants/separation = 16
+alignment = 2
+
+[node name="LeftMargin" type="MarginContainer" parent="TouchControls/RightCluster"]
+margin_left = 1248.0
+margin_right = 1248.0
+margin_bottom = 256.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TouchScreenButton" parent="TouchControls/RightCluster/LeftMargin"]
+position = Vector2( -478.867, 126.581 )
+rotation = -1.57079
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 7 )
+action = "player_left"
+
+[node name="UpDownContainer" type="VBoxContainer" parent="TouchControls/RightCluster"]
+margin_left = 1264.0
+margin_right = 1264.0
+margin_bottom = 256.0
+grow_horizontal = 0
+
+[node name="UpMargin" type="MarginContainer" parent="TouchControls/RightCluster/UpDownContainer"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Up" type="TouchScreenButton" parent="TouchControls/RightCluster/UpDownContainer/UpMargin"]
+position = Vector2( -332.304, -77.9312 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 7 )
+action = "player_forward"
+
+[node name="DownMargin" type="MarginContainer" parent="TouchControls/RightCluster/UpDownContainer"]
+margin_top = 4.0
+margin_bottom = 4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Down" type="TouchScreenButton" parent="TouchControls/RightCluster/UpDownContainer/DownMargin"]
+position = Vector2( -204.304, 208.425 )
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 7 )
+action = "player_backward"
+
+[node name="RightMargin" type="MarginContainer" parent="TouchControls/RightCluster"]
+margin_left = 1280.0
+margin_right = 1280.0
+margin_bottom = 256.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rigth" type="TouchScreenButton" parent="TouchControls/RightCluster/RightMargin"]
+position = Vector2( -56.2563, 4 )
+rotation = 1.5642
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 7 )
+action = "player_right"
+
+[node name="Debug" parent="." instance=ExtResource( 12 )]
+
+[node name="Background" type="Sprite" parent="."]
+material = SubResource( 46 )
+rotation = 1.5708
+scale = Vector2( 4, -4096 )
+z_index = -1
+texture = SubResource( 48 )
+centered = false
+[connection signal="resized" from="Display" to="." method="_on_Display_resized"]
