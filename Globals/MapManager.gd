@@ -1,10 +1,10 @@
 extends Node
 
 # binding to world nodes
-#onready var root = get_tree().root
-onready var world = $"../World" #root.get_node("Game/World")
-onready var player = world.get_node("Player")
-onready var cameraRig = world.get_node("CameraRig")
+#var root #= get_tree().root
+var world #= get_tree().root.find_node("World")
+var player #= world.get_node("Player")
+var cameraRig #= world.get_node("CameraRig")
 
 class MapSlot:
 	var map: String
@@ -25,11 +25,11 @@ class MapSlot:
 		scene = resource.instance()
 		free = false
 	
-	func spawnMap(previousMap: MapSlot):
+	func spawnMap(previousMap: MapSlot, world):
 		print("Spawning a map: ", map)
 		#parentNode.call_deferred("add_child", scene)
 		world.add_child(scene)
-		
+
 		current = true
 	
 	func freeMap():
@@ -37,12 +37,10 @@ class MapSlot:
 		free = true
 		current = false
 		
-		incStage()
+		#get_tree().root.find_node("MapManager").incStage()
 
-
-
-onready var SlotA = MapSlot.new(world.get_node("MapA"), true)
-onready var SlotB = MapSlot.new(world.get_node("MapB"), false)
+var SlotA
+var SlotB
 
 var firstMap = true
 
@@ -57,28 +55,7 @@ var MapList = [
 	"res://Maps/Campaign/A02.tscn",
 	"res://Maps/Campaign/A03.tscn",
 	"res://Maps/Campaign/A04.tscn",
-#	"res://Maps/Campaign/A05.tscn",
-#	"res://Maps/Campaign/A06.tscn",
-#	"res://Maps/Campaign/A07.tscn",
-#	"res://Maps/Campaign/A08.tscn"
 ]
-
-#var MapList = [
-#	"res://Maps/Map01.tscn",
-#	"res://Maps/Map03.tscn",
-#	"res://Maps/Map02.tscn",
-#	"res://Maps/Map01.tscn",
-#	"res://Maps/Map02.tscn",
-#	"res://Maps/Map03.tscn",
-#	"res://Maps/Map01.tscn",
-#	"res://Maps/Map02.tscn",
-#	"res://Maps/Map03.tscn",
-#	"res://Maps/Map01.tscn"
-#]
-
-
-#var player = preload("res://Assets/Player/Player.tscn")
-#var cameraRig = preload("res://Assets/Camera/CameraRig.tscn")
 
 
 func getCurrentMapSlot(check = true) -> MapSlot:
@@ -147,13 +124,10 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	var newEntry = nextMap.scene.find_node("Entry")
 	
 	if firstMap:
-		
 		# if this is the first map we're ever spawning - leave the gate visible and solid, just make it not process anything
-		
 		newEntry.set_process(false)
 	else:
-		
-		# if we're spawning another level, we can't have two gates one over another, so lets' make the door non-solid, adnd hide the whole gate (we'll reverse that later)	
+		# if we're spawning another level, we can't have two gates one over another, so lets' make the door non-solid, and hide the whole gate (we'll reverse that later)	
 		newEntry.get_node("Gate/Door /static_collision/shape0").set_deferred("disabled", true)
 		newEntry.set_process(false) # stop the first gate, so it doesn't eat up player's stars
 		newEntry.hide()
@@ -181,6 +155,7 @@ func freePreviousMap(): # despawn the unneeded previous map from the game
 	
 	# release previous map 
 	getCurrentMapSlot(false).freeMap()
+	incStage()
 	
 	# make current maps' entry gate door solid, and make the gate visible so we don't leave a hole in the level
 	
@@ -194,11 +169,21 @@ func freePreviousMap(): # despawn the unneeded previous map from the game
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# wait for the player node to be ready
-	yield(player, "ready")
+	world = $root/Game/World
+	print(world)
+		
+	world = get_tree().root.find_node("World")
+	player = world.get_node("Player")
+	cameraRig = world.get_node("CameraRig")
+	
+	SlotA = MapSlot.new(world.get_node("MapA"), true)
+	SlotB = MapSlot.new(world.get_node("MapB"), false)
+
+	
 	#pass # Replace with function body.
-	loadNextMap()
-	spawnNextMap()
-	incStage()
+	#loadNextMap()
+	#spawnNextMap()
+	#incStage()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

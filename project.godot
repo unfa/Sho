@@ -28,10 +28,7 @@ mix_rate=48000
 Balance="*res://Globals/Balance.gd"
 Classes="*res://Globals/Classes.gd"
 HUD="*res://Globals/HUD.tscn"
-
-[debug]
-
-settings/stdout/print_fps=true
+GameSaves="*res://Globals/GameSaves.gd"
 
 [display]
 

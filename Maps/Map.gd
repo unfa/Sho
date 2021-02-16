@@ -3,7 +3,7 @@ extends Spatial
 #signal indoors
 #signal outdoors
 #
-onready var world = get_tree().root.get_node("/root/Game/World")
+var world = get_tree().root.get_node("World")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -11,9 +11,10 @@ onready var world = get_tree().root.get_node("/root/Game/World")
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
+#func _ready():
+#	while world == null:
+#		world = get_tree().root.get_node("World")
+#		yield(get_tree(), "idle_frame")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
