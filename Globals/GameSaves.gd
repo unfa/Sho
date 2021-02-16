@@ -35,7 +35,7 @@ class GameSaves:
 	var ModifiedDateTime = []
 	var CreatedOnUID: String
 	var ModifiedOnUID: String
-	var CreatedVersion: String
+	#var CreatedVersion: String
 	var ModifiedVersion: String
 	
 	func _init():
@@ -43,7 +43,7 @@ class GameSaves:
 		self.ModifiedDateTime = self.CreatedDateTime
 		self.CreatedOnUID = OS.get_unique_id()
 		self.ModifiedOnUID = self.CreatedOnUID
-		self.CreatedVersion = OS.get_exe
+		#self.CreatedVersion = OS.
 
 
 const FileName = "user://gamesave.sho"
