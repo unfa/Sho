@@ -3,6 +3,7 @@
 A 3D platformer game created with Godot 3 game engine.
 
 **To play the "Stable" version of the game, download the latest release. The Master branch is not necessarily always kept fully working.**
+There might be excitign stuff there, but it could jsut as well not run at all, becasue I've messed something up and didn't fix it just yet.
 
 If you like the game and want to help make it better or turn it into something different - be my guest, though I can't guarantee I'll be able to dedicate much time to this project going forward. Also - I'm not really a software developer, so please lower your expectations as much as possible :D
 
