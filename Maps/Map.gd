@@ -3,7 +3,7 @@ extends Spatial
 #signal indoors
 #signal outdoors
 #
-var world = get_tree().root.get_node("World")
+onready var world = get_tree().root.find_node("World", true, false)
 
 # Declare member variables here. Examples:
 # var a = 2

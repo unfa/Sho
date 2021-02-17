@@ -118,7 +118,7 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 
 	#assert(nextMap.free == false)
 	
-	nextMap.spawnMap(getCurrentMapSlot())
+	nextMap.spawnMap(getCurrentMapSlot(), world)
 	previousMap.current = false
 	
 	var newEntry = nextMap.scene.find_node("Entry")
@@ -169,10 +169,8 @@ func freePreviousMap(): # despawn the unneeded previous map from the game
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# wait for the player node to be ready
-	world = $root/Game/World
+	world = get_tree().root.find_node("World", true, false)
 	print(world)
-		
-	world = get_tree().root.find_node("World")
 	player = world.get_node("Player")
 	cameraRig = world.get_node("CameraRig")
 	
@@ -181,9 +179,9 @@ func _ready():
 
 	
 	#pass # Replace with function body.
-	#loadNextMap()
-	#spawnNextMap()
-	#incStage()
+	loadNextMap()
+	spawnNextMap()
+	incStage()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
