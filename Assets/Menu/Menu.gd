@@ -1,16 +1,9 @@
 extends Control
 
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	HUD.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -28,8 +21,8 @@ func _on_QuitConfirmationDialog_confirmed():
 	get_tree().quit()
 
 func _on_PlayerNameEdit_text_changed(new_text):
-	if $NewGame/PlayerNameEdit.text.length() > 0:
-		$NewGame/Start.disabled = false
+	if $NewGame/PlayerNameEdit.text.length() > 0 and not $NewGame/PlayerNameEdit.text in GameStates.save_files:
+			$NewGame/Start.disabled = false
 	else:
 		$NewGame/Start.disabled = true
 
@@ -40,4 +33,5 @@ func _on_NewGameBack_pressed():
 
 
 func _on_Start_pressed():
+	GameStates.new_game($NewGame/PlayerNameEdit.text)
 	get_tree().change_scene("res://Game.tscn")

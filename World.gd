@@ -28,8 +28,10 @@ func outdoors():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	HUD.show()
 	
 func _input(event):
+	# TODO - make this pause the game and open pause menu instead
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 

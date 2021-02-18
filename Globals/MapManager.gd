@@ -113,9 +113,25 @@ func loadNextMap(): # load the next map resource so it's ready to spawn
 	OtherSlot.free = true
 	
 func spawnNextMap(): # spawne the loaded map so it's a part of the world
+	
+	# save the progress
+	
+	var level = GameStates.LevelState.new(getCurrentMapSlot().map)
+	level.Score = player.score
+	level.Deaths = player.deaths
+	level.Kills = player.kills
+	level.Secrets = player.secrets
+	
+	GameStates.clear_level(level)
+	
+	# reset player numbers for the next level
+	player.deaths = 0
+	player.kills = 0
+	player.secrets = 0
+	
 	var previousMap = getCurrentMapSlot()
 	var nextMap = getCurrentMapSlot(false)
-
+	
 	#assert(nextMap.free == false)
 	
 	nextMap.spawnMap(getCurrentMapSlot(), world)

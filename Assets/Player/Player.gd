@@ -23,6 +23,9 @@ const LOW_HP = MAX_HP / 4
 var hp = MAX_HP # hit points
 var score = 0
 var stars_current = 0
+var secrets = 0
+var kills = 0
+var deaths = 0
 #var stars_total = 0
 #var last_checkpoint
 
@@ -396,6 +399,8 @@ func water():
 	get_tree().root.add_child(splash_instance)
 	
 	emit_signal("player_died")
+	
+	deaths += 1
 	#$Camera/AnimationPlayer.play("Water")
 
 # Called when the node enters the scene tree for the first time.
