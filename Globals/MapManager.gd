@@ -6,6 +6,10 @@ var world #= get_tree().root.find_node("World")
 var player #= world.get_node("Player")
 var cameraRig #= world.get_node("CameraRig")
 
+var levelState: GameStates.LevelState
+
+var lastTime = 0
+
 class MapSlot:
 	var map: String
 	var parentNode: Node
@@ -28,7 +32,7 @@ class MapSlot:
 	func spawnMap(previousMap: MapSlot, world):
 		print("Spawning a map: ", map)
 		#parentNode.call_deferred("add_child", scene)
-		world.add_child(scene)
+		self.parentNode.add_child(scene)
 
 		current = true
 	
@@ -95,7 +99,7 @@ func swapFreeMapSlot():
 		print("Both slots are free or none is")
 		return -1
 
-func spawnPlayer():	
+func spawnPlayer():
 	var playerSpawner = getCurrentMapSlot().scene.find_node("Player").global_transform
 	
 	player.global_transform = playerSpawner
@@ -116,18 +120,16 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	
 	# save the progress
 	
-	var level = GameStates.LevelState.new(getCurrentMapSlot().map)
-	level.Score = player.score
-	level.Deaths = player.deaths
-	level.Kills = player.kills
-	level.Secrets = player.secrets
+	levelState = GameStates.LevelState.new(getCurrentMapSlot().map)
 	
-	GameStates.clear_level(level)
+	if not firstMap:
+		levelState.Score = player.score
+		levelState.Deaths = player.deaths
+		levelState.Kills = player.kills
+		levelState.SecretsTotal = get_tree().get_nodes_in_group("secrets").size()
 	
-	# reset player numbers for the next level
-	player.deaths = 0
-	player.kills = 0
-	player.secrets = 0
+	if firstMap: # is this si the first map, start the stopwatch now
+		lastTime = OS.get_ticks_msec()
 	
 	var previousMap = getCurrentMapSlot()
 	var nextMap = getCurrentMapSlot(false)
@@ -173,11 +175,31 @@ func freePreviousMap(): # despawn the unneeded previous map from the game
 	getCurrentMapSlot(false).freeMap()
 	incStage()
 	
-	# make current maps' entry gate door solid, and make the gate visible so we don't leave a hole in the level
+	# because the player has definitely left the level now, we can clear it.
+	levelState.Secrets = player.secrets
 	
+	var currentTime = OS.get_ticks_msec()
+	levelState.Time = currentTime - lastTime
+	lastTime = currentTime
+	
+	GameStates.clear_level(levelState)
+	
+	HUD.display_message("Level Stats:\n" + "Time: " + String(levelState.Time / 1000) + " seconds\n" + "Secrets: " + String(levelState.Secrets) + "/" + String(levelState.SecretsTotal) )
+	
+	
+	# reset player numbers for the next level
+	player.deaths = 0
+	player.kills = 0
+	player.secrets = 0
+	
+	# make current maps' entry gate door solid, and make the gate visible so we don't leave a hole in the level
 	var currentEntry = getCurrentMapSlot().scene.find_node("Entry")
 	currentEntry.get_node("Gate/Door /static_collision/shape0").set_deferred("disabled", false)
 	currentEntry.show()
+	
+	yield(get_tree().create_timer(15),"timeout")
+	
+	HUD.hide_message()
 
 #func _process(delta):
 	#print("SlotA: ", SlotA.map, " SlotB: ", SlotB.map)

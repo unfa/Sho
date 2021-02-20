@@ -10,8 +10,8 @@ export (String, MULTILINE) var secret_text = ""
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+#func _ready():
+#	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,7 +21,7 @@ func _ready():
 
 func _on_TutorialNode_body_entered(body):
 	if body.is_in_group("players") and active:
-		HUD.display_message("you have found a secret\n\n" + secret_text)
+		HUD.display_message("Secret found!\n\n" + secret_text)
 		body.secrets += 1
 
 func _on_TutorialNode_body_exited(body):

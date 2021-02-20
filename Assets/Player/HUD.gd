@@ -148,7 +148,7 @@ func update():
 	
 func update_background_strip():
 	if background != null:
-		background.scale[1] = -OS.get_window_size()[0]
+		background.scale[1] = -OS.get_window_size()[0] * 1.5
 		
 #func update_hud_scale():
 	#self.rect_scale OS.get_window_size()[0]

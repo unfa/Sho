@@ -7,6 +7,7 @@ class LevelState:
 	var Time: float
 	var Score: int
 	var Secrets: int
+	var SecretsTotal: int
 	var Deaths: int
 	var Kills: int
 	
@@ -60,6 +61,7 @@ func save_game():
 	for x in current.Levels.size():
 		levels[x] = {"map": current.Levels[x].Map,
 					"secrets": current.Levels[x].Secrets,
+					"secrets_total": current.Levels[x].SecretsTotal,
 					"time": current.Levels[x].Time,
 					"deaths": current.Levels[x].Deaths,
 					"kills": current.Levels[x].Kills,
@@ -79,9 +81,26 @@ func save_game():
 func load_game(file_name: String):
 	var f = File.new()
 	f.open(save_dir + file_name, File.READ)
-	var data = f.get_as_text()
+	var data = parse_json(f.get_as_text())
 	f.close()
-	current = parse_json(data)
+	current.Name = data["name"]
+	current.Levels.clear()
+	
+	for x in data["levels"]:
+		var level = LevelState.new(x["map"])
+		level.Deaths = x["deaths"]
+		level.Kills = x["kills"]
+		level.Secrets = x["secrets"]
+		level.SecretsTotal = x["serets_total"]
+		level.Score = x["score"]
+		level.Time = x["time"]
+		current.Levels.append(level)
+
+	current.Client_UID = data["client"]
+	current.CreationDateTime = data["created"]
+	
+	print("loaded game state: ")
+	print(to_json(current))
 
 func new_game(game_name: String):
 	current = GameState.new(game_name)

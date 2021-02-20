@@ -1,4 +1,6 @@
 extends Spatial
+
+#var SecretsTotal = 0
 #
 #signal indoors
 #signal outdoors
@@ -11,10 +13,8 @@ onready var world = get_tree().root.find_node("World", true, false)
 
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-#	while world == null:
-#		world = get_tree().root.get_node("World")
-#		yield(get_tree(), "idle_frame")
+func _ready():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
