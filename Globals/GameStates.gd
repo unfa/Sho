@@ -101,10 +101,13 @@ func load_game(file_name: String):
 	
 	print("loaded game state: ")
 	print(to_json(current))
+	
+	
 
 func new_game(game_name: String):
 	current = GameState.new(game_name)
 	save_game()
+	Config
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

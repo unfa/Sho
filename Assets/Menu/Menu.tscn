@@ -303,6 +303,7 @@ theme = ExtResource( 1 )
 custom_styles/normal = SubResource( 5 )
 shortcut = SubResource( 7 )
 text = "Back"
+[connection signal="pressed" from="MainMenu/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="MainMenu/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="MainMenu/HighScores" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="MainMenu/Quit" to="." method="_on_Quit_pressed"]

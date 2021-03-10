@@ -1,9 +1,12 @@
 extends Control
 
+func visuals_update():
+	OS.window_fullscreen = Config.visuals_fullscreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	HUD.hide()
+	visuals_update()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -35,3 +38,8 @@ func _on_NewGameBack_pressed():
 func _on_Start_pressed():
 	GameStates.new_game($NewGame/PlayerNameEdit.text)
 	get_tree().change_scene("res://Game.tscn")
+
+
+func _on_Resume_pressed():
+	self.hide()
+	get_tree().paused = false

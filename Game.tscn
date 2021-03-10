@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Assets/Camera/CameraRig.tscn" type="PackedScene" id=2]
@@ -6,13 +6,19 @@
 [ext_resource path="res://World.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Preloader.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Globals/MapManager.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Menu/Menu.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 
 [node name="Game" type="Node"]
 
+[node name="Menu" parent="." instance=ExtResource( 7 )]
+pause_mode = 2
+visible = false
+
 [node name="World" type="Node" parent="."]
+pause_mode = 1
 script = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="World"]
@@ -47,7 +53,7 @@ visible = false
 material = SubResource( 1 )
 
 [node name="Camera" parent="World/CameraRig" index="1"]
-far = 10000.0
+far = 200.0
 
 [node name="Player" parent="World" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )

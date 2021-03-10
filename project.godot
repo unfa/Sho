@@ -29,6 +29,7 @@ Balance="*res://Globals/Balance.gd"
 Classes="*res://Globals/Classes.gd"
 HUD="*res://Globals/HUD.tscn"
 GameStates="*res://Globals/GameStates.gd"
+Config="*res://Globals/Config.gd"
 
 [display]
 
@@ -110,9 +111,7 @@ demo_play={
 threads/thread_model=2
 quality/filters/anisotropic_filter_level=3
 vram_compression/import_etc=true
-quality/directional_shadow/size=2048
 quality/directional_shadow/size.mobile=1024
-quality/shadow_atlas/size=2048
 quality/shadow_atlas/quadrant_0_subdiv=2
 quality/shadow_atlas/quadrant_1_subdiv=3
 quality/shadow_atlas/quadrant_2_subdiv=4
@@ -122,5 +121,4 @@ batching/debug/diagnose_frame=true
 quality/subsurface_scattering/quality=2
 quality/voxel_cone_tracing/high_quality=true
 quality/reflections/atlas_size=4096
-quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"
