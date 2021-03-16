@@ -62,8 +62,6 @@ func visuals_update():
 	print(Config.visuals_shadows_other)
 	print(typeof(Config.visuals_shadows_other))
 	
-	
-	
 #	match Config.visuals_shadows_other:
 #		0:
 #			ProjectSettings.set_setting("rendering/quality/shadows/filter_mode", "Disabled")

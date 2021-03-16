@@ -60,6 +60,7 @@ pressed = true
 shortcut = SubResource( 6 )
 
 [node name="Menu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.04163
@@ -258,52 +259,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Continue"]
-margin_right = 413.0
+[node name="Continue Game" type="Label" parent="Continue"]
+margin_right = 462.0
 margin_bottom = 89.0
 theme = ExtResource( 1 )
-text = "Choose Game:"
+text = "Continue Game:"
 align = 1
 valign = 1
 
-[node name="ItemList" type="ItemList" parent="Continue/Label"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="GameList" type="ItemList" parent="Continue"]
+margin_top = 93.0
+margin_right = 462.0
+margin_bottom = 543.0
+rect_min_size = Vector2( 0, 450 )
 theme = ExtResource( 1 )
+items = [ "Blah", null, false, "Tgssgs", null, false ]
+fixed_icon_size = Vector2( 32, 32 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Continue/Label/ItemList"]
-margin_right = 40.0
-margin_bottom = 89.0
-theme = ExtResource( 1 )
-text = "Game 1"
-
-[node name="Label2" type="Label" parent="Continue/Label/ItemList"]
-margin_right = 40.0
-margin_bottom = 89.0
-theme = ExtResource( 1 )
-text = "Game 2"
-
 [node name="Continue" type="Button" parent="Continue"]
-margin_top = 93.0
-margin_right = 413.0
-margin_bottom = 186.0
+margin_top = 547.0
+margin_right = 462.0
+margin_bottom = 640.0
 theme = ExtResource( 1 )
 custom_styles/normal = SubResource( 5 )
 disabled = true
 text = "Continue"
 
 [node name="ContinueBack" type="Button" parent="Continue"]
-margin_top = 190.0
-margin_right = 413.0
-margin_bottom = 283.0
+margin_top = 644.0
+margin_right = 462.0
+margin_bottom = 737.0
 theme = ExtResource( 1 )
 custom_styles/normal = SubResource( 5 )
 shortcut = SubResource( 7 )
 text = "Back"
+[connection signal="visibility_changed" from="." to="." method="_on_Menu_visibility_changed"]
 [connection signal="pressed" from="MainMenu/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="MainMenu/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="MainMenu/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="MainMenu/HighScores" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="MainMenu/Quit" to="." method="_on_Quit_pressed"]
@@ -311,4 +306,6 @@ text = "Back"
 [connection signal="text_changed" from="NewGame/PlayerNameEdit" to="." method="_on_PlayerNameEdit_text_changed"]
 [connection signal="pressed" from="NewGame/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="NewGame/NewGameBack" to="." method="_on_NewGameBack_pressed"]
-[connection signal="pressed" from="Continue/ContinueBack" to="." method="_on_NewGameBack_pressed"]
+[connection signal="item_selected" from="Continue/GameList" to="." method="_on_GameList_item_selected"]
+[connection signal="pressed" from="Continue/Continue" to="." method="_on_ContinueGame_pressed"]
+[connection signal="pressed" from="Continue/ContinueBack" to="." method="_on_ContinueBack_pressed"]

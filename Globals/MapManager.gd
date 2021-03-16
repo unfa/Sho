@@ -206,6 +206,17 @@ func freePreviousMap(): # despawn the unneeded previous map from the game
 	#pass
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print ("FINDING NEXT LEVEL")
+	for level in GameStates.current.Levels:
+		var index = MapList.find(level.Map)
+		if index != -1:
+			MapList.remove(index)
+			print("Removed map ", level.Map, " from MapList")
+		else:
+			print("Map not found in MapList")
+	
+	print ("Search complete")
+	
 	# wait for the player node to be ready
 	world = get_tree().root.find_node("World", true, false)
 	print(world)

@@ -11,8 +11,8 @@ class LevelState:
 	var Deaths: int
 	var Kills: int
 	
-	func _init(LevelName:String):
-		self.Map = LevelName
+	func _init(Map:String):
+		self.Map = Map
 
 class GameState:
 	var Name: String
@@ -83,15 +83,16 @@ func load_game(file_name: String):
 	f.open(save_dir + file_name, File.READ)
 	var data = parse_json(f.get_as_text())
 	f.close()
-	current.Name = data["name"]
+	current = GameState.new(data["name"])
 	current.Levels.clear()
 	
-	for x in data["levels"]:
-		var level = LevelState.new(x["map"])
+	for x in data["levels"].values():
+		var map = (x["map"])
+		var level = LevelState.new(map)
 		level.Deaths = x["deaths"]
 		level.Kills = x["kills"]
 		level.Secrets = x["secrets"]
-		level.SecretsTotal = x["serets_total"]
+		level.SecretsTotal = x["secrets_total"]
 		level.Score = x["score"]
 		level.Time = x["time"]
 		current.Levels.append(level)
@@ -103,11 +104,11 @@ func load_game(file_name: String):
 	print(to_json(current))
 	
 	
+	
 
 func new_game(game_name: String):
 	current = GameState.new(game_name)
 	save_game()
-	Config
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
