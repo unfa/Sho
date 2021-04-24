@@ -14,7 +14,6 @@ resource_local_to_scene = true
 [node name="Game" type="Node"]
 
 [node name="Menu" parent="." instance=ExtResource( 7 )]
-pause_mode = 2
 visible = false
 
 [node name="World" type="Node" parent="."]
@@ -49,7 +48,6 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
 
 [node name="Debug" parent="World/CameraRig" index="0"]
-visible = false
 material = SubResource( 1 )
 
 [node name="Camera" parent="World/CameraRig" index="1"]
@@ -64,3 +62,4 @@ script = ExtResource( 6 )
 [node name="Preloader" parent="." instance=ExtResource( 5 )]
 
 [editable path="World/CameraRig"]
+[editable path="World/CameraRig/Debug"]

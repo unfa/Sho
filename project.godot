@@ -10,7 +10,6 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
@@ -109,16 +108,18 @@ demo_play={
 [rendering]
 
 threads/thread_model=2
-quality/filters/anisotropic_filter_level=3
 vram_compression/import_etc=true
 quality/directional_shadow/size.mobile=1024
 quality/shadow_atlas/quadrant_0_subdiv=2
 quality/shadow_atlas/quadrant_1_subdiv=3
 quality/shadow_atlas/quadrant_2_subdiv=4
 quality/shadows/filter_mode=2
+quality/filters/anisotropic_filter_level=3
+quality/spatial_partitioning/render_tree_balance=0.7
 batching/options/use_batching=false
 batching/debug/diagnose_frame=true
 quality/subsurface_scattering/quality=2
 quality/voxel_cone_tracing/high_quality=true
 quality/reflections/atlas_size=4096
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

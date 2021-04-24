@@ -263,9 +263,8 @@ void fragment() {
 	float n_out2p1 = ColorUniform.a;
 
 // Fresnel:57
-	bool n_in57p2 = true;
 	float n_in57p3 = 0.50000;
-	float n_out57p0 = n_in57p2 ? (pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in57p3)) : (pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in57p3));
+	float n_out57p0 = pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in57p3);
 
 // ScalarOp:58
 	float n_in58p1 = 0.80000;
@@ -275,9 +274,8 @@ void fragment() {
 	float n_out36p0 = 0.600000;
 
 // Fresnel:32
-	bool n_in32p2 = false;
 	float n_in32p3 = 2.00000;
-	float n_out32p0 = n_in32p2 ? (pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in32p3)) : (pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in32p3));
+	float n_out32p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in32p3);
 
 // ScalarOp:38
 	float n_in38p1 = 0.50000;

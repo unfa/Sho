@@ -98,9 +98,8 @@ void fragment() {
 	vec3 n_out20p0 = n_out19p0 * vec3(n_out21p0);
 
 // Fresnel:6
-	bool n_in6p2 = false;
 	float n_in6p3 = 2.00000;
-	float n_out6p0 = n_in6p2 ? (pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in6p3)) : (pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in6p3));
+	float n_out6p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in6p3);
 
 // ScalarFunc:12
 	float n_out12p0 = min(max(n_out6p0, 0.0), 1.0);

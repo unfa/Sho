@@ -74,6 +74,7 @@ visibility_aabb = AABB( -4, -4, -0.829332, 8, 8, 10.8833 )
 process_material = SubResource( 5 )
 
 [node name="Smoke" parent="." index="4"]
+transform = Transform( 0.241937, 0, 0, 0, 0, 0.241937, 0, -0.241937, 0, -0.00406766, 0.722154, 0.52386 )
 lifetime = 10.0
 visibility_aabb = AABB( -4, -4, 1.08339, 8, 8, 20.8713 )
 process_material = SubResource( 10 )
@@ -92,5 +93,4 @@ omni_range = 25.0
 omni_attenuation = 3.24901
 
 [editable path="Torch2"]
-
 [editable path="Torch"]

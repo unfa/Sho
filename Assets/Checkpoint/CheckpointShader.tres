@@ -169,8 +169,7 @@ void fragment() {
 	float n_out7p0 = FresnelPower;
 
 // Fresnel:38
-	bool n_in38p2 = false;
-	float n_out38p0 = n_in38p2 ? (pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out7p0)) : (pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out7p0));
+	float n_out38p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out7p0);
 
 // VectorOp:19
 	vec3 n_out19p0 = n_out35p0 * vec3(n_out38p0);

@@ -16,7 +16,7 @@ var visuals_ssao = true
 var visuals_ssr = true
 var visuals_bloom = true
 var visuals_aa = 2
-var visuals_draw_distance = 200
+var visuals_draw_distance = 500
 var visuals_fullscreen = true
 var visuals_resolution = Vector2(1920,1080)
 

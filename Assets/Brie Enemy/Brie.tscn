@@ -200,9 +200,6 @@ shape = SubResource( 10 )
 [node name="Brie" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
 
-[node name="Skeleton" parent="Brie/Armature" index="0"]
-bones/2/bound_children = [ NodePath("Attack") ]
-
 [node name="Brie" parent="Brie/Armature/Skeleton" index="0"]
 layers = 2
 
@@ -272,6 +269,7 @@ draw_pass_1 = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.84164, 0 )
 visible = false
 shape = SubResource( 20 )
+
 [connection signal="timeout" from="AI/WanderIdle" to="." method="_on_WanderIdle_timeout"]
 [connection signal="body_entered" from="AI/Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="body_exited" from="AI/Attack" to="." method="_on_Attack_body_exited"]
@@ -282,5 +280,4 @@ shape = SubResource( 20 )
 [connection signal="body_entered" from="Brie/Armature/Skeleton/Attack/Collider" to="." method="_on_Collider_body_entered"]
 
 [editable path="Shadow"]
-
 [editable path="Brie"]
