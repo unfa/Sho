@@ -296,6 +296,7 @@ theme = ExtResource( 1 )
 custom_styles/normal = SubResource( 5 )
 shortcut = SubResource( 7 )
 text = "Back"
+
 [connection signal="visibility_changed" from="." to="." method="_on_Menu_visibility_changed"]
 [connection signal="pressed" from="MainMenu/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="MainMenu/Continue" to="." method="_on_Continue_pressed"]

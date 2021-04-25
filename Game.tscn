@@ -13,19 +13,32 @@ resource_local_to_scene = true
 
 [node name="Game" type="Node"]
 
-[node name="Menu" parent="." instance=ExtResource( 7 )]
-visible = false
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+stretch_shrink = 4
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
-[node name="World" type="Node" parent="."]
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 480, 270 )
+handle_input_locally = false
+render_target_update_mode = 3
+shadow_atlas_size = 512
+
+[node name="World" type="Node" parent="ViewportContainer/Viewport"]
 pause_mode = 1
 script = ExtResource( 4 )
 
-[node name="Tween" type="Tween" parent="World"]
+[node name="Tween" type="Tween" parent="ViewportContainer/Viewport/World"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ViewportContainer/Viewport/World"]
 environment = ExtResource( 1 )
 
-[node name="Sun" type="DirectionalLight" parent="World"]
+[node name="Sun" type="DirectionalLight" parent="ViewportContainer/Viewport/World"]
 transform = Transform( 0.786731, 0.360352, -0.5012, 0.0824952, 0.743269, 0.663887, 0.611759, -0.563647, 0.555025, 0, 32, 0 )
 light_color = Color( 0.933333, 0.905882, 0.803922, 1 )
 light_energy = 1.5
@@ -40,26 +53,29 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MapA" type="Node" parent="World"]
+[node name="MapA" type="Node" parent="ViewportContainer/Viewport/World"]
 
-[node name="MapB" type="Node" parent="World"]
+[node name="MapB" type="Node" parent="ViewportContainer/Viewport/World"]
 
-[node name="CameraRig" parent="World" instance=ExtResource( 2 )]
+[node name="CameraRig" parent="ViewportContainer/Viewport/World" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
 
-[node name="Debug" parent="World/CameraRig" index="0"]
+[node name="Debug" parent="ViewportContainer/Viewport/World/CameraRig" index="0"]
 material = SubResource( 1 )
 
-[node name="Camera" parent="World/CameraRig" index="1"]
+[node name="Camera" parent="ViewportContainer/Viewport/World/CameraRig" index="1"]
 far = 200.0
 
-[node name="Player" parent="World" instance=ExtResource( 3 )]
+[node name="Player" parent="ViewportContainer/Viewport/World" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 310.531 )
+
+[node name="Menu" parent="." instance=ExtResource( 7 )]
+visible = false
 
 [node name="MapManager" type="Node" parent="."]
 script = ExtResource( 6 )
 
 [node name="Preloader" parent="." instance=ExtResource( 5 )]
 
-[editable path="World/CameraRig"]
-[editable path="World/CameraRig/Debug"]
+[editable path="ViewportContainer/Viewport/World/CameraRig"]
+[editable path="ViewportContainer/Viewport/World/CameraRig/Debug"]

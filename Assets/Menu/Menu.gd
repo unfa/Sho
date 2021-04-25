@@ -23,7 +23,7 @@ func _ready():
 		for i in GameStates.save_files:
 			$Continue/GameList.add_item(i)
 	
-	visuals_update()
+	#Config.visuals_update()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -60,6 +60,7 @@ func _on_Start_pressed():
 func _on_Resume_pressed():
 	self.hide()
 	get_tree().paused = false
+	HUD.show()
 
 
 func _on_Menu_visibility_changed(): # if the menu has been opened during pause
