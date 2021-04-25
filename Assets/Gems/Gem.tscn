@@ -84,6 +84,7 @@ load_path = "res://.import/Shockwave 01.png-0c7e4cc1afd4efb76eb851f832910149.s3t
 flags_transparent = true
 flags_unshaded = true
 flags_vertex_lighting = true
+flags_no_depth_test = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
 params_billboard_mode = 1
@@ -155,8 +156,8 @@ material/0 = ExtResource( 6 )
 transform = Transform( 0.54533, 0, 0, 0, 0.54533, 0, 0, 0, 0.54533, 0, 0, 0 )
 layers = 2
 material/0 = ExtResource( 3 )
+
 [connection signal="body_entered" from="." to="." method="_on_Star_body_entered"]
 
 [editable path="Shadow"]
-
 [editable path="Pickup"]

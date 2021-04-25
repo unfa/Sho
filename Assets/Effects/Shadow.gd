@@ -15,14 +15,23 @@ export var debug = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Make the material unique
-	var material = $Mesh.get_surface_material(0).duplicate()
-	$Mesh.set_surface_material(0, material)
+	var material = $Pivot/Mesh.get_surface_material(0).duplicate()
+	$Pivot/Mesh.set_surface_material(0, material)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. wa'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_colliding():
-		$Mesh.show() # make the shadow visible
-		$Mesh.global_transform.origin = get_collision_point() + MARGIN
+		$Pivot.show() # make the shadow visible
+		$Pivot.global_transform.origin = get_collision_point() + (get_collision_normal() * 0.025)
+		
+		#$Pivot.rotation.move_toward(get_collision_point() - get_collision_normal(), 1)
+		
+		if get_collision_normal() != Vector3.UP:
+			$Pivot.look_at(get_collision_point() - get_collision_normal(), Vector3.UP)
+			#$Pivot.rotation.move_toward(get_collision_point() - get_collision_normal(), 1)
+		else:
+			$Pivot.rotation = Vector3(-PI/2,-PI/2,0)
+#
 		var distance = global_transform.origin.distance_to(get_collision_point())
 		if debug:
 			print("Shadow distance: ", distance)
@@ -33,7 +42,9 @@ func _process(delta):
 		
 		if debug:
 			print("Shadow alpha: ", alpha)
-		$Mesh.get_surface_material(0).albedo_color = Color(1,1,1, alpha)
+		$Pivot/Mesh.get_surface_material(0).albedo_color = Color(1,1,1, alpha)
+		
+		# set normal rotation:
 	else:
-		$Mesh.hide()
+		$Pivot.hide()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Brie Enemy/Brie.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/HUD/Font.tres" type="DynamicFont" id=2]
@@ -20,6 +20,32 @@
 [ext_resource path="res://Globals/HUD.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Assets/Tiles/Tiles 11.gltf" type="PackedScene" id=19]
 
+[sub_resource type="VisualShader" id=1]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -72, -79 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
 [node name="Preloader" type="Control"]
 anchor_right = 1.0
@@ -34,7 +60,12 @@ process_priority = 2
 show_behind_parent = true
 script = null
 
+[node name="Debug" parent="HUD" index="3"]
+margin_left = 3.36353
+margin_right = -1236.64
+
 [node name="Overlay" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -43,6 +74,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
+material = SubResource( 2 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -61,13 +93,12 @@ __meta__ = {
 }
 
 [node name="Assets" type="Spatial" parent="."]
-visible = false
 
 [node name="Camera" type="Camera" parent="Assets"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 41 )
 projection = 1
 fov = 90.0
-size = 47.8
+size = 147.1
 frustum_offset = Vector2( 2.258, 3 )
 near = 0.01
 far = 10000.0
@@ -129,3 +160,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 0 )
 
 [node name="Player" parent="Assets" instance=ExtResource( 15 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -20, 0, 0 )
+
+[node name="Timer" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="HUD"]

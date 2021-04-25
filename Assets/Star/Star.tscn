@@ -221,6 +221,7 @@ tracks/12/keys = {
 flags_transparent = true
 flags_unshaded = true
 flags_vertex_lighting = true
+flags_no_depth_test = true
 params_blend_mode = 1
 params_billboard_mode = 1
 albedo_color = Color( 0.907, 0.69, 1, 1 )
@@ -271,6 +272,7 @@ light_color = Color( 0.956863, 0.0823529, 0.964706, 1 )
 light_energy = 0.0
 omni_range = 10.0
 omni_attenuation = 2.73208
+
 [connection signal="body_entered" from="." to="." method="_on_Star_body_entered"]
 
 [editable path="Meshes"]
