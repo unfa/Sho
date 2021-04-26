@@ -72,16 +72,32 @@ func _physics_process(delta):
 		move_and_collide(temp_transform.origin - player.global_transform.translated(player_origin_offset).origin)
 	#else:
 		# interpolate location and rotation, applying an offset
-	temp_transform = global_transform.interpolate_with(player.global_transform.translated(translation_offset), follow_time * delta)
+	if snapped:
+		temp_transform = global_transform.interpolate_with(snap_transform, follow_time * delta)
+	else:
+		temp_transform = global_transform.interpolate_with(player.global_transform.translated(translation_offset), follow_time * delta)
+
 	
 	#lookat_target.linear_interpolate(player.global_transform.origin, lookat_time * delta)
 	#lookat_target = player.global_transform.translated(lookat_offset).origin
+	
 	lookat_target = player.global_transform.origin
+	
+	if snapped:
+#		lookat_target.linear_interpolate(lookat_target + Vector3.UP * 0.5, 0.5)
+		lookat_target += Vector3.UP * 2
+#
+#	if snapped: #apply amera offset if we're standing in front of a closed gate
+#		temp_transform = temp_transform.translated(Vector3.UP * 0.5)
 	
 	#lookat_target = lookat_target.interpolate_with(player.global_transform.translated(lookat_offset), 0.01)
 	
 	# project the camera location startin at the player location to the target location to make sure the player is not occluded
 	move_and_collide(temp_transform.origin - global_transform.origin)
+		
 	
 	# look_at the player  applying an offset
+#	if not snapped:
 	camera.look_at(lookat_target, Vector3.UP)
+#	else:
+#		camera.global_transform.interpolate_with(camera.global_transform.looking_at(lookat_target, Vector3.UP), follow_time * delta)

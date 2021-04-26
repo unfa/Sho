@@ -262,7 +262,7 @@ func _process(delta):
 		
 	if gate_state.get_current_state(true) == "Sleep":
 		anim.play("Init")
-		#camera.snap(false)
+		camera.snap(false)
 	elif gate_state.get_current_state(true) == "Start": # AWAKE
 		if not anim.is_playing():
 			anim.play("Start")
@@ -271,6 +271,7 @@ func _process(delta):
 			#print("play start")
 	elif gate_state.get_current_state(true) == "Awake":
 		eye_blink(delta)
+		#camera.snap(true)
 	elif gate_state.get_current_state(true) == "Collect": # COLLECT
 		eye_wander(delta)
 		eye_track(delta)
@@ -286,7 +287,8 @@ func _process(delta):
 		open_gate()
 		gate_state.set_current_state("Opened")
 	elif gate_state.get_current_state(true) == "Opened": # OPENED
-		pass
+		#pass
+		camera.snap(false)
 	elif gate_state.get_current_state(true) == "Through":  # THROUGH
 		anim.play("Close")
 		camera.snap(false)

@@ -768,7 +768,7 @@ size = Vector2( 2, 2 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.659, 11.57 )
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 12 )
 
 [node name="AnimationManagement" type="Node" parent="."]
 
@@ -851,6 +851,7 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="body_entered" from="Through" to="." method="_on_CloseTrigger_body_entered"]
 [connection signal="body_entered" from="Far" to="." method="_on_Far_body_entered"]
 [connection signal="body_exited" from="Far" to="." method="_on_Far_body_exited"]
