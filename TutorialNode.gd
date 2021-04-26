@@ -6,6 +6,8 @@ export (String, MULTILINE) var tutorial_text = ""
 export var tutorial_delay: float = 1
 export var single_use = false
 
+onready var HUD = get_tree().get_nodes_in_group("HUD")[0]
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

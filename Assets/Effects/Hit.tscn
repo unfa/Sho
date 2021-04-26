@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Assets/Effects/Hit.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Effects/Hit.gd" type="Script" id=2]
@@ -55,9 +55,31 @@ operator = 1
 output_port_for_preview = 0
 function = 31
 
-[sub_resource type="VisualShader" id=16]
+[sub_resource type="VisualShaderNodeTransformMult" id=16]
+
+[sub_resource type="VisualShaderNodeInput" id=17]
+input_name = "inv_camera"
+
+[sub_resource type="VisualShaderNodeInput" id=18]
+input_name = "camera"
+
+[sub_resource type="VisualShaderNodeInput" id=19]
+input_name = "world"
+
+[sub_resource type="VisualShaderNodeTransformCompose" id=20]
+
+[sub_resource type="VisualShaderNodeTransformDecompose" id=21]
+
+[sub_resource type="VisualShaderNodeTransformDecompose" id=22]
+
+[sub_resource type="VisualShaderNodeInput" id=23]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id=24]
+
+[sub_resource type="VisualShader" id=25]
 code = "shader_type spatial;
-render_mode cull_front, unshaded;
+render_mode cull_disabled, specular_schlick_ggx, depth_test_disable, unshaded, shadows_disabled, ambient_light_disabled;
 
 uniform vec4 Color : hint_color;
 uniform float Center;
@@ -127,9 +149,32 @@ void light() {
 
 }
 "
-graph_offset = Vector2( 769.75, -36 )
-modes/cull = 1
+graph_offset = Vector2( -324, -26 )
+modes/cull = 2
+flags/ambient_light_disabled = true
+flags/depth_test_disable = true
+flags/shadows_disabled = true
 flags/unshaded = true
+nodes/vertex/0/position = Vector2( 360, 60 )
+nodes/vertex/2/node = SubResource( 17 )
+nodes/vertex/2/position = Vector2( -600, 0 )
+nodes/vertex/3/node = SubResource( 18 )
+nodes/vertex/3/position = Vector2( -620, 180 )
+nodes/vertex/4/node = SubResource( 19 )
+nodes/vertex/4/position = Vector2( -620, 320 )
+nodes/vertex/5/node = SubResource( 20 )
+nodes/vertex/5/position = Vector2( -200, 180 )
+nodes/vertex/6/node = SubResource( 21 )
+nodes/vertex/6/position = Vector2( -440, 180 )
+nodes/vertex/7/node = SubResource( 22 )
+nodes/vertex/7/position = Vector2( -440, 320 )
+nodes/vertex/8/node = SubResource( 23 )
+nodes/vertex/8/position = Vector2( -160, -20 )
+nodes/vertex/9/node = SubResource( 24 )
+nodes/vertex/9/position = Vector2( 20, 60 )
+nodes/vertex/10/node = SubResource( 16 )
+nodes/vertex/10/position = Vector2( -380, 0 )
+nodes/vertex/connections = PoolIntArray( 3, 0, 6, 0, 8, 0, 9, 1, 6, 0, 5, 0, 6, 1, 5, 1, 6, 2, 5, 2, 7, 3, 5, 3, 2, 0, 10, 0, 5, 0, 10, 1, 10, 0, 9, 0, 4, 0, 7, 0 )
 nodes/fragment/0/position = Vector2( 1620, 160 )
 nodes/fragment/2/node = SubResource( 8 )
 nodes/fragment/2/position = Vector2( -400, 280 )
@@ -161,14 +206,14 @@ nodes/fragment/19/node = SubResource( 7 )
 nodes/fragment/19/position = Vector2( 1200, 60 )
 nodes/fragment/connections = PoolIntArray( 2, 0, 4, 0, 3, 0, 7, 0, 6, 0, 7, 1, 6, 0, 8, 1, 3, 0, 8, 0, 4, 0, 9, 0, 9, 0, 10, 1, 5, 0, 11, 0, 11, 0, 10, 0, 7, 0, 4, 1, 7, 0, 5, 0, 2, 0, 5, 1, 10, 0, 15, 0, 15, 0, 16, 0, 17, 0, 15, 2, 17, 0, 16, 1, 16, 0, 0, 1, 19, 0, 0, 0 )
 
-[sub_resource type="ShaderMaterial" id=17]
-shader = SubResource( 16 )
+[sub_resource type="ShaderMaterial" id=26]
+shader = SubResource( 25 )
 shader_param/Color = Color( 2, 2, 2, 1 )
-shader_param/Center = 0.0
+shader_param/Center = 0.345216
 shader_param/Width = 0.01
-shader_param/Softness = 0.08
+shader_param/Softness = 0.0626017
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=27]
 length = 0.6
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:material/0:shader_param/Center")
@@ -228,9 +273,10 @@ tracks/4/keys = {
 }
 
 [node name="Hit" type="MeshInstance"]
+generate_lightmap = false
 mesh = SubResource( 1 )
-material/0 = SubResource( 17 )
+material/0 = SubResource( 26 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 18 )
+anims/Hit = SubResource( 27 )

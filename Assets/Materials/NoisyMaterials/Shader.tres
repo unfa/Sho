@@ -30,7 +30,7 @@ texture_type = 2
 uniform_name = "NormalDepth"
 
 [sub_resource type="VisualShaderNodeScalarOp" id=9]
-default_input_values = [ 0, 0.0, 1, 0.6 ]
+default_input_values = [ 0, 0.0, 1, 0.9 ]
 operator = 6
 
 [sub_resource type="VisualShaderNodeTextureUniformTriplanar" id=10]
@@ -189,7 +189,7 @@ void fragment() {
 	float n_out13p0 = min(n_out14p0, n_in13p1);
 
 // ScalarOp:18
-	float n_in18p1 = 0.60000;
+	float n_in18p1 = 0.90000;
 	float n_out18p0 = max(n_out13p0, n_in18p1);
 
 // Texture:16
@@ -217,7 +217,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -66, -111 )
+graph_offset = Vector2( 458, 110 )
 flags/world_vertex_coords = true
 nodes/fragment/0/position = Vector2( 1420, 120 )
 nodes/fragment/2/node = SubResource( 10 )
@@ -253,5 +253,5 @@ nodes/fragment/16/position = Vector2( 440, 440 )
 nodes/fragment/17/node = SubResource( 8 )
 nodes/fragment/17/position = Vector2( 1020, 480 )
 nodes/fragment/18/node = SubResource( 9 )
-nodes/fragment/18/position = Vector2( 1000, 240 )
+nodes/fragment/18/position = Vector2( 1020, 240 )
 nodes/fragment/connections = PoolIntArray( 3, 0, 4, 0, 5, 0, 4, 1, 6, 0, 7, 1, 7, 0, 5, 2, 8, 0, 11, 0, 10, 0, 11, 1, 11, 0, 12, 0, 12, 0, 14, 0, 14, 0, 13, 0, 15, 0, 10, 0, 15, 0, 5, 0, 2, 0, 15, 0, 2, 0, 16, 0, 17, 0, 0, 9, 13, 0, 18, 0, 18, 0, 0, 3, 4, 0, 0, 0, 9, 0, 0, 10, 16, 0, 0, 8 )

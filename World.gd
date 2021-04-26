@@ -29,14 +29,18 @@ func outdoors():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	HUD.show()
+	
+	var HUD = get_tree().root.find_node("HUD")
+	if HUD != null:
+		HUD.show()
+	#get_tree().root.find_node("HUD").show()
 	Config.visuals_update()
 	#Config.connect("visuals_config_updated", self, "visuals_update")
 	
 func _input(event):
 	# TODO - make this pause the game and open pause menu instead
 	if Input.is_action_pressed("ui_cancel"):
-		HUD.hide()
+		get_tree().root.find_node("HUD").hide()
 		menu.show()
 		menu.find_node("Resume", true, false).show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

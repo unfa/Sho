@@ -777,4 +777,5 @@ scale = Vector2( 4, -4096 )
 z_index = -1
 texture = SubResource( 48 )
 centered = false
+
 [connection signal="resized" from="Display" to="." method="_on_Display_resized"]

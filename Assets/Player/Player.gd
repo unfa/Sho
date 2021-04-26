@@ -371,8 +371,8 @@ func respawn(var checkpoint):
 	
 	emit_signal("player_update")
 	
-	yield(get_tree().create_timer(2), "timeout")
-	HUD.hide_message()
+	#yield(get_tree().create_timer(2), "timeout")
+	#HUD.hide_message()
 
 func increase_score(points):
 	score += points
@@ -392,7 +392,7 @@ func water():
 	in_water = true
 	damage(MAX_HP)
 	#UI.show_info("Oops!")
-	HUD.display_message("Oops!")
+	#HUD.display_message("Oops!")
 	var splash_instance = effect_splash.instance()
 	splash_instance.set_name("splash")
 	splash_instance.global_transform[3] = global_transform[3]

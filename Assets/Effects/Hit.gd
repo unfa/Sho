@@ -3,15 +3,12 @@ extends MeshInstance
 # var a = 2
 # var b = "text"
 
-onready var camera = get_viewport().get_camera()
-
+onready var camera = get_tree().root.find_node("Camera", true, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("Hit")
-	look_at(camera.global_transform.origin, Vector3.UP)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
 	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	look_at(camera.global_transform.origin, Vector3.UP)

@@ -35,10 +35,16 @@ var star_off = preload("res://Assets/HUD/StarOff.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	if not OS.is_debug_build():
+		$Debug.hide()
+	
 	if not on_mobile: # hide the touch controls if we're not running on a mobile device
 		$TouchControls.hide()
 	
 	update_background_strip()
+	
+	$Display/Rows/Columns/HealthMargin/HealthBar.value = 100
 	
 	hide_message()
 	

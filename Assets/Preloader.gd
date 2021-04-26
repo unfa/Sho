@@ -5,6 +5,7 @@ var target_camera = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("INITIALIZED PRELOADER")
+	$LoadingScreen.show()
 	target_camera = get_tree().root.get_camera()
 	get_tree().paused = true
 	$Assets/Camera.current = true

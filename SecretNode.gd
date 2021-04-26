@@ -4,6 +4,8 @@ extends Area
 var active = true
 export (String, MULTILINE) var secret_text = ""
 
+onready var HUD = get_tree().get_nodes_in_group("HUD")[0]
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

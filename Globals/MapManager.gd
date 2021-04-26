@@ -10,6 +10,8 @@ var levelState: GameStates.LevelState
 
 var lastTime = 0
 
+onready var HUD = get_tree().get_nodes_in_group("HUD")[0]
+
 class MapSlot:
 	var map: String
 	var parentNode: Node
@@ -52,6 +54,8 @@ var stage = 0
 
 func incStage():
 	stage += 1
+	#var HUD = get_tree().root.find_node("HUD")
+	#if HUD != null:
 	HUD.get_node("Display/Rows/Columns/StageScoreMargin/StageScoreRows/StageLabel").text = "STAGE: " + String(stage)
 
 var MapList = [
