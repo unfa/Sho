@@ -8,6 +8,8 @@ var cameraRig #= world.get_node("CameraRig")
 
 var levelState: GameStates.LevelState
 
+var nextMapLoaded = false
+
 var lastTime = 0
 
 onready var HUD = get_tree().get_nodes_in_group("HUD")[0]
@@ -110,6 +112,11 @@ func spawnPlayer():
 	cameraRig.global_transform = playerSpawner
 
 func loadNextMap(): # load the next map resource so it's ready to spawn
+	if not nextMapLoaded:
+		nextMapLoaded = true
+	else:
+		return
+		
 	var nextMap = MapList.pop_front()
 	
 	var CurrentSlot = getFreeMapSlot()
@@ -120,7 +127,7 @@ func loadNextMap(): # load the next map resource so it's ready to spawn
 	CurrentSlot.free = false
 	OtherSlot.free = true
 	
-func spawnNextMap(): # spawne the loaded map so it's a part of the world
+func spawnNextMap(): # spawn the loaded map so it's a part of the world
 	
 	# save the progress
 	
@@ -172,6 +179,8 @@ func spawnNextMap(): # spawne the loaded map so it's a part of the world
 	else:
 		spawnPlayer()
 		firstMap = false
+	
+	nextMapLoaded = false
 
 func freePreviousMap(): # despawn the unneeded previous map from the game
 	

@@ -283,6 +283,7 @@ func _process(delta):
 		eye_track(delta)
 		eye_wander(delta)
 		eye_limit_rotation(delta)
+		camera.snap(false)
 	elif gate_state.get_current_state(true) == "Open": # OPEN
 		open_gate()
 		gate_state.set_current_state("Opened")
