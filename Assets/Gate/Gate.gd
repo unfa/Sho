@@ -97,17 +97,8 @@ func debug(text, clear = false): # print on_screen dubig text
 
 func open_gate():
 	print("open_gate")
-#	while not next_scene_ready:
-#		print("waiting for scene to be ready")
-#		yield(get_tree().create_timer(1), "timeout")
-	
-	#next_scene_instance.set_process(true)		
 	anim.play("Open")
-#	print("show scene")
-#	next_scene.show()
-	
 	emit_signal("SpawnMap")
-	
 	open = true
 
 func update_stars():
@@ -158,51 +149,6 @@ func reset():
 	open = false
 	close = false
 	anim.play("Init")
-
-
-#func load_map():
-#
-#	if gate_type != GateType.GATE_EXIT:
-#		# only exit gates should do this
-#		return 1
-#
-#	if next_scene_loading or next_scene_ready:
-#		# we don't want to spawn more than one instances of the new level
-#		return 2
-#
-#	next_scene_loading = true
-#
-#	print("Load map function")
-#
-#	#target_scene = "res://Maps/01.tscn"
-#
-#	print("Target scene: ", target_scene)
-#
-#	next_scene = load(target_scene).instance()
-#
-#	print("Next scene: ", next_scene)
-#
-#	var exit_transform = global_transform
-#
-#	#get_tree().root.call_deferred("add_child", next_scene)
-#	get_tree().root.add_child(next_scene)
-#	#yield(get_tree().root.call_deferred("add_child", next_scene), "completed")
-#
-#	next_scene.set_process(false)
-#	next_scene.set_physics_process(false)
-#	next_scene.hide()
-#
-#	# remove extra entry gate
-#	var new_entry = next_scene.find_node("Entry*")
-#	var entry_transform = new_entry.global_transform
-#	new_entry.queue_free()
-#
-#	var location_offset = exit_transform.origin - entry_transform.origin
-#	#var rotation_offset = exit_transform.basis.get_euler() - entry_transform.basis.get_euler()
-#
-#	next_scene.global_translate(location_offset)
-#	#next_scene.global_rotate(rotation_offset)
-#	next_scene_ready = true
 
 func monitor_player_stars():
 	if player.stars_current == 3 and not next_scene_loading:
@@ -278,21 +224,21 @@ func _process(delta):
 		eye_blink(delta)
 		eye_limit_rotation(delta)
 		anim.play("Collect Star")
-		camera.snap(true, $Camera.global_transform)
+#		camera.snap(true, $Camera.global_transform)
 	elif gate_state.get_current_state(true) == "Reject": # REJECT
 		eye_track(delta)
 		eye_wander(delta)
 		eye_limit_rotation(delta)
-		camera.snap(false)
+#		camera.snap(false)
 	elif gate_state.get_current_state(true) == "Open": # OPEN
 		open_gate()
 		gate_state.set_current_state("Opened")
 	elif gate_state.get_current_state(true) == "Opened": # OPENED
-		#pass
-		camera.snap(false)
+		pass
+#		camera.snap(false)
 	elif gate_state.get_current_state(true) == "Through":  # THROUGH
 		anim.play("Close")
-		camera.snap(false)
+#		camera.snap(false)
 		gate_state.set_current_state("Closed")
 	elif gate_state.get_current_state(true) == "Closed":
 		anim.queue("Init")
@@ -320,6 +266,8 @@ func _on_Far_body_exited(body):
 func _on_Near_body_entered(body):
 	if body.is_in_group("players") and not gate_state.get_current_state(true) in ["Reject", "Open", "Opened", "Through", "Closed"]:
 		gate_state.set_current_state("Collect")
+	
+	camera.snap(true, $Camera.global_transform)
 	# snap camera only in these states	
 
 func _on_Near_body_exited(body):

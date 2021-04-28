@@ -40,7 +40,7 @@ func _ready():
 func _input(event):
 	# TODO - make this pause the game and open pause menu instead
 	if Input.is_action_pressed("ui_cancel"):
-		get_tree().root.find_node("HUD").hide()
+		get_tree().root.find_node("HUD", true, false).hide()
 		menu.show()
 		menu.find_node("Resume", true, false).show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
