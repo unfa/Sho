@@ -16,13 +16,25 @@ func _process(delta):
 	$WaterViewport/WaterCamera.fov = camera.fov
 	var xform: Transform = camera.global_transform
 
-	xform = xform.rotated(Vector3.RIGHT, PI)
-	xform.origin.x = camera.global_transform.origin.x
-	xform.origin.z = camera.global_transform.origin.z
-	xform.origin.y = global_transform.origin.y - abs(camera.global_transform.origin.y - global_transform.origin.y)
+	var global_rotation = xform.basis.get_euler()
+	global_rotation.x *= -1
+	global_rotation.z *= -1
+	xform.basis = Basis(global_rotation)
+	
+	var origin = xform.origin
+	origin.y *= -1
+	origin.y += 2 * dglobal_transform.origin.y
+	#origin.y -= translation.y
+	
+	print(global_transform.origin.y)
+	
+	xform.origin = origin
+	
+	#xform = xform.translated(Vector3(0, diff, 0))
 
 	$WaterViewport/WaterCamera.global_transform = xform
-	
+
+
 func _on_Area_body_entered(body):
 	if body.is_in_group("players") and active:
 		body.water()
