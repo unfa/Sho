@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Assets/Tiles/Tiles 01.dae" type="PackedScene" id=1]
-
-[node name="Tiles 01" index="0" instance=ExtResource( 1 )]
